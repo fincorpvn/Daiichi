@@ -1,0 +1,63 @@
+export type appScreen =
+  | 'ProfileScreen'
+  | 'SearchModal'
+  | 'RegisterScreen'
+  | 'ActiveAccountModal'
+  | 'SplashScreen'
+  | 'ProductDetailsModal'
+  | 'AlertModal'
+  | 'TabContainer'
+  | 'ReviewInfoModal'
+  | 'ViewPDF'
+  | 'AlertError'
+  | 'DropdownModal'
+  | 'ControlEKYCScreen'
+  | 'LoginScreen'
+  | 'OtpRequestModal'
+  | 'ForgotPasswordScreen'
+  | 'SetPasswordScreen'
+  | 'RegisterScreen'
+  // profile screen
+  | 'ChangeEmailScreen'
+  | 'LoginInfoScreen'
+  | 'ChangePasswordScreen'
+  | 'ChangeAddressScreen'
+  // account verify screen
+  | 'AccountVerifyScreen'
+  | 'AccountInfoModal'
+  | 'EditAccountInfoModal'
+  | 'EditBankInfoModal'
+  | 'EditAddressInfoModal'
+  | 'BankInfoModal'
+  | 'AddressInfoModal'
+  | 'ProgramDetailsModal'
+  | 'ConfirmModal'
+  // tab
+  | 'ProfileScreen'
+  | 'InvestmentScreen'
+  | 'TransactionScreen'
+  | 'OverviewScreen'
+  | 'AssetScreen'
+  // setting screen
+  | 'SettingScreen'
+  | 'ActiveBiometricModal'
+  | 'SettingLanguageModal'
+  | 'NotificationScreen'
+  // order transaction
+  | 'OrderBuyDetailsModal'
+  | 'OrderTransferDetailsModal'
+  | 'AutoInvestOrderDetailsModal'
+  | 'OrderHistoryDetailsModal'
+  | 'FilterHistoryModal'
+  | 'OrderSellDetailsModal'
+  // invest ment
+  | 'MiniEkycModal'
+  | 'InvestmentDetailsScreen'
+  // create order
+  | 'CreateOrderModal'
+  | 'FeeTableModal'
+  //
+  | 'SupportScreen'
+  // digital signaturescreen
+  | 'DigitalSignatureScreen'
+  | 'SignatureDraw';

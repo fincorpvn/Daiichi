@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "645273414661",
+    "project_id": "mioplus-b425e",
+    "storage_bucket": "mioplus-b425e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645273414661:android:af312c648083adfc4d806c",
+        "android_client_info": {
+          "package_name": "com.vinacapital.mio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645273414661-19ub7gl2s3kfsgsjaargmnsmok8tfhad.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vinacapital.mio",
+            "certificate_hash": "8be9725f3fb3cc59c7570f54b91c22927f17f931"
+          }
+        },
+        {
+          "client_id": "645273414661-dib0qbspp37dph5m7v9ghlegu1emi9s0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYIwaFG3gn2HPltVXv_Rq5zlyFHub-i4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645273414661-dib0qbspp37dph5m7v9ghlegu1emi9s0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "645273414661-d5tp81spa452kcvp55n3bgovi9hilvd6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.miovinacapital",
+                "app_store_id": "1547223108"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,44 @@
+{
+  // "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6"],
+    "moduleResolution": "Node",
+    "noEmit": true,
+    "strict": true,
+    // "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"],
+      "tests": ["tests/*"],
+      "@components/*": ["src/components/*"],
+      "@container/*": ["src/container/*"],
+      "@constant/*": ["src/constant/*"],
+      "@utils/*": ["src/utils/*"],
+      "@services/*": ["src/services/*"],
+      "@assest/*": ["src/assest/*"],
+      "@hooks/*": ["src/store/hooks/*"],
+      "@screens/*": ["src/screens/*"],
+      "@languages/*": ["src/languages/*"]
+    },
+   "target": "es6",
+    "module": "commonjs",
+    // "moduleResolution": "node",
+    "noResolve": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "sourceMap": true,
+    // "allowJs": true,
+    // "jsx": "react"
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
+}

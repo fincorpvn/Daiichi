@@ -51,8 +51,8 @@ function DemoSignature() {
     <Div
       width={343}
       borderRadius={8}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       backgroundColor={Ecolors.whiteColor}
       paddingHorizontal={15}
       paddingVertical={18}

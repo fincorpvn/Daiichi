@@ -44,7 +44,7 @@ function SBtn(Props: {
       justifyContent={'space-between'}
       borderWidth={0.5}
       backgroundColor={Props.backgroundColor || 'transparent'}
-      borderColor={Ecolors.grayColor}
+      borderColor={Ecolors.bordercolor}
       paddingLeft={18}
       paddingRight={16}>
       <Div flex={1}>

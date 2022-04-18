@@ -20,7 +20,7 @@ function ItemNotification({data, actionDelete, onSelectItem}: Props) {
       <Div
         width={'100%'}
         minHeight={148}
-        borderWidth={1}
+        borderWidth={0.8}
         borderColor={Ecolors.spaceColor}
         borderRadius={5}>
         <Div

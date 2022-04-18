@@ -5,7 +5,12 @@ import {ScrollView} from 'react-native';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, convertTimestamp} from 'utils';
+import {
+  convertAmount,
+  convertNav,
+  convertNumber,
+  convertTimestamp,
+} from 'utils';
 
 interface Props {
   product: any;
@@ -131,8 +136,8 @@ function OrderSellStep2({
             width={'100%'}
             marginTop={9}
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             backgroundColor={Ecolors.whiteColor}
             style={EStyle.shadowItem}
             paddingHorizontal={20}
@@ -187,7 +192,7 @@ function OrderSellStep2({
             <RowSpaceItem marginTop={15}>
               <Label size={14}>{`createordermodal.soluongban`}</Label>
               <Label multilanguage={false} size={14}>
-                {convertNumber(amount, true)}
+                {convertAmount(amount, true)}
               </Label>
             </RowSpaceItem>
           </Div>
@@ -203,17 +208,17 @@ function OrderSellStep2({
             alignItems={'center'}
             justifyContent={'center'}
             borderRadius={8}
-            borderColor={Ecolors.grayColor}
+            borderColor={Ecolors.bordercolor}
             backgroundColor={Ecolors.whiteColor}
             style={EStyle.shadowItem}
             marginTop={16}
-            borderWidth={1}>
+            borderWidth={0.8}>
             <Label size={24} fontWeight={'700'} multilanguage={false}>
-              {convertNumber(excuseTempVolumn?.totalAmount)}
+              {convertNumber(Math.round(excuseTempVolumn?.totalAmount))}
             </Label>
           </Div>
         </Div>
-        <Div height={200} />
+        <Div height={100} />
       </ScrollView>
       <RowSpaceItem paddingHorizontal={29} marginTop={10}>
         <ButtonBorder

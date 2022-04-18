@@ -759,7 +759,7 @@ function ReviewInfoModal() {
                 setIsAccept(a => !a);
               }}
               marginRight={13}
-              borderWidth={1}
+              borderWidth={0.8}
               alignItems={'center'}
               justifyContent={'center'}
               borderColor={isAccept ? Ecolors.mainColor : Ecolors.spaceColor}

@@ -1,6 +1,6 @@
 import {useRoute} from '@react-navigation/core';
 import {Alert, Button, Div, HeaderBack, Label} from 'components';
-import {Ecolors, EStyle, Icons} from 'constant';
+import {Ecolors, Efonts, EStyle, Icons} from 'constant';
 import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
@@ -8,7 +8,14 @@ import {deleteOrder} from 'reducer/transaction';
 import {navigate} from 'services';
 import {apiTransaction} from 'services/apis/apiTransaction';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, convertTimestamp, copyToClipboard, Log} from 'utils';
+import {
+  convertNav,
+  convertNumber,
+  convertReceiveAmount,
+  convertTimestamp,
+  copyToClipboard,
+  Log,
+} from 'utils';
 
 function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
   return (
@@ -66,6 +73,7 @@ function OrderBuyDetailsModal() {
     sessionTime,
     closedBankTime,
     id,
+    receivedAmount,
     price,
     code,
   } = route?.params?.data;
@@ -138,8 +146,8 @@ function OrderBuyDetailsModal() {
             fontWeight={'700'}>{`transactionscreen.thongtindautu`}</Label>
           <Div
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             style={EStyle.shadowItem}
             backgroundColor={Ecolors.whiteColor}
             paddingHorizontal={16}
@@ -161,9 +169,16 @@ function OrderBuyDetailsModal() {
                   {I18nState == 'vi' ? productName : productNameEn}
                 </Label>
               </Div>
-              <Label size={14} multilanguage={false} fontWeight={'700'}>
-                {I18nState == 'vi' ? productProgramName : productProgramNameEn}
-              </Label>
+              <Div
+                height={'100%'}
+                flexDirection={'row'}
+                alignItems={'flex-start'}>
+                <Label size={14} multilanguage={false} fontWeight={'700'}>
+                  {I18nState == 'vi'
+                    ? productProgramName
+                    : productProgramNameEn}
+                </Label>
+              </Div>
             </RowSpaceItem>
             <Div
               width={'100%'}
@@ -232,7 +247,7 @@ function OrderBuyDetailsModal() {
                 {convertNumber(Math.round(lockAmount ?? 0))}
               </Label>
               <Label size={14} multilanguage={false}>
-                {convertNumber(price)}
+                {convertNav(price)}
               </Label>
             </RowSpaceItem>
           </Div>
@@ -244,14 +259,31 @@ function OrderBuyDetailsModal() {
             marginBottom={13}>{`transactionscreen.thongtinchuyenkhoan`}</Label>
           <Div
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             backgroundColor={Ecolors.whiteColor}
             style={EStyle.shadowItem}
             paddingHorizontal={16}
             paddingTop={17}
             paddingBottom={26}>
             <Label size={14}>{`transactionscreen.phuongthucchuyenkhoan`}</Label>
+            <Div marginTop={5} flexDirection={'row'} alignItems={'center'}>
+              <Label
+                size={12}
+                marginRight={8}
+                color={
+                  Ecolors.grayColor
+                }>{`transactionscreen.trangthai`}</Label>
+              {!route?.params?.hideStatusReceiveAmount && (
+                <Label
+                  multilanguage={false}
+                  size={12}
+                  fontFamily={Efonts.italic}
+                  color={receivedAmount ? Ecolors.growColor : Ecolors.redColor}>
+                  {convertReceiveAmount(receivedAmount, I18nState)}
+                </Label>
+              )}
+            </Div>
           </Div>
           <Label
             size={16}
@@ -260,8 +292,8 @@ function OrderBuyDetailsModal() {
             marginBottom={13}>{`transactionscreen.taikhoanthuhuong`}</Label>
           <Div
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             backgroundColor={Ecolors.whiteColor}
             style={EStyle.shadowItem}
             paddingHorizontal={16}

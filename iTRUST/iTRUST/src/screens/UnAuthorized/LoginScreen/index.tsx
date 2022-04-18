@@ -350,7 +350,7 @@ function LoginScreen() {
           <Button
             heightWidth={48}
             borderWidth={0.5}
-            borderColor={Ecolors.grayColor}
+            borderColor={Ecolors.bordercolor}
             borderRadius={5}
             alignItems={'center'}
             justifyContent={'center'}

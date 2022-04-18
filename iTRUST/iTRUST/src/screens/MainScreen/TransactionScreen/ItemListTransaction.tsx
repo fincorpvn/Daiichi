@@ -1,5 +1,5 @@
 import {Alert, Button, Div, ImageView, Label} from 'components';
-import {Ecolors, EStyle, Icons} from 'constant';
+import {Ecolors, Efonts, EStyle, Icons} from 'constant';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
@@ -7,7 +7,13 @@ import {deleteOrder} from 'reducer/transaction';
 import {navigate} from 'services';
 import {apiTransaction} from 'services/apis/apiTransaction';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, convertTimestamp, Log} from 'utils';
+import {
+  convertNav,
+  convertNumber,
+  convertReceiveAmount,
+  convertTimestamp,
+  Log,
+} from 'utils';
 
 function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
   return (
@@ -28,7 +34,7 @@ function ISwap(p: {title: string}) {
       height={68}
       borderWidth={0.7}
       style={EStyle.shadowItem}
-      borderColor={Ecolors.grayColor}
+      borderColor={Ecolors.bordercolor}
       alignItems={'center'}
       justifyContent={'center'}
       borderRadius={8}
@@ -40,7 +46,11 @@ function ISwap(p: {title: string}) {
   );
 }
 
-export function ItemOrderBuy(p: {data: any; hideDelete?: boolean}) {
+export function ItemOrderBuy(p: {
+  data: any;
+  hideDelete?: boolean;
+  hideStatusReceiveAmount?: boolean;
+}) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
   const {
@@ -50,6 +60,7 @@ export function ItemOrderBuy(p: {data: any; hideDelete?: boolean}) {
     sessionTime,
     createAt,
     statusName,
+    receivedAmount,
     statusCode,
   } = p.data;
   return (
@@ -59,12 +70,13 @@ export function ItemOrderBuy(p: {data: any; hideDelete?: boolean}) {
         navigate('OrderBuyDetailsModal', {
           data: p.data,
           hideDelete: p.hideDelete,
+          hideStatusReceiveAmount: p.hideStatusReceiveAmount,
         });
       }}
       marginHorizontal={16}
       borderRadius={8}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
       paddingHorizontal={15}
@@ -86,14 +98,14 @@ export function ItemOrderBuy(p: {data: any; hideDelete?: boolean}) {
       <RowSpaceItem paddingTop={14}>
         <Label
           color={Ecolors.grayColor}
-          size={14}>{`transactionscreen.ngaydatlenh`}</Label>
+          size={14}>{`transactionscreen.phiengiaodich`}</Label>
         <Label
           color={Ecolors.grayColor}
           size={14}>{`transactionscreen.trangthai`}</Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
         <Label multilanguage={false} size={14}>
-          {convertTimestamp(createAt, 'DD/MM/yyyy, HH:mm')}
+          {convertTimestamp(sessionTime)}
         </Label>
         <Div
           flexDirection={'row'}
@@ -116,6 +128,18 @@ export function ItemOrderBuy(p: {data: any; hideDelete?: boolean}) {
           </Label>
         </Div>
       </RowSpaceItem>
+      {!p.hideStatusReceiveAmount && (
+        <RowSpaceItem paddingTop={3}>
+          <Div />
+          <Label
+            multilanguage={false}
+            size={12}
+            fontFamily={Efonts.italic}
+            color={receivedAmount ? Ecolors.growColor : Ecolors.redColor}>
+            {convertReceiveAmount(receivedAmount, I18nState)}
+          </Label>
+        </RowSpaceItem>
+      )}
     </Button>
   );
 }
@@ -146,8 +170,8 @@ export function ItemOrderSell(p: {data: any}) {
       borderRadius={8}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       paddingHorizontal={15}
       paddingTop={13}
       paddingBottom={18}
@@ -161,20 +185,20 @@ export function ItemOrderSell(p: {data: any}) {
           {I18nState == 'vi' ? productProgramName : productProgramNameEn}
         </Label>
         <Label fontWeight={'700'} multilanguage={false} size={14}>
-          {volume}
+          {convertNav(volume, true)}
         </Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={14}>
         <Label
           color={Ecolors.grayColor}
-          size={14}>{`transactionscreen.ngaydatlenh`}</Label>
+          size={14}>{`transactionscreen.phiengiaodich`}</Label>
         <Label
           color={Ecolors.grayColor}
           size={14}>{`transactionscreen.trangthai`}</Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
         <Label multilanguage={false} size={14}>
-          {convertTimestamp(createAt, 'DD/MM/yyyy, HH:mm')}
+          {convertTimestamp(sessionTime)}
         </Label>
         <Div
           flexDirection={'row'}
@@ -278,8 +302,8 @@ export function ItemOrderTransfer(p: {data: any}) {
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
       borderRadius={8}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       paddingHorizontal={15}
       paddingTop={13}
       paddingBottom={18}
@@ -306,7 +330,7 @@ export function ItemOrderTransfer(p: {data: any}) {
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
         <Label multilanguage={false} size={14}>
-          {beginVolume}
+          {convertNav(beginVolume, true)}
         </Label>
         <Div
           flexDirection={'row'}
@@ -339,7 +363,7 @@ export function ItemOrderTransfer(p: {data: any}) {
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
         <Label multilanguage={false} size={14}>
-          {convertNumber(price)}
+          {convertNav(price)}
         </Label>
         <Label multilanguage={false} size={14}>
           {convertNumber(Math.round(lockAmount ?? 0))}
@@ -420,8 +444,8 @@ export function ItemOrderTransfer(p: {data: any}) {
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
       borderRadius={8}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       paddingHorizontal={15}
       paddingTop={13}
       paddingBottom={18}
@@ -511,15 +535,15 @@ export function ItemOrderTransferBuy(p: {data: any}) {
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
       borderRadius={8}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       paddingHorizontal={15}
       paddingTop={13}
       paddingBottom={18}
       minHeight={100}>
       <RowSpaceItem>
         <Label size={14}>{`transactionscreen.quychuongtrinh`}</Label>
-        <Label size={14}>{`transactionscreen.ngaydatlenh`}</Label>
+        <Label size={14}>{`transactionscreen.phiengiaodich`}</Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
         <Label fontWeight={'700'} multilanguage={false} size={14}>

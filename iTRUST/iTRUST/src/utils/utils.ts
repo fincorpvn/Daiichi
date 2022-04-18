@@ -11,6 +11,22 @@ const regEmail =
 const regPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9|#?!@$%^&*-]).{6,}$/;
 const regPhone = /([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/;
 
+export function convertReceiveAmount(
+  status: boolean,
+  I18nState: 'en' | 'vi' | string,
+) {
+  if (status) {
+    if (I18nState == 'vi') {
+      return `Đã nhận tiền`;
+    }
+    return `Received money confirm`;
+  }
+  if (I18nState == 'vi') {
+    return `Chờ xác nhận tiền`;
+  }
+  return `Waiting to confirm receiving money`;
+}
+
 export const convertNumber = (num: number | string, hideD?: boolean) => {
   if (!num) return `${num}${hideD ? '' : 'đ'}`;
   const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
@@ -30,6 +46,63 @@ export const convertNumber = (num: number | string, hideD?: boolean) => {
     .reverse()
     .join('');
   return `${strhead}${str}${ar[1] ? `.${ar[1]}` : ''}${!!hideD ? '' : 'đ'}`;
+};
+
+export const convertAmount = (num: number | string, hideD?: boolean) => {
+  if (!num) return `${num}${hideD ? '' : 'đ'}`;
+  const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
+  const ar = Math.abs(
+    typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
+  )
+    .toString()
+    .split('.');
+  const isDot = `${num}`.indexOf('.');
+  let last = '';
+  if (isDot != -1) {
+    last = `${num}`.slice(isDot + 1, `${num}`.length)?.slice(0, 2);
+  } else {
+    last = '';
+  }
+  const str = [...ar[0]]
+    .reverse()
+    .map((item, index) => {
+      if (index % 3 == 2 && index < ar[0].length - 1) {
+        return `,${item}`;
+      }
+      return item;
+    })
+    .reverse()
+    .join('');
+  return `${strhead}${str}${isDot != -1 ? `.${last ?? ''}` : ''}${
+    !!hideD ? '' : 'đ'
+  }`;
+};
+
+export const convertNav = (num: number | string, hideD?: boolean) => {
+  if (!num) return `${num}${hideD ? '' : 'đ'}`;
+  const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
+  const ar = Math.abs(
+    typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
+  )
+    .toString()
+    .split('.');
+  const last =
+    ar[1]?.length == 2
+      ? `.${ar[1]}`
+      : ar[1]?.length == 1
+      ? `.${ar[1]}0`
+      : `.00`;
+  const str = [...ar[0]]
+    .reverse()
+    .map((item, index) => {
+      if (index % 3 == 2 && index < ar[0].length - 1) {
+        return `,${item}`;
+      }
+      return item;
+    })
+    .reverse()
+    .join('');
+  return `${strhead}${str}${last}${!!hideD ? '' : 'đ'}`;
 };
 
 export const convertPercent = (num: string | number | any) => {
@@ -68,8 +141,14 @@ export const checkRegisterValue = (p: {
   name: string;
   email: string;
   phone: string;
+  province: any;
 }) => {
-  if (!p.name.length || !isvalidEmail(p.email) || !isvalidPhone(p.phone)) {
+  if (
+    !p.name.length ||
+    !isvalidEmail(p.email) ||
+    !isvalidPhone(p.phone) ||
+    !p.province
+  ) {
     return false;
   }
   return true;

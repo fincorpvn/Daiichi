@@ -54,8 +54,8 @@ function PConvert(p: {product: any; scheme: any}) {
       alignItems={'flex-start'}
       justifyContent={'center'}
       borderRadius={8}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}>
       <Label size={14} multilanguage={false}>
@@ -97,6 +97,7 @@ function OrderTransferStep3({
           <Label
             size={18}
             fontWeight={'700'}
+            textAlign={'center'}
             marginTop={
               11
             }>{`createordermodal.datlenhchuyendoithanhcong`}</Label>
@@ -122,7 +123,7 @@ function OrderTransferStep3({
             </Div>
           </RowSpaceItem>
         </Div>
-        <Div height={200} />
+        <Div height={100} />
       </ScrollView>
       <RowSpaceItem paddingHorizontal={29} marginTop={43}>
         <ButtonBorder

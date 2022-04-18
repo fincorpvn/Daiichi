@@ -13,7 +13,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {goBack} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, Log} from 'utils';
+import {convertNav, convertNumber, Log} from 'utils';
 
 function T(p: {
   title: string;
@@ -153,7 +153,7 @@ function ProgramDetailsModal() {
           />
           <T
             title={`assetscreen.sldonviquy`}
-            content={convertNumber(data?.totalOfUnit ?? 0, true)}
+            content={convertNav(data?.totalOfUnit ?? 0, true)}
             isLine={true}
           />
           <T

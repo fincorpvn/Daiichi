@@ -10,8 +10,8 @@ function CardSignature() {
       marginVertical={15}
       paddingVertical={16}
       borderRadius={8}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       flexDirection={'row'}
       alignItems={'flex-start'}
       justifyContent={'space-between'}
@@ -24,8 +24,8 @@ function CardSignature() {
         alignItems={'center'}
         justifyContent={'center'}
         borderRadius={5}
-        borderWidth={1}
-        borderColor={Ecolors.grayColor}>
+        borderWidth={0.8}
+        borderColor={Ecolors.bordercolor}>
         <ImageView
           source={Icons.fincorplable}
           width={30}

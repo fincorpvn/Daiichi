@@ -1,3 +1,4 @@
+import {stringApp} from 'constant';
 export default {
   footerapp: {
     OverviewScreen: 'Tổng quan',
@@ -546,8 +547,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
   controlekyc: {
     dangnhap: 'Đăng nhập',
     xacthucthongtin: 'Xác thực thông tin - eKYC',
-    content:
-      'Để hoàn tất việc mở tài khoản trên MiO, vui lòng thực hiện các bước xác thực thông tin dưới đây',
+    content: `Để hoàn tất việc mở tài khoản trên ${stringApp.appName}, vui lòng thực hiện các bước xác thực thông tin dưới đây`,
     chuphinhmattruoc: '1. Chụp hình mặt trước, mặt sau CMND/CCCD',
     chuphinhchandung: '2. Chụp hình chân dung',
     batdau: 'Bắt đầu',

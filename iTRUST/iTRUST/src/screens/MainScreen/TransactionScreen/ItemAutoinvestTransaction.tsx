@@ -43,8 +43,8 @@ function ItemAutoInvestTransaction(p: {data: any}) {
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
       borderRadius={8}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       paddingHorizontal={15}
       paddingTop={13}
       paddingBottom={18}

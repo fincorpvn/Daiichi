@@ -27,6 +27,7 @@ interface Props {
   bankSuperVisory: any;
   excuseTempVolumn: any;
   stepTimeLine?: number;
+  beginBuyAutoStartDate?: string;
 }
 
 function RowSpaceItem(p: {
@@ -99,6 +100,7 @@ function OrderBuyStep3({
   scheme,
   currentSession,
   bankSuperVisory,
+  beginBuyAutoStartDate,
   excuseTempVolumn,
 }: Props) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
@@ -119,8 +121,8 @@ function OrderBuyStep3({
         <Div
           width={337}
           borderRadius={8}
-          borderWidth={1}
-          borderColor={Ecolors.grayColor}
+          borderWidth={0.8}
+          borderColor={Ecolors.bordercolor}
           backgroundColor={Ecolors.whiteColor}
           style={EStyle.shadowItem}>
           <Div
@@ -157,11 +159,11 @@ function OrderBuyStep3({
           <Div
             borderRadius={8}
             marginHorizontal={18}
-            borderWidth={1}
+            borderWidth={0.8}
             style={EStyle.shadowItem}
             backgroundColor={Ecolors.whiteColor}
             marginTop={20}
-            borderColor={Ecolors.grayColor}
+            borderColor={Ecolors.bordercolor}
             paddingHorizontal={20}
             paddingTop={20}
             paddingBottom={24}>
@@ -194,7 +196,28 @@ function OrderBuyStep3({
               marginTop={11}
               title={`createordermodal.noidung`}
               content={excuseTempVolumn?.investmentNumber || ''}
+              isBorderBottom={!!scheme.productSchemeIsAutoBuy}
             />
+            {scheme && scheme.productSchemeIsAutoBuy && (
+              <>
+                <RowSpaceItem marginTop={15}>
+                  <Label
+                    size={14}>{`createordermodal.tudongtieptucdautu`}</Label>
+                  <Label multilanguage={false} size={14}>
+                    {I18nState == 'vi' ? 'Có' : 'Yes'}
+                  </Label>
+                </RowSpaceItem>
+                <RowSpaceItem marginTop={8}>
+                  <Label
+                    size={
+                      14
+                    }>{`createordermodal.ngaythanhtoanhangthang`}</Label>
+                  <Label multilanguage={false} size={14}>
+                    {beginBuyAutoStartDate || ''}
+                  </Label>
+                </RowSpaceItem>
+              </>
+            )}
           </Div>
           <Div
             width={'100%'}
@@ -227,6 +250,7 @@ function OrderBuyStep3({
           />
           <Label
             size={18}
+            textAlign={'center'}
             fontWeight={'700'}
             marginTop={11}>{`createordermodal.datlenhmuathanhcong`}</Label>
           <Div width={'100%'} alignItems={'center'} justifyContent={'center'}>
@@ -251,8 +275,8 @@ function OrderBuyStep3({
             width={'100%'}
             paddingBottom={23}
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             backgroundColor={Ecolors.whiteColor}
             style={EStyle.shadowItem}>
             <RowSpaceItem isBorderBottom={true}>
@@ -305,9 +329,29 @@ function OrderBuyStep3({
                 {convertNumber(amount)}
               </Label>
             </RowSpaceItem>
+            {scheme && scheme.productSchemeIsAutoBuy && (
+              <>
+                <RowSpaceItem marginTop={15}>
+                  <Label
+                    size={14}>{`createordermodal.tudongtieptucdautu`}</Label>
+                  <Label multilanguage={false} size={14}>
+                    {I18nState == 'vi' ? 'Có' : 'Yes'}
+                  </Label>
+                </RowSpaceItem>
+                <RowSpaceItem marginTop={8}>
+                  <Label
+                    size={
+                      14
+                    }>{`createordermodal.ngaythanhtoanhangthang`}</Label>
+                  <Label multilanguage={false} size={14}>
+                    {beginBuyAutoStartDate || ''}
+                  </Label>
+                </RowSpaceItem>
+              </>
+            )}
           </Div>
         </Div>
-        <Div height={200} />
+        <Div height={100} />
       </ScrollView>
       <RowSpaceItem paddingHorizontal={29} marginTop={10}>
         <ButtonBorder

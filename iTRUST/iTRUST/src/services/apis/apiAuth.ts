@@ -22,7 +22,7 @@ export const apiAuth = {
     }
   },
   getInfo: async () => {
-    const url = 'user/investment/load';
+    const url = 'user/investment/load?menuParentCode=INVESTOR_INFO';
     return doGetAxios(url);
   },
   signupOtp: async (params: {

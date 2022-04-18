@@ -1,7 +1,7 @@
 import {Div, Label} from 'components';
 import {Ecolors} from 'constant';
 import React from 'react';
-import {convertNumber} from 'utils';
+import {convertNav, convertNumber} from 'utils';
 
 function ItemNav(p: {item: any}) {
   return (
@@ -30,7 +30,7 @@ function ItemNav(p: {item: any}) {
           {p.item.navDate}
         </Label>
         <Label multilanguage={false} size={14}>
-          {convertNumber(p.item.nav)}
+          {convertNav(p.item.nav)}
         </Label>
       </Div>
     </Div>

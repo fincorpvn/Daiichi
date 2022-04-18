@@ -3,7 +3,7 @@ import {Ecolors, EStyle, Icons} from 'constant';
 import React, {useState} from 'react';
 import {Animated} from 'react-native';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, convertPercent} from 'utils';
+import {convertNav, convertNumber, convertPercent} from 'utils';
 
 interface Props {
   data: any;
@@ -47,11 +47,11 @@ function ItemListAssetVerti({data}: Props) {
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
       borderRadius={8}
-      borderColor={Ecolors.grayColor}
+      borderColor={Ecolors.bordercolor}
       paddingVertical={16}
       paddingLeft={16}
       paddingRight={26}
-      borderWidth={1}>
+      borderWidth={0.8}>
       <Div
         flexDirection={'row'}
         alignItems={'center'}
@@ -78,7 +78,7 @@ function ItemListAssetVerti({data}: Props) {
               </Label>
             </Div>
             <Label size={14} multilanguage={false}>
-              {`${convertNumber(holdingVolume, true)} ${
+              {`${convertNav(holdingVolume, true)} ${
                 I18nState == 'vi' ? `CCQ` : 'Units'
               }`}
             </Label>
@@ -143,10 +143,10 @@ function ItemListAssetVerti({data}: Props) {
           </RowSpaceItem>
           <RowSpaceItem paddingTop={4}>
             <Label multilanguage={false} size={14}>
-              {convertNumber(navCurrent)}
+              {convertNav(navCurrent)}
             </Label>
             <Label size={14} multilanguage={false}>
-              {convertNumber(navInvested)}
+              {convertNav(navInvested)}
             </Label>
           </RowSpaceItem>
         </>

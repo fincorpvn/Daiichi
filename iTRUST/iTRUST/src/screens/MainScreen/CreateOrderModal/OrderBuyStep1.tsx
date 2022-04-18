@@ -15,7 +15,7 @@ import {ScrollView} from 'react-native';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, Log, widthScreen} from 'utils';
+import {convertAmount, convertNumber, Log, widthScreen} from 'utils';
 
 interface Props {
   product: any;
@@ -168,8 +168,8 @@ function OrderBuyStep1({
                   alignItems={'center'}
                   justifyContent={'flex-start'}
                   borderRadius={5}
-                  borderWidth={1}
-                  borderColor={Ecolors.grayColor}
+                  borderWidth={0.8}
+                  borderColor={Ecolors.bordercolor}
                   backgroundColor={Ecolors.spaceColor}>
                   <Label multilanguage={false}>
                     {excuseTempVolumn?.fee}
@@ -296,7 +296,7 @@ function OrderBuyStep1({
                 paddingHorizontal={8}
                 marginTop={17}
                 flexDirection={'row'}
-                borderColor={Ecolors.grayColor}
+                borderColor={Ecolors.bordercolor}
                 borderRadius={5}
                 paddingVertical={15}>
                 <Div
@@ -329,7 +329,7 @@ function OrderBuyStep1({
             </Div>
           )}
         </Div>
-        <Div height={300} />
+        <Div height={100} />
       </ScrollView>
       <Div
         flexDirection={'row'}

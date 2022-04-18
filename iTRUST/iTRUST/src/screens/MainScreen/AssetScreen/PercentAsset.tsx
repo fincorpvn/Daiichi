@@ -4,7 +4,7 @@ import React from 'react';
 import {getProductList} from 'reducer/asset';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber} from 'utils';
+import {convertNav, convertNumber} from 'utils';
 
 function Item(p: {data: any; isBorderBottom?: boolean}) {
   const {color, code, holdingVolume, interestOrHole, programList} = p.data;
@@ -47,7 +47,7 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
             justifyContent={'flex-start'}>
             <Label size={14}>{`assetscreen.sl`}</Label>
             <Label size={14} multilanguage={false}>
-              {convertNumber(holdingVolume, true)}
+              {convertNav(holdingVolume, true)}
               {` `}
             </Label>
             <Label size={14}>{`assetscreen.ccq`}</Label>
@@ -149,7 +149,7 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
                   multilanguage={false}>
                   {I18nState == 'vi' ? i.name : i.nameEn}
                 </Label>
-                <Label size={14} multilanguage={false}>{`${convertNumber(
+                <Label size={14} multilanguage={false}>{`${convertNav(
                   i.holdingVolume,
                   true,
                 )} ${I18nState == 'vi' ? `CCQ` : 'Units'}`}</Label>
@@ -208,8 +208,8 @@ function PercentAsset() {
         minHeight={200}
         style={EStyle.shadowItem}
         backgroundColor={Ecolors.whiteColor}
-        borderColor={Ecolors.grayColor}
-        borderWidth={1}>
+        borderColor={Ecolors.bordercolor}
+        borderWidth={0.8}>
         {productList?.map((item: any, index: number) => {
           return (
             <Item

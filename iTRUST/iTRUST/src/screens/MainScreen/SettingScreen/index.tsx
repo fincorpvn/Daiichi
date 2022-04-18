@@ -1,5 +1,5 @@
 import {Alert, Button, Div, HeaderBack, ImageView, Label} from 'components';
-import {Ecolors, Icons, stringApp} from 'constant';
+import {Ecolors, Icons} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {Switch} from 'react-native-switch';
 import TouchID from 'react-native-touch-id';
@@ -90,8 +90,8 @@ function SettingScreen() {
           ...optionalConfigObject,
           title:
             I18nState == 'vi'
-              ? `Vân tay/Khuôn mặt cho ${stringApp.appName}`
-              : `Touch ID/Face ID for ${stringApp.appName}`,
+              ? `Vân tay/Khuôn mặt cho MiO Plus`
+              : 'Touch ID/Face ID for Mio Plus',
           sensorErrorDescription: I18nState == 'vi' ? 'Thất bại' : 'False', // Android
           cancelText: I18nState == 'vi' ? 'Huỷ' : 'Cancel', // Android
         },

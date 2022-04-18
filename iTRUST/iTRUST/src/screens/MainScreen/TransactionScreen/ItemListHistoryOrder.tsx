@@ -38,8 +38,8 @@ function ItemListHistoryOrder(p: {data: any}) {
       shadow={true}
       marginHorizontal={16}
       borderRadius={8}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
       paddingHorizontal={15}
@@ -58,7 +58,7 @@ function ItemListHistoryOrder(p: {data: any}) {
           justifyContent={'flex-start'}>
           <Label color={Ecolors.grayColor} size={14} multilanguage={false}>
             <Label color={Ecolors.grayColor} size={14}>
-              {`transactionscreen.ngay`}
+              {`transactionscreen.phiengiaodich`}
             </Label>
             {` ${convertTimestamp(sessionTime)}`}
           </Label>

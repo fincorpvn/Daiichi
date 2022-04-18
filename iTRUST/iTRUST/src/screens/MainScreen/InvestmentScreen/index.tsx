@@ -89,8 +89,9 @@ function InvestmentScreen() {
           height={48}
           borderRadius={5}
           marginTop={12}
+          borderWidth={0.8}
           overflow={'hidden'}
-          borderColor={Ecolors.spaceColor}
+          borderColor={Ecolors.bordercolor}
           backgroundColor={Ecolors.whiteColor}
           marginHorizontal={16}>
           <Input

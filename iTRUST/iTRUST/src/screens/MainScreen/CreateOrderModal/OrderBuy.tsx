@@ -152,6 +152,7 @@ function OrderBuy({setStepTimeLine, stepTimeLine, initData}: Props) {
           bankSuperVisory={bankSuperVisory}
         />
         <OrderBuyStep3
+          beginBuyAutoStartDate={beginBuyAutoStartDate}
           stepTimeLine={stepTimeLine}
           excuseTempVolumn={excuseTempVolumn}
           bankSuperVisory={bankSuperVisory}

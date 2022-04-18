@@ -52,7 +52,7 @@ function HeaderBack({
           // backgroundColor={Ecolors.mainColor}
         >
           <Div flexDirection={'row'} justifyContent={'flex-start'}>
-            <Label size={18} color={Ecolors.whiteColor} fontWeight={'700'}>
+            <Label size={18} fontWeight={'700'}>
               {title}
             </Label>
           </Div>
@@ -95,7 +95,7 @@ function HeaderBack({
               width={8}
               height={14}
               resizeMode={'contain'}
-              tintColor={Ecolors.whiteColor}
+              tintColor={Ecolors.textColor}
             />
           </Button>
           <Div
@@ -107,7 +107,7 @@ function HeaderBack({
               textAlign={'center'}
               multilanguage={multilanguage ?? true}
               size={16}
-              color={Ecolors.whiteColor}>
+              color={Ecolors.textColor}>
               {title}
             </Label>
           </Div>
@@ -122,9 +122,9 @@ function HeaderBack({
               alignItems={'center'}
               justifyContent={'flex-end'}>
               {loading ? (
-                <ActivityIndicator size={'small'} color={Ecolors.whiteColor} />
+                <ActivityIndicator size={'small'} color={Ecolors.textColor} />
               ) : (
-                <Label color={Ecolors.whiteColor}>{titleRight}</Label>
+                <Label color={Ecolors.textColor}>{titleRight}</Label>
               )}
             </Button>
           )}

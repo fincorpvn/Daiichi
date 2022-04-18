@@ -1,8 +1,8 @@
-import { Button, Div, ImageView, Input, Label } from 'components';
-import { Ecolors, Icons } from 'constant';
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
-import { KeyboardTypeOptions } from 'react-native';
-import { useAppSelector } from 'store/hooks';
+import {Button, Div, ImageView, Input, Label} from 'components';
+import {Ecolors, Icons} from 'constant';
+import React, {ReactElement, useEffect, useRef, useState} from 'react';
+import {KeyboardTypeOptions} from 'react-native';
+import {useAppSelector} from 'store/hooks';
 
 interface PropsInputItem {
   isShowAndHide?: boolean;
@@ -54,13 +54,13 @@ function InputItem({
     if (value?.length > 0 && onHandleChange) {
       controlDeboundHandle();
     }
-    return () => { };
+    return () => {};
   }, [value]);
   useEffect(() => {
     if (value?.length > 0 && onHandleChange && !isFocus) {
       controlDeboundHandle();
     }
-    return () => { };
+    return () => {};
   }, [isFocus]);
 
   useEffect(() => {
@@ -92,8 +92,8 @@ function InputItem({
           isError
             ? Ecolors.redColor
             : isFocus
-              ? Ecolors.focusColor
-              : Ecolors.grayColor
+            ? Ecolors.focusColor
+            : Ecolors.bordercolor
         }
         borderRadius={5}
         justifyContent={'flex-start'}

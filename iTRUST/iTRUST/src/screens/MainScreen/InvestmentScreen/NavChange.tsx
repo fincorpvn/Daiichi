@@ -3,7 +3,7 @@ import {Ecolors} from 'constant';
 import React from 'react';
 import {getProductFocus} from 'reducer/investment';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, convertPercent, linkToWeb, Log} from 'utils';
+import {convertNav, convertNumber, convertPercent, linkToWeb, Log} from 'utils';
 
 function ComNav(p: {string: string; date?: string; value: string | number}) {
   return (
@@ -17,15 +17,17 @@ function ComNav(p: {string: string; date?: string; value: string | number}) {
       padding={10}
       backgroundColor={Ecolors.spaceColor}>
       <Div flex={1}>
-        <Label size={14}>{p.string ?? ''}</Label>
+        <Label textAlign={'center'} size={14}>
+          {p.string ?? ''}
+        </Label>
         {p.date && (
-          <Label multilanguage={false} size={14}>
+          <Label textAlign={'center'} multilanguage={false} size={14}>
             {p.date ?? ''}
           </Label>
         )}
       </Div>
-      <Label fontWeight={'700'} multilanguage={false}>
-        {convertNumber(p.value ?? '')}
+      <Label textAlign={'center'} fontWeight={'700'} multilanguage={false}>
+        {convertNav(p.value ?? '')}
       </Label>
     </Div>
   );

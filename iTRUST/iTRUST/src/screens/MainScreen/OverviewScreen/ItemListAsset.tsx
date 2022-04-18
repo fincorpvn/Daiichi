@@ -2,7 +2,7 @@ import {Div, Label} from 'components';
 import {Ecolors, EStyle} from 'constant';
 import React from 'react';
 import {Animated} from 'react-native';
-import {convertNumber, convertPercent} from 'utils';
+import {convertNav, convertNumber, convertPercent} from 'utils';
 
 interface Props {
   data: any;
@@ -48,13 +48,13 @@ function ItemListAsset({data, scale}: Props) {
           backgroundColor={Ecolors.whiteColor}
           style={EStyle.shadowItem}
           borderRadius={8}
-          borderColor={Ecolors.grayColor}
+          borderColor={Ecolors.bordercolor}
           flexDirection={'row'}
           alignItems={'center'}
           justifyContent={'space-between'}
           paddingVertical={10}
           paddingHorizontal={5}
-          borderWidth={1}>
+          borderWidth={0.8}>
           {/* line */}
           <Div
             backgroundColor={color || Ecolors.mainColor}
@@ -83,7 +83,7 @@ function ItemListAsset({data, scale}: Props) {
             </RowSpaceItem>
             <RowSpaceItem paddingTop={4}>
               <Label size={14} multilanguage={false}>
-                {convertNumber(holdingVolume, true)}
+                {convertNav(holdingVolume, true)}
               </Label>
               <Label multilanguage={false} size={14}>
                 {convertNumber(Math.round(sumOfValueNavCurrent))}

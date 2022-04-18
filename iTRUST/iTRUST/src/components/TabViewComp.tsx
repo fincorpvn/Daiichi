@@ -45,7 +45,7 @@ function Tabbar(p: {
         }}
         height={50}
         borderBottomWidth={2}
-        borderBottomColor={isFocus ? Ecolors.mainColor : Ecolors.spaceColor}
+        borderBottomColor={isFocus ? Ecolors.mainColor : Ecolors.grayColor}
         style={{
           width: size,
         }}

@@ -1,9 +1,9 @@
-import {Alert, Button, Div, HeaderBack, Label} from 'components';
-import {Ecolors} from 'constant';
-import React from 'react';
-import {Linking} from 'react-native';
-import {useAppSelector} from 'store/hooks';
-import {callPhone} from 'utils';
+import { Alert, Button, Div, HeaderBack, Label } from 'components';
+import { Ecolors } from 'constant';
+import React, { useEffect } from 'react';
+import { Linking } from 'react-native';
+import { useAppSelector } from 'store/hooks';
+import { callPhone } from 'utils';
 
 const Row = (p: {
   title: string;
@@ -33,6 +33,8 @@ const Row = (p: {
 };
 
 function SupportScreen() {
+  const currentUser = useAppSelector(state => state.authen.currentUser);
+  const { userSourceRef } = currentUser;
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
   return (
@@ -89,18 +91,20 @@ function SupportScreen() {
           // Linking.openURL('mailto:maivanthanh@vinacapital.com');
         }}
         title={`supportscreen.hoten`}
-        content={'Mai Văn Thành'}
+        content={userSourceRef?.bdaName || ""}
         contentColor={Ecolors.textColor}
       />
       <Row
         onPress={() => {
-          Linking.openURL('mailto:maivanthanh@vinacapital.com');
+          Linking.openURL(`mailto:${userSourceRef?.bdaEmail}`);
         }}
         title={`supportscreen.email`}
-        content={'maivanthanh@vinacapital.com'}
+        content={userSourceRef?.bdaEmail || ""}
       />
     </Div>
   );
 }
 
 export default React.memo(SupportScreen);
+
+

@@ -4,7 +4,7 @@ import React from 'react';
 import {ScrollView} from 'react-native';
 import {goBack} from 'services';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, convertTimestamp} from 'utils';
+import {convertAmount, convertNumber, convertTimestamp, Log} from 'utils';
 
 interface Props {
   product: any;
@@ -43,6 +43,62 @@ function RowSpaceItem(p: {
   );
 }
 
+const ComL = ({product, I18nState, currentSession}) => {
+  if (product.completeTransactionDuration == 1) {
+    return (
+      <Div
+        marginHorizontal={10}
+        paddingTop={14}
+        flexDirection={'row'}
+        alignItems={'center'}
+        justifyContent={'flex-start'}>
+        <ImageView
+          widthHeight={16}
+          marginRight={14}
+          source={Icons.warningamount}
+          resizeMode={'contain'}
+        />
+        <Div flex={1}>
+          <Label size={12} multilanguage={false}>
+            {I18nState == 'vi'
+              ? `Số tiền của lệnh bán sẽ được thanh toán trong ngày làm việc (ngày khớp lệnh)`
+              : `The amount of the redemption order will be settled within the working day (trading date)`}
+          </Label>
+        </Div>
+      </Div>
+    );
+  }
+
+  return (
+    <Div
+      paddingTop={14}
+      marginHorizontal={10}
+      flexDirection={'row'}
+      alignItems={'center'}
+      justifyContent={'flex-start'}>
+      <ImageView
+        widthHeight={16}
+        marginRight={14}
+        source={Icons.warningamount}
+        resizeMode={'contain'}
+      />
+      <Div flex={1}>
+        <Label size={12} multilanguage={false}>
+          {I18nState == 'vi'
+            ? `Số tiền của lệnh bán sẽ được thanh toán trong vòng `
+            : `The amount of the redemption order will be settled within `}
+          <Label fontWeight={'700'} size={12} multilanguage={false}>
+            {product.completeTransactionDuration}
+          </Label>
+          {I18nState == 'vi'
+            ? ` ngày làm việc kể từ ngày khớp lệnh.`
+            : ` working days from the trading date.`}
+        </Label>
+      </Div>
+    </Div>
+  );
+};
+
 function OrderSellStep3({
   product,
   stepTimeLine,
@@ -51,7 +107,6 @@ function OrderSellStep3({
   currentSession,
 }: Props) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
-
   if (stepTimeLine != 3) {
     return <Div screen={true} />;
   }
@@ -73,6 +128,7 @@ function OrderSellStep3({
           <Label
             size={18}
             fontWeight={'700'}
+            textAlign={'center'}
             marginTop={11}>{`createordermodal.datlenhbanthanhcong`}</Label>
           <Label
             multilanguage={false}
@@ -86,8 +142,8 @@ function OrderSellStep3({
             width={'100%'}
             marginTop={9}
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             backgroundColor={Ecolors.whiteColor}
             style={EStyle.shadowItem}
             paddingHorizontal={20}
@@ -140,12 +196,18 @@ function OrderSellStep3({
             <RowSpaceItem marginTop={15}>
               <Label size={14}>{`createordermodal.soluongban`}</Label>
               <Label multilanguage={false} size={14}>
-                {convertNumber(amount, true)}
+                {convertAmount(amount, true)}
               </Label>
             </RowSpaceItem>
           </Div>
+          <ComL
+            currentSession={currentSession}
+            product={product}
+            I18nState={I18nState}
+            key={'12'}
+          />
         </Div>
-        <Div height={200} />
+        <Div height={100} />
       </ScrollView>
       <RowSpaceItem paddingHorizontal={29} marginTop={10}>
         <ButtonBorder

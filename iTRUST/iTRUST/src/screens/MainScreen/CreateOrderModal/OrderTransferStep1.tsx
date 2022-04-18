@@ -14,7 +14,12 @@ import {ScrollView} from 'react-native';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, convertTimestamp} from 'utils';
+import {
+  convertAmount,
+  convertNav,
+  convertNumber,
+  convertTimestamp,
+} from 'utils';
 
 interface Props {
   product: any;
@@ -35,6 +40,7 @@ interface Props {
   amount: string;
   listScheme: Array<any>;
   listProduct: Array<any> | any;
+  listProductDest: Array<any> | any;
   setAmount: (e: string) => void;
   onNext: () => void;
   //   dest
@@ -80,6 +86,7 @@ function OrderTransferStep1({
   //   dest
   destProduct,
   destScheme,
+  listProductDest,
   onChangeDestProduct,
   listDestScheme,
   setDestScheme,
@@ -182,7 +189,7 @@ function OrderTransferStep1({
               <Label marginTop={13}>{`createordermodal.navkitruoc`}</Label>
               <InputItem
                 isInput={false}
-                value={convertNumber(product?.navPre)}
+                value={convertNav(product?.navPre)}
                 marginTop={6}
                 marginHorizontal={0}
               />
@@ -193,7 +200,7 @@ function OrderTransferStep1({
             isInput={!!product && !!scheme}
             value={amount}
             onChangeText={(t: string) => {
-              setAmount(convertNumber(`${t}`, true));
+              setAmount(convertAmount(`${t}`, true));
             }}
             keyboardType={'number-pad'}
             marginTop={6}
@@ -204,7 +211,7 @@ function OrderTransferStep1({
                 <Button
                   onPress={() => {
                     setAmount(
-                      `${convertNumber(scheme?.volumeAvailable, true)}`,
+                      `${convertAmount(scheme?.volumeAvailable, true)}`,
                     );
                   }}
                   width={75}
@@ -241,7 +248,7 @@ function OrderTransferStep1({
                       12
                     }>{`createordermodal.soluongtoithieukhongduoi`}</Label>
                   <Label marginLeft={5} size={12} multilanguage={false}>
-                    {convertNumber(scheme?.switchMin, true)}
+                    {convertNav(scheme?.switchMin, true)}
                   </Label>
                 </Div>
               )}
@@ -255,8 +262,8 @@ function OrderTransferStep1({
                   size={12}>{`createordermodal.soluongkhadung`}</Label>
                 <Label marginLeft={5} size={12} multilanguage={false}>
                   {scheme?.volumeAvailable
-                    ? convertNumber(scheme?.volumeAvailable, true)
-                    : '0'}
+                    ? convertNav(scheme?.volumeAvailable, true)
+                    : '0.00'}
                 </Label>
               </Div>
             </>
@@ -282,7 +289,7 @@ function OrderTransferStep1({
             multiline={true}
             marginTop={6}
             paddingHorizontal={0}
-            initData={listProduct}
+            initData={listProductDest}
             value={destProduct}
             content={`createordermodal.chonccqmuctieu`}
             multilanguage={true}
@@ -304,7 +311,7 @@ function OrderTransferStep1({
             }}
           />
         </Div>
-        <Div height={200} />
+        <Div height={100} />
       </ScrollView>
       <Div
         flexDirection={'row'}
@@ -328,7 +335,7 @@ function OrderTransferStep1({
             !scheme ||
             !amount ||
             !currentSession ||
-            // !excuseTempVolumn ||
+            !excuseTempVolumn ||
             !destProduct ||
             !destScheme
           }

@@ -1,7 +1,7 @@
 import {Button, Div, ImageView} from 'components';
 import {Ecolors} from 'constant';
 import React, {useRef, useState} from 'react';
-import {Animated, FlatList} from 'react-native';
+import {Animated, FlatList, Platform} from 'react-native';
 import {useAppSelector} from 'store/hooks';
 import {linkToWeb, widthScale, widthScreen} from 'utils';
 
@@ -20,7 +20,7 @@ function Item(p: {item: any}) {
       <ImageView
         width={326}
         height={143}
-        resizeMode={'contain'}
+        resizeMode={Platform.OS === 'android' ? 'cover' : 'contain'}
         borderRadius={10}
         source={{
           uri: p.item.url,

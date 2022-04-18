@@ -1,16 +1,16 @@
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import {Button, Div, ImageView, Label} from 'components';
+import {Alert, Button, Div, ImageView, Label} from 'components';
 import {Ecolors, Icons} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {getDataNav, getProductFocus} from 'reducer/investment';
 import {useAppSelector} from 'store/hooks';
-import {joinObjectCalendar, Log} from 'utils';
+import {convertTimestamp, joinObjectCalendar, Log} from 'utils';
 
-const currentDate = new Date();
-const D = currentDate.getDate();
-const M = currentDate.getMonth() + 1;
-const Y = currentDate.getFullYear();
+const currentDate = convertTimestamp(new Date().toString()).split('/');
+const D = parseInt(currentDate[0]);
+const M = parseInt(currentDate[1]);
+const Y = parseInt(currentDate[2]);
 const ArrayTime = [
   {
     title: 'investmentscreen.thang',
@@ -88,7 +88,7 @@ function RowTime() {
         alignItems={'center'}>
         <Label fontWeight={'700'}>{`investmentscreen.tangtruongNAVCCQ`}</Label>
         <Label multilanguage={false} fontWeight={'700'}>
-          {productDetails?.code || ''}
+          {productDetails?.code}
         </Label>
       </Div>
       <Div width={'100%'} justifyContent={'center'} alignItems={'center'}>

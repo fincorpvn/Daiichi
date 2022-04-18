@@ -135,7 +135,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
-        applicationId "com.vinacapital.mio"
+        applicationId "com.fplatform.iTRUST"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -156,10 +156,10 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('mio.keystore')
-            storePassword 'Splus@2019'
-            keyAlias 'com.vinacapital.mio'
-            keyPassword 'Splus@2019'
+            storeFile file('itrust.jks')
+            storePassword 'itrust@2022'
+            keyAlias 'com.fplatform.iTRUST'
+            keyPassword 'itrust@2022'
         }
     }
     buildTypes {

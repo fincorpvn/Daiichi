@@ -1,6 +1,7 @@
 import axios, {AxiosError, AxiosResponse} from 'axios';
 import {getStoreToken} from 'utils/storage';
 import {urlApp} from 'constant';
+import {Log} from 'utils';
 
 const baseURL = urlApp.APIURL;
 const axiosApp = axios.create({
@@ -17,7 +18,8 @@ axiosApp.interceptors.request.use(
       config.headers['Authorization'] = `Bearer`;
     }
     config.headers['Content-Type'] = 'application/json';
-    config.headers['Origin'] = 'https://daiichi.mobile';
+    // config.headers['Origin'] = 'https://daiichi.mobile';//daichi
+    config.headers['Origin'] = 'https://fplatform.mobile'; //fplatform
     return config;
   },
   (error: any) => Promise.reject(error),

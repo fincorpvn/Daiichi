@@ -13,6 +13,7 @@ import {Platform, ScrollView} from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {useAppSelector} from 'store/hooks';
 import {
+  convertNav,
   convertNumber,
   convertTimestamp,
   getUuid,
@@ -48,8 +49,9 @@ function OrderHistoryDetailsModal() {
     sessionTime,
     productProgramName,
     netAmount,
+    createAt,
     price,
-    volume,
+    beginVolume,
     code,
     fee,
   } = route?.params?.data;
@@ -140,8 +142,8 @@ function OrderHistoryDetailsModal() {
           <Div
             marginTop={18}
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             style={EStyle.shadowItem}
             backgroundColor={Ecolors.whiteColor}
             shadow={true}
@@ -153,7 +155,7 @@ function OrderHistoryDetailsModal() {
                 size={14}
                 color={
                   Ecolors.grayColor
-                }>{`transactionscreen.ngaygiaodich`}</Label>
+                }>{`transactionscreen.phiengiaodich`}</Label>
               <Label
                 size={14}
                 color={Ecolors.grayColor}>{`transactionscreen.tongtien`}</Label>
@@ -213,7 +215,7 @@ function OrderHistoryDetailsModal() {
                 {convertTypeString(orderType)}
               </Label>
               <Label size={14} multilanguage={false}>
-                {volume}
+                {convertNav(beginVolume, true)}
               </Label>
             </RowSpaceItem>
             {/*  */}
@@ -234,11 +236,31 @@ function OrderHistoryDetailsModal() {
             </RowSpaceItem>
             <RowSpaceItem paddingTop={5}>
               <Label size={14} multilanguage={false}>
-                {convertNumber(price)}
+                {convertNav(price)}
               </Label>
               <Label size={14} multilanguage={false}>
                 {convertNumber(fee) || '0'}
               </Label>
+            </RowSpaceItem>
+            <Div
+              width={'100%'}
+              marginTop={13}
+              marginBottom={7}
+              backgroundColor={Ecolors.spaceColor}
+              height={1}
+            />
+            <RowSpaceItem paddingTop={5}>
+              <Div>
+                <Label
+                  size={14}
+                  color={
+                    Ecolors.grayColor
+                  }>{`transactionscreen.ngaydatlenh`}</Label>
+                <Label marginTop={5} size={14} multilanguage={false}>
+                  {convertTimestamp(createAt, 'DD/MM/yyyy, HH:mm')}
+                </Label>
+              </Div>
+              <Div />
             </RowSpaceItem>
           </Div>
         </Div>
@@ -256,7 +278,7 @@ function OrderHistoryDetailsModal() {
               downloadConfirm();
             }}
             borderRadius={5}
-            borderWidth={1}
+            borderWidth={0.8}
             borderColor={Ecolors.mainColor}
             backgroundColor={Ecolors.spaceColor}
             alignItems={'center'}

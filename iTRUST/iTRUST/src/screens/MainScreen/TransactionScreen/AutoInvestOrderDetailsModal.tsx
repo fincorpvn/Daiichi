@@ -61,6 +61,63 @@ function RowItem(p: {title: string; content: string; isRow?: boolean}) {
   );
 }
 
+const ComL = (p: {
+  nextClosedBookTime: any;
+  nextCycleNumber: any;
+  I18nState: any;
+}) => {
+  const {I18nState, nextCycleNumber, nextClosedBookTime} = p;
+  return (
+    <Div flex={1} padding={16}>
+      <Label multilanguage={false} size={14}>
+        {I18nState == 'vi' ? (
+          <Label size={14} multilanguage={false}>
+            {`Thời điểm nhận tiền cuối cùng của kỳ tháng `}
+            <Label size={14} fontWeight={'700'} multilanguage={false}>
+              {nextCycleNumber}
+            </Label>
+            {` trước `}
+            <Label size={14} fontWeight={'700'} multilanguage={false}>
+              {nextClosedBookTime}
+              {`.`}
+            </Label>
+            <Label
+              fontWeight={'700'}
+              size={14}
+              multilanguage={false}>{`\n\nLưu ý: `}</Label>
+            <Label
+              multilanguage={false}
+              size={
+                14
+              }>{`Nếu quý khách chuyển tiền sớm, lệnh sẽ được khớp với các phiên giao dịch sớm hơn trong tháng.`}</Label>
+          </Label>
+        ) : (
+          <Label size={14} multilanguage={false}>
+            {`You need to transfer money to invest for SIP of term `}
+            <Label size={14} fontWeight={'700'} multilanguage={false}>
+              {nextCycleNumber}
+            </Label>
+            {` before `}
+            <Label size={14} fontWeight={'700'} multilanguage={false}>
+              {nextClosedBookTime}
+              {`.`}
+            </Label>
+            <Label
+              fontWeight={'700'}
+              size={14}
+              multilanguage={false}>{`\n\nNotice: `}</Label>
+            <Label
+              multilanguage={false}
+              size={
+                14
+              }>{`If you transfer money early this time, your SIP will be applied for closed trading session in month.`}</Label>
+          </Label>
+        )}
+      </Label>
+    </Div>
+  );
+};
+
 function AutoInvestOrderDetails() {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const route = useRoute<any>();
@@ -78,10 +135,6 @@ function AutoInvestOrderDetails() {
     nextClosedBookTime,
     ordersInfo,
   } = route.params.data;
-  const content =
-    I18nState == 'vi'
-      ? `Thời điểm nhận tiền cuối cùng của kỳ tháng ${nextCycleNumber} trước ${nextClosedBookTime}.\n\nLưu ý: Nếu quý khách chuyển tiền sớm, lệnh sẽ được khớp với các phiên giao dịch sớm hơn trong tháng`
-      : `Time to receive the last payment of the monthly period ${nextCycleNumber} before ${nextClosedBookTime}.\n\nNote: If you transfer money early, the order will be matched with trading sessions earlier in the month`;
 
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
@@ -100,8 +153,8 @@ function AutoInvestOrderDetails() {
             fontWeight={'700'}>{`transactionscreen.thongtinchuyenkhoan`}</Label>
           <Div
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             backgroundColor={Ecolors.whiteColor}
             style={EStyle.shadowItem}
             paddingHorizontal={15}
@@ -151,11 +204,12 @@ function AutoInvestOrderDetails() {
               height={'100%'}
               backgroundColor={Ecolors.yellowColor}
             />
-            <Div flex={1} padding={16}>
-              <Label multilanguage={false} size={14}>
-                {content}
-              </Label>
-            </Div>
+            <ComL
+              I18nState={I18nState}
+              nextClosedBookTime={nextClosedBookTime}
+              nextCycleNumber={nextCycleNumber}
+              key={'121'}
+            />
           </Div>
         </Div>
         <Div
@@ -177,15 +231,13 @@ function AutoInvestOrderDetails() {
                 sessionTime,
                 statusCode,
               } = item;
-              Log('data', item);
-
               return (
                 <Div
                   marginBottom={10}
                   borderRadius={8}
                   key={index}
-                  borderWidth={1}
-                  borderColor={Ecolors.grayColor}
+                  borderWidth={0.8}
+                  borderColor={Ecolors.bordercolor}
                   backgroundColor={Ecolors.whiteColor}
                   style={EStyle.shadowItem}
                   paddingHorizontal={15}

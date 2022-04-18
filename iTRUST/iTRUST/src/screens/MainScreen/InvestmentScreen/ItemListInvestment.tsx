@@ -5,7 +5,13 @@ import {useDispatch} from 'react-redux';
 import {focusProduct} from 'reducer/investment';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, convertPercent, convertTimestamp, Log} from 'utils';
+import {
+  convertNav,
+  convertNumber,
+  convertPercent,
+  convertTimestamp,
+  Log,
+} from 'utils';
 interface IData {
   name: string;
   nameEn: string;
@@ -48,10 +54,10 @@ function ItemListInvestment({data}: IProps) {
       minHeight={100}
       marginHorizontal={16}
       borderRadius={8}
-      borderColor={Ecolors.grayColor}
+      borderColor={Ecolors.bordercolor}
       style={EStyle.shadowItem}
       backgroundColor={Ecolors.whiteColor}
-      borderWidth={1}>
+      borderWidth={0.8}>
       <Label multilanguage={false} fontWeight={'500'}>
         {I18nState == 'vi' ? name : nameEn}
       </Label>
@@ -93,7 +99,7 @@ function ItemListInvestment({data}: IProps) {
           color={Ecolors.linkColor}
           size={18}
           fontWeight={'700'}>
-          {convertNumber(navCurrently)}
+          {convertNav(navCurrently)}
         </Label>
         <Label
           color={navPercent < 0 ? Ecolors.redColor : Ecolors.greenColor}

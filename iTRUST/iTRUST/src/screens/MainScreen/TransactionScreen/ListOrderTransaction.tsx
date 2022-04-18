@@ -37,7 +37,13 @@ function ListOrderTransaction() {
     if (orderType == 'SELL') return <ItemOrderSell data={p.item} />;
     if (orderType == 'TRANSFER') return <ItemOrderTransfer data={p.item} />;
     if (orderType == 'TRANSFER_BUY')
-      return <ItemOrderBuy hideDelete={true} data={p.item} />;
+      return (
+        <ItemOrderBuy
+          hideStatusReceiveAmount={true}
+          hideDelete={true}
+          data={p.item}
+        />
+      );
     return <></>;
   };
 

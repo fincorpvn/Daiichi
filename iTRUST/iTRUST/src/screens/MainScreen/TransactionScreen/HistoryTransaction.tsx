@@ -110,8 +110,8 @@ function HistoryTransaction(p: {activeTab: any}) {
           <Div
             width={300}
             borderRadius={5}
-            borderColor={Ecolors.grayColor}
-            borderWidth={1}
+            borderColor={Ecolors.bordercolor}
+            borderWidth={0.8}
             flexDirection={'row'}
             alignItems={'center'}
             justifyContent={'space-between'}
@@ -146,8 +146,8 @@ function HistoryTransaction(p: {activeTab: any}) {
             heightWidth={36}
             alignItems={'center'}
             justifyContent={'center'}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             borderRadius={5}>
             <ImageView
               source={Icons.filter}

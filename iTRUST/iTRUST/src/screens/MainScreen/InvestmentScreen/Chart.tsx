@@ -1,11 +1,11 @@
-import { Div, Label, LoadingIndicator } from 'components';
-import { Ecolors, Efonts } from 'constant';
+import {Div, Label, LoadingIndicator} from 'components';
+import {Ecolors, Efonts} from 'constant';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { getDataChart, getLoadingNav } from 'reducer/investment';
-import { Defs, LinearGradient, Stop } from 'react-native-svg';
-import { convertNumber, widthScale, widthScreen } from 'utils';
-import { AnimatePropTypeInterface } from 'victory-core';
+import {useSelector} from 'react-redux';
+import {getDataChart, getLoadingNav} from 'reducer/investment';
+import {Defs, LinearGradient, Stop} from 'react-native-svg';
+import {convertNav, convertNumber, widthScale, widthScreen} from 'utils';
+import {AnimatePropTypeInterface} from 'victory-core';
 import {
   VictoryChart,
   VictoryLine,
@@ -15,13 +15,13 @@ import {
   VictoryAxis,
   VictoryGroup,
 } from 'victory-native';
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const animate: AnimatePropTypeInterface = {
   duration: 500,
 };
 
-function Chart(props: { controlScrollview: (e: boolean) => void }) {
+function Chart(props: {controlScrollview: (e: boolean) => void}) {
   const data = useSelector((state: any) => getDataChart(state));
   const loadingNav = useSelector((state: any) => getLoadingNav(state));
   return (
@@ -45,7 +45,7 @@ function Chart(props: { controlScrollview: (e: boolean) => void }) {
             left: widthScale(50),
             bottom: widthScale(10),
           }}
-          domainPadding={{ y: widthScale(10) }}>
+          domainPadding={{y: widthScale(10)}}>
           {/* custom number chart */}
           <VictoryChart>
             <VictoryAxis
@@ -53,9 +53,9 @@ function Chart(props: { controlScrollview: (e: boolean) => void }) {
               offsetX={widthScale(50)}
               standalone={true}
               style={{
-                axis: { stroke: Ecolors.transparent },
+                axis: {stroke: Ecolors.transparent},
                 grid: {
-                  stroke: ({ tick }) => {
+                  stroke: ({tick}) => {
                     return Ecolors.grayColor;
                   },
                 },
@@ -69,9 +69,9 @@ function Chart(props: { controlScrollview: (e: boolean) => void }) {
             />
 
             <VictoryScatter
-              style={{ data: { fill: Ecolors.mainColor } }}
+              style={{data: {fill: Ecolors.mainColor}}}
               size={widthScale(2)}
-              labels={({ datum }) => datum.y}
+              labels={({datum}) => datum.y}
               labelComponent={
                 <VictoryLabel
                   dx={-widthScale(10)}
@@ -93,7 +93,7 @@ function Chart(props: { controlScrollview: (e: boolean) => void }) {
             />
             <VictoryAxis
               style={{
-                axis: { stroke: Ecolors.grayColor },
+                axis: {stroke: Ecolors.grayColor},
                 tickLabels: {
                   fontSize: widthScale(0.1),
                   color: Ecolors.transparent,
@@ -138,8 +138,8 @@ function Chart(props: { controlScrollview: (e: boolean) => void }) {
               animate={animate}
               interpolation={'natural'}
               style={{
-                data: { stroke: Ecolors.mainColor },
-                parent: { border: '1px solid #ccc' },
+                data: {stroke: Ecolors.mainColor},
+                parent: {border: '1px solid #ccc'},
               }}
               data={data}
             />
@@ -173,15 +173,15 @@ function Chart(props: { controlScrollview: (e: boolean) => void }) {
             data={data || []}
           /> */}
           <VictoryScatter
-            style={{ data: { fill: Ecolors.redColor } }}
+            style={{data: {fill: Ecolors.redColor}}}
             size={3}
             data={[
               {
                 y: data[data.length - 1].y,
-                x: data.length,
+                x: data[data.length - 1].x,
               },
             ]}
-            labels={({ datum }) => convertNumber(datum.y)}
+            labels={({datum}) => convertNav(datum.y)}
             labelComponent={
               <VictoryLabel
                 dx={-widthScale(15)}

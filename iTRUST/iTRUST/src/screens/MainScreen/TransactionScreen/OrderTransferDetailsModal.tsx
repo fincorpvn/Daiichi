@@ -111,8 +111,8 @@ function OrderTransferDetailsModal() {
             fontWeight={'700'}>{`transactionscreen.thongtindautu`}</Label>
           <Div
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             style={EStyle.shadowItem}
             backgroundColor={Ecolors.whiteColor}
             paddingHorizontal={16}
@@ -213,8 +213,8 @@ function OrderTransferDetailsModal() {
             </Div>
             <Div
               borderRadius={8}
-              borderWidth={1}
-              borderColor={Ecolors.grayColor}
+              borderWidth={0.8}
+              borderColor={Ecolors.bordercolor}
               style={EStyle.shadowItem}
               backgroundColor={Ecolors.whiteColor}
               flexDirection={'column'}
@@ -232,8 +232,8 @@ function OrderTransferDetailsModal() {
             </Div>
             <Div
               borderRadius={8}
-              borderWidth={1}
-              borderColor={Ecolors.grayColor}
+              borderWidth={0.8}
+              borderColor={Ecolors.bordercolor}
               style={EStyle.shadowItem}
               backgroundColor={Ecolors.whiteColor}
               flexDirection={'column'}

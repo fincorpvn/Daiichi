@@ -30,7 +30,7 @@ function HeaderBackType3() {
           borderRadius={40}
           alignItems={'center'}
           justifyContent={'center'}
-          backgroundColor={Ecolors.spaceColor}>
+          backgroundColor={Ecolors.whiteColor}>
           <ImageView
             source={Icons.profile}
             tintColor={Ecolors.textColor}
@@ -44,18 +44,12 @@ function HeaderBackType3() {
           flexDirection={'column'}
           alignItems={'flex-start'}
           justifyContent={'center'}>
-          <Label
-            size={16}
-            color={Ecolors.whiteColor}
-            multilanguage={false}
-            fontWeight={'500'}>
-            {name}
+          <Label size={16} multilanguage={false} fontWeight={'500'}>
+            {name || '--'}
           </Label>
           <Div flexDirection={'row'} alignItems={'center'} flex={1}>
-            <Label
-              size={13}
-              color={Ecolors.grayColor}>{`profile.sotaikhoan`}</Label>
-            <Label size={13} multilanguage={false} color={Ecolors.grayColor}>
+            <Label size={13}>{`profile.sotaikhoan`}</Label>
+            <Label size={13} multilanguage={false}>
               {investmentProfile?.number || ''}
             </Label>
           </Div>

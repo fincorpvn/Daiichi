@@ -5,7 +5,7 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {convertTimestamp} from 'utils';
+import {convertAmount, convertNav, convertTimestamp} from 'utils';
 
 interface Props {
   product: any;
@@ -57,8 +57,8 @@ function PConvert(p: {product: any; scheme: any}) {
       alignItems={'flex-start'}
       justifyContent={'center'}
       borderRadius={8}
-      borderWidth={1}
-      borderColor={Ecolors.grayColor}
+      borderWidth={0.8}
+      borderColor={Ecolors.bordercolor}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}>
       <Label size={14} multilanguage={false}>
@@ -162,10 +162,10 @@ function OrderTransferStep2({
             paddingTop={20}
             paddingBottom={28}
             borderRadius={5}
-            borderColor={Ecolors.grayColor}
+            borderColor={Ecolors.bordercolor}
             backgroundColor={Ecolors.whiteColor}
             style={EStyle.shadowItem}
-            borderWidth={1}>
+            borderWidth={0.8}>
             <RowSpaceItem isBorderBottom={true}>
               <Label size={14}>{`createordermodal.loailenh`}</Label>
               <Label size={14}>{`createordermodal.chuyendoi`}</Label>
@@ -180,7 +180,7 @@ function OrderTransferStep2({
             <RowSpaceItem marginTop={15}>
               <Label size={14}>{`createordermodal.soluongchuyendoi`}</Label>
               <Label size={14} multilanguage={false}>
-                {amount}
+                {convertAmount(amount, true)}
               </Label>
             </RowSpaceItem>
           </Div>
@@ -202,7 +202,7 @@ function OrderTransferStep2({
             </Div>
           </RowSpaceItem>
         </Div>
-        <Div height={200} />
+        <Div height={100} />
       </ScrollView>
       <RowSpaceItem paddingHorizontal={29} marginTop={10}>
         <ButtonBorder

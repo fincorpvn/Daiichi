@@ -1,5 +1,5 @@
 import {Platform} from 'react-native';
-import {urlApp} from 'constant';
+import {urlApp, stringApp} from 'constant';
 import {getStoreToken} from 'utils/storage';
 import {getUuid, Log, parseToFormData, requestPermisson} from 'utils';
 import {PERMISSIONS} from 'react-native-permissions';
@@ -30,7 +30,9 @@ export async function downloadFile(
 ) {
   const token = await getStoreToken();
   const url = `${baseURL}api/${params.url}`;
-  const link = `${RNFS.DownloadDirectoryPath}/Mio_Plus/${getUuid()}.pdf`;
+  const link = `${RNFS.DownloadDirectoryPath}/${
+    stringApp.appName
+  }/${getUuid()}.pdf`;
 
   return new Promise((resolve, reject) => {
     return requestPermisson(

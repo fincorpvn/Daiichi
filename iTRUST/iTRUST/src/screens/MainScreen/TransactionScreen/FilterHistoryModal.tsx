@@ -30,7 +30,7 @@ function BtnAction(p: {
     <Button
       onPress={() => p.onSelect && p.onSelect()}
       backgroundColor={p.isSelect ? Ecolors.mainColor : Ecolors.whiteColor}
-      borderWidth={1}
+      borderWidth={0.8}
       borderColor={Ecolors.mainColor}
       height={36}
       flexDirection={'row'}
@@ -59,9 +59,9 @@ function ButtonCalendar(p: {title?: string; onPress: () => void; value?: any}) {
       alignItems={'center'}
       justifyContent={'space-between'}
       borderRadius={5}
-      borderColor={Ecolors.grayColor}
+      borderColor={Ecolors.bordercolor}
       paddingHorizontal={10}
-      borderWidth={1}>
+      borderWidth={0.8}>
       <Label
         multilanguage={!p.value}
         size={14}

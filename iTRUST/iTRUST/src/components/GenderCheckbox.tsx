@@ -14,7 +14,7 @@ function Btn(p: {
       width={162}
       height={48}
       borderRadius={5}
-      borderColor={Ecolors.grayColor}
+      borderColor={Ecolors.bordercolor}
       borderWidth={0.7}
       flexDirection={'row'}
       alignItems={'center'}
@@ -25,7 +25,7 @@ function Btn(p: {
         justifyContent={'center'}
         widthHeight={20}
         borderRadius={20}
-        borderWidth={1}
+        borderWidth={0.8}
         borderColor={isFocus ? Ecolors.mainColor : Ecolors.mainColor}>
         <Div
           widthHeight={12}

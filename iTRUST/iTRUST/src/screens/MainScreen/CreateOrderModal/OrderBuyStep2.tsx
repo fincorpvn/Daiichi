@@ -176,8 +176,8 @@ function OrderBuyStep2({
             width={'100%'}
             marginTop={9}
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             backgroundColor={Ecolors.whiteColor}
             style={EStyle.shadowItem}
             paddingHorizontal={20}
@@ -251,7 +251,7 @@ function OrderBuyStep2({
               alignItems={'center'}
               justifyContent={'center'}
               borderRadius={20}
-              borderWidth={1}
+              borderWidth={0.8}
               marginRight={8}
               borderColor={Ecolors.mainColor}>
               <Div
@@ -289,8 +289,8 @@ function OrderBuyStep2({
             width={'100%'}
             marginTop={9}
             borderRadius={8}
-            borderWidth={1}
-            borderColor={Ecolors.grayColor}
+            borderWidth={0.8}
+            borderColor={Ecolors.bordercolor}
             backgroundColor={Ecolors.whiteColor}
             style={EStyle.shadowItem}
             paddingHorizontal={20}
@@ -323,15 +323,36 @@ function OrderBuyStep2({
             />
             <ContentCoppy
               marginTop={11}
+              isBorderBottom={!!scheme.productSchemeIsAutoBuy}
               title={`createordermodal.noidung`}
               // content={`${currentUser?.name || ''}-${
               //   excuseTempVolumn?.investmentNumber
               // }-${scheme?.tradeCode || ''}`}
               content={excuseTempVolumn?.investmentNumber || ''}
             />
+            {scheme && scheme.productSchemeIsAutoBuy && (
+              <>
+                <RowSpaceItem marginTop={11}>
+                  <Label
+                    size={14}>{`createordermodal.tudongtieptucdautu`}</Label>
+                  <Label multilanguage={false} size={14}>
+                    {I18nState == 'vi' ? 'Có' : 'Yes'}
+                  </Label>
+                </RowSpaceItem>
+                <RowSpaceItem marginTop={8}>
+                  <Label
+                    size={
+                      14
+                    }>{`createordermodal.ngaythanhtoanhangthang`}</Label>
+                  <Label multilanguage={false} size={14}>
+                    {beginBuyAutoStartDate || ''}
+                  </Label>
+                </RowSpaceItem>
+              </>
+            )}
           </Div>
         </Div>
-        <Div height={200} />
+        <Div height={100} />
       </ScrollView>
       <RowSpaceItem paddingHorizontal={29} marginTop={10}>
         <ButtonBorder

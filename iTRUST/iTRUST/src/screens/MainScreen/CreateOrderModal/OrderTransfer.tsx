@@ -5,7 +5,7 @@ import {ScrollView} from 'react-native';
 import {getListProduct} from 'reducer/investment';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {widthScreen} from 'utils';
+import {Log, widthScreen} from 'utils';
 import OrderTransferStep1 from './OrderTransferStep1';
 import OrderTransferStep2 from './OrderTransferStep2';
 import OrderTransferStep3 from './OrderTransferStep3';
@@ -19,7 +19,7 @@ interface Props {
 function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
   // state order buy
   const [product, setProduct] = useState<any>(null);
-  // const listProduct = useAppSelector(state => getListProduct(state));
+  const listProductDest = useAppSelector(state => getListProduct(state));
   const listProduct = useAppSelector(state => state.asset.asset.productList);
   const [scheme, setScheme] = useState<any>(null);
   const [listScheme, setListScheme] = useState<Array<any>>([]);
@@ -27,6 +27,8 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
   const [currentSession, setCurrentSession] = useState<any>(null);
   const [excuseTempVolumn, setExcuseTempVolumn] = useState<any>(null);
   const [bankSuperVisory, setBankSuperVisory] = useState<any>(null);
+
+  const I18nState = useAppSelector(state => state.languages.I18nState);
 
   // dest
   const [destProduct, setDestProduct] = useState<any>(null);
@@ -65,10 +67,10 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
   };
 
   const onExcuseTempVolumn = async () => {
-    return;
+    // return;
     try {
       const res = await apiInvestment.investmentExcuseTempMoney({
-        volume: amount,
+        volume: amount.replace(/[,]/g, ''),
         productId: product?.id,
         productProgramId: scheme.id,
       });
@@ -79,15 +81,9 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
       setExcuseTempVolumn(null);
       return;
     } catch (error: any) {
-      console.log('error', {
-        error,
-        volume: amount,
-        productId: product?.id,
-        productProgramId: scheme.id,
-      });
       setExcuseTempVolumn(null);
       Alert.show({
-        content: error.message,
+        content: I18nState == 'vi' ? error.message : error.messageEn,
         multilanguage: false,
       });
     }
@@ -159,6 +155,7 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
           setListScheme={setListScheme}
           onExcuseTempVolumn={onExcuseTempVolumn}
           onChangeProduct={onChangeProduct}
+          listProductDest={listProductDest}
           listProduct={listProduct}
           setProduct={setProduct}
           scheme={scheme}

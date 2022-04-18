@@ -137,7 +137,7 @@ function Navi() {
     <NavigationContainer independent={true} ref={navigationRef}>
       <StatusBar
         backgroundColor={Ecolors.transparent}
-        barStyle={statusScreen == 'main' ? 'light-content' : 'dark-content'}
+        barStyle={statusScreen == 'main' ? 'dark-content' : 'dark-content'}
         hidden={false}
       />
       <ToastRoot ref={toastRef} />

@@ -11,6 +11,7 @@ import {getProductList} from 'reducer/asset';
 import {apiAsset} from 'services/apis/apiAsset';
 import {useAppSelector} from 'store/hooks';
 import {
+  convertNav,
   convertNumber,
   convertPercent,
   convertTimestamp,
@@ -84,12 +85,12 @@ function ItemTable(p: {item: any}) {
       width={311}
       minHeight={216}
       borderRadius={8}
-      borderColor={Ecolors.grayColor}
+      borderColor={Ecolors.bordercolor}
       overflow={'hidden'}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
       marginRight={16}
-      borderWidth={1}>
+      borderWidth={0.8}>
       <RowSpaceItem marginTop={13}>
         <Label size={14}>{`assetscreen.quychuongtrinh`}</Label>
         <Label size={14}>{`assetscreen.phiengiaodich`}</Label>
@@ -114,7 +115,7 @@ function ItemTable(p: {item: any}) {
       </RowSpaceItem>
       <RowSpaceItem isBorderBottom={true} marginTop={13}>
         <Label multilanguage={false} size={14}>
-          {convertNumber(p.item.holdingVolume, true)}
+          {convertNav(p.item.holdingVolume, true)}
         </Label>
         <Label multilanguage={false} size={14}>
           {convertNumber(`${Math.round(p.item.lockAmount ?? 0)}`)}
@@ -130,10 +131,10 @@ function ItemTable(p: {item: any}) {
       </RowSpaceItem>
       <RowSpaceItem isBorderBottom={true} marginTop={13}>
         <Label multilanguage={false} size={14}>
-          {convertNumber(p.item.price)}
+          {convertNav(p.item.price)}
         </Label>
         <Label multilanguage={false} size={14}>
-          {convertNumber(p.item.navCurrently)}
+          {convertNav(p.item.navCurrently)}
         </Label>
       </RowSpaceItem>
       <RowSpaceItem marginTop={13}>
@@ -156,7 +157,7 @@ function ItemTable(p: {item: any}) {
           size={14}>
           {p.item.interestOrHoleAmount >= 0 && '+'}
           {convertNumber(Math.round(p.item.interestOrHoleAmount ?? 0))}
-          {'('}
+          {' ('}
           {p.item.interestOrHolePercent >= 0 && '+'}
           {`${convertPercent(p.item.interestOrHolePercent)}`}
           {')'}
@@ -343,13 +344,13 @@ function ProgramList() {
           justifyContent={'space-between'}>
           <Div
             width={166}
-            paddingVertical={10}
+            padding={10}
             height={92}
             borderRadius={8}
-            borderColor={Ecolors.grayColor}
+            borderColor={Ecolors.bordercolor}
             style={EStyle.shadowItem}
             backgroundColor={Ecolors.whiteColor}
-            borderWidth={1}
+            borderWidth={0.8}
             alignItems={'center'}
             justifyContent={'space-between'}>
             <Label
@@ -361,13 +362,13 @@ function ProgramList() {
           </Div>
           <Div
             width={166}
-            paddingVertical={10}
+            padding={10}
             height={92}
             borderRadius={8}
             style={EStyle.shadowItem}
             backgroundColor={Ecolors.whiteColor}
-            borderColor={Ecolors.grayColor}
-            borderWidth={1}
+            borderColor={Ecolors.bordercolor}
+            borderWidth={0.8}
             alignItems={'center'}
             justifyContent={'space-between'}>
             <Label

@@ -12,7 +12,14 @@ import {Ecolors, Icons} from 'constant';
 import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
 import {goBack, navigate} from 'services';
-import {convertNumber, convertPercent, convertTimestamp, Log} from 'utils';
+import {
+  convertAmount,
+  convertNav,
+  convertNumber,
+  convertPercent,
+  convertTimestamp,
+  Log,
+} from 'utils';
 import {useAppSelector} from 'store/hooks';
 
 interface Props {
@@ -128,7 +135,7 @@ function OrderSellStep1({
             isInput={!!product && !!scheme}
             value={amount}
             onChangeText={(t: string) => {
-              setAmount(convertNumber(`${t}`, true));
+              setAmount(convertAmount(t, true));
             }}
             keyboardType={'number-pad'}
             marginTop={6}
@@ -139,7 +146,7 @@ function OrderSellStep1({
                 <Button
                   onPress={() => {
                     setAmount(
-                      `${convertNumber(scheme?.volumeAvailable, true)}`,
+                      `${convertAmount(scheme?.volumeAvailable, true)}`,
                     );
                   }}
                   width={75}
@@ -176,7 +183,7 @@ function OrderSellStep1({
                       12
                     }>{`createordermodal.soluongtoithieukhongduoi`}</Label>
                   <Label marginLeft={5} size={12} multilanguage={false}>
-                    {convertNumber(scheme?.sellMin, true)}
+                    {convertNav(scheme?.sellMin, true)}
                   </Label>
                 </Div>
               )}
@@ -190,8 +197,8 @@ function OrderSellStep1({
                   size={12}>{`createordermodal.soluongkhadung`}</Label>
                 <Label marginLeft={5} size={12} multilanguage={false}>
                   {scheme?.volumeAvailable
-                    ? convertNumber(scheme?.volumeAvailable, true)
-                    : '0'}
+                    ? convertNav(scheme?.volumeAvailable, true)
+                    : '0.00'}
                 </Label>
               </Div>
             </>
@@ -215,11 +222,11 @@ function OrderSellStep1({
                     alignItems={'center'}
                     justifyContent={'flex-start'}
                     borderRadius={5}
-                    borderWidth={1}
-                    borderColor={Ecolors.grayColor}
+                    borderWidth={0.8}
+                    borderColor={Ecolors.bordercolor}
                     backgroundColor={Ecolors.spaceColor}>
                     <Label multilanguage={false}>
-                      {convertNumber(excuseTempVolumn?.totalFee)}
+                      {convertNumber(Math.round(excuseTempVolumn?.totalFee))}
                     </Label>
                   </Div>
                   <Button
@@ -247,7 +254,7 @@ function OrderSellStep1({
                     marginTop={14}
                     key={index}
                     borderRadius={5}
-                    borderWidth={1}
+                    borderWidth={0.8}
                     borderColor={Ecolors.spaceColor}
                     paddingHorizontal={20}
                     paddingTop={12}
@@ -268,7 +275,7 @@ function OrderSellStep1({
                     <RowSpaceItem marginTop={10}>
                       <Label size={14}>{`createordermodal.slban`}</Label>
                       <Label multilanguage={false} size={14}>
-                        {volumSell}
+                        {convertNav(volumSell, true)}
                       </Label>
                     </RowSpaceItem>
                     <RowSpaceItem marginTop={10}>
@@ -334,13 +341,13 @@ function OrderSellStep1({
                   size={12}
                   fontWeight={'700'}>{`createordermodal.navccqkitruoc`}</Label>
                 <Label marginTop={6} size={12} multilanguage={false}>
-                  {convertNumber(product?.navPre)}
+                  {convertNav(product?.navPre)}
                 </Label>
               </Div>
             </Div>
           )}
         </Div>
-        <Div height={300} />
+        <Div height={100} />
       </ScrollView>
       <Div
         flexDirection={'row'}

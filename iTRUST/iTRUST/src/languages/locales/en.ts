@@ -1,3 +1,4 @@
+import {stringApp} from 'constant';
 export default {
   footerapp: {
     OverviewScreen: 'Dashboard',
@@ -18,9 +19,9 @@ export default {
     signup: 'Register!',
     accountplacehoder: 'Mobile phone number/ID Card',
     passwordplacehoder: 'Password',
-    fincorp: 'VinaCapital',
+    fincorp: `${stringApp.appName}`,
     thefintechdeveloper: 'Invest in what matters',
-    welcome: 'Welcome to MiO!',
+    welcome: `Welcome to ${stringApp.appName}!`,
     tendangnhap: 'Username',
     matkhau: 'Password',
     kichhoattaikhoan: 'Account activation',

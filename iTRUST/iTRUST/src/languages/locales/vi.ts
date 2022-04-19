@@ -3,7 +3,7 @@ export default {
   footerapp: {
     OverviewScreen: 'Tổng quan',
     TransactionScreen: 'Giao dịch',
-    InvestmentScreen: 'Đầu tư',
+    InvestmentScreen: 'Sản phẩm',
     AssetScreen: 'Tài sản',
     ProfileScreen: 'Tài khoản',
   },
@@ -395,6 +395,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
   },
   investmentscreen: {
     dautu: 'Đầu tư',
+    sanpham: 'Sản phẩm',
     giadonviquykytruoc: 'Giá đơn vị quỹ kỳ trước',
     ngay: 'Ngày',
     dautungay: 'Đầu tư ngay',
@@ -440,6 +441,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     xembieuphi: 'Xem biểu phí',
     thoidiemdongsolenh: 'Thời điểm đóng sổ lệnh',
     nhadautuvuilongchuyentientruoc: 'Nhà đầu tư vui lòng chuyển tiền trước',
+    thoidiemdongsolenhnhantien: 'Thời điểm đóng sổ lệnh nhận tiền',
     phiengiaodich: 'Phiên giao dịch',
     thongtindautu: 'Thông tin đầu tư',
     quydautu: 'Quỹ đầu tư',
@@ -520,6 +522,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     lailodathuchien: `Lãi/Lỗ đã thực hiện`,
     lailochuathuchien: `Lãi/Lỗ chưa thực hiện`,
     loilo: 'Lời/Lỗ',
+    tongdautu: 'Tổng đầu tư',
   },
   overviewscreen: {
     tongquantaisan: 'Tổng quan tài sản',
@@ -531,10 +534,12 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     tonggiatridaututb: 'Tổng giá trị đầu tư TB',
     tongloilo: 'Tổng lời/lỗ',
     taisan: 'Tài sản',
+    soluongCCQ: 'Số lượng CCQ',
     //
     NAVhientai: 'NAV hiện tại',
     tonggiatridaututrungbinh: 'Tổng giá trị đầu tư trung bình',
     giamuatrungbinh: `Giá mua trung bình/CCQ`,
+    tonggiatrithitruong: 'Tổng giá trị thị trường',
   },
   notificationscreen: {
     thongbao: 'Thông báo',

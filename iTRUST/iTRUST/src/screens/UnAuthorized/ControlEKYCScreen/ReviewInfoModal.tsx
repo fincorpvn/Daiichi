@@ -117,6 +117,9 @@ function ReviewInfoModal() {
       if (r.length) {
         setAddress(r);
         setIsEditAddress(false);
+        if (isLike) {
+          setMailingAddress(r);
+        }
       } else {
         setAddress('');
         setIsEditAddress(true);
@@ -138,12 +141,13 @@ function ReviewInfoModal() {
         setMailingAddress(''),
       ]);
     } else {
+      const r = getAddressRejectWard(userAddress?.mailingAddress || '');
       Promise.all([
         setMailingCountry(userAddress?.country || null),
         setMailingProvince(userAddress?.province || null),
         setMailingDistrict(userAddress?.district || null),
         setMailingWard(userAddress?.ward || ward || null),
-        setMailingAddress(address),
+        setMailingAddress(address || r || ''),
       ]);
     }
     return () => {};
@@ -672,7 +676,7 @@ function ReviewInfoModal() {
               setMailingWard(a);
             }}
           />
-          <Label marginTop={16}>{`accountverify.diachithuongtru`}</Label>
+          <Label marginTop={16}>{`reviewinfoscreen.sonhatenduong`}</Label>
           <InputItem
             value={mailingAddress}
             isInput={

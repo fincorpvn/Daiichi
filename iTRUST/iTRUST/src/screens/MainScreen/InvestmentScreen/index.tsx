@@ -81,7 +81,7 @@ function InvestmentScreen() {
 
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
-      <HeaderBack title={`investmentscreen.dautu`} type={1}>
+      <HeaderBack title={`investmentscreen.sanpham`} type={1}>
         <Div
           flexDirection={'row'}
           alignItems={'center'}

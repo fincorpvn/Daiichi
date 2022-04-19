@@ -3,7 +3,7 @@ export default {
   footerapp: {
     OverviewScreen: 'Dashboard',
     TransactionScreen: 'Transactions',
-    InvestmentScreen: 'Invest',
+    InvestmentScreen: 'Products',
     AssetScreen: 'Asset',
     ProfileScreen: 'Account',
   },
@@ -393,6 +393,7 @@ export default {
   },
   investmentscreen: {
     dautu: 'Invest',
+    sanpham: 'Products',
     giadonviquykytruoc: 'Current NAV',
     ngay: 'Date',
     dautungay: 'Invest now',
@@ -439,6 +440,7 @@ export default {
     xembieuphi: 'See fee schedule',
     thoidiemdongsolenh: 'Cut-off time',
     nhadautuvuilongchuyentientruoc: 'Please transfer money before',
+    thoidiemdongsolenhnhantien: 'Cut-off time to receive money transfer',
     phiengiaodich: 'Trading session',
     thongtindautu: 'Investment information',
     quydautu: 'Investment funds',
@@ -521,6 +523,7 @@ export default {
     lailodathuchien: `Realized Gain/loss`,
     lailochuathuchien: `Unrealized Gain/loss`,
     loilo: 'Gain/loss',
+    tongdautu: 'Total investment',
   },
   overviewscreen: {
     tongquantaisan: 'Property Overview',
@@ -536,6 +539,7 @@ export default {
     NAVhientai: 'Current NAV',
     tonggiatridaututrungbinh: 'Total AVG investment',
     giamuatrungbinh: `Average buying NAV/Unit`,
+    tonggiatrithitruong: 'Total market value',
   },
   notificationscreen: {
     thongbao: 'Notification',

@@ -271,7 +271,9 @@ function OrderBuyStep2({
             justifyContent={'flex-start'}>
             <Label multilanguage={false}>
               <Label
-                size={14}>{`createordermodal.vuilongchuyentientruoc`}</Label>
+                size={
+                  14
+                }>{`createordermodal.thoidiemdongsolenhnhantien`}</Label>
               <Label
                 size={14}
                 color={Ecolors.linkColor}

@@ -78,9 +78,7 @@ function ItemListAssetVerti({data}: Props) {
               </Label>
             </Div>
             <Label size={14} multilanguage={false}>
-              {`${convertNav(holdingVolume, true)} ${
-                I18nState == 'vi' ? `CCQ` : 'Units'
-              }`}
+              {convertNumber(Math.round(sumOfValueNavCurrent ?? 0))}
             </Label>
           </Div>
         </Div>
@@ -118,7 +116,7 @@ function ItemListAssetVerti({data}: Props) {
         <>
           <RowSpaceItem paddingTop={20}>
             <Label size={14} color={Ecolors.grayColor}>
-              {`overviewscreen.giatrihientai`}
+              {`overviewscreen.soluongCCQ`}
             </Label>
             <Label size={14} color={Ecolors.grayColor}>
               {`overviewscreen.tonggiatridaututrungbinh`}
@@ -126,8 +124,11 @@ function ItemListAssetVerti({data}: Props) {
           </RowSpaceItem>
           <RowSpaceItem paddingTop={4}>
             <Label size={14} multilanguage={false}>
-              {convertNumber(Math.round(sumOfValueNavCurrent ?? 0))}
+              {`${convertNav(holdingVolume, true)} ${
+                I18nState == 'vi' ? `CCQ` : 'Units'
+              }`}
             </Label>
+
             <Label multilanguage={false} size={14}>
               {convertNumber(Math.round(sumOfValueNavInvested ?? 0))}
             </Label>

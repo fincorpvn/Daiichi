@@ -15,7 +15,13 @@ import {ScrollView} from 'react-native';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {convertAmount, convertNumber, Log, widthScreen} from 'utils';
+import {
+  convertAmount,
+  convertNumber,
+  convertPercent,
+  Log,
+  widthScreen,
+} from 'utils';
 
 interface Props {
   product: any;
@@ -82,6 +88,8 @@ function OrderBuyStep1({
       setLoadingLocal(false);
     }
   };
+
+  Log('excuseTempVolumn', excuseTempVolumn);
 
   return (
     <Div
@@ -172,8 +180,7 @@ function OrderBuyStep1({
                   borderColor={Ecolors.bordercolor}
                   backgroundColor={Ecolors.spaceColor}>
                   <Label multilanguage={false}>
-                    {excuseTempVolumn?.fee}
-                    {`%`}
+                    {convertNumber(Math.round(excuseTempVolumn?.fee))}
                   </Label>
                 </Div>
                 <Button
@@ -246,7 +253,7 @@ function OrderBuyStep1({
                   size={12}
                   fontWeight={
                     '700'
-                  }>{`createordermodal.nhadautuvuilongchuyentientruoc`}</Label>
+                  }>{`createordermodal.thoidiemdongsolenhnhantien`}</Label>
                 <Label marginTop={6} size={12} multilanguage={false}>
                   {currentSession.closedBankNoteTimeString}
                   {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}

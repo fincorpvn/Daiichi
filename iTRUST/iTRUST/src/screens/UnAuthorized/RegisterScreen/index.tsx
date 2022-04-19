@@ -6,6 +6,7 @@ import {
   InputItem,
   Label,
   Alert,
+  Dropdown,
 } from 'components';
 import HeaderBack from 'components/HeaderBack';
 import {Ecolors, Icons} from 'constant';
@@ -37,6 +38,7 @@ function RegisterScreen() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [phonePostal, setPhonePostal] = useState('+84');
+  const [province, setProvince] = useState<any>(null);
   const [userRefCode, setUserRefCode] = useState('');
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
@@ -67,6 +69,7 @@ function RegisterScreen() {
         phone,
         name,
         email,
+        province,
       })
     ) {
       navigate('SetPasswordScreen', {
@@ -76,6 +79,7 @@ function RegisterScreen() {
           phone,
           userRefCode,
           phonePostal,
+          province,
         },
       });
     } else {
@@ -237,6 +241,19 @@ function RegisterScreen() {
               />
             </Div>
           </Div>
+          <Label marginTop={13}>{`accountverify.tinhthanhpho`}</Label>
+          <Dropdown
+            url={`province/list?countryId=${234}`}
+            content={`accountverify.vuilongchontinhthanhpho`}
+            multilanguage={true}
+            value={province}
+            paddingHorizontal={0}
+            marginTop={6}
+            isActive={true}
+            onChange={(a: any) => {
+              setProvince(a);
+            }}
+          />
 
           <Label
             marginTop={13}>{`registerscreen.magioithieucuanguoibanhang`}</Label>

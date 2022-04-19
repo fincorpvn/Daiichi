@@ -78,7 +78,6 @@ function ProgressSpace(p: {maxValue: number; currentValue: number}) {
 
 function ItemTable(p: {item: any}) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
-
   return (
     <Div
       paddingHorizontal={15}
@@ -111,7 +110,7 @@ function ItemTable(p: {item: any}) {
           size={14}>{`assetscreen.soluong`}</Label>
         <Label
           color={Ecolors.grayColor}
-          size={14}>{`assetscreen.giatridaututb`}</Label>
+          size={14}>{`assetscreen.tongdautu`}</Label>
       </RowSpaceItem>
       <RowSpaceItem isBorderBottom={true} marginTop={13}>
         <Label multilanguage={false} size={14}>

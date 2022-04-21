@@ -13,40 +13,48 @@ const M = parseInt(currentDate[1]);
 const Y = parseInt(currentDate[2]);
 const ArrayTime = [
   {
+    title: 'YTD',
+    cur: 0,
+    date: joinObjectCalendar({
+      date: 1,
+      month: 1,
+      year: Y,
+    }),
+    vi: `YTD`,
+    en: `YTD`,
+  },
+  {
     title: 'investmentscreen.thang',
     cur: 1,
     date: joinObjectCalendar({
       date: D,
-      month: M > 1 ? M - 1 : M + 11,
-      year: M > 1 ? Y : Y - 1,
+      month: M,
+      year: Y - 1,
     }),
+    vi: `1 năm`,
+    en: `1 year`,
   },
   {
     title: 'investmentscreen.thang',
     cur: 3,
     date: joinObjectCalendar({
       date: D,
-      month: M > 3 ? M - 3 : M + 9,
-      year: M > 3 ? Y : Y - 1,
+      month: M,
+      year: Y - 3,
     }),
+    vi: `3 năm`,
+    en: `3 year`,
   },
   {
     title: 'investmentscreen.thang',
-    cur: 6,
-    date: joinObjectCalendar({
-      date: D,
-      month: M > 6 ? M - 6 : M + 6,
-      year: M > 6 ? Y : Y - 1,
-    }),
-  },
-  {
-    title: 'investmentscreen.thang',
-    cur: 12,
+    cur: 5,
     date: joinObjectCalendar({
       date: D,
       month: M,
-      year: Y - 1,
+      year: Y - 5,
     }),
+    vi: `5 năm`,
+    en: `5 year`,
   },
 ];
 
@@ -54,6 +62,7 @@ function RowTime() {
   const dispatch = useDispatch();
   const productDetails = useAppSelector(state => getProductFocus(state));
   const [curForcus, setCurForcus] = useState(ArrayTime[1]);
+  const I18nState = useAppSelector(state => state.languages.I18nState);
 
   useEffect(() => {
     if (productDetails.id) {
@@ -117,19 +126,11 @@ function RowTime() {
                 backgroundColor={
                   isFocus ? Ecolors.mainColor : Ecolors.transparent
                 }>
-                {!!item.cur && (
-                  <Label
-                    size={14}
-                    multilanguage={false}
-                    color={isFocus ? Ecolors.whiteColor : Ecolors.textColor}>
-                    {`${item.cur} `}
-                  </Label>
-                )}
-
                 <Label
+                  multilanguage={false}
                   size={14}
                   color={isFocus ? Ecolors.whiteColor : Ecolors.textColor}>
-                  {item.title}
+                  {I18nState == 'vi' ? item.vi : item.en}
                 </Label>
               </Button>
             );

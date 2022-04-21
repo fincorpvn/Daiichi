@@ -98,7 +98,7 @@ function ItemListAssetVerti({data}: Props) {
             fontWeight={'700'}
             multilanguage={false}
             color={interestOrHole >= 0 ? Ecolors.greenColor : Ecolors.redColor}>
-            {convertPercent(Math.abs(interestOrHole))}
+            {convertPercent(interestOrHole)}
           </Label>
           <Button onPress={() => setIsDetails(a => !a)} paddingLeft={15}>
             <ImageView

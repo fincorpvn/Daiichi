@@ -350,7 +350,7 @@ export default {
     taolenhban: 'Redeem order',
     taolenhchuyendoi: 'Switch order',
     // dinh ky
-    dinhky: 'Auto Invest',
+    dinhky: 'Systematic program',
     tinhtrang: 'Status',
     sotiendangkydautu: 'Amount',
     sokydaututoithieu: 'Min Invested Term',
@@ -392,6 +392,7 @@ export default {
     hoten: 'Full name',
   },
   investmentscreen: {
+    nam: 'Year',
     dautu: 'Invest',
     sanpham: 'Products',
     giadonviquykytruoc: 'Current NAV',
@@ -401,7 +402,7 @@ export default {
     danhsachphiengiaodich: 'List of trading sessions',
     phiengiaodich: 'Trading session',
     taolenhmua: 'Subscribe order',
-    thaydoisovoidaunam: 'Year to Date performance',
+    thaydoisovoidaunam: 'Year to Date return',
     taingay: 'at date',
     giatriNAVCCQ: 'Nav/Unit (VND)',
     NAVtaingay: 'NAV at date',

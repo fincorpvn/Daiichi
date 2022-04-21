@@ -268,9 +268,9 @@ function OrderSellStep1({
                     </RowSpaceItem>
                     <RowSpaceItem marginTop={10}>
                       <Label size={14}>{`createordermodal.tgnamgiu`}</Label>
-                      <Label
-                        multilanguage={false}
-                        size={14}>{`${holdingDay} ngày`}</Label>
+                      <Label multilanguage={false} size={14}>{`${holdingDay} ${
+                        I18nState == 'vi' ? 'ngày' : 'days'
+                      }`}</Label>
                     </RowSpaceItem>
                     <RowSpaceItem marginTop={10}>
                       <Label size={14}>{`createordermodal.slban`}</Label>

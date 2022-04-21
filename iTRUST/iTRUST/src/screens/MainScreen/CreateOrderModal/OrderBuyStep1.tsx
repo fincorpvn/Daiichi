@@ -89,8 +89,6 @@ function OrderBuyStep1({
     }
   };
 
-  Log('excuseTempVolumn', excuseTempVolumn);
-
   return (
     <Div
       style={{

@@ -58,9 +58,42 @@ function ItemListInvestment({data}: IProps) {
       style={EStyle.shadowItem}
       backgroundColor={Ecolors.whiteColor}
       borderWidth={0.8}>
-      <Label multilanguage={false} fontWeight={'500'}>
+      <Label multilanguage={false} fontWeight={'700'}>
         {I18nState == 'vi' ? name : nameEn}
       </Label>
+      <Div
+        paddingTop={10}
+        flexDirection={'row'}
+        alignItems={'center'}
+        justifyContent={'space-between'}>
+        <Div>
+          <Label size={14}>{`investmentscreen.thaydoisovoidaunam`}</Label>
+          <Div
+            flexDirection={'row'}
+            alignItems={'center'}
+            justifyContent={'flex-start'}>
+            <Label size={14}>{`investmentscreen.taingay`}</Label>
+            <Label multilanguage={false}>{` ${
+              tradingDayOfNavCurrently ?? ''
+            }`}</Label>
+          </Div>
+        </Div>
+        <Div>
+          <Label
+            multilanguage={false}
+            color={
+              navPercent && navPercent < 0
+                ? Ecolors.redColor
+                : Ecolors.greenColor
+            }
+            size={18}
+            fontWeight={'700'}>
+            {navPercent >= 0 && '+'}
+            {`${convertPercent(navPercent)}`}
+          </Label>
+        </Div>
+      </Div>
+      {/*       
       <Div
         marginTop={8}
         flexDirection={'row'}
@@ -88,8 +121,8 @@ function ItemListInvestment({data}: IProps) {
             {` ${tradingDayOfNavCurrently}`}
           </Label>
         </Div>
-      </Div>
-      <Div
+      </Div> */}
+      {/* <Div
         marginTop={3}
         flexDirection={'row'}
         alignItems={'center'}
@@ -110,7 +143,7 @@ function ItemListInvestment({data}: IProps) {
           {navPercent >= 0 && '+'}
           {convertPercent(navPercent)}
         </Label>
-      </Div>
+      </Div> */}
     </Button>
   );
 }

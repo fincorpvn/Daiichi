@@ -1,0 +1,856 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00E356F31AD99517003FC87E /* iTRUSTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* iTRUSTTests.m */; };
+		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		355B8F32805C49C7890CF756 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79A45F37A85148D88F85FCEE /* Roboto-LightItalic.ttf */; };
+		405AD09F89CC0C58FD6182D9 /* Pods_iTRUST_iTRUSTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2BEE2EF2AFB5EA022138CFE /* Pods_iTRUST_iTRUSTTests.framework */; };
+		41A8BD36F3644819A65E8AA9 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 005DB6232CF74EC48A06DA8E /* Roboto-Regular.ttf */; };
+		41EFCCE155B1426DB507CD39 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0A05698B8254A0686990F62 /* Roboto-BoldItalic.ttf */; };
+		451EB77108D14F9CAB969942 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DC86A88B08442158EBEC4CD /* Roboto-MediumItalic.ttf */; };
+		66A163342AC2414EB32ECE93 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7636BA13E4D476FB2748741 /* Roboto-Medium.ttf */; };
+		6CC6672188504506995A9BD8 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3773226012145D3B37A6C35 /* Roboto-Bold.ttf */; };
+		730FA47727D9F1D1001F7375 /* TouchID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA47627D9F1D1001F7375 /* TouchID.framework */; };
+		730FA47927D9F1D7001F7375 /* RNCMaskedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA47827D9F1D7001F7375 /* RNCMaskedView.framework */; };
+		730FA47B27D9F1E4001F7375 /* RNI18n.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA47A27D9F1E4001F7375 /* RNI18n.framework */; };
+		730FA47D27D9F281001F7375 /* ReactNativeART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA47C27D9F281001F7375 /* ReactNativeART.framework */; };
+		730FA48327D9F5E4001F7375 /* FBReactNativeSpec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48227D9F5E4001F7375 /* FBReactNativeSpec.framework */; };
+		730FA48527D9F5E4001F7375 /* RNFBApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48427D9F5E4001F7375 /* RNFBApp.framework */; };
+		730FA48727D9F5E4001F7375 /* RNFBMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48627D9F5E4001F7375 /* RNFBMessaging.framework */; };
+		733D4DEF27DF379900E27359 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 733D4DEE27DF379900E27359 /* GoogleService-Info.plist */; };
+		735F811027CDFC0600CCD538 /* Plashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 735F810F27CDFC0600CCD538 /* Plashscreen.png */; };
+		735F811227CDFC2B00CCD538 /* RNBootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 735F811127CDFC2B00CCD538 /* RNBootSplash.storyboard */; };
+		73E0967027D60C8900D002AB /* OpenSSL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737FED5427D5B5EB008C8F9C /* OpenSSL.xcframework */; };
+		73E0967127D60C8F00D002AB /* double-conversion.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73898B7B27D601B900B1427A /* double-conversion.xcframework */; };
+		80CEB7A2678F40B3B3633030 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12DBF8BF3CD047159634E981 /* Roboto-BlackItalic.ttf */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		84E7AA618B05499795AD3330 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F449F995A70241AAB5409AA7 /* Roboto-Light.ttf */; };
+		86AF7F833CCC4DD79BC5CC74 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 994350B5F8B74D51B5D77D95 /* Roboto-ThinItalic.ttf */; };
+		8840C6B81C10470996098923 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31E57E9199A24002A025093E /* Roboto-Thin.ttf */; };
+		8863ABAD5CE0FF5EFDEE6090 /* Pods_iTRUST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820CB8CC796E72F4BA4FC1B1 /* Pods_iTRUST.framework */; };
+		A2A698646B0B4B4B91409D6B /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC9585E31FBA44BA8317B43D /* Roboto-Italic.ttf */; };
+		C8F5A1E5AA4A4F5197C85FF5 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F5F067120AA450A91835623 /* Roboto-Black.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = iTRUST;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		005DB6232CF74EC48A06DA8E /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../src/assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		00E356EE1AD99517003FC87E /* iTRUSTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTRUSTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* iTRUSTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iTRUSTTests.m; sourceTree = "<group>"; };
+		00FB6CFED768DCBF41B5FE76 /* Pods-iTRUST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTRUST.debug.xcconfig"; path = "Target Support Files/Pods-iTRUST/Pods-iTRUST.debug.xcconfig"; sourceTree = "<group>"; };
+		0159FA88C058411C82D21B80 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../src/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		1110C2451CD2E6CAAF2CBBF8 /* Pods-iTRUST-iTRUSTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTRUST-iTRUSTTests.release.xcconfig"; path = "Target Support Files/Pods-iTRUST-iTRUSTTests/Pods-iTRUST-iTRUSTTests.release.xcconfig"; sourceTree = "<group>"; };
+		12DBF8BF3CD047159634E981 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BlackItalic.ttf"; path = "../src/assets/fonts/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* iTRUST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTRUST.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iTRUST/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = iTRUST/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iTRUST/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iTRUST/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iTRUST/main.m; sourceTree = "<group>"; };
+		17718C8563F84EDE88A89EDD /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../src/fonts/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		208AC49B6E6049E7BEA0FB8F /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../src/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
+		2DC86A88B08442158EBEC4CD /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../src/assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		2F5F067120AA450A91835623 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../src/assets/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
+		3001B942C1394FA99CFF3641 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../src/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		31E57E9199A24002A025093E /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../src/assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		68F7A5D7F22B466C865F72E6 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../src/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		7309842F27D6FA8D000A047D /* libRNFBApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFBApp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7309843327D71423000A047D /* iTRUST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = iTRUST.entitlements; path = iTRUST/iTRUST.entitlements; sourceTree = "<group>"; };
+		730FA47627D9F1D1001F7375 /* TouchID.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TouchID.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		730FA47827D9F1D7001F7375 /* RNCMaskedView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNCMaskedView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		730FA47A27D9F1E4001F7375 /* RNI18n.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNI18n.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		730FA47C27D9F281001F7375 /* ReactNativeART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactNativeART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		730FA47E27D9F4FC001F7375 /* RNFBApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		730FA48027D9F4FD001F7375 /* RNFBMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		730FA48227D9F5E4001F7375 /* FBReactNativeSpec.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBReactNativeSpec.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		730FA48427D9F5E4001F7375 /* RNFBApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		730FA48627D9F5E4001F7375 /* RNFBMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		733D4DEE27DF379900E27359 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		735478EC27D9E6C7008A1930 /* Permission_PhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Permission_PhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		735478EE27D9E6D1008A1930 /* Permission_Camera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Permission_Camera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		735478F027D9E6D1008A1930 /* Permission_FaceID.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Permission_FaceID.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		735478F227D9E6D1008A1930 /* Permission_MediaLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Permission_MediaLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		735478F427D9E6D1008A1930 /* Permission_PhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Permission_PhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		735478F627D9E6D1008A1930 /* RNPermissions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNPermissions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		735478F827D9E7D2008A1930 /* RNFBApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		735478FA27D9E7D3008A1930 /* RNFBMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		735478FC27D9E91F008A1930 /* RNPermissions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNPermissions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		735F810F27CDFC0600CCD538 /* Plashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plashscreen.png; path = ../../../../../Downloads/Plashscreen.png; sourceTree = "<group>"; };
+		735F811127CDFC2B00CCD538 /* RNBootSplash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RNBootSplash.storyboard; sourceTree = "<group>"; };
+		737FED5427D5B5EB008C8F9C /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework"; sourceTree = "<group>"; };
+		73898B7B27D601B900B1427A /* double-conversion.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "double-conversion.xcframework"; path = "Pods/Flipper-DoubleConversion/Frameworks/double-conversion.xcframework"; sourceTree = "<group>"; };
+		79A45F37A85148D88F85FCEE /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../src/assets/fonts/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = iTRUST/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		820CB8CC796E72F4BA4FC1B1 /* Pods_iTRUST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTRUST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89E5FF4B158F16C0607486AB /* Pods-iTRUST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTRUST.release.xcconfig"; path = "Target Support Files/Pods-iTRUST/Pods-iTRUST.release.xcconfig"; sourceTree = "<group>"; };
+		8F82D2E0B474415FBD40DEE0 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../src/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		994350B5F8B74D51B5D77D95 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-ThinItalic.ttf"; path = "../src/assets/fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		9B60D7A239434FCB9ADB0714 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../src/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
+		A51A65333BA443F691CB560F /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../src/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		B3773226012145D3B37A6C35 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../src/assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		D0A05698B8254A0686990F62 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../src/assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		D60D98F14DD04DF897E2D1A8 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BlackItalic.ttf"; path = "../src/fonts/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		E7636BA13E4D476FB2748741 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../src/assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		EBAA5E1B41BC4FFD8D25D7D4 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../src/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		EBFB5E680519302603978534 /* Pods-iTRUST-iTRUSTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTRUST-iTRUSTTests.debug.xcconfig"; path = "Target Support Files/Pods-iTRUST-iTRUSTTests/Pods-iTRUST-iTRUSTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EC9585E31FBA44BA8317B43D /* Roboto-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Italic.ttf"; path = "../src/assets/fonts/Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED31685683EC4A179197B248 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-ThinItalic.ttf"; path = "../src/fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		F2BEE2EF2AFB5EA022138CFE /* Pods_iTRUST_iTRUSTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTRUST_iTRUSTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F449F995A70241AAB5409AA7 /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../src/assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
+		F6B9D9252D4B4CA7A7B00023 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Italic.ttf"; path = "../src/fonts/Roboto-Italic.ttf"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00E356EB1AD99517003FC87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73E0967127D60C8F00D002AB /* double-conversion.xcframework in Frameworks */,
+				73E0967027D60C8900D002AB /* OpenSSL.xcframework in Frameworks */,
+				405AD09F89CC0C58FD6182D9 /* Pods_iTRUST_iTRUSTTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				730FA48327D9F5E4001F7375 /* FBReactNativeSpec.framework in Frameworks */,
+				730FA48527D9F5E4001F7375 /* RNFBApp.framework in Frameworks */,
+				730FA48727D9F5E4001F7375 /* RNFBMessaging.framework in Frameworks */,
+				730FA47D27D9F281001F7375 /* ReactNativeART.framework in Frameworks */,
+				730FA47B27D9F1E4001F7375 /* RNI18n.framework in Frameworks */,
+				730FA47927D9F1D7001F7375 /* RNCMaskedView.framework in Frameworks */,
+				730FA47727D9F1D1001F7375 /* TouchID.framework in Frameworks */,
+				8863ABAD5CE0FF5EFDEE6090 /* Pods_iTRUST.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00E356EF1AD99517003FC87E /* iTRUSTTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F21AD99517003FC87E /* iTRUSTTests.m */,
+				00E356F01AD99517003FC87E /* Supporting Files */,
+			);
+			path = iTRUSTTests;
+			sourceTree = "<group>";
+		};
+		00E356F01AD99517003FC87E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F11AD99517003FC87E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13B07FAE1A68108700A75B9A /* iTRUST */ = {
+			isa = PBXGroup;
+			children = (
+				733D4DEE27DF379900E27359 /* GoogleService-Info.plist */,
+				7309843327D71423000A047D /* iTRUST.entitlements */,
+				735F810F27CDFC0600CCD538 /* Plashscreen.png */,
+				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
+				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				13B07FB71A68108700A75B9A /* main.m */,
+				735F811127CDFC2B00CCD538 /* RNBootSplash.storyboard */,
+			);
+			name = iTRUST;
+			sourceTree = "<group>";
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				730FA48227D9F5E4001F7375 /* FBReactNativeSpec.framework */,
+				730FA48427D9F5E4001F7375 /* RNFBApp.framework */,
+				730FA48627D9F5E4001F7375 /* RNFBMessaging.framework */,
+				730FA47E27D9F4FC001F7375 /* RNFBApp.framework */,
+				730FA48027D9F4FD001F7375 /* RNFBMessaging.framework */,
+				730FA47C27D9F281001F7375 /* ReactNativeART.framework */,
+				730FA47A27D9F1E4001F7375 /* RNI18n.framework */,
+				730FA47827D9F1D7001F7375 /* RNCMaskedView.framework */,
+				730FA47627D9F1D1001F7375 /* TouchID.framework */,
+				735478FC27D9E91F008A1930 /* RNPermissions.framework */,
+				735478F827D9E7D2008A1930 /* RNFBApp.framework */,
+				735478FA27D9E7D3008A1930 /* RNFBMessaging.framework */,
+				735478EE27D9E6D1008A1930 /* Permission_Camera.framework */,
+				735478F027D9E6D1008A1930 /* Permission_FaceID.framework */,
+				735478F227D9E6D1008A1930 /* Permission_MediaLibrary.framework */,
+				735478F427D9E6D1008A1930 /* Permission_PhotoLibrary.framework */,
+				735478F627D9E6D1008A1930 /* RNPermissions.framework */,
+				735478EC27D9E6C7008A1930 /* Permission_PhotoLibrary.framework */,
+				7309842F27D6FA8D000A047D /* libRNFBApp.a */,
+				73898B7B27D601B900B1427A /* double-conversion.xcframework */,
+				737FED5427D5B5EB008C8F9C /* OpenSSL.xcframework */,
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				820CB8CC796E72F4BA4FC1B1 /* Pods_iTRUST.framework */,
+				F2BEE2EF2AFB5EA022138CFE /* Pods_iTRUST_iTRUSTTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				13B07FAE1A68108700A75B9A /* iTRUST */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				00E356EF1AD99517003FC87E /* iTRUSTTests */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				B82DCB4B026A4A36B712E1CA /* Resources */,
+				99FD39A7DE1F53860D0B71FE /* Pods */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* iTRUST.app */,
+				00E356EE1AD99517003FC87E /* iTRUSTTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		99FD39A7DE1F53860D0B71FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				00FB6CFED768DCBF41B5FE76 /* Pods-iTRUST.debug.xcconfig */,
+				89E5FF4B158F16C0607486AB /* Pods-iTRUST.release.xcconfig */,
+				EBFB5E680519302603978534 /* Pods-iTRUST-iTRUSTTests.debug.xcconfig */,
+				1110C2451CD2E6CAAF2CBBF8 /* Pods-iTRUST-iTRUSTTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B82DCB4B026A4A36B712E1CA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9B60D7A239434FCB9ADB0714 /* Roboto-Black.ttf */,
+				D60D98F14DD04DF897E2D1A8 /* Roboto-BlackItalic.ttf */,
+				EBAA5E1B41BC4FFD8D25D7D4 /* Roboto-Bold.ttf */,
+				8F82D2E0B474415FBD40DEE0 /* Roboto-BoldItalic.ttf */,
+				F6B9D9252D4B4CA7A7B00023 /* Roboto-Italic.ttf */,
+				208AC49B6E6049E7BEA0FB8F /* Roboto-Light.ttf */,
+				17718C8563F84EDE88A89EDD /* Roboto-LightItalic.ttf */,
+				68F7A5D7F22B466C865F72E6 /* Roboto-Medium.ttf */,
+				0159FA88C058411C82D21B80 /* Roboto-MediumItalic.ttf */,
+				3001B942C1394FA99CFF3641 /* Roboto-Regular.ttf */,
+				A51A65333BA443F691CB560F /* Roboto-Thin.ttf */,
+				ED31685683EC4A179197B248 /* Roboto-ThinItalic.ttf */,
+				2F5F067120AA450A91835623 /* Roboto-Black.ttf */,
+				12DBF8BF3CD047159634E981 /* Roboto-BlackItalic.ttf */,
+				B3773226012145D3B37A6C35 /* Roboto-Bold.ttf */,
+				D0A05698B8254A0686990F62 /* Roboto-BoldItalic.ttf */,
+				EC9585E31FBA44BA8317B43D /* Roboto-Italic.ttf */,
+				F449F995A70241AAB5409AA7 /* Roboto-Light.ttf */,
+				79A45F37A85148D88F85FCEE /* Roboto-LightItalic.ttf */,
+				E7636BA13E4D476FB2748741 /* Roboto-Medium.ttf */,
+				2DC86A88B08442158EBEC4CD /* Roboto-MediumItalic.ttf */,
+				005DB6232CF74EC48A06DA8E /* Roboto-Regular.ttf */,
+				31E57E9199A24002A025093E /* Roboto-Thin.ttf */,
+				994350B5F8B74D51B5D77D95 /* Roboto-ThinItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00E356ED1AD99517003FC87E /* iTRUSTTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "iTRUSTTests" */;
+			buildPhases = (
+				C3B0F56DC891913A621CCA99 /* [CP] Check Pods Manifest.lock */,
+				00E356EA1AD99517003FC87E /* Sources */,
+				00E356EB1AD99517003FC87E /* Frameworks */,
+				00E356EC1AD99517003FC87E /* Resources */,
+				8B1D47D4301AE8B854A22807 /* [CP] Copy Pods Resources */,
+				3188E103AF86C27E303D33F3 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00E356F51AD99517003FC87E /* PBXTargetDependency */,
+			);
+			name = iTRUSTTests;
+			productName = iTRUSTTests;
+			productReference = 00E356EE1AD99517003FC87E /* iTRUSTTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		13B07F861A680F5B00A75B9A /* iTRUST */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "iTRUST" */;
+			buildPhases = (
+				E4081414ABB6F1F241C2603A /* [CP] Check Pods Manifest.lock */,
+				FD10A7F022414F080027D42C /* Start Packager */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				B2A0254092D693A6A8973709 /* [CP] Copy Pods Resources */,
+				2A8BF3D65EE24AE343A2FDD5 /* [CP-User] [RNFB] Core Configuration */,
+				472CE01FBDBF52A02C7C206F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iTRUST;
+			productName = iTRUST;
+			productReference = 13B07F961A680F5B00A75B9A /* iTRUST.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					00E356ED1AD99517003FC87E = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1120;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "iTRUST" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* iTRUST */,
+				00E356ED1AD99517003FC87E /* iTRUSTTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00E356EC1AD99517003FC87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				C8F5A1E5AA4A4F5197C85FF5 /* Roboto-Black.ttf in Resources */,
+				735F811027CDFC0600CCD538 /* Plashscreen.png in Resources */,
+				80CEB7A2678F40B3B3633030 /* Roboto-BlackItalic.ttf in Resources */,
+				6CC6672188504506995A9BD8 /* Roboto-Bold.ttf in Resources */,
+				41EFCCE155B1426DB507CD39 /* Roboto-BoldItalic.ttf in Resources */,
+				A2A698646B0B4B4B91409D6B /* Roboto-Italic.ttf in Resources */,
+				84E7AA618B05499795AD3330 /* Roboto-Light.ttf in Resources */,
+				355B8F32805C49C7890CF756 /* Roboto-LightItalic.ttf in Resources */,
+				66A163342AC2414EB32ECE93 /* Roboto-Medium.ttf in Resources */,
+				451EB77108D14F9CAB969942 /* Roboto-MediumItalic.ttf in Resources */,
+				733D4DEF27DF379900E27359 /* GoogleService-Info.plist in Resources */,
+				41A8BD36F3644819A65E8AA9 /* Roboto-Regular.ttf in Resources */,
+				735F811227CDFC2B00CCD538 /* RNBootSplash.storyboard in Resources */,
+				8840C6B81C10470996098923 /* Roboto-Thin.ttf in Resources */,
+				86AF7F833CCC4DD79BC5CC74 /* Roboto-ThinItalic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		2A8BF3D65EE24AE343A2FDD5 /* [CP-User] [RNFB] Core Configuration */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] [RNFB] Core Configuration";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    _JSON_OUTPUT_BASE64=$(python -c 'import json,sys,base64;print(base64.b64encode(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"').read())['${_JSON_ROOT}'])))' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\n\n  # config.admob_delay_app_measurement_init\n  _ADMOB_DELAY_APP_MEASUREMENT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"admob_delay_app_measurement_init\")\n  if [[ $_ADMOB_DELAY_APP_MEASUREMENT == \"true\" ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GADDelayAppMeasurementInit\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"YES\")\n  fi\n\n  # config.admob_ios_app_id\n  _ADMOB_IOS_APP_ID=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"admob_ios_app_id\")\n  if [[ $_ADMOB_IOS_APP_ID ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GADApplicationIdentifier\")\n    _PLIST_ENTRY_TYPES+=(\"string\")\n    _PLIST_ENTRY_VALUES+=(\"$_ADMOB_IOS_APP_ID\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
+		};
+		3188E103AF86C27E303D33F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTRUST-iTRUSTTests/Pods-iTRUST-iTRUSTTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTRUST-iTRUSTTests/Pods-iTRUST-iTRUSTTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTRUST-iTRUSTTests/Pods-iTRUST-iTRUSTTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		472CE01FBDBF52A02C7C206F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTRUST/Pods-iTRUST-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTRUST/Pods-iTRUST-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTRUST/Pods-iTRUST-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B1D47D4301AE8B854A22807 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTRUST-iTRUSTTests/Pods-iTRUST-iTRUSTTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTRUST-iTRUSTTests/Pods-iTRUST-iTRUSTTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTRUST-iTRUSTTests/Pods-iTRUST-iTRUSTTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2A0254092D693A6A8973709 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTRUST/Pods-iTRUST-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTRUST/Pods-iTRUST-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTRUST/Pods-iTRUST-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3B0F56DC891913A621CCA99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iTRUST-iTRUSTTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4081414ABB6F1F241C2603A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iTRUST-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD10A7F022414F080027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00E356EA1AD99517003FC87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00E356F31AD99517003FC87E /* iTRUSTTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				13B07FC11A68108700A75B9A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* iTRUST */;
+			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00E356F61AD99517003FC87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBFB5E680519302603978534 /* Pods-iTRUST-iTRUSTTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = iTRUSTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iTRUST.app/iTRUST";
+			};
+			name = Debug;
+		};
+		00E356F71AD99517003FC87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1110C2451CD2E6CAAF2CBBF8 /* Pods-iTRUST-iTRUSTTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = iTRUSTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iTRUST.app/iTRUST";
+			};
+			name = Release;
+		};
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00FB6CFED768DCBF41B5FE76 /* Pods-iTRUST.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = iTRUST/iTRUST.entitlements;
+				CURRENT_PROJECT_VERSION = 12;
+				DEVELOPMENT_TEAM = BL48QZN6DB;
+				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "$(inherited)";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				INFOPLIST_FILE = iTRUST/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 5.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miovinacapital;
+				PRODUCT_NAME = iTRUST;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89E5FF4B158F16C0607486AB /* Pods-iTRUST.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = iTRUST/iTRUST.entitlements;
+				CURRENT_PROJECT_VERSION = 12;
+				DEVELOPMENT_TEAM = BL48QZN6DB;
+				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "$(inherited) $(inherited)";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				INFOPLIST_FILE = iTRUST/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 5.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miovinacapital;
+				PRODUCT_NAME = iTRUST;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/lib/swift\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		83CBBA211A601CBA00E9B192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/lib/swift\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "iTRUSTTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E356F61AD99517003FC87E /* Debug */,
+				00E356F71AD99517003FC87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "iTRUST" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* Debug */,
+				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "iTRUST" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}

@@ -1,0 +1,134 @@
+# require_relative '../node_modules/react-native/scripts/react_native_pods'
+# require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+# platform :ios,  '11.0'
+# target 'iTRUST' do
+#   config = use_native_modules!
+#   use_react_native!(
+#     :path => config[:reactNativePath],
+#     # to enable hermes on iOS, change `false` to `true` and then install pods
+#     :hermes_enabled => false
+#   )
+#   pod 'OpenSSL-Universal'
+#   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+#   pod 'TouchID', :path => "../node_modules/react-native-touch-id"
+#   pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+#   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+#   pod 'react-native-view-shot', :path => '../node_modules/react-native-view-shot'
+#   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+#   pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
+#   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
+#   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
+
+#   permissions_path = '../node_modules/react-native-permissions/ios'
+#   pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+#   pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
+  
+
+
+
+#   target 'iTRUSTTests' do
+#     inherit! :complete
+#     # Pods for testing
+#   end
+
+#   # Enables Flipper.
+#   #
+#   # Note that if you have use_frameworks! enabled, Flipper will not work and
+#   # you should disable the next line.
+
+#     # use_flipper!
+#   # post_install do |installer|
+#   #   flipper_post_install(installer)
+#   # end
+#   use_modular_headers!
+#   use_frameworks!
+
+#   # Convert all permission pods into static libraries
+#   pre_install do |installer|
+#     Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+#     installer.pod_targets.each do |pod|
+#       if pod.name.eql?('RNPermissions') || pod.name.start_with?('Permission-')
+#         def pod.build_type;
+#           # Uncomment the line corresponding to your CocoaPods version
+#           Pod::BuildType.static_library # >= 1.9
+#           # Pod::Target::BuildType.static_library # < 1.9
+#         end
+#       end
+#     end
+#   end
+# end
+
+
+
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '11.0'
+pre_install do |installer|
+  Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+
+  installer.pod_targets.each do |pod|
+    if pod.name.eql?('RNPermissions') || pod.name.start_with?('Permission-')
+      def pod.build_type;
+        # Uncomment the line corresponding to your CocoaPods version
+        Pod::BuildType.static_library # >= 1.9
+        # Pod::Target::BuildType.static_library # < 1.9
+      end
+    end
+  end
+end
+target 'iTRUST' do
+  config = use_native_modules!
+  use_frameworks!
+  
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # to enable hermes on iOS, change `false` to `true` and then install pods
+    :hermes_enabled => false
+  )
+  use_modular_headers!
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  pod 'Permission-FaceID', :path => "#{permissions_path}/FaceID"
+  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications"
+  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
+  # pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
+  pod 'Permission-MediaLibrary', :path => "#{permissions_path}/MediaLibrary"
+  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
+  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+  pod 'react-native-view-shot', :path => '../node_modules/react-native-view-shot'
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+  pod 'TouchID', :path => "../node_modules/react-native-touch-id"
+  pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+  pod 'react-native-blob-util', :path => '../node_modules/react-native-blob-util'
+
+  target 'iTRUSTTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable the next line.
+  # use_flipper!()
+  # pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec', :modular_headers => false
+  # pod 'RCT-Folly', :podspec => "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec", :modular_headers => false
+
+  
+
+  post_install do |installer|
+    react_native_post_install(installer)
+    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+  end
+  # use_flipper!
+  # post_install do |installer|
+  #   flipper_post_install(installer)
+  # end
+  
+end

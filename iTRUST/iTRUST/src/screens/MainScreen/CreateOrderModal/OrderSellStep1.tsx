@@ -289,7 +289,6 @@ function OrderSellStep1({
               })}
             </>
           )}
-
           {!!currentSession && (
             <Div
               width={'100%'}
@@ -304,6 +303,7 @@ function OrderSellStep1({
               <Div
                 paddingRight={16}
                 height={'100%'}
+                width={140}
                 flexDirection={'column'}
                 alignItems={'flex-start'}>
                 <Label

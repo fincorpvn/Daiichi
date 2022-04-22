@@ -217,11 +217,15 @@ function OrderBuyStep1({
                 height={'100%'}
                 flexDirection={'column'}
                 alignItems={'flex-start'}>
-                <Label
-                  size={12}
-                  fontWeight={
-                    '700'
-                  }>{`createordermodal.thoidiemdongsolenh`}</Label>
+                <Div height={40}>
+                  <Label
+                    textAlign={'center'}
+                    size={12}
+                    fontWeight={
+                      '700'
+                    }>{`createordermodal.thoidiemdongsolenh`}</Label>
+                </Div>
+
                 <Label marginTop={6} size={12} multilanguage={false}>
                   {currentSession.closedOrderBookTimeString}
                   {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
@@ -229,6 +233,7 @@ function OrderBuyStep1({
                 <Label
                   size={12}
                   marginTop={13}
+                  textAlign={'center'}
                   fontWeight={'700'}>{`createordermodal.phiengiaodich`}</Label>
                 <Label marginTop={6} size={12} multilanguage={false}>
                   {currentSession.tradingTimeString}
@@ -247,12 +252,19 @@ function OrderBuyStep1({
                 flex={1}
                 flexDirection={'column'}
                 alignItems={'flex-start'}>
+                <Div height={40}>
+                  <Label
+                    size={12}
+                    textAlign={'center'}
+                    fontWeight={
+                      '700'
+                    }>{`createordermodal.thoidiemdongsolenhnhantien`}</Label>
+                </Div>
                 <Label
+                  marginBottom={10}
+                  marginTop={6}
                   size={12}
-                  fontWeight={
-                    '700'
-                  }>{`createordermodal.thoidiemdongsolenhnhantien`}</Label>
-                <Label marginTop={6} size={12} multilanguage={false}>
+                  multilanguage={false}>
                   {currentSession.closedBankNoteTimeString}
                   {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
                 </Label>

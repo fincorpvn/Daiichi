@@ -3,7 +3,7 @@ import {Ecolors, EStyle} from 'constant';
 import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {getProductFocus, unFocusProduct} from 'reducer/investment';
+import {getProductFocus, loadProduct, unFocusProduct} from 'reducer/investment';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {convertNumber} from 'utils';
@@ -44,6 +44,7 @@ function InvestmentDetailsScreen() {
   const {name, nameEn} = productDetails;
 
   useEffect(() => {
+    dispatch(loadProduct({}));
     return () => {
       dispatch(unFocusProduct({}));
     };

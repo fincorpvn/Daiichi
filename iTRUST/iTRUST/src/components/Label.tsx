@@ -14,7 +14,9 @@ function Label(props: ILabelProps): JSX.Element {
       {...parseMargin(props)}
       {...props}>
       {props.multilanguage
-        ? I18n.t(`${props.children}`)
+        ? I18nState == 'vi'
+          ? I18n.t(`${props.children}`)
+          : I18n.t(`${props.children}`)
         : props.children && props.children}
     </ComponentLable>
   );

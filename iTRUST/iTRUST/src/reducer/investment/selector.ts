@@ -41,7 +41,7 @@ export const getDataChart = createSelector(
   (dataNav, idFocus) => {
     let r = 1;
     let DD = dataNav[idFocus] || [];
-    let control = 30;
+    let control = 200;
     if (DD?.length > control) {
       r = Math.round(DD.length / control);
     }

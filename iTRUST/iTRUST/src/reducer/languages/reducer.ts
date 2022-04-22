@@ -11,7 +11,7 @@ interface ILanguage {
 interface IinitialState {
   activeLanguage: ILanguage;
   listLanguage: Array<ILanguage>;
-  I18nState: 'en' | 'vi' | string;
+  I18nState: 'en' | 'vi';
 }
 
 const initialState = {

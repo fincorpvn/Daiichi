@@ -81,7 +81,8 @@ function OverviewScreen() {
                   justifyContent={'flex-start'}
                   paddingTop={16}
                   paddingHorizontal={30}>
-                  <Label size={14}>{`overviewscreen.tongquantaisan`}</Label>
+                  <Label
+                    size={14}>{`overviewscreen.tonggiatrithitruong`}</Label>
                   <Label
                     size={28}
                     color={Ecolors.mainColor}

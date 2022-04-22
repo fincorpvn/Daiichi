@@ -1,6 +1,7 @@
 import {Div, Label} from 'components';
 import {Ecolors} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
+import {AppState} from 'react-native';
 import {useAppSelector} from 'store/hooks';
 import {timeoutFromNow} from 'utils';
 
@@ -8,6 +9,28 @@ function TimeFromNow(p: {toTime?: any}) {
   const [timeToOut, setTimeToOut] = useState<any>(null);
   const curInteval = useRef<any>(null);
   const I18nState = useAppSelector(state => state.languages.I18nState);
+
+  const timeLast = useRef<any>(null);
+
+  const appState = useRef(AppState.currentState);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        const currentTime: any = new Date();
+        const timeBack = currentTime - timeLast.current;
+        setTimeToOut(t => t - Math.round(timeBack / 1000));
+      }
+      appState.current = nextAppState;
+      timeLast.current = new Date();
+    });
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   useEffect(() => {
     if (p.toTime) {
@@ -48,7 +71,7 @@ function TimeFromNow(p: {toTime?: any}) {
   return (
     <Div
       width={'100%'}
-      maxWidth={160}
+      maxWidth={170}
       height={35}
       marginTop={6}
       borderRadius={5}

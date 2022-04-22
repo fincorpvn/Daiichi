@@ -1,29 +1,81 @@
-import {Button, Div, ImageView} from 'components';
+import {Button, Div, ImageView, LoadingIndicator} from 'components';
 import {Ecolors} from 'constant';
 import React, {useRef, useState} from 'react';
-import {Animated, FlatList, Platform} from 'react-native';
+import {Animated, FlatList, Platform, StyleSheet} from 'react-native';
+import {getListProduct} from 'reducer/investment';
+import {navigate} from 'services';
+import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {linkToWeb, widthScale, widthScreen} from 'utils';
+import {linkToWeb, Log, widthScale, widthScreen} from 'utils';
 
 function Item(p: {item: any}) {
+  const listProduct = useAppSelector(state => getListProduct(state));
+  const [loading, setLoading] = useState<boolean>(false);
+  const I18nState = useAppSelector(state => state.languages.I18nState);
+  const onPress = async () => {
+    setLoading(true);
+    try {
+      if (p.item.typeCode == 'INTERNAL') {
+        const ob = JSON.parse(p.item.description);
+        let product: any = null;
+        let scheme: any = null;
+        if (ob?.productCode) {
+          product = listProduct.find((a: any) => a.code == ob.productCode);
+        }
+        if (product && ob?.productSchemeCode) {
+          const res = await apiInvestment.loadProductDetails({
+            id: product?.id || 0,
+          });
+          product = res.data;
+          if (res.status == 200) {
+            scheme = res.data.productPrograms.find(
+              (a: any) => a.productSchemeCode == ob?.productSchemeCode,
+            );
+          }
+        }
+        navigate('CreateOrderModal', {
+          orderType: 'BUY',
+          initData: {
+            product,
+            scheme,
+          },
+        });
+        return;
+      }
+      linkToWeb(I18nState == 'vi' ? p.item.description : p.item.descriptionEn);
+      return;
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <Button
       isScale={false}
-      onPress={() => {
-        linkToWeb(p.item.description);
-      }}
+      onPress={onPress}
       style={{
         width: widthScreen,
       }}
       alignItems={'center'}
       justifyContent={'center'}>
+      {loading && (
+        <Div
+          style={StyleSheet.absoluteFillObject}
+          width={'100%'}
+          zIndex={999}
+          elevation={999}
+          alignItems={'center'}
+          justifyContent={'center'}>
+          <LoadingIndicator color={Ecolors.mainColor} size={10} numdot={5} />
+        </Div>
+      )}
       <ImageView
         width={326}
         height={143}
         resizeMode={Platform.OS === 'android' ? 'cover' : 'contain'}
         borderRadius={10}
         source={{
-          uri: p.item.url,
+          uri: I18nState == 'vi' ? p.item.url : p.item.urlEn || p.item.url,
         }}
       />
     </Button>

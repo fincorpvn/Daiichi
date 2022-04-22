@@ -4,12 +4,12 @@ import React from 'react';
 import {getProductList} from 'reducer/asset';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
-import {convertNav, convertNumber} from 'utils';
+import {convertNav, convertNumber, convertPercent} from 'utils';
 
 function Item(p: {data: any; isBorderBottom?: boolean}) {
-  const {color, code, holdingVolume, interestOrHole, programList} = p.data;
+  const {color, code, interestOrHole, programList, sumOfValueNavCurrent} =
+    p.data;
   const I18nState = useAppSelector(state => state.languages.I18nState);
-
   return (
     <>
       <Div
@@ -40,37 +40,27 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
             </Label>
           </Div>
           {/* hodl volumn */}
+          <Label
+            size={12}
+            marginLeft={19}>{`overviewscreen.tonggiatrithitruong`}</Label>
           <Div
-            flexDirection={'row'}
-            alignItems={'center'}
-            paddingLeft={19}
-            justifyContent={'flex-start'}>
-            <Label size={14}>{`assetscreen.sl`}</Label>
-            <Label size={14} multilanguage={false}>
-              {convertNav(holdingVolume, true)}
-              {` `}
-            </Label>
-            <Label size={14}>{`assetscreen.ccq`}</Label>
-          </Div>
-          {/* per price */}
-
-          {/* <Div
+            marginTop={3}
             flexDirection={'row'}
             alignItems={'center'}
             justifyContent={'flex-start'}
             paddingLeft={19}>
-            <ImageView
-              width={6}
-              height={12}
-              resizeMode={'contain'}
-              source={percentPrice < 0 ? Icons.pricedown : Icons.priceup}
-            />
+            <Label size={14} multilanguage={false}>
+              {convertNumber(Math.round(sumOfValueNavCurrent))}
+            </Label>
             <Label
-              fontWeight={'500'}
-              marginLeft={2}
-              color={percentPrice < 0 ? Ecolors.redColor : Ecolors.greenColor}
-              multilanguage={false}>{`${percentPrice} %`}</Label>
-          </Div> */}
+              color={interestOrHole < 0 ? Ecolors.redColor : Ecolors.greenColor}
+              size={14}
+              multilanguage={false}>
+              {` (${interestOrHole < 0 ? '-' : '+'}${convertPercent(
+                interestOrHole,
+              )})`}
+            </Label>
+          </Div>
         </Div>
         <Div
           flexDirection={'row'}
@@ -149,10 +139,9 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
                   multilanguage={false}>
                   {I18nState == 'vi' ? i.name : i.nameEn}
                 </Label>
-                <Label size={14} multilanguage={false}>{`${convertNav(
-                  i.holdingVolume,
-                  true,
-                )} ${I18nState == 'vi' ? `CCQ` : 'Units'}`}</Label>
+                <Label size={14} multilanguage={false}>{`${convertNumber(
+                  Math.round(i.sumOfValueNavCurrent),
+                )}`}</Label>
               </Button>
             );
           })}

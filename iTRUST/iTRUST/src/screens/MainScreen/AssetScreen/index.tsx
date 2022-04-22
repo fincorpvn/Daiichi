@@ -41,7 +41,7 @@ function AssetScreen() {
             <Div width={'100%'} alignItems={'center'} justifyContent={'center'}>
               <Label
                 size={14}
-                marginTop={14}>{`assetscreen.tongquantaisan`}</Label>
+                marginTop={14}>{`overviewscreen.tonggiatrithitruong`}</Label>
               <Label
                 size={28}
                 marginTop={2}

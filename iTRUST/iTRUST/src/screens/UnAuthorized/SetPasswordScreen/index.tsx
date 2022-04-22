@@ -35,6 +35,7 @@ interface Iparams {
     username?: string;
     flowApp?: string;
     otpTransId?: string;
+    province?: any;
   };
 }
 function Rule(p: {content: string}) {
@@ -72,7 +73,8 @@ function SetPasswordScreen() {
   const confirmPassRef = useRef(null);
 
   const gotoRequestOtp = async () => {
-    const {name, phone, phonePostal, email, userRefCode} = params.data;
+    const {name, phone, phonePostal, email, userRefCode, province} =
+      params.data;
     try {
       setLoading(true);
       if (
@@ -90,6 +92,7 @@ function SetPasswordScreen() {
           confirmPassword,
           userRefCode,
           username: phone,
+          provinceId: province.id,
         });
         if (res.status == 200) {
           navigate('OtpRequestModal', {

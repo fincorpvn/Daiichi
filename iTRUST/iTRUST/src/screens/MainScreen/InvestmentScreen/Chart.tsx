@@ -21,7 +21,7 @@ const animate: AnimatePropTypeInterface = {
   duration: 500,
 };
 
-function Chart(props: {controlScrollview: (e: boolean) => void}) {
+function Chart() {
   const data = useSelector((state: any) => getDataChart(state));
   const loadingNav = useSelector((state: any) => getLoadingNav(state));
   return (

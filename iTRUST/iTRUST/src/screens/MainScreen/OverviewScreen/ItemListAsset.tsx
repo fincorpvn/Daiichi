@@ -70,9 +70,18 @@ function ItemListAsset({data, scale}: Props) {
             flex={1}
             flexDirection={'column'}
             alignItems={'flex-start'}>
-            <Label multilanguage={false} fontWeight={'500'}>
-              {code}
-            </Label>
+            <RowSpaceItem>
+              <Label multilanguage={false} fontWeight={'500'}>
+                {code}
+              </Label>
+              <Label
+                fontWeight={'500'}
+                color={color}
+                multilanguage={false}
+                size={14}>
+                {convertPercent(ratePercent)}
+              </Label>
+            </RowSpaceItem>
             <RowSpaceItem paddingTop={20}>
               <Label size={14} color={Ecolors.grayColor}>
                 {`overviewscreen.tongsocqq`}
@@ -109,14 +118,7 @@ function ItemListAsset({data, scale}: Props) {
                 {interestOrHole >= 0 && '+'}
                 {convertPercent(interestOrHole)}
               </Label>
-              <Label
-                fontWeight={'500'}
-                // color={ratePercent >= 0 ? Ecolors.greenColor : Ecolors.redColor}
-                color={color}
-                multilanguage={false}
-                size={14}>
-                {convertPercent(ratePercent)}
-              </Label>
+              <Div />
             </RowSpaceItem>
             <Div height={10} />
           </Div>

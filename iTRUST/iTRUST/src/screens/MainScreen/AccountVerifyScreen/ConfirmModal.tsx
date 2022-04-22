@@ -78,7 +78,7 @@ function ConfirmModal() {
         <Div padding={16} backgroundColor={Ecolors.spaceColor}>
           <Label>{`accountverify.titleconfirm`}</Label>
         </Div>
-        <Div padding={16}>
+        {/* <Div padding={16}>
           <Label
             color={Ecolors.mainColor}
             fontWeight={'700'}
@@ -99,7 +99,7 @@ function ConfirmModal() {
             lineHeight={22}
             marginTop={5}
             size={15}>{`accountverify.contentdiachi3`}</Label>
-        </Div>
+        </Div> */}
         <Div padding={10} backgroundColor={Ecolors.spaceColor} marginTop={5}>
           <Label
             marginTop={8}

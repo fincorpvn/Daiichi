@@ -75,7 +75,7 @@ function Item(p: {item: any}) {
         resizeMode={Platform.OS === 'android' ? 'cover' : 'contain'}
         borderRadius={10}
         source={{
-          uri: I18nState == 'vi' ? p.item.url : p.item.url_en || p.item.url,
+          uri: I18nState == 'vi' ? p.item.url : p.item.urlEn || p.item.url,
         }}
       />
     </Button>

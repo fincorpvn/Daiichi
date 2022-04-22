@@ -7,18 +7,9 @@ import {useAppSelector} from 'store/hooks';
 import {convertNav, convertNumber, convertPercent} from 'utils';
 
 function Item(p: {data: any; isBorderBottom?: boolean}) {
-  const {
-    color,
-    code,
-    holdingVolume,
-    interestOrHole,
-    programList,
-    sumOfValueNavInvested,
-    ratePercent,
-    sumOfValueNavCurrent,
-  } = p.data;
+  const {color, code, interestOrHole, programList, sumOfValueNavCurrent} =
+    p.data;
   const I18nState = useAppSelector(state => state.languages.I18nState);
-
   return (
     <>
       <Div
@@ -149,7 +140,7 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
                   {I18nState == 'vi' ? i.name : i.nameEn}
                 </Label>
                 <Label size={14} multilanguage={false}>{`${convertNumber(
-                  Math.round(i.sumOfValueNavInvested),
+                  Math.round(i.sumOfValueNavCurrent),
                 )}`}</Label>
               </Button>
             );

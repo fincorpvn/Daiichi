@@ -698,7 +698,7 @@ function ReviewInfoModal() {
             marginTop={15}
             size={15}
             fontWeight={'700'}>{`reviewinfoscreen.dieukhoansudung`}</Label>
-          <Label
+          {/* <Label
             marginTop={10}
             color={Ecolors.mainColor}
             fontWeight={'700'}
@@ -719,7 +719,7 @@ function ReviewInfoModal() {
             lineHeight={22}
             marginBottom={10}
             marginTop={5}
-            size={15}>{`accountverify.contentdiachi3`}</Label>
+            size={15}>{`accountverify.contentdiachi3`}</Label> */}
           <Div padding={10} backgroundColor={Ecolors.spaceColor} marginTop={5}>
             <Label
               marginTop={8}

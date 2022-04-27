@@ -184,7 +184,7 @@ function Chart() {
             labels={({datum}) => convertNav(datum.y)}
             labelComponent={
               <VictoryLabel
-                dx={-widthScale(15)}
+                dx={-widthScale(25)}
                 dy={-widthScale(10)}
                 style={[
                   {

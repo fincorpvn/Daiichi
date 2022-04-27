@@ -1,9 +1,9 @@
-import { Alert, Button, Div, HeaderBack, Label } from 'components';
-import { Ecolors } from 'constant';
-import React, { useEffect } from 'react';
-import { Linking } from 'react-native';
-import { useAppSelector } from 'store/hooks';
-import { callPhone } from 'utils';
+import {Alert, Button, Div, HeaderBack, Label} from 'components';
+import {Ecolors} from 'constant';
+import React, {useEffect, useRef} from 'react';
+import {Linking} from 'react-native';
+import {useAppSelector} from 'store/hooks';
+import {callPhone, heightScreen, Log, widthScreen} from 'utils';
 
 const Row = (p: {
   title: string;
@@ -34,9 +34,15 @@ const Row = (p: {
 
 function SupportScreen() {
   const currentUser = useAppSelector(state => state.authen.currentUser);
-  const { userSourceRef } = currentUser;
+  const {userSourceRef} = currentUser;
   const I18nState = useAppSelector(state => state.languages.I18nState);
+  const webviewRef = useRef<any>();
 
+  //   const runFirst = `
+  //   document.body.style.backgroundColor = 'red';
+  //   setTimeout(function() { window.alert('hi') }, 2000);
+  //   true; // note: this is required, or you'll sometimes get silent failures
+  // `;
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack title={`supportscreen.hotrokhachhang`} type={2} />
@@ -91,7 +97,7 @@ function SupportScreen() {
           // Linking.openURL('mailto:maivanthanh@vinacapital.com');
         }}
         title={`supportscreen.hoten`}
-        content={userSourceRef?.bdaName || ""}
+        content={userSourceRef?.bdaName || ''}
         contentColor={Ecolors.textColor}
       />
       <Row
@@ -99,12 +105,10 @@ function SupportScreen() {
           Linking.openURL(`mailto:${userSourceRef?.bdaEmail}`);
         }}
         title={`supportscreen.email`}
-        content={userSourceRef?.bdaEmail || ""}
+        content={userSourceRef?.bdaEmail || ''}
       />
     </Div>
   );
 }
 
 export default React.memo(SupportScreen);
-
-

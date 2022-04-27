@@ -58,6 +58,26 @@ function ProfileScreen() {
       isLine: true,
     },
     {
+      title: `profile.chukyso`,
+      icon: Icons.digitalsignature,
+      iconRight: !hardProfile ? Icons.uncheck : Icons.check,
+      iconRightColor: !hardProfile ? Ecolors.grayColor : Ecolors.greenColor,
+      iconRightSize: 20,
+      content: !hardProfile
+        ? I18nState == 'vi'
+          ? 'Chưa nhận'
+          : 'Not received'
+        : I18nState == 'vi'
+        ? 'Đã nhận'
+        : 'Complete',
+      contentColor: !hardProfile ? Ecolors.redColor : Ecolors.greenColor,
+      isForward: true,
+      isLine: true,
+      onPress: () => {
+        navigate('DigitalSignatureScreen');
+      },
+    },
+    {
       type: 'space',
     },
     {

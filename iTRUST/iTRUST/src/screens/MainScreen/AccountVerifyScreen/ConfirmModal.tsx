@@ -74,6 +74,7 @@ function ConfirmModal() {
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack type={2} title={`accountverify.xacnhanhoantat`} />
+
       <ScrollView>
         <Div padding={16} backgroundColor={Ecolors.spaceColor}>
           <Label>{`accountverify.titleconfirm`}</Label>

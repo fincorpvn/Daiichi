@@ -289,6 +289,7 @@ function OrderSellStep1({
               })}
             </>
           )}
+
           {!!currentSession && (
             <Div
               width={'100%'}

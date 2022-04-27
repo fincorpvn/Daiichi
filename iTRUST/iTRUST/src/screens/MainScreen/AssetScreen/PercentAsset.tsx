@@ -40,9 +40,7 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
             </Label>
           </Div>
           {/* hodl volumn */}
-          <Label
-            size={12}
-            marginLeft={19}>{`overviewscreen.tonggiatrithitruong`}</Label>
+          <Label size={12} marginLeft={19}>{`assetscreen.giatrihientai`}</Label>
           <Div
             marginTop={3}
             flexDirection={'row'}

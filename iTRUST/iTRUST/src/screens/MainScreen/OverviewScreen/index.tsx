@@ -127,14 +127,18 @@ function OverviewScreen() {
                     setItemFocus={setItemFocus}
                   />
                 )}
-                <Banner />
-                <Div height={120} />
+                {/* <Banner />
+                <Div height={120} /> */}
               </>
             )}
+            <Banner />
+            <Div height={120} />
           </>
         ) : (
           <Div />
         )}
+        {/* <Banner />
+        <Div height={120} /> */}
       </ScrollView>
     </Div>
   );

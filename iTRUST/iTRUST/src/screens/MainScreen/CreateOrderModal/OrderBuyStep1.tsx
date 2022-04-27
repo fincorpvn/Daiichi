@@ -9,9 +9,9 @@ import {
   TimeFromNow,
   Alert,
 } from 'components';
-import {Ecolors, Icons} from 'constant';
+import {Ecolors, EStyle, Icons} from 'constant';
 import React, {useState} from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
@@ -208,6 +208,99 @@ function OrderBuyStep1({
               borderRadius={5}
               paddingHorizontal={16}
               paddingVertical={21}
+              backgroundColor={Ecolors.spaceColor}>
+              <Div
+                flexDirection={'row'}
+                alignItems={'flex-start'}
+                justifyContent={'space-between'}>
+                <Div
+                  flex={1}
+                  flexDirection={'row'}
+                  justifyContent={'flex-start'}>
+                  <Label
+                    textAlign={'center'}
+                    size={12}
+                    fontWeight={
+                      '700'
+                    }>{`createordermodal.thoidiemdongsolenh`}</Label>
+                </Div>
+                <Div flex={1} flexDirection={'row'} justifyContent={'flex-end'}>
+                  <Label
+                    size={12}
+                    textAlign={'center'}
+                    fontWeight={
+                      '700'
+                    }>{`createordermodal.thoidiemdongsolenhnhantien`}</Label>
+                </Div>
+              </Div>
+              <Div
+                marginTop={5}
+                flexDirection={'row'}
+                alignItems={'flex-start'}
+                justifyContent={'space-between'}>
+                <Div
+                  flex={1}
+                  flexDirection={'row'}
+                  justifyContent={'flex-start'}>
+                  <Label size={12} multilanguage={false}>
+                    {currentSession.closedOrderBookTimeString}
+                    {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                  </Label>
+                </Div>
+                <Div flex={1} flexDirection={'row'} justifyContent={'flex-end'}>
+                  <Label size={12} textAlign={'center'} multilanguage={false}>
+                    {currentSession.closedBankNoteTimeString}
+                    {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                  </Label>
+                </Div>
+              </Div>
+              <Div
+                marginTop={5}
+                flexDirection={'row'}
+                alignItems={'flex-start'}
+                justifyContent={'space-between'}>
+                <Div flex={1} alignItems={'flex-start'}>
+                  <Label
+                    size={12}
+                    textAlign={'center'}
+                    fontWeight={
+                      '700'
+                    }>{`createordermodal.phiengiaodich`}</Label>
+                  <Label marginTop={6} size={12} multilanguage={false}>
+                    {currentSession.tradingTimeString}
+                    {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                  </Label>
+                </Div>
+                <Div
+                  paddingLeft={17}
+                  flex={1}
+                  flexDirection={'row'}
+                  justifyContent={'flex-end'}>
+                  <TimeFromNow toTime={currentSession.closedOrderBookTime} />
+                </Div>
+              </Div>
+              <Div
+                style={StyleSheet.absoluteFillObject}
+                alignItems={'center'}
+                paddingVertical={20}
+                justifyContent={'center'}>
+                <Div
+                  width={3}
+                  height={'100%'}
+                  backgroundColor={Ecolors.grayColor}
+                  borderRadius={10}
+                />
+              </Div>
+            </Div>
+          )}
+
+          {/* {!!currentSession && !scheme?.productSchemeIsAutoBuy && (
+            <Div
+              width={'100%'}
+              marginTop={17}
+              borderRadius={5}
+              paddingHorizontal={16}
+              paddingVertical={21}
               flexDirection={'row'}
               alignItems={'center'}
               justifyContent={'space-between'}
@@ -230,11 +323,18 @@ function OrderBuyStep1({
                   {currentSession.closedOrderBookTimeString}
                   {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
                 </Label>
-                <Label
-                  size={12}
-                  marginTop={13}
-                  textAlign={'center'}
-                  fontWeight={'700'}>{`createordermodal.phiengiaodich`}</Label>
+                <Div
+                  flexDirection={'row'}
+                  justifyContent={'flex-start'}
+                  height={40}>
+                  <Label
+                    size={12}
+                    marginTop={13}
+                    textAlign={'center'}
+                    fontWeight={
+                      '700'
+                    }>{`createordermodal.phiengiaodich`}</Label>
+                </Div>
                 <Label marginTop={6} size={12} multilanguage={false}>
                   {currentSession.tradingTimeString}
                   {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
@@ -271,7 +371,7 @@ function OrderBuyStep1({
                 <TimeFromNow toTime={currentSession.closedOrderBookTime} />
               </Div>
             </Div>
-          )}
+          )} */}
 
           {scheme && scheme.productSchemeIsAutoBuy && (
             <Div marginTop={17}>

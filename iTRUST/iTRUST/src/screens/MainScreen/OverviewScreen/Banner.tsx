@@ -72,7 +72,7 @@ function Item(p: {item: any}) {
       <ImageView
         width={326}
         height={143}
-        resizeMode={Platform.OS === 'android' ? 'cover' : 'contain'}
+        resizeMode={Platform.OS === 'android' ? 'cover' : 'cover'}
         borderRadius={10}
         source={{
           uri: I18nState == 'vi' ? p.item.url : p.item.urlEn || p.item.url,

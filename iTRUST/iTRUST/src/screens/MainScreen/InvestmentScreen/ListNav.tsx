@@ -104,7 +104,7 @@ function ListNav(p: {}) {
               }}>
               <Label
                 size={14}
-                color={Ecolors.linkColor}>{`investmentscreen.tatca`}</Label>
+                color={Ecolors.linkColor}>{`investmentscreen.xemthem`}</Label>
             </Button>
           )}
         </Div>

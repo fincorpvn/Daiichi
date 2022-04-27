@@ -205,7 +205,7 @@ function ProgramList() {
       const table = await apiAsset.loadTableAsset({
         pagination: {
           currentPage: 1,
-          itemsPerPage: 20,
+          itemsPerPage: 1000,
         },
         queries: {
           productId: i.id,

@@ -7,7 +7,7 @@ import RowButtonAction from './RowButtonAction';
 
 function DigitalSignatureScreen() {
   return (
-    <Div screen={true}>
+    <Div height={'100%'}>
       <HeaderBack type={2} title={`digitalsignature.chukyso`} />
       <ScrollView>
         <Div alignItems={'center'}>

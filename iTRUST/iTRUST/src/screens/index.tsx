@@ -8,6 +8,8 @@ import DropdownModal from 'components/DropdownModal';
 import {fadeInOut, translateYModal} from 'container/optionsNavigate';
 import SplashScreen from './SplashScreen';
 import SignatureDraw from './MainScreen/DigitalSignature/SignatureDraw';
+import ProgramDetailsModal from 'screens/MainScreen/AssetScreen/ProgramDetailsModal';
+import FilterHistoryModal from 'screens/MainScreen/TransactionScreen/FilterHistoryModal';
 
 const stackSplash = [
   {
@@ -39,6 +41,16 @@ const componentAction = [
   {
     name: 'SignatureDraw',
     component: SignatureDraw,
+    options: fadeInOut,
+  },
+  {
+    name: 'ProgramDetailsModal',
+    component: ProgramDetailsModal,
+    options: fadeInOut,
+  },
+  {
+    name: 'FilterHistoryModal',
+    component: FilterHistoryModal,
     options: fadeInOut,
   },
   {

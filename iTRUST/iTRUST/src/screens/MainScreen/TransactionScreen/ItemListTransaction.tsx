@@ -406,15 +406,16 @@ export function ItemOrderTransfer(p: {data: any}) {
         alignItems={'center'}
         justifyContent={'space-between'}>
         <Div
+          position={'absolute'}
+          zIndex={999}
+          elevation={999}
           style={StyleSheet.absoluteFillObject}
           alignItems={'center'}
-          justifyContent={'center'}
-          elevation={999}>
+          justifyContent={'center'}>
           <ImageView
             widthHeight={28}
             resizeMode={'contain'}
             source={Icons.swap}
-            tintColor={Ecolors.mainColor}
           />
         </Div>
         <ISwap

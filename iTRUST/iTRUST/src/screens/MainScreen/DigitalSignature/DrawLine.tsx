@@ -7,7 +7,7 @@ import {getUuid, heightScale, widthScale, widthScreen} from 'utils';
 import ViewShot from 'react-native-view-shot';
 var genUID = getUuid();
 
-function DrawLine(p: {}, ref: any) {
+function DrawLine(p: {setIsVisible: (t: boolean) => void}, ref: any) {
   const viewshotRef = useRef<any>(null);
   const pan = useRef(new Animated.ValueXY()).current;
   const [stateLine, setStateLine] = useState<any>({});
@@ -48,6 +48,14 @@ function DrawLine(p: {}, ref: any) {
       useNativeDriver: true,
     },
   );
+
+  useEffect(() => {
+    if (!!Object.keys(stateLine)?.length) {
+      p.setIsVisible(true);
+    } else {
+      p.setIsVisible(false);
+    }
+  }, [stateLine]);
 
   return (
     <PanGestureHandler

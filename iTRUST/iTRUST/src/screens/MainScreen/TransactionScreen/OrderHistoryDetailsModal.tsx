@@ -6,6 +6,7 @@ import {
   ImageView,
   Label,
   LoadingIndicator,
+  Toast,
 } from 'components';
 import {Ecolors, EStyle, Icons, urlApp} from 'constant';
 import React, {useState} from 'react';
@@ -13,6 +14,7 @@ import {Platform, ScrollView} from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {useAppSelector} from 'store/hooks';
 import {
+  convertDataDownloadFile,
   convertNav,
   convertNumber,
   convertTimestamp,
@@ -77,27 +79,29 @@ function OrderHistoryDetailsModal() {
           : PERMISSIONS.IOS.MEDIA_LIBRARY,
         () => {
           return ReactNativeBlobUtil.config({
-            appendExt: 'pdf',
-            path: link,
-            fileCache: true,
+            // appendExt: 'pdf',
+            // path: link,
+            // fileCache: true,
           })
             .fetch('GET', bburl, {
-              //some headers ..
               Authorization: token ? `Bearer ${token}` : '',
               'Content-Type': 'application/json',
               'request-id': getUuid(),
             })
             .then(async (res: any) => {
-              const p = await res.path();
-              if (Platform.OS === 'android') {
-                ReactNativeBlobUtil.android.actionViewIntent(
-                  p,
-                  'application/pdf',
-                );
-              } else {
-                ReactNativeBlobUtil.fs.writeFile(link, res.base64(), 'base64');
-                ReactNativeBlobUtil.ios.previewDocument(link);
-              }
+              const T = convertDataDownloadFile(res);
+              await ReactNativeBlobUtil.fs
+                .writeFile(T.urlFile, res.base64(), 'base64')
+                .then(async (e: any) => {
+                  if (Platform.OS === 'android') {
+                    await ReactNativeBlobUtil.android.actionViewIntent(
+                      T.urlFile,
+                      T.type,
+                    );
+                  } else {
+                    await ReactNativeBlobUtil.ios.previewDocument(T.urlFile);
+                  }
+                });
               setLoading(false);
             })
             .catch(err => {

@@ -11,6 +11,7 @@ import {linkToWeb, Log, widthScale, widthScreen} from 'utils';
 function Item(p: {item: any}) {
   const listProduct = useAppSelector(state => getListProduct(state));
   const [loading, setLoading] = useState<boolean>(false);
+  const currentUser = useAppSelector<any>(state => state.authen.currentUser);
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const onPress = async () => {
     setLoading(true);
@@ -32,6 +33,15 @@ function Item(p: {item: any}) {
               (a: any) => a.productSchemeCode == ob?.productSchemeCode,
             );
           }
+        }
+        if (currentUser.investmentProfile?.isReceivedHardProfile === 0) {
+          navigate('ControlEKYCScreen', {
+            onBack: () => {
+              navigate('OverviewScreen');
+            },
+          });
+          // EKYC();
+          return;
         }
         navigate('CreateOrderModal', {
           orderType: 'BUY',

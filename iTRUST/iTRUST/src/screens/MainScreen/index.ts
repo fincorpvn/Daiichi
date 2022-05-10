@@ -65,7 +65,7 @@ const screens: any = {
   AccountVerifyScreen,
   AccountInfoModal,
   BankInfoModal,
-  ProgramDetailsModal,
+  // ProgramDetailsModal,
   EditBankInfoModal,
   EditAddressInfoModal,
   EditAccountInfoModal,
@@ -84,7 +84,7 @@ const screens: any = {
   OrderSellDetailsModal,
   OrderTransferDetailsModal,
   OrderHistoryDetailsModal,
-  FilterHistoryModal,
+  // FilterHistoryModal,
   ControlEKYCScreen,
   // invest ment
   InvestmentDetailsScreen,

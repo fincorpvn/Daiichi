@@ -132,8 +132,53 @@ function OtpRequestModal() {
         onConfirmCreateOrderTransfer();
         return;
       }
+      if (params.data.flowApp == 'CreateEsignature') {
+        onCOnfirmCreateEsignature();
+        return;
+      }
       onConfirm();
       return;
+    }
+  };
+
+  const onCOnfirmCreateEsignature = async () => {
+    try {
+      setLoadingConfirm(true);
+      const res = await apiAuth.confirmCreateEsignature({
+        ...requestOnSendOtp,
+        otp,
+      });
+      if (res.status == 200) {
+        dispatch(getInfo({}));
+        Alert.show({
+          content: I18nState == 'vi' ? res.message : res.messageEn,
+          type: 2,
+          multilanguage: false,
+          onClose: () => {
+            navigate('DigitalSignatureScreen');
+          },
+          onCancel: () => {
+            navigate('DigitalSignatureScreen');
+          },
+          onConfirm: () => {
+            navigate('DigitalSignatureScreen');
+          },
+        });
+        return;
+      } else {
+        Alert.showError({
+          multilanguage: false,
+          content: I18nState == 'vi' ? res.message : res.messageEn,
+        });
+      }
+    } catch (error: any) {
+      Alert.showError({
+        multilanguage: false,
+        content: I18nState == 'vi' ? error.message : error.messageEn,
+      });
+      // show error
+    } finally {
+      setLoadingConfirm(false);
     }
   };
 
@@ -475,7 +520,7 @@ function OtpRequestModal() {
           width={317}
           loading={loadingConfirm}
           onPress={() => onPressBtnConfirm()}
-          type={isInTime ? 1 : 2}
+          type={isInTime && otp.length >= 6 ? 1 : 2}
           title={`otprequestmodal.confirm`}
         />
       </Div>

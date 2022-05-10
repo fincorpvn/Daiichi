@@ -361,7 +361,7 @@ function ReviewInfoModal() {
                   : 'Male'
                 : I18nState == 'vi'
                 ? 'Nữ'
-                : 'FeMale'
+                : 'Female'
             }
             marginHorizontal={0}
           />
@@ -698,7 +698,7 @@ function ReviewInfoModal() {
             marginTop={15}
             size={15}
             fontWeight={'700'}>{`reviewinfoscreen.dieukhoansudung`}</Label>
-          {/* <Label
+          <Label
             marginTop={10}
             color={Ecolors.mainColor}
             fontWeight={'700'}
@@ -708,7 +708,7 @@ function ReviewInfoModal() {
             <Label
               lineHeight={22}
               size={15}>{`accountverify.contentdiachi1`}</Label>
-            {`${email || ''}`}
+            {`${email || currentUser.email || ''}`}
           </Label>
           <Label
             marginTop={5}
@@ -719,7 +719,7 @@ function ReviewInfoModal() {
             lineHeight={22}
             marginBottom={10}
             marginTop={5}
-            size={15}>{`accountverify.contentdiachi3`}</Label> */}
+            size={15}>{`accountverify.contentdiachi3`}</Label>
           <Div padding={10} backgroundColor={Ecolors.spaceColor} marginTop={5}>
             <Label
               marginTop={8}
@@ -763,7 +763,7 @@ function ReviewInfoModal() {
                 setIsAccept(a => !a);
               }}
               marginRight={13}
-              borderWidth={0.8}
+              borderWidth={1}
               alignItems={'center'}
               justifyContent={'center'}
               borderColor={isAccept ? Ecolors.mainColor : Ecolors.spaceColor}

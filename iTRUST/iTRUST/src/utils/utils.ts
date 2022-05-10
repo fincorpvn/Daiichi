@@ -5,6 +5,8 @@ import {check, PERMISSIONS, request, RESULTS} from 'react-native-permissions';
 import Clipboard from '@react-native-community/clipboard';
 import {Alert, Toast} from 'components';
 import moment from 'moment';
+import RNFS from 'react-native-fs';
+import {stringApp} from 'constant';
 
 const regEmail =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -26,9 +28,32 @@ export function convertReceiveAmount(
   }
   return `Waiting to confirm receiving money`;
 }
+export const convertDataDownloadFile = (
+  r: any,
+): {
+  name: string;
+  type: string;
+  urlFile: string;
+} => {
+  const link = `${
+    Platform.OS === 'android'
+      ? RNFS.DownloadDirectoryPath
+      : RNFS.DocumentDirectoryPath
+  }/${stringApp.appName}/`;
+  const name = r.respInfo.headers?.[`content-disposition`]
+    .replace('attachment; filename="', '')
+    .replace(/"/g, '');
+  const type = r.respInfo.headers?.[`content-type`];
+  const urlFile = `${link}${name}`;
+  return {
+    name,
+    type,
+    urlFile,
+  };
+};
 
 export const convertNumber = (num: number | string, hideD?: boolean) => {
-  if (!num) return `${num}${hideD ? '' : 'đ'}`;
+  if (!num) return `${num}${hideD ? '' : ` đ`}`;
   const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
   const ar = Math.abs(
     typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
@@ -45,11 +70,11 @@ export const convertNumber = (num: number | string, hideD?: boolean) => {
     })
     .reverse()
     .join('');
-  return `${strhead}${str}${ar[1] ? `.${ar[1]}` : ''}${!!hideD ? '' : 'đ'}`;
+  return `${strhead}${str}${ar[1] ? `.${ar[1]}` : ''}${!!hideD ? '' : ' đ'}`;
 };
 
 export const convertAmount = (num: number | string, hideD?: boolean) => {
-  if (!num) return `${num}${hideD ? '' : 'đ'}`;
+  if (!num) return `${num}${hideD ? '' : ` đ`}`;
   const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
   const ar = Math.abs(
     typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
@@ -74,12 +99,12 @@ export const convertAmount = (num: number | string, hideD?: boolean) => {
     .reverse()
     .join('');
   return `${strhead}${str}${isDot != -1 ? `.${last ?? ''}` : ''}${
-    !!hideD ? '' : 'đ'
+    !!hideD ? '' : ' đ'
   }`;
 };
 
 export const convertNav = (num: number | string, hideD?: boolean) => {
-  if (!num) return `${num}${hideD ? '' : 'đ'}`;
+  if (!num) return `${num}${hideD ? '' : ' đ'}`;
   const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
   const ar = Math.abs(
     typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
@@ -102,7 +127,7 @@ export const convertNav = (num: number | string, hideD?: boolean) => {
     })
     .reverse()
     .join('');
-  return `${strhead}${str}${last}${!!hideD ? '' : 'đ'}`;
+  return `${strhead}${str}${last}${!!hideD ? '' : ' đ'}`;
 };
 
 export const convertPercent = (num: string | number | any) => {
@@ -289,7 +314,7 @@ export const getUuid = () => {
   });
 };
 
-export const parseToFormData = p => {
+export const parseToFormData = (p: any) => {
   if (typeof p == 'object') {
     return Object.keys(p)?.map(item => {
       if (item == 'fileUpload') {

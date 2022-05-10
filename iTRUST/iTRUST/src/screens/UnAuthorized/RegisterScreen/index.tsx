@@ -241,10 +241,10 @@ function RegisterScreen() {
               />
             </Div>
           </Div>
-          <Label marginTop={13}>{`accountverify.tinhthanhpho`}</Label>
+          <Lbl marginTop={13} content={`accountverify.chondiachilienhe`} />
           <Dropdown
             url={`province/list?countryId=${234}`}
-            content={`accountverify.vuilongchontinhthanhpho`}
+            content={`accountverify.vuilongchondiachilienhe`}
             multilanguage={true}
             value={province}
             paddingHorizontal={0}

@@ -15,7 +15,7 @@ import {getInfo} from 'reducer/authen';
 import {getInvestmentProfile} from 'reducer/authen/selector';
 import {apiAuth, navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
-import {Log} from 'utils';
+import {heightScreen, Log, widthScreen} from 'utils';
 
 function ConfirmModal() {
   const I18nState = useAppSelector(state => state.languages.I18nState);
@@ -78,7 +78,29 @@ function ConfirmModal() {
       <ScrollView>
         <Div padding={16} backgroundColor={Ecolors.spaceColor}>
           <Label>{`accountverify.titleconfirm`}</Label>
+          <Label
+            marginTop={5}
+            color={Ecolors.mainColor}
+            fontWeight={'700'}
+            multilanguage={false}
+            lineHeight={22}
+            size={15}>
+            <Label
+              lineHeight={22}
+              size={15}>{`accountverify.contentdiachi1`}</Label>
+            {`${email || ''}`}
+          </Label>
+          <Label
+            marginTop={5}
+            lineHeight={22}
+            size={15}>{`accountverify.contentdiachi2`}</Label>
+          <Label
+            fontWeight={'700'}
+            lineHeight={22}
+            marginTop={5}
+            size={15}>{`accountverify.contentdiachi3`}</Label>
         </Div>
+
         {/* <Div padding={16}>
           <Label
             color={Ecolors.mainColor}
@@ -107,6 +129,7 @@ function ConfirmModal() {
             size={15}
             fontWeight={'700'}
             color={Ecolors.mainColor}>{`accountverify.congboruiro`}</Label>
+
           <Label
             marginTop={8}
             size={15}

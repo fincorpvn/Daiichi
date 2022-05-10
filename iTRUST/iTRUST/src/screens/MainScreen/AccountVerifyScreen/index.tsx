@@ -8,9 +8,7 @@ import ItemCard from './ItemCard';
 
 function AccountVerifyScreen() {
   const currentUser = useAppSelector(state => state.authen.currentUser);
-  const investmentProfile = useAppSelector(state =>
-    getInvestmentProfile(state),
-  );
+  const {investmentProfile} = currentUser;
   const {email, phone, bankAccountIsFull, userInfoIsFull, userAddressIsFull} =
     currentUser;
 
@@ -48,15 +46,29 @@ function AccountVerifyScreen() {
         isLine={true}
       />
       {userInfoIsFull && bankAccountIsFull && userAddressIsFull && (
-        <ItemCard
-          onPress={() => {
-            navigate('ConfirmModal');
-          }}
-          isCheck={!!investmentProfile}
-          title={'accountverify.xacthuchoantat'}
-          isLine={true}
-          isEnd={true}
-        />
+        <>
+          <ItemCard
+            onPress={() => {
+              navigate('ConfirmModal');
+            }}
+            isCheck={!!investmentProfile?.status}
+            title={'accountverify.xacthuchoantat'}
+            isLine={true}
+            // isEnd={true}
+          />
+          {(investmentProfile?.status?.code == 'INVESTMENT_PROFILE_APPROVE' ||
+            investmentProfile?.status?.code == 'INVESTMENT_PROFILE_ACCEPT') && (
+            <ItemCard
+              onPress={() => {
+                navigate('DigitalSignatureScreen');
+              }}
+              isCheck={investmentProfile?.isReceivedHardProfile}
+              title={'accountverify.hopdongdientu'}
+              isLine={true}
+              isEnd={true}
+            />
+          )}
+        </>
       )}
     </Div>
   );

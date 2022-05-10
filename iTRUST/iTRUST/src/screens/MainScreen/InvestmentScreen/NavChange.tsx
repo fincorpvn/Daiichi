@@ -14,7 +14,7 @@ function ComNav(p: {string: string; date?: string; value: string | number}) {
       flexDirection={'column'}
       alignItems={'center'}
       justifyContent={'space-between'}
-      padding={10}
+      paddingVertical={10}
       backgroundColor={Ecolors.spaceColor}>
       <Div flex={1}>
         <Label textAlign={'center'} size={14}>
@@ -35,12 +35,15 @@ function ComNav(p: {string: string; date?: string; value: string | number}) {
 
 function NavChange() {
   const productDetails = useAppSelector(state => getProductFocus(state));
+  const I18nState = useAppSelector(state => state.languages.I18nState);
+
   const {
     tradingDayOfNavCurrently,
     navPercent,
     navMax,
     navMin,
     navCurrently,
+    websiteEn,
     website,
   } = productDetails;
   return (
@@ -98,7 +101,7 @@ function NavChange() {
         <Label fontWeight={'700'}>{`investmentscreen.thongtinquy`}</Label>
         <Button
           onPress={() => {
-            linkToWeb(website);
+            linkToWeb(I18nState == 'vi' ? website : websiteEn);
           }}>
           <Label
             color={Ecolors.linkColor}

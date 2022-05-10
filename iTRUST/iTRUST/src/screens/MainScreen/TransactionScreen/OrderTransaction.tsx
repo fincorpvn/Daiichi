@@ -1,5 +1,5 @@
 import {useIsFocused} from '@react-navigation/core';
-import {ButtonBorder, Div, Label} from 'components';
+import {Alert, ButtonBorder, Div, Label} from 'components';
 import {Ecolors} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {FlatList, ScrollView, StyleSheet} from 'react-native';
@@ -34,6 +34,7 @@ function OrderTransaction() {
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
   const orderType = useAppSelector(state => state.transaction.orderType);
   const isFocus = useIsFocused();
+  const I18nState = useAppSelector(state => state.languages.I18nState);
 
   const onChangeOrderType = (
     a: 'BUY' | 'SELL' | 'TRANSFER' | 'TRANSFER_BUY',
@@ -138,6 +139,52 @@ function OrderTransaction() {
               // EKYC();
               return;
             }
+            if (
+              (orderType == 'SELL' || orderType == 'TRANSFER') &&
+              currentUser?.investmentProfile?.status?.code !=
+                'INVESTMENT_PROFILE_ACCEPT'
+            ) {
+              const content =
+                I18nState == 'vi'
+                  ? `Tài khoản của quý khách hiện tại chưa được duyệt hoặc chưa nhận được hồ sơ gốc/chưa ký hợp đồng điện tử. Nên không thể thực hiện lệnh bán/ chuyển đổi.`
+                  : `ou cannot create redemption/switching transaction due to pending account approval or not received hardcopy Open Account Contract/ unsigned e-Contract`;
+              if (
+                currentUser?.investmentProfile?.status?.code !=
+                  `INVESTMENT_PROFILE_APPROVE` ||
+                (currentUser?.investmentProfile?.status?.code ==
+                  'INVESTMENT_PROFILE_APPROVE' &&
+                  !currentUser?.investmentProfile?.isReceivedHardProfile)
+              ) {
+                Alert.show({
+                  content: content,
+                  multilanguage: false,
+                  // titleConfirm: 'alert.kydientu',
+                  titleCancel: 'alert.desau',
+                  onCancel: () => {},
+                  onConfirm: () => {
+                    navigate('DigitalSignatureScreen');
+                  },
+                });
+                return;
+              }
+            }
+            // if (
+            //   currentUser?.investmentProfile?.status?.code ==
+            //     'INVESTMENT_PROFILE_APPROVE' &&
+            //   !currentUser?.investmentProfile?.isReceivedHardProfile
+            // ) {
+            //   Alert.show({
+            //     content: 'Ký hợp đồng điện tử',
+            //     multilanguage: false,
+            //     titleConfirm: 'alert.kydientu',
+            //     titleCancel: 'alert.desau',
+            //     onCancel: () => {},
+            //     onConfirm: () => {
+            //       navigate('DigitalSignatureScreen');
+            //     },
+            //   });
+            //   return;
+            // }
             navigate('CreateOrderModal', {
               orderType,
             });
@@ -153,6 +200,7 @@ function OrderTransaction() {
 const s = StyleSheet.create({
   scrollviewHeader: {
     maxHeight: heightScale(60),
+    marginBottom: heightScale(10),
   },
 });
 

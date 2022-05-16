@@ -7,8 +7,8 @@ import {
   Toast,
 } from 'components';
 import {Ecolors, EStyle, Icons, stringApp, urlApp} from 'constant';
-import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Image, Platform} from 'react-native';
+import React, {useState} from 'react';
+import {Platform} from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {PERMISSIONS} from 'react-native-permissions';
 import {
@@ -40,12 +40,12 @@ function CardSignature() {
       if (p.I18nState == 'vi') {
         return 'Đã ký';
       }
-      return 'Signed';
+      return 'Full submission';
     }
     if (p.I18nState == 'vi') {
       return 'Chưa ký';
     }
-    return 'Unsigned';
+    return 'No submission';
   };
 
   const downloadConfirm = async () => {
@@ -55,7 +55,9 @@ function CardSignature() {
     setLoading(true);
     try {
       const token = await getStoreToken();
-      const url = `esignature/download-contract`;
+      const url = !hardProfile
+        ? `user/file/contract`
+        : `esignature/download-contract`;
       const bburl = `${urlApp.APIURL}api/${url}`;
       return requestPermisson(
         Platform.OS === 'android'
@@ -96,25 +98,10 @@ function CardSignature() {
                     multilanguage: true,
                   });
                 });
-
-              // const p = await res.path();
-              // if (Platform.OS === 'android') {
-              //   await ReactNativeBlobUtil.android.actionViewIntent(
-              //     p,
-              //     'application/pdf',
-              //   );
-              // } else {
-              //   await ReactNativeBlobUtil.fs.writeFile(
-              //     link,
-              //     res.base64(),
-              //     'base64',
-              //   );
-              //   await ReactNativeBlobUtil.ios.previewDocument(link);
-              // }
               setLoading(false);
             })
             .catch(err => {
-              Log('errror ', err);
+              Log('rrorrr', err);
               Toast.show({
                 content: 'alert.daxayraloi',
                 multilanguage: true,
@@ -131,8 +118,9 @@ function CardSignature() {
 
   return (
     <>
-      {loading && (
+      {/* {!loading && (
         <Div
+          flex={1}
           width={'100%'}
           height={'100%'}
           screen={true}
@@ -144,7 +132,7 @@ function CardSignature() {
           elevation={999999}>
           <LoadingIndicator color={Ecolors.mainColor} />
         </Div>
-      )}
+      )} */}
       <Div
         width={343}
         marginVertical={15}
@@ -196,7 +184,7 @@ function CardSignature() {
             multilanguage={false}>
             {investmentProfile?.number || ''}
           </Label>
-          <Button
+          {/* <Button
             onPress={() => {
               downloadConfirm();
             }}>
@@ -204,10 +192,12 @@ function CardSignature() {
               <ActivityIndicator color={Ecolors.mainColor} size={'small'} />
             ) : (
               <Label marginTop={7} size={14} color={Ecolors.linkColor}>
-                {`digitalsignature.xemtruoc`}
+                {hardProfile
+                  ? `digitalsignature.taive`
+                  : `digitalsignature.xemtruoc`}
               </Label>
             )}
-          </Button>
+          </Button> */}
         </Div>
 
         <Div
@@ -217,7 +207,7 @@ function CardSignature() {
           justifyContent={'center'}>
           <Label
             size={14}
-            color={hardProfile ? Ecolors.growColor : Ecolors.grayColor}
+            color={hardProfile ? Ecolors.growColor : Ecolors.redColor}
             multilanguage={false}>
             {switchStatusEsign({hardProfile, I18nState})}
           </Label>
@@ -228,6 +218,61 @@ function CardSignature() {
             source={hardProfile ? Icons.check : Icons.uncheck}
           />
         </Div>
+      </Div>
+      <Div
+        flexDirection={'row'}
+        alignItems={'center'}
+        paddingHorizontal={20}
+        justifyContent={'center'}>
+        <Label
+          textAlign={'center'}
+          size={14}>{`digitalsignature.contentdownload`}</Label>
+        {!investmentProfile?.isReceivedHardProfile && I18nState == 'en' && (
+          <Label
+            size={14}
+            fontWeight={'700'}
+            marginTop={5}
+            multilanguage={false}>
+            {I18nState == 'en'
+              ? `If you're US-CITIZEN, please send FATCA document to our company`
+              : ''}
+          </Label>
+        )}
+      </Div>
+      <Div
+        width={'100%'}
+        alignItems={'center'}
+        justifyContent={'center'}
+        paddingBottom={20}>
+        <Button
+          width={340}
+          height={48}
+          flexDirection={'row'}
+          marginTop={18}
+          onPress={() => {
+            downloadConfirm();
+          }}
+          borderRadius={5}
+          borderWidth={0.8}
+          borderColor={Ecolors.mainColor}
+          backgroundColor={Ecolors.spaceColor}
+          alignItems={'center'}
+          justifyContent={'center'}>
+          {loading ? (
+            <LoadingIndicator color={Ecolors.mainColor} />
+          ) : (
+            <>
+              <ImageView
+                source={Icons.download}
+                widthHeight={18}
+                resizeMode={'contain'}
+                marginRight={10}
+              />
+              <Label
+                fontWeight={'700'}>{`digitalsignature.taihopdongdaky`}</Label>
+            </>
+          )}
+        </Button>
       </Div>
     </>
   );

@@ -49,10 +49,10 @@ function ProfileScreen() {
       content: !hardProfile
         ? I18nState == 'vi'
           ? 'Chưa nhận'
-          : 'Not received'
+          : 'No submission'
         : I18nState == 'vi'
         ? 'Đã nhận'
-        : 'Complete',
+        : 'Full submission',
       contentColor: !hardProfile ? Ecolors.redColor : Ecolors.greenColor,
       isForward: true,
       isLine: true,

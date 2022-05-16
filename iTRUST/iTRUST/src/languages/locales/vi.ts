@@ -582,13 +582,18 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     kydientu: 'Ký điện tử',
     taichuky: 'Tải chữ ký',
     chukycuaban: 'Chữ ký của bạn',
+    taihopdongdaky: 'Tải hợp đồng đã ký',
+    contentdownload:
+      'Vui lòng xem trước thông tin trên Hợp đồng mở tài khoản của Quý khách và thực hiện ký điện tử để có thể thực hiện giao dịch mua bán.',
   },
   feetable: {
     bieuphi: 'Biểu phí',
   },
   alert: {
-    taochukysothanhcong: 'Tạo chữ ký số thành công',
+    taochukysothanhcong: 'Quý khách đã ký hợp đồng điện tử thành công!',
     logout: 'Đăng xuất',
+    dinhdanganhkhongphuhop:
+      'Hình chữ ký bạn tải lên không đúng định dạng. Vui lòng chọn các file hình có định dạng: .png,.jpg, .jpeg',
     desau: 'Để sau',
     taithanhcong: 'Tải thành công',
     kydientu: 'Ký điện tử',
@@ -623,6 +628,10 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     matkhaucuphaikhacmatkhaumoi: `Mật khẩu cũ phải khác mật khẩu mới`,
     emailcuphaikhacemailmoi: `Email cũ phải khác Email mới`,
     xacnhanxoalenhgiaodich: 'Xác nhận xoá lệnh giao dịch ?',
+    nhapotpquasoluong:
+      'Sai OTP quá 3 lần. Vì lý do bảo mật vui lòng đăng nhập lại.',
+    registernhapquaotp:
+      'Giao dịch của Quý Khách đã hết hiệu lực. Vui lòng tạo giao dịch mới',
     ekycfail:
       'Chúng tôi không thể xác minh thông tin bạn đang cung cấp vì chất lượng hình chụp không tốt. Vui lòng làm lại!',
   },

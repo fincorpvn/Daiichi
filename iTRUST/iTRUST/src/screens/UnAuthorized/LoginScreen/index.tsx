@@ -205,20 +205,11 @@ function LoginScreen() {
       });
     } finally {
     }
-    // navigate('ControlEKYCScreen');
-    // return;
   };
 
   const gotoRegister = () => {
     navigate('RegisterScreen');
     return;
-    // navigate('ReviewInfoModal', {
-    //   data: {
-    //     email: '1231232131 email',
-    //     phone: '1232131',
-    //     name: 'string',
-    //   },
-    // });
   };
 
   const gotoForgotPassword = () => {

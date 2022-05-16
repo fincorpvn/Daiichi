@@ -12,6 +12,8 @@ import {
 import {Ecolors, Icons} from 'constant';
 import React, {useRef, useState} from 'react';
 import {ActivityIndicator, StyleSheet} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {doLogin} from 'reducer/authen';
 import {apiAuth, navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {
@@ -64,7 +66,6 @@ function SetPasswordScreen() {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const I18nState = useAppSelector(state => state.languages.I18nState);
-
   const [isErrorPassword, setIsErrorPassword] = useState<boolean>(false);
   const [isErrorConfirmPassword, setIsErrorConfirmPassword] =
     useState<boolean>(false);
@@ -102,6 +103,7 @@ function SetPasswordScreen() {
               confirmPassword,
               requestOnSendOtp: res.data,
               title: `setpasswordscreen.xacthuctaikhoan`,
+              flowApp: 'Register',
             },
             onConfirm: () => {
               // onNext && onNext();

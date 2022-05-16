@@ -39,12 +39,13 @@ export const convertDataDownloadFile = (
     Platform.OS === 'android'
       ? RNFS.DownloadDirectoryPath
       : RNFS.DocumentDirectoryPath
-  }/${stringApp.appName}/`;
+  }/${stringApp.appLink}/`;
+  console.log('đấ', r);
   const name = r.respInfo.headers?.[`content-disposition`]
     .replace('attachment; filename="', '')
     .replace(/"/g, '');
   const type = r.respInfo.headers?.[`content-type`];
-  const urlFile = `${link}${name}`;
+  const urlFile = `${link}${new Date().getTime()}-${name}`;
   return {
     name,
     type,
@@ -342,6 +343,11 @@ export const getImageCamera = async () => {
             quality: 1,
             cameraType: 'back',
             includeBase64: true,
+            saveToPhotos: true,
+            // height: 480,
+            // isVertical: true,
+            // originalRotation: 0,
+            // width: 640,
           },
           (res: any) => {
             if (res.assets) {

@@ -157,7 +157,7 @@ android {
     signingConfigs {
         debug {
             storeFile file('itrust.jks')
-            storePassword 'itrust@2022'
+        storePassword 'itrust@2022'
             keyAlias 'com.fplatform.iTRUST'
             keyPassword 'itrust@2022'
         }

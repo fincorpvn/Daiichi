@@ -130,7 +130,7 @@ function OrderTransaction() {
         justifyContent={'center'}>
         <ButtonBorder
           onPress={() => {
-            if (currentUser.investmentProfile?.isReceivedHardProfile === 0) {
+            if (!currentUser.investmentProfile) {
               navigate('ControlEKYCScreen', {
                 onBack: () => {
                   navigate('TransactionScreen');
@@ -168,26 +168,10 @@ function OrderTransaction() {
                 return;
               }
             }
-            // if (
-            //   currentUser?.investmentProfile?.status?.code ==
-            //     'INVESTMENT_PROFILE_APPROVE' &&
-            //   !currentUser?.investmentProfile?.isReceivedHardProfile
-            // ) {
-            //   Alert.show({
-            //     content: 'Ký hợp đồng điện tử',
-            //     multilanguage: false,
-            //     titleConfirm: 'alert.kydientu',
-            //     titleCancel: 'alert.desau',
-            //     onCancel: () => {},
-            //     onConfirm: () => {
-            //       navigate('DigitalSignatureScreen');
-            //     },
-            //   });
-            //   return;
-            // }
             navigate('CreateOrderModal', {
               orderType,
             });
+            return;
           }}
           type={1}
           title={convertTitleOrderType(orderType)}

@@ -46,7 +46,7 @@ import MiniEkycModal from './InvestmentScreen/MiniEkycModal';
 import CreateOrderModal from './CreateOrderModal';
 import FeeTableModal from './CreateOrderModal/FeeTableModal';
 // digital signaturescreen
-import DigitalSignatureScreen from './DigitalSignature/DigitalSignatureScreen';
+// import DigitalSignatureScreen from './DigitalSignature/DigitalSignatureScreen';
 
 import ReviewInfoModal from '../UnAuthorized/ControlEKYCScreen/ReviewInfoModal';
 import ControlEKYCScreen from '../UnAuthorized/ControlEKYCScreen';
@@ -94,7 +94,7 @@ const screens: any = {
   // add more function ádasdada in unauthen
   MiniEkycModal,
   // digital signaturescreen
-  DigitalSignatureScreen,
+  // DigitalSignatureScreen,
 };
 
 const mainStackScreen = Object.keys(screens)

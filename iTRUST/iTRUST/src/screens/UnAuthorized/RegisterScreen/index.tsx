@@ -1,3 +1,4 @@
+import {useIsFocused, useRoute} from '@react-navigation/core';
 import {
   Button,
   ButtonBorder,
@@ -34,6 +35,8 @@ function Lbl(props: ILblProps) {
 }
 
 function RegisterScreen() {
+  const route = useRoute<any>();
+  const isFocus = useIsFocused();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -54,6 +57,17 @@ function RegisterScreen() {
 
   const gotoLogin = () => {
     navigate('LoginScreen');
+  };
+
+  useEffect(() => {
+    if (route.params?.isClearData) {
+      clearData();
+    }
+    return () => {};
+  }, [isFocus]);
+
+  const clearData = () => {
+    Promise.all([setName(''), setPhone(''), setEmail(''), setProvince(null)]);
   };
 
   useEffect(() => {

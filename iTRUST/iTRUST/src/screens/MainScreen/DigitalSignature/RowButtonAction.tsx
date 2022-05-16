@@ -1,13 +1,16 @@
 import {
+  Alert,
   BottomSheetDialog,
   Button,
   Div,
   ImageView,
   Label,
   LoadingIndicator,
+  Toast,
 } from 'components';
 import {Ecolors, Icons} from 'constant';
 import React, {useRef, useState} from 'react';
+import ImageResizer from 'react-native-image-resizer';
 import {doUploadFileSignature} from 'screens/MainScreen/DigitalSignature/func';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
@@ -47,7 +50,7 @@ function RowButtonAction() {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const bottomSheetUpload = useRef<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [stateimage, setStateImage] = useState<any>(null);
   const hide = (cb?: () => void) => {
     if (bottomSheetUpload.current) {
       bottomSheetUpload.current.hide();
@@ -70,6 +73,12 @@ function RowButtonAction() {
           <LoadingIndicator color={Ecolors.mainColor} />
         </Div>
       )}
+      {/* <ImageView
+        widthHeight={100}
+        source={{
+          uri: stateimage?.uri || '',
+        }}
+      /> */}
       <BottomSheetDialog
         style={{
           flexDirection: 'column',
@@ -86,14 +95,30 @@ function RowButtonAction() {
             try {
               hide(async () => {
                 await getImageCamera().then((image: any) => {
-                  doUploadFileSignature({
-                    link: image[0].uri,
-                    I18nState: I18nState,
-                    setLoading: setLoading,
-                  });
+                  ImageResizer.createResizedImage(
+                    image[0].uri,
+                    800,
+                    600,
+                    'JPEG',
+                    80,
+                    0,
+                  )
+                    .then(({uri}) => {
+                      doUploadFileSignature({
+                        link: uri,
+                        I18nState: I18nState,
+                        setLoading: setLoading,
+                      });
+                    })
+                    .catch(err => {});
+                  return;
                 });
               });
             } catch (error) {
+              Toast.show({
+                content: 'alert.daxayraloi',
+                multilanguage: true,
+              });
             } finally {
             }
           }}
@@ -101,6 +126,12 @@ function RowButtonAction() {
             try {
               hide(async () => {
                 await getImageLibrary().then((image: any) => {
+                  if (image[0].uri.endsWith('.gif')) {
+                    Alert.showError({
+                      content: 'alert.dinhdanganhkhongphuhop',
+                    });
+                    return;
+                  }
                   doUploadFileSignature({
                     link: image[0].uri,
                     I18nState: I18nState,

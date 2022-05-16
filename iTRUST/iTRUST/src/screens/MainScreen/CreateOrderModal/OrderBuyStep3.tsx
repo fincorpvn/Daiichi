@@ -28,6 +28,7 @@ interface Props {
   excuseTempVolumn: any;
   stepTimeLine?: number;
   beginBuyAutoStartDate?: string;
+  onPre?: () => void;
 }
 
 function RowSpaceItem(p: {
@@ -102,6 +103,7 @@ function OrderBuyStep3({
   bankSuperVisory,
   beginBuyAutoStartDate,
   excuseTempVolumn,
+  onPre,
 }: Props) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const bottomsheet = useRef<any>(null);
@@ -358,7 +360,8 @@ function OrderBuyStep3({
           width={148}
           height={48}
           onPress={() => {
-            goBack();
+            // goBack();
+            onPre && onPre();
             // bottomsheet.current.show();
           }}
           title={`createordermodal.muathem`}

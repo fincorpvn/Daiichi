@@ -161,8 +161,8 @@ function Chart() {
                 y1="0%"
                 x2="0%"
                 y2="100%">
-                <Stop offset="0%" stopColor={'#FBDADC'} stopOpacity="1" />
-                <Stop offset="80%" stopColor={'#ffffff'} stopOpacity="0.5" />
+                <Stop offset="0%" stopColor={'#FBDADC'} stopOpacity={1} />
+                <Stop offset="100%" stopColor={'#ffffff'} stopOpacity={1} />
               </LinearGradient>
             </Defs>
           </VictoryGroup>

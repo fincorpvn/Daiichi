@@ -1,11 +1,10 @@
-import {Div, ImageView} from 'components';
+import {Div} from 'components';
 import {Ecolors, EStyle, urlApp} from 'constant';
 import React, {useEffect, useState} from 'react';
-import {Image, Platform} from 'react-native';
+import {Platform} from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {PERMISSIONS} from 'react-native-permissions';
-import WebView from 'react-native-webview';
-import {getUuid, heightScreen, Log, requestPermisson, widthScreen} from 'utils';
+import {getUuid, Log, requestPermisson} from 'utils';
 import {getStoreToken} from 'utils/storage';
 import RNFS from 'react-native-fs';
 

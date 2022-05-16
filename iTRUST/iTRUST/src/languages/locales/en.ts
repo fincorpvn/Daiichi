@@ -584,6 +584,9 @@ export default {
     kydientu: 'Sign now',
     taichuky: 'Upload signature',
     chukycuaban: 'Your signature',
+    taihopdongdaky: 'Download E-Contract',
+    contentdownload:
+      'Please review Your account opening form before e-signing contract. Click Sign Now and follow e-sign steps',
   },
   feetable: {
     bieuphi: 'Tariffs',
@@ -591,8 +594,10 @@ export default {
   alert: {
     logout: 'Log Out',
     taithanhcong: 'Download complete',
-    taochukysothanhcong: 'Create digital signature successful',
+    taochukysothanhcong: 'You have been signed e-contract successfully!',
     contentlogout: 'Are you sure you want to log out?',
+    dinhdanganhkhongphuhop:
+      'The signature image you uploaded is not in the correct format. Please select image files with the format extention (.png,.jpg, .jpeg)',
     dong: 'Close',
     kydientu: 'Ký điện tử',
     desau: 'Để sau',
@@ -626,6 +631,10 @@ export default {
 
     emailcuphaikhacemailmoi: `Old email must be different from New email`,
     xacnhanxoalenhgiaodich: 'Confirm delete transaction order?',
+    registernhapquaotp:
+      'Your session is expired, please refresh and create a new transaction',
+    nhapotpquasoluong:
+      'You have tried 3 times with invalid OTP. For security reasons please login again.',
     matkhaucuphaikhacmatkhaumoi: `The old password must be different from the new password`,
     ekycfail:
       'Currently, we cannot verify your information because of bad quality pictures. Please try later!',

@@ -102,9 +102,17 @@ function OrderHistoryDetailsModal() {
                     await ReactNativeBlobUtil.ios.previewDocument(T.urlFile);
                   }
                 });
+              Toast.show({
+                content: 'alert.taithanhcong',
+                multilanguage: true,
+              });
               setLoading(false);
             })
             .catch(err => {
+              Toast.show({
+                content: 'alert.daxayraloi',
+                multilanguage: true,
+              });
               Log('errror ', err);
             })
             .finally(() => {

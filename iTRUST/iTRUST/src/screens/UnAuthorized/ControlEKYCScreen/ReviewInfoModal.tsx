@@ -79,6 +79,8 @@ function ReviewInfoModal() {
   const insets = useSafeAreaInsets();
   const dispatch = useDispatch();
   const I18nState = useAppSelector(state => state.languages.I18nState);
+  const userRedux = useAppSelector(state => state.authen.currentUser);
+
   const {statusScreen} = useAppSelector(state => state.authen);
   const {
     userProfile,
@@ -210,7 +212,7 @@ function ReviewInfoModal() {
         userBankAccount: {
           bankId: `${bank?.id || ''}`,
           branchId: `${branch?.id || bank?.id || ''}`,
-          name: name || currentUser.name,
+          name: name || currentUser.name || userRedux.name,
           number: number,
         },
         userAddress: {
@@ -226,12 +228,13 @@ function ReviewInfoModal() {
           mailingDistrictId: mailingDistrict?.id,
           mailingWardId: mailingWard?.id,
         },
-        name: name || currentUser.name, // 'Nguyen Thanh Phong';
-        email: email || currentUser.email, //'po.ntp.19946@gmail.com';
-        phone: phone || currentUser.phone,
+        name: name || currentUser.name || userRedux.name, // 'Nguyen Thanh Phong';
+        email: email || currentUser.email || userRedux.email, //'po.ntp.19946@gmail.com';
+        phone: phone || currentUser.phone || userRedux.phone,
       };
       const res = await apiAuth.createEKYC(data);
       setLoading(false);
+
       if (res.status == 200) {
         dispatch(getInfo({}));
         Alert.show({
@@ -240,6 +243,10 @@ function ReviewInfoModal() {
           type: 2,
           titleClose: `alert.dongy`,
           onClose: async () => {
+            if (!route.params.data.isKYC) {
+              navigate('DigitalSignatureScreen');
+              return;
+            }
             if (statusScreen != 'main') {
               navigate('LoginScreen');
             } else {
@@ -247,6 +254,10 @@ function ReviewInfoModal() {
             }
           },
           onConfirm: async () => {
+            if (!route.params.data.isKYC) {
+              navigate('DigitalSignatureScreen');
+              return;
+            }
             if (statusScreen != 'main') {
               navigate('LoginScreen');
             } else {
@@ -387,7 +398,7 @@ function ReviewInfoModal() {
           <InputItem
             marginTop={6}
             isInput={false}
-            value={email || currentUser?.email || ''}
+            value={email || currentUser?.email || userRedux?.email || ''}
             marginHorizontal={0}
           />
           <Lbl marginTop={13} content={`reviewinfoscreen.sodienthoai`} />
@@ -409,7 +420,7 @@ function ReviewInfoModal() {
             <Div width={198}>
               <InputItem
                 isInput={false}
-                value={phone || currentUser?.phone || ''}
+                value={phone || currentUser?.phone || userRedux?.phone || ''}
                 marginHorizontal={0}
               />
             </Div>
@@ -791,21 +802,21 @@ function ReviewInfoModal() {
         justifyContent={'center'}>
         <ButtonBorder
           type={1}
-          isDisable={
-            !isAccept ||
-            !number.length ||
-            !bank ||
-            !branch ||
-            //
-            (!ward && !userAddress?.ward) ||
-            !address.length ||
-            //
-            !mailingCountry ||
-            !mailingProvince ||
-            !mailingDistrict ||
-            !mailingWard ||
-            !mailingAddress.length
-          }
+          // isDisable={
+          //   !isAccept ||
+          //   !number.length ||
+          //   !bank ||
+          //   !branch ||
+          //   //
+          //   (!ward && !userAddress?.ward) ||
+          //   !address.length ||
+          //   //
+          //   !mailingCountry ||
+          //   !mailingProvince ||
+          //   !mailingDistrict ||
+          //   !mailingWard ||
+          //   !mailingAddress.length
+          // }
           onPress={() => {
             onConfirm();
           }}

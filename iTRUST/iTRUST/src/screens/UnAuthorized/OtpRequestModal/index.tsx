@@ -9,7 +9,7 @@ import {apiAuth} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {goBack, navigate} from 'services/navigation';
 import {useAppSelector} from 'store/hooks';
-import {hidePhoneNumberOTP} from 'utils';
+import {hidePhoneNumberOTP, Log} from 'utils';
 import {resetAccount} from 'utils/storage';
 import OtpComp from './OtpComp';
 
@@ -57,8 +57,11 @@ function OtpRequestModal() {
   const [loadingConfirm, setLoadingConfirm] = useState<boolean>(false);
   const [loadingResend, setLoadingResend] = useState<boolean>(false);
 
+  const {statusScreen} = useAppSelector(state => state.authen);
   // action
   const dispatch = useDispatch();
+  //
+  const count = useRef<number>(1);
 
   useEffect(() => {
     if (params.data.requestOnSendOtp) {
@@ -78,11 +81,41 @@ function OtpRequestModal() {
     }
   }, [otp]);
 
+  const handleErr = (a: any) => {
+    if (count.current >= 3) {
+      Alert.showError({
+        content:
+          params.data.flowApp == 'Register'
+            ? 'alert.registernhapquaotp'
+            : `alert.nhapotpquasoluong`,
+        onPress: () => {
+          if (params.data.flowApp == 'Register') {
+            navigate('RegisterScreen', {
+              isClearData: true,
+            });
+            return;
+          }
+          goBack().then(() => {
+            dispatch(changeStatusScreen('unAuthorized'));
+          });
+        },
+      });
+      return;
+    }
+    count.current = count.current + 1;
+    Alert.showError({
+      multilanguage: false,
+      content: I18nState == 'vi' ? a.message : a.messageEn,
+    });
+    return;
+  };
+
   const onResendOtp = async () => {
     try {
       setLoadingResend(true);
       const res = await apiAuth.resendOtp(requestOnSendOtp);
       if (res.status == 200) {
+        count.current = 1;
         setRequestOnSendOtp(res.data.otpInfo);
         if (otpCompRef.current) {
           otpCompRef.current.start();
@@ -150,33 +183,44 @@ function OtpRequestModal() {
       });
       if (res.status == 200) {
         dispatch(getInfo({}));
+        if (statusScreen == 'main') {
+          Alert.show({
+            content: `alert.taochukysothanhcong`,
+            type: 2,
+            // multilanguage: false,
+            onClose: () => {
+              navigate('DigitalSignatureScreen');
+            },
+            onCancel: () => {
+              navigate('DigitalSignatureScreen');
+            },
+            onConfirm: () => {
+              navigate('DigitalSignatureScreen');
+            },
+          });
+          return;
+        }
         Alert.show({
-          content: I18nState == 'vi' ? res.message : res.messageEn,
+          content: `alert.taochukysothanhcong`,
           type: 2,
-          multilanguage: false,
+          // multilanguage: false,
           onClose: () => {
-            navigate('DigitalSignatureScreen');
+            navigate('LoginInfoScreen');
           },
           onCancel: () => {
-            navigate('DigitalSignatureScreen');
+            navigate('LoginInfoScreen');
           },
           onConfirm: () => {
-            navigate('DigitalSignatureScreen');
+            navigate('LoginInfoScreen');
           },
         });
+
         return;
       } else {
-        Alert.showError({
-          multilanguage: false,
-          content: I18nState == 'vi' ? res.message : res.messageEn,
-        });
+        handleErr(res);
       }
     } catch (error: any) {
-      Alert.showError({
-        multilanguage: false,
-        content: I18nState == 'vi' ? error.message : error.messageEn,
-      });
-      // show error
+      handleErr(error);
     } finally {
       setLoadingConfirm(false);
     }
@@ -204,11 +248,7 @@ function OtpRequestModal() {
         });
       }
     } catch (error: any) {
-      Alert.showError({
-        multilanguage: false,
-        content: I18nState == 'vi' ? error.message : error.messageEn,
-      });
-      // show error
+      handleErr(error);
     } finally {
       setLoadingConfirm(false);
     }
@@ -239,11 +279,7 @@ function OtpRequestModal() {
         });
       }
     } catch (error: any) {
-      Alert.showError({
-        multilanguage: false,
-        content: I18nState == 'vi' ? error.message : error.messageEn,
-      });
-      // show error
+      handleErr(error);
     } finally {
       setLoadingConfirm(false);
     }
@@ -282,16 +318,10 @@ function OtpRequestModal() {
           },
         });
       } else {
-        Alert.showError({
-          multilanguage: false,
-          content: I18nState == 'vi' ? res.message : res.messageEn,
-        });
+        handleErr(res);
       }
     } catch (error: any) {
-      Alert.showError({
-        multilanguage: false,
-        content: I18nState == 'vi' ? error.message : error.messageEn,
-      });
+      handleErr(error);
     } finally {
       setLoadingConfirm(false);
     }
@@ -305,6 +335,7 @@ function OtpRequestModal() {
         otp,
       });
       if (res.status == 200) {
+        dispatch(getInfo({}));
         Alert.show({
           type: 2,
           titleClose: 'alert.dong',
@@ -319,15 +350,10 @@ function OtpRequestModal() {
             navigate('ProfileScreen');
           },
         });
-        // navigate('ProfileScreen');
-        dispatch(getInfo({}));
         return;
       }
     } catch (error: any) {
-      Alert.showError({
-        multilanguage: false,
-        content: I18nState == 'vi' ? error.message : error.messageEn,
-      });
+      handleErr(error);
     } finally {
       setLoadingConfirm(false);
     }
@@ -341,22 +367,12 @@ function OtpRequestModal() {
         otp,
       });
       if (res.status == 200) {
-        // Alert.show({
-        //   multilanguage: false,
-        //   content: res.message,
-        //   onConfirm: () => {
-        //     navigate('ProfileScreen');
-        //   },
-        // });
         navigate('ProfileScreen');
         dispatch(getInfo({}));
         return;
       }
     } catch (error: any) {
-      Alert.showError({
-        multilanguage: false,
-        content: I18nState == 'vi' ? error.message : error.messageEn,
-      });
+      handleErr(error);
     } finally {
       setLoadingConfirm(false);
     }
@@ -370,25 +386,12 @@ function OtpRequestModal() {
         otp,
       });
       if (res.status == 200) {
-        // Alert.show({
-        //   multilanguage: false,
-        //   content: res.message,
-        //   onConfirm: () => {
-        //     navigate('ProfileScreen');
-        //   },
-        //   onCancel: () => {
-        //     navigate('ProfileScreen');
-        //   },
-        // });
         navigate('ProfileScreen');
         dispatch(getInfo({}));
         return;
       }
     } catch (error: any) {
-      Alert.showError({
-        multilanguage: false,
-        content: I18nState == 'vi' ? error.message : error.messageEn,
-      });
+      handleErr(error);
     } finally {
       setLoadingConfirm(false);
     }
@@ -409,10 +412,7 @@ function OtpRequestModal() {
         return;
       }
     } catch (error: any) {
-      Alert.showError({
-        multilanguage: false,
-        content: I18nState == 'vi' ? error.message : error.messageEn,
-      });
+      handleErr(error);
       return;
     } finally {
       setLoadingConfirm(false);
@@ -433,10 +433,8 @@ function OtpRequestModal() {
         return;
       }
     } catch (error: any) {
-      Alert.showError({
-        multilanguage: false,
-        content: I18nState == 'vi' ? error.message : error.messageEn,
-      });
+      handleErr(error);
+
       return;
     } finally {
       setLoadingConfirm(false);
@@ -457,10 +455,7 @@ function OtpRequestModal() {
         return;
       }
     } catch (error: any) {
-      Alert.showError({
-        multilanguage: false,
-        content: I18nState == 'vi' ? error.message : error.messageEn,
-      });
+      handleErr(error);
       return;
     } finally {
       setLoadingConfirm(false);

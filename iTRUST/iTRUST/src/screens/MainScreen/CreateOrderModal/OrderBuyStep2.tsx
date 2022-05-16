@@ -17,6 +17,7 @@ interface Props {
   bankSuperVisory: any;
   stepTimeLine?: number;
   onNext?: () => void;
+  onPre?: () => void;
 }
 
 function RowSpaceItem(p: {
@@ -91,6 +92,7 @@ function OrderBuyStep2({
   stepTimeLine,
   beginBuyAutoStartDate,
   onNext,
+  onPre,
 }: Props) {
   // console.log('adasda', {
   //   product,
@@ -362,7 +364,8 @@ function OrderBuyStep2({
           height={48}
           type={2}
           onPress={() => {
-            goBack();
+            // goBack();
+            onPre && onPre();
           }}
           title={`createordermodal.quaylai`}
         />

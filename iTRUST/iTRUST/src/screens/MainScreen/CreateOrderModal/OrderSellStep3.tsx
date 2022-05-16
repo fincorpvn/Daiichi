@@ -12,6 +12,7 @@ interface Props {
   scheme: any;
   currentSession: any;
   stepTimeLine?: number;
+  onPre?: () => void;
 }
 
 function RowSpaceItem(p: {
@@ -103,6 +104,7 @@ function OrderSellStep3({
   product,
   stepTimeLine,
   amount,
+  onPre,
   scheme,
   currentSession,
 }: Props) {
@@ -214,7 +216,7 @@ function OrderSellStep3({
           width={148}
           height={48}
           onPress={() => {
-            goBack();
+            onPre && onPre();
           }}
           title={`createordermodal.quaylai`}
           type={2}

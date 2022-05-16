@@ -1,4 +1,4 @@
-import {Div, HeaderBack} from 'components';
+import {Div, HeaderBack, Label} from 'components';
 import {Ecolors, Icons} from 'constant';
 import React from 'react';
 import {getInvestmentProfile} from 'reducer/authen/selector';
@@ -11,6 +11,7 @@ function AccountVerifyScreen() {
   const {investmentProfile} = currentUser;
   const {email, phone, bankAccountIsFull, userInfoIsFull, userAddressIsFull} =
     currentUser;
+  const I18nState = useAppSelector(state => state.languages.I18nState);
 
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>

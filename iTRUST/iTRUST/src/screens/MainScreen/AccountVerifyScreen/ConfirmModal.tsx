@@ -90,7 +90,10 @@ function ConfirmModal() {
               size={15}>{`accountverify.contentdiachi1`}</Label>
             {`${email || ''}`}
           </Label>
-          <Label
+          <Label marginTop={10} lineHeight={22} size={15}>
+            {`accountverify.contentinhoso`}
+          </Label>
+          {/* <Label
             marginTop={5}
             lineHeight={22}
             size={15}>{`accountverify.contentdiachi2`}</Label>
@@ -98,7 +101,7 @@ function ConfirmModal() {
             fontWeight={'700'}
             lineHeight={22}
             marginTop={5}
-            size={15}>{`accountverify.contentdiachi3`}</Label>
+            size={15}>{`accountverify.contentdiachi3`}</Label> */}
         </Div>
 
         {/* <Div padding={16}>

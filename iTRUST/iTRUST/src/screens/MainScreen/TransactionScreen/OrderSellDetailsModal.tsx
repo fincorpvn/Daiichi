@@ -290,7 +290,6 @@ function OrderSellDetailsModal() {
                 borderColor={Ecolors.bordercolor}
                 backgroundColor={Ecolors.whiteColor}
                 style={EStyle.shadowItem}
-                shadow={true}
                 paddingHorizontal={16}
                 paddingTop={17}
                 paddingBottom={26}>

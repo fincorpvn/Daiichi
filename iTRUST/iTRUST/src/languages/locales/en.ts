@@ -70,6 +70,7 @@ export default {
     content: `After completing this confirmation step, the account opening contract information will be sent to your email \nPlease print, sign and send a letter to the address: \n - Customer Care Department of Joint Stock Company ${stringApp.companyName} Fund Management: 17th Floor, Sunwah Building, 115 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (84) 28 3827 8535 \n - Head Office: \n 17th Floor, Court Sunwah House, 115 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (84) 28 3827 8535 \n - Representative office in Hanoi: 6th Floor, International Center, 17 Ngo Quyen, Hoan Kiem District , Hanoi (84) 24 3936 4630`,
     //
     hoantat: 'Completed',
+    danhgiamucdoruiro: 'Risk assessment',
   },
   forgotpasswordscreen: {
     forgotpassword: 'Forgot Password',
@@ -224,12 +225,17 @@ export default {
     tinhthanhphotheodiachilienhe: 'Province/City (by contact address)',
     quanhuyen: 'District',
     phuongxa: 'Wards',
+    nghenghiep: 'Job',
+    chucvu: 'Position',
+    mucthunhaphangthang: 'Monthly income',
     // account info modal
     // trangthaitkdautu: 'Trạng thái tài khoản đầu tư',
     vuilongchonquocgia: 'Please select a country',
     vuilongchontinhthanhpho: 'Please select a province/city',
     vuilongchonquanhuyen: 'Please select a county/district',
     vuilongchonphuongxa: 'Please select a ward',
+    danhgiamucdoruiro: 'Risk assessment',
+    guithongtin: 'Send information',
     //
     thongtinnhadautu: '1. Investor information',
     hoten: 'Fullname',
@@ -261,7 +267,6 @@ export default {
     chinhanh: 'Branch',
     content:
       'This required information and account information is transferred when the sell order is executed.',
-    guithongtin: 'Send information',
     vuilongchonnganhang: 'Please select a bank',
     vuilongchonchinhanh: 'Please select a branch',
     // address info modal
@@ -273,6 +278,9 @@ export default {
     dieukhoan: 'Rules',
     xacnhanhoantat: 'Confirmation complete',
     hoantat: 'Completed',
+    tongdongyvoidieukhoanfatca:
+      'I agree to answer: No to all questions related to FATCA',
+    contentinhoso: `Please print, sign and mail to the company's address in the contact section!`,
     contentdiachi1:
       'After completing this confirmation step, the account opening contract information will be sent to your email : ',
     contentdiachi2: 'Please print, sign and send a letter to the address: ',
@@ -407,11 +415,13 @@ export default {
     taolenhmua: 'Subscribe order',
     thaydoisovoidaunam: 'Year to Date return',
     taingay: 'at date',
-    giatriNAVCCQ: 'Nav/Unit (VND)',
-    NAVtaingay: 'NAV at date',
+    Taingay: 'Date',
+    giatriNAVCCQ: 'NAV',
+    NAVtaingay: 'NAV at ',
     tangtruongNAVCCQ: 'NAV/Unit growth - ',
     NAVcaonhat: 'Highest NAV',
     NAVthapnhat: 'Lowest NAV',
+    NAV: 'NAV',
     khongconoidunghienthi: 'No Data',
     thang: 'Month',
     tatca: 'All time',
@@ -541,7 +551,7 @@ export default {
     tongloilo: 'Total gain/loss',
     taisan: 'Asset',
     //
-    NAVhientai: 'Current NAV',
+    NAVhientai: 'NAV',
     tonggiatridaututrungbinh: 'Total AVG investment',
     giamuatrungbinh: `Average buying NAV/Unit`,
     tonggiatrithitruong: 'Total market value',
@@ -584,14 +594,17 @@ export default {
     kydientu: 'Sign now',
     taichuky: 'Upload signature',
     chukycuaban: 'Your signature',
-    taihopdongdaky: 'Download E-Contract',
+    taihopdongdaky: 'Download signed Account Opening Contract',
+    taihopdongmotaikhoan: 'Download Account Opening Form',
     contentdownload:
       'Please review Your account opening form before e-signing contract. Click Sign Now and follow e-sign steps',
+    contentdownload2: `Your Account Opening Contract is verified by esigned You please download your Account Opening Contract by clicking button below`,
   },
   feetable: {
     bieuphi: 'Tariffs',
   },
   alert: {
+    capnhatmucdoruirothanhcong: 'Update the risk level successfully !',
     logout: 'Log Out',
     taithanhcong: 'Download complete',
     taochukysothanhcong: 'You have been signed e-contract successfully!',
@@ -607,7 +620,7 @@ export default {
     doimatkhauthanhcong: 'Change password success',
     capnhatdiachithanhcong: 'Address update successful',
     capnhatthongtincanhanthanhcong: 'Personal information updated successful',
-
+    dungluongtoida: 'Maximum size is 5MB',
     capnhatthongtintaikhoannganhangthanhcong:
       'Bank account information updated successful',
     // thong bao

@@ -28,11 +28,12 @@ function SignatureDraw() {
   const onAccept = () => {
     if (drawlineRef.current) {
       drawlineRef.current.accept((res: string) => {
-        setImage(res);
-        doUploadFileSignature({
-          link: res,
-          setLoading: setLoading,
-          I18nState: I18nState,
+        goBack().then(() => {
+          doUploadFileSignature({
+            link: res,
+            setLoading: setLoading,
+            I18nState: I18nState,
+          });
         });
       });
     }

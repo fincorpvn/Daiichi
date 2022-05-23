@@ -69,6 +69,7 @@ export default {
     content: `Sau khi hoàn thành bước xác nhận này, thông tin hợp đồng mở tài khoản sẽ được gửi về email \nQuý khách vui lòng in, ký xác nhận và gửi thư về địa chỉ: \n - Bộ phận Chăm sóc Khách hàng Công ty Cổ phần Quản lý Quỹ ${stringApp.companyName}:\n Lầu 17, toà nhà Sunwah, 115 Nguyễn Huệ, Phường Bến Nghé, Quận 1, Tp.Hồ Chí Minh (84) 28 3827 8535 \n - Trụ sở chính: \n Lầu 17, toà nhà Sunwah, 115 Nguyễn Huệ, Phường Bến Nghé, Quận 1, Tp.Hồ Chí Minh (84) 28 3827 8535 \n - Văn phòng đại diện tại Hà Nội: Lầu 6, International Centre, 17 Ngô Quyền, Q.Hoàn Kiếm, Hà Nội (84) 24 3936 4630`,
     //
     hoantat: 'Hoàn tất',
+    danhgiamucdoruiro: 'Đánh giá mức độ rủi ro',
   },
   forgotpasswordscreen: {
     forgotpassword: 'Quên mật khẩu',
@@ -216,8 +217,12 @@ export default {
     vuilongchonphuongxa: 'Vui lòng chọn phường xã',
     chondiachilienhe: 'Chọn địa chỉ lên hệ',
     vuilongchondiachilienhe: 'Vui lòng chọn địa chỉ liên hệ',
+    danhgiamucdoruiro: 'Đánh giá mức độ rủi ro',
+    guithongtin: 'Gửi thông tin',
     //
-
+    nghenghiep: 'Nghề nghiệp',
+    chucvu: 'Chức vụ',
+    mucthunhaphangthang: 'Mức thu nhập hàng tháng',
     hosogoc: 'Hồ sơ gốc',
     quocgia: 'Quốc gia',
     tinhthanhpho: 'Tỉnh/Thành phố',
@@ -255,7 +260,6 @@ export default {
     chinhanh: 'Chi nhánh',
     content:
       'Thông tin bắt buộc và thông tin tài khoản này được chuyển khoản khi thực hiện lệnh bán.',
-    guithongtin: 'Gửi thông tin',
     vuilongchonnganhang: 'Vui lòng chọn ngân hàng',
     vuilongchonchinhanh: 'Vui lòng chọn chi nhánh',
     // address info modal
@@ -268,6 +272,10 @@ export default {
     xacnhanhoantat: 'Xác nhận hoàn tất',
     hoantat: 'Hoàn tất',
     toidongyvoidieukhoantren: 'Tôi đồng ý với điều khoản trên',
+    contentinhoso:
+      'Quý khách vui lòng in, ký xác nhận và gửi thư về địa chỉ của công ty trong phần liên hệ!',
+    tongdongyvoidieukhoanfatca:
+      'Tôi đồng ý trả lời: Không cho tất cả các câu hỏi liên quan đến FATCA',
     contentdiachi1:
       'Sau khi hoàn thành bước xác nhận này, thông tin hợp đồng mở tài khoản sẽ được gửi về email: ',
     contentdiachi2:
@@ -408,8 +416,9 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     taolenhmua: 'Tạo lệnh mua',
     thaydoisovoidaunam: 'Thay đổi so với đầu năm',
     taingay: 'tại ngày',
-    giatriNAVCCQ: 'Giá trị NAV/CCQ (đồng)',
-    NAVtaingay: 'NAV tại ngày',
+    Taingay: 'Tại ngày',
+    giatriNAVCCQ: 'Giá đơn vị quỹ gần nhất',
+    NAVtaingay: 'NAV tại ',
     tangtruongNAVCCQ: 'Tăng trưởng NAV/CCQ - ',
     NAVcaonhat: `NAV\ncao nhất`,
     NAVthapnhat: `NAV\nthấp nhất`,
@@ -417,6 +426,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     thang: 'Tháng',
     nam: 'Năm',
     tatca: 'Tất cả',
+    NAV: 'NAV',
     navccq: 'NAV/CCQ',
     thongtinquy: 'Thông tin quỹ',
     xemchitiet: 'Xem chi tiết',
@@ -541,7 +551,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     taisan: 'Tài sản',
     soluongCCQ: 'Số lượng CCQ',
     //
-    NAVhientai: 'NAV hiện tại',
+    NAVhientai: 'NAV',
     tonggiatridaututrungbinh: 'Tổng giá trị đầu tư trung bình',
     giamuatrungbinh: `Giá mua trung bình/CCQ`,
     tonggiatrithitruong: 'Tổng giá trị thị trường',
@@ -583,13 +593,15 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     taichuky: 'Tải chữ ký',
     chukycuaban: 'Chữ ký của bạn',
     taihopdongdaky: 'Tải hợp đồng đã ký',
-    contentdownload:
-      'Vui lòng xem trước thông tin trên Hợp đồng mở tài khoản của Quý khách và thực hiện ký điện tử để có thể thực hiện giao dịch mua bán.',
+    taihopdongmotaikhoan: 'Tải hợp đồng mở tài khoản',
+    contentdownload: `Vui lòng xem trước thông tin trên Hợp đồng mở tài khoản của Quý khách và thực hiện ký điện tử bằng cách nhấn vào nút 'Ký điện tử' bên dưới`,
+    contentdownload2: `Hợp đồng giao dịch của Quý khách hàng đã được xác nhận ký điện tử, Quý nhà đầu tư có thể tải Hợp đồng điện tử đã ký bằng cách nhấn vào nút bên dưới`,
   },
   feetable: {
     bieuphi: 'Biểu phí',
   },
   alert: {
+    capnhatmucdoruirothanhcong: 'Cập nhật mức độ rủi ro thành công !',
     taochukysothanhcong: 'Quý khách đã ký hợp đồng điện tử thành công!',
     logout: 'Đăng xuất',
     dinhdanganhkhongphuhop:
@@ -612,6 +624,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     lichxong: 'Xong',
     // thong bao
     thongbao: 'Thông báo',
+    dungluongtoida: 'Dung lượng file tối đa 5MB',
     vuilongnhapdayduthongtintaikhoannganhang:
       'Vui lòng nhập đầy đủ thông tin tài khoản ngân hàng',
     dongy: 'Đồng ý',

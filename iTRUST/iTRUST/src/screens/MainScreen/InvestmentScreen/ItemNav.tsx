@@ -1,7 +1,7 @@
 import {Div, Label} from 'components';
 import {Ecolors} from 'constant';
 import React from 'react';
-import {convertNav, convertNumber} from 'utils';
+import {convertNav, convertNumber, convertTimestamp} from 'utils';
 
 function ItemNav(p: {item: any}) {
   return (
@@ -17,7 +17,7 @@ function ItemNav(p: {item: any}) {
         justifyContent={'space-between'}>
         <Label
           size={14}
-          color={Ecolors.grayColor}>{`investmentscreen.phiengiaodich`}</Label>
+          color={Ecolors.grayColor}>{`investmentscreen.Taingay`}</Label>
         <Label
           size={14}
           color={Ecolors.grayColor}>{`investmentscreen.navccq`}</Label>
@@ -27,7 +27,7 @@ function ItemNav(p: {item: any}) {
         alignItems={'center'}
         justifyContent={'space-between'}>
         <Label size={14} multilanguage={false}>
-          {p.item.navDate}
+          {convertTimestamp(p.item.navDate)}
         </Label>
         <Label multilanguage={false} size={14}>
           {convertNav(p.item.nav)}

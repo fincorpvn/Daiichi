@@ -15,6 +15,7 @@ import EditAddressInfoModal from './AccountVerifyScreen/EditAddressInfoModal';
 import BankInfoModal from './AccountVerifyScreen/BankInfoModal';
 import AddressInfoModal from './AccountVerifyScreen/AddressInfoModal';
 import ConfirmModal from './AccountVerifyScreen/ConfirmModal';
+import RiskConfirmModal from './AccountVerifyScreen/RiskConfirmModal';
 // investment manage
 // tab
 import OverviewScreen from './OverviewScreen';
@@ -71,6 +72,7 @@ const screens: any = {
   EditAccountInfoModal,
   AddressInfoModal,
   ConfirmModal,
+  RiskConfirmModal,
   ReviewInfoModal,
   // setting screen
   SettingScreen,

@@ -9,6 +9,7 @@ export type appScreen =
   | 'TabContainer'
   | 'ReviewInfoModal'
   | 'ViewPDF'
+  | 'RiskConfirmModal'
   | 'AlertError'
   | 'DropdownModal'
   | 'ControlEKYCScreen'

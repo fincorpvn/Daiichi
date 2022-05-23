@@ -78,30 +78,35 @@ function OrderHistoryDetailsModal() {
           ? PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
           : PERMISSIONS.IOS.MEDIA_LIBRARY,
         () => {
-          return ReactNativeBlobUtil.config({
-            // appendExt: 'pdf',
-            // path: link,
-            // fileCache: true,
-          })
+          const obj =
+            Platform.OS === 'ios'
+              ? {
+                  appendExt: 'pdf',
+                  path: link,
+                  fileCache: true,
+                }
+              : {};
+          return ReactNativeBlobUtil.config(obj)
             .fetch('GET', bburl, {
               Authorization: token ? `Bearer ${token}` : '',
               'Content-Type': 'application/json',
               'request-id': getUuid(),
             })
             .then(async (res: any) => {
-              const T = convertDataDownloadFile(res);
-              await ReactNativeBlobUtil.fs
-                .writeFile(T.urlFile, res.base64(), 'base64')
-                .then(async (e: any) => {
-                  if (Platform.OS === 'android') {
+              if (Platform.OS === 'android') {
+                const T = convertDataDownloadFile(res);
+                await ReactNativeBlobUtil.fs
+                  .writeFile(T.urlFile, res.base64(), 'base64')
+                  .then(async (e: any) => {
                     await ReactNativeBlobUtil.android.actionViewIntent(
                       T.urlFile,
                       T.type,
                     );
-                  } else {
-                    await ReactNativeBlobUtil.ios.previewDocument(T.urlFile);
-                  }
-                });
+                  });
+              } else {
+                await ReactNativeBlobUtil.ios.previewDocument(res.path());
+              }
+
               Toast.show({
                 content: 'alert.taithanhcong',
                 multilanguage: true,
@@ -121,7 +126,6 @@ function OrderHistoryDetailsModal() {
         },
       );
     } catch (error) {
-      Log('errorr', error);
     } finally {
       // setLoading(false);
     }
@@ -158,7 +162,6 @@ function OrderHistoryDetailsModal() {
             borderColor={Ecolors.bordercolor}
             style={EStyle.shadowItem}
             backgroundColor={Ecolors.whiteColor}
-            shadow={true}
             paddingHorizontal={16}
             paddingTop={17}
             paddingBottom={26}>

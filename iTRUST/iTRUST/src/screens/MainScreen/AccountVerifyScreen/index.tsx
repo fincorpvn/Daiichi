@@ -9,8 +9,14 @@ import ItemCard from './ItemCard';
 function AccountVerifyScreen() {
   const currentUser = useAppSelector(state => state.authen.currentUser);
   const {investmentProfile} = currentUser;
-  const {email, phone, bankAccountIsFull, userInfoIsFull, userAddressIsFull} =
-    currentUser;
+  const {
+    email,
+    phone,
+    riskInfo,
+    bankAccountIsFull,
+    userInfoIsFull,
+    userAddressIsFull,
+  } = currentUser;
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
   return (
@@ -47,6 +53,19 @@ function AccountVerifyScreen() {
         isLine={true}
       />
       {userInfoIsFull && bankAccountIsFull && userAddressIsFull && (
+        <ItemCard
+          onPress={() => {
+            navigate('RiskConfirmModal');
+            // navigate('ReviewInfoModal', {
+            //   data: {},
+            // });
+          }}
+          isCheck={!!riskInfo}
+          title={'accountverify.danhgiamucdoruiro'}
+          isLine={true}
+        />
+      )}
+      {userInfoIsFull && bankAccountIsFull && userAddressIsFull && riskInfo && (
         <>
           <ItemCard
             onPress={() => {

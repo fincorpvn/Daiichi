@@ -35,22 +35,30 @@ export const convertDataDownloadFile = (
   type: string;
   urlFile: string;
 } => {
-  const link = `${
+  console.log('rrr', r);
+  const link =
     Platform.OS === 'android'
-      ? RNFS.DownloadDirectoryPath
-      : RNFS.DocumentDirectoryPath
-  }/${stringApp.appLink}/`;
-  console.log('đấ', r);
+      ? `${RNFS.DownloadDirectoryPath}/${stringApp.appLink}/`
+      : `${RNFS.DocumentDirectoryPath}/`;
   const name = r.respInfo.headers?.[`content-disposition`]
-    .replace('attachment; filename="', '')
-    .replace(/"/g, '');
+    ?.replace('attachment; filename="', '')
+    ?.replace(/"/g, '');
+  const i = new Date().getTime();
   const type = r.respInfo.headers?.[`content-type`];
-  const urlFile = `${link}${new Date().getTime()}-${name}`;
+  const urlFile = `${link}${i}-${name}`;
   return {
-    name,
+    name: `${i}-${name}`,
     type,
     urlFile,
   };
+};
+
+export const converRistInfoInDto = (t: any) => {
+  const obj = {};
+  Object.keys(t).map((item: any, index: number) => {
+    obj[item] = t[item].id;
+  });
+  return obj;
 };
 
 export const convertNumber = (num: number | string, hideD?: boolean) => {
@@ -332,30 +340,24 @@ export const parseToFormData = (p: any) => {
 
 export const getImageCamera = async () => {
   return new Promise((resolve, reject) => {
-    requestPermisson(
+    return requestPermisson(
       Platform.OS === 'android'
         ? PERMISSIONS.ANDROID.CAMERA
         : PERMISSIONS.IOS.CAMERA,
       async () => {
-        await launchCamera(
+        return launchCamera(
           {
             mediaType: 'photo',
             quality: 1,
             cameraType: 'back',
             includeBase64: true,
             saveToPhotos: true,
-            // height: 480,
-            // isVertical: true,
-            // originalRotation: 0,
-            // width: 640,
           },
-          (res: any) => {
+          async (res: any) => {
             if (res.assets) {
               resolve(res.assets);
-              return;
             }
             reject();
-            throw null;
           },
         ).catch((err: any) => {
           reject();
@@ -368,12 +370,12 @@ export const getImageCamera = async () => {
 
 export const getImageLibrary = async () => {
   return new Promise((resolve, reject) => {
-    requestPermisson(
+    return requestPermisson(
       Platform.OS === 'android'
         ? PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE
         : PERMISSIONS.IOS.PHOTO_LIBRARY,
       async () => {
-        await launchImageLibrary(
+        return launchImageLibrary(
           {
             mediaType: 'photo',
             quality: 1,
@@ -382,10 +384,8 @@ export const getImageLibrary = async () => {
           (res: any) => {
             if (res.assets) {
               resolve(res.assets);
-              return;
             }
             reject();
-            throw null;
           },
         ).catch((err: any) => {
           reject();
@@ -438,9 +438,7 @@ export const requestPermisson = (permissions: any, callback: () => void) => {
             Linking.openSettings();
           },
         });
-      } else if ((r = 'granted')) {
-        callback && callback();
-      } else {
+      } else if (r != 'granted') {
         request(permissions).then(r => {
           if (r == 'granted') {
             callback && callback();
@@ -455,6 +453,9 @@ export const requestPermisson = (permissions: any, callback: () => void) => {
           });
           return;
         });
+      } else {
+        callback && callback();
+        return;
       }
     });
     return;

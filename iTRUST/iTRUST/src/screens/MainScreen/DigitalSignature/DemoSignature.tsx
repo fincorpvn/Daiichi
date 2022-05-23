@@ -1,11 +1,11 @@
-import {Div} from 'components';
-import {Ecolors, EStyle, urlApp} from 'constant';
-import React, {useEffect, useState} from 'react';
-import {Platform} from 'react-native';
+import { Div, ImageView } from 'components';
+import { Ecolors, EStyle, urlApp } from 'constant';
+import React, { useEffect, useState } from 'react';
+import { Image, Platform } from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
-import {PERMISSIONS} from 'react-native-permissions';
-import {getUuid, Log, requestPermisson} from 'utils';
-import {getStoreToken} from 'utils/storage';
+import { PERMISSIONS } from 'react-native-permissions';
+import { getUuid, heightScreen, Log, requestPermisson, widthScreen } from 'utils';
+import { getStoreToken } from 'utils/storage';
 import RNFS from 'react-native-fs';
 
 interface T {
@@ -15,7 +15,7 @@ interface T {
 
 const defaultSize = 153;
 
-const Com = (p: {width?: number; marginTop?: number; height?: number}) => {
+const Com = (p: { width?: number; marginTop?: number; height?: number }) => {
   return (
     <Div
       backgroundColor={Ecolors.spaceColor}
@@ -58,11 +58,10 @@ function DemoSignature() {
       const url = `esignature/download-contract`;
       const bburl = `${urlApp.APIURL}api/${url}`;
       // return;
-      const link = `${
-        Platform.OS === 'android'
+      const link = `${Platform.OS === 'android'
           ? RNFS.DownloadDirectoryPath
           : RNFS.DocumentDirectoryPath
-      }/Mio_Plus/${id}.pdf`;
+        }/Mio_Plus/${id}.pdf`;
       await requestPermisson(
         Platform.OS === 'android'
           ? PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE

@@ -77,7 +77,7 @@ function Dropdown(p: {
   initData?: Array<{
     id: string;
     name: string;
-    nameen: string;
+    nameEn: string;
   }>;
 }) {
   const buttonRef = useRef(null);

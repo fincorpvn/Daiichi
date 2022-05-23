@@ -14,7 +14,7 @@ import ImageResizer from 'react-native-image-resizer';
 import {doUploadFileSignature} from 'screens/MainScreen/DigitalSignature/func';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
-import {getImageCamera, getImageLibrary, widthScreen} from 'utils';
+import {getImageCamera, getImageLibrary, Log, widthScreen} from 'utils';
 import ComActionUpload from './ComActionUpload';
 import SignatureDraw from './SignatureDraw';
 const Btn = (p: {
@@ -93,8 +93,15 @@ function RowButtonAction() {
           }}
           onCamera={async () => {
             try {
-              hide(async () => {
-                await getImageCamera().then((image: any) => {
+              await getImageCamera().then((image: any) => {
+                const size = image[0]?.fileSize / 1000000;
+                if (image[0]) {
+                  // if (size > 5) {
+                  //   Alert.showError({
+                  //     content: 'alert.dungluongtoida',
+                  //   });
+                  //   return;
+                  // }
                   ImageResizer.createResizedImage(
                     image[0].uri,
                     800,
@@ -112,35 +119,63 @@ function RowButtonAction() {
                     })
                     .catch(err => {});
                   return;
-                });
+                }
               });
             } catch (error) {
-              Toast.show({
-                content: 'alert.daxayraloi',
-                multilanguage: true,
-              });
+              if (!!error) {
+                Toast.show({
+                  content: 'alert.daxayraloi',
+                  multilanguage: true,
+                });
+              }
             } finally {
+              hide(async () => {});
             }
           }}
           onGallery={async () => {
             try {
-              hide(async () => {
-                await getImageLibrary().then((image: any) => {
+              await getImageLibrary().then((image: any) => {
+                const size = image[0]?.fileSize / 1000000;
+                if (image[0]) {
+                  // if (size > 5) {
+                  //   Alert.showError({
+                  //     content: 'alert.dungluongtoida',
+                  //   });
+                  //   return;
+                  // }
                   if (image[0].uri.endsWith('.gif')) {
                     Alert.showError({
                       content: 'alert.dinhdanganhkhongphuhop',
                     });
                     return;
                   }
-                  doUploadFileSignature({
-                    link: image[0].uri,
-                    I18nState: I18nState,
-                    setLoading: setLoading,
-                  });
-                });
+                  ImageResizer.createResizedImage(
+                    image[0].uri,
+                    800,
+                    600,
+                    'JPEG',
+                    80,
+                    0,
+                  )
+                    .then(({uri}) => {
+                      doUploadFileSignature({
+                        link: uri,
+                        I18nState: I18nState,
+                        setLoading: setLoading,
+                      });
+                    })
+                    .catch(err => {});
+                }
               });
             } catch (error) {
+              if (!!error) {
+                Toast.show({
+                  content: 'alert.daxayraloi',
+                  multilanguage: true,
+                });
+              }
             } finally {
+              hide(async () => {});
             }
           }}
         />

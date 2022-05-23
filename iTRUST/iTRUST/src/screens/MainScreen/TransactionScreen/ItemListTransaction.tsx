@@ -165,7 +165,6 @@ export function ItemOrderSell(p: {data: any}) {
           data: p.data,
         });
       }}
-      shadow={true}
       marginHorizontal={16}
       borderRadius={8}
       backgroundColor={Ecolors.whiteColor}
@@ -297,7 +296,6 @@ export function ItemOrderTransfer(p: {data: any}) {
       //   });
       // }}
       isScale={false}
-      shadow={true}
       marginHorizontal={16}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
@@ -440,7 +438,6 @@ export function ItemOrderTransfer(p: {data: any}) {
           data: p.data,
         });
       }}
-      shadow={true}
       marginHorizontal={16}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
@@ -531,7 +528,6 @@ export function ItemOrderTransferBuy(p: {data: any}) {
           data: p.data,
         });
       }}
-      shadow={true}
       marginHorizontal={16}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}

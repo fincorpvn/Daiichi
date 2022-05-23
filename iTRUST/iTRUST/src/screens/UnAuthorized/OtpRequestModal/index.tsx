@@ -7,10 +7,9 @@ import {useDispatch} from 'react-redux';
 import {changeBio, changeStatusScreen, getInfo} from 'reducer/authen';
 import {apiAuth} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
-import {goBack, navigate} from 'services/navigation';
+import {goBack, navigate, navigationRef} from 'services/navigation';
 import {useAppSelector} from 'store/hooks';
 import {hidePhoneNumberOTP, Log} from 'utils';
-import {resetAccount} from 'utils/storage';
 import OtpComp from './OtpComp';
 
 interface Iparams {
@@ -90,18 +89,22 @@ function OtpRequestModal() {
             : `alert.nhapotpquasoluong`,
         onPress: () => {
           if (params.data.flowApp == 'Register') {
-            navigate('RegisterScreen', {
-              isClearData: true,
+            navigate('LoginScreen').then(() => {
+              navigate('RegisterScreen');
             });
             return;
           }
-          goBack().then(() => {
-            dispatch(changeStatusScreen('unAuthorized'));
+          goBack().then(async () => {
+            await dispatch(changeStatusScreen('unAuthorized'));
+            navigationRef.current?.reset({
+              routes: [{name: 'LoginScreen'}],
+            });
           });
         },
       });
       return;
     }
+    Log('12312', a);
     count.current = count.current + 1;
     Alert.showError({
       multilanguage: false,
@@ -184,35 +187,46 @@ function OtpRequestModal() {
       if (res.status == 200) {
         dispatch(getInfo({}));
         if (statusScreen == 'main') {
+          goBack().then(() => {
+            Alert.show({
+              content: `alert.taochukysothanhcong`,
+              type: 2,
+              // multilanguage: false,
+              onClose: () => {
+                navigate('DigitalSignatureScreen');
+              },
+              onCancel: () => {
+                navigate('DigitalSignatureScreen');
+              },
+              onConfirm: () => {
+                navigate('DigitalSignatureScreen');
+              },
+            });
+          });
+
+          return;
+        }
+        goBack().then(() => {
           Alert.show({
             content: `alert.taochukysothanhcong`,
             type: 2,
             // multilanguage: false,
             onClose: () => {
-              navigate('DigitalSignatureScreen');
+              navigationRef.current?.reset({
+                routes: [{name: 'LoginScreen'}],
+              });
             },
             onCancel: () => {
-              navigate('DigitalSignatureScreen');
+              navigationRef.current?.reset({
+                routes: [{name: 'LoginScreen'}],
+              });
             },
             onConfirm: () => {
-              navigate('DigitalSignatureScreen');
+              navigationRef.current?.reset({
+                routes: [{name: 'LoginScreen'}],
+              });
             },
           });
-          return;
-        }
-        Alert.show({
-          content: `alert.taochukysothanhcong`,
-          type: 2,
-          // multilanguage: false,
-          onClose: () => {
-            navigate('LoginInfoScreen');
-          },
-          onCancel: () => {
-            navigate('LoginInfoScreen');
-          },
-          onConfirm: () => {
-            navigate('LoginInfoScreen');
-          },
         });
 
         return;
@@ -294,28 +308,27 @@ function OtpRequestModal() {
       });
       if (res.status == 200) {
         dispatch(changeBio(false));
-        Alert.show({
-          content: `alert.doimatkhauthanhcong`,
-          type: 2,
-          titleClose: 'alert.dong',
-          onConfirm: async () => {
-            goBack();
-            setTimeout(() => {
-              dispatch(changeStatusScreen('unAuthorized'));
-            }, 200);
-          },
-          onClose: async () => {
-            goBack();
-            setTimeout(() => {
-              dispatch(changeStatusScreen('unAuthorized'));
-            }, 200);
-          },
-          onCancel: async () => {
-            goBack();
-            setTimeout(() => {
-              dispatch(changeStatusScreen('unAuthorized'));
-            }, 200);
-          },
+        goBack().then(() => {
+          Alert.show({
+            content: `alert.doimatkhauthanhcong`,
+            type: 2,
+            titleClose: 'alert.dong',
+            onConfirm: async () => {
+              setTimeout(() => {
+                dispatch(changeStatusScreen('unAuthorized'));
+              }, 200);
+            },
+            onClose: async () => {
+              setTimeout(() => {
+                dispatch(changeStatusScreen('unAuthorized'));
+              }, 200);
+            },
+            onCancel: async () => {
+              setTimeout(() => {
+                dispatch(changeStatusScreen('unAuthorized'));
+              }, 200);
+            },
+          });
         });
       } else {
         handleErr(res);
@@ -336,19 +349,21 @@ function OtpRequestModal() {
       });
       if (res.status == 200) {
         dispatch(getInfo({}));
-        Alert.show({
-          type: 2,
-          titleClose: 'alert.dong',
-          content: `alert.doiemailthanhcong`,
-          onConfirm: () => {
-            navigate('ProfileScreen');
-          },
-          onClose: () => {
-            navigate('ProfileScreen');
-          },
-          onCancel: () => {
-            navigate('ProfileScreen');
-          },
+        goBack().then(() => {
+          Alert.show({
+            type: 2,
+            titleClose: 'alert.dong',
+            content: `alert.doiemailthanhcong`,
+            onConfirm: () => {
+              navigate('ProfileScreen');
+            },
+            onClose: () => {
+              navigate('ProfileScreen');
+            },
+            onCancel: () => {
+              navigate('ProfileScreen');
+            },
+          });
         });
         return;
       }
@@ -400,6 +415,10 @@ function OtpRequestModal() {
   const onConfirmCreateOrderBuy = async () => {
     try {
       setLoadingConfirm(true);
+      Log('123123', {
+        ...requestOnSendOtp,
+        otp,
+      });
       const res = await apiInvestment.buyConfirm({
         ...requestOnSendOtp,
         otp,

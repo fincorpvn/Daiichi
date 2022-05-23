@@ -342,7 +342,7 @@ function OrderSellStep1({
                   size={12}
                   fontWeight={'700'}>{`createordermodal.navccqkitruoc`}</Label>
                 <Label marginTop={6} size={12} multilanguage={false}>
-                  {convertNav(product?.navPre)}
+                  {convertNav(product?.navCurrently)}
                 </Label>
               </Div>
             </Div>

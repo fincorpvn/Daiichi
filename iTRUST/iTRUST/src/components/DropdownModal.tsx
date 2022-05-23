@@ -175,7 +175,7 @@ function DropdownModal() {
           <Div
             flexDirection={'row'}
             alignItems={'center'}
-            paddingLeft={14}
+            paddingHorizontal={14}
             justifyContent={'space-between'}>
             <Label fontWeight={'700'} multilanguage={multilanguage || false}>
               {title}

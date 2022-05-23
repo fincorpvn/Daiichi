@@ -11,19 +11,20 @@ import React, {useState} from 'react';
 import {Platform} from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {PERMISSIONS} from 'react-native-permissions';
+import RNFS from 'react-native-fs';
+import {CommonActions} from '@react-navigation/native';
 import {
   convertDataDownloadFile,
   getUuid,
-  heightScreen,
   Log,
   requestPermisson,
   widthScale,
-  widthScreen,
 } from 'utils';
 import {getStoreToken} from 'utils/storage';
-import RNFS from 'react-native-fs';
 import {useAppSelector} from 'store/hooks';
-import {navigate} from 'services';
+import {useDispatch} from 'react-redux';
+import {changeStatusScreen} from 'reducer/authen';
+import {navigate, navigationRef} from 'services';
 
 function CardSignature() {
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
@@ -31,6 +32,8 @@ function CardSignature() {
   const {name, investmentProfile} = currentUser;
   const [loading, setLoading] = useState<boolean>(false);
   const I18nState = useAppSelector(state => state.languages.I18nState);
+
+  const dispatch = useDispatch();
 
   const switchStatusEsign = (p: {
     hardProfile: boolean;
@@ -59,53 +62,59 @@ function CardSignature() {
         ? `user/file/contract`
         : `esignature/download-contract`;
       const bburl = `${urlApp.APIURL}api/${url}`;
-      return requestPermisson(
+      const link = `${
+        Platform.OS === 'android'
+          ? RNFS.DownloadDirectoryPath
+          : RNFS.DocumentDirectoryPath
+      }/Mio_Plus/${getUuid()}.pdf`;
+      await requestPermisson(
         Platform.OS === 'android'
           ? PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
           : PERMISSIONS.IOS.MEDIA_LIBRARY,
-        async () => {
-          await ReactNativeBlobUtil.config({})
+        () => {
+          const obj =
+            Platform.OS === 'ios'
+              ? {
+                  appendExt: 'pdf',
+                  path: link,
+                  fileCache: true,
+                }
+              : {};
+          return ReactNativeBlobUtil.config(obj)
             .fetch('GET', bburl, {
               Authorization: token ? `Bearer ${token}` : '',
               'Content-Type': 'application/json',
               'request-id': getUuid(),
             })
             .then(async (res: any) => {
-              // https://docs.google.com/viewer?embedded=true&url=https://api.mio.dev.techland.link/web/v1/api/esignature/download-contract
-              const T = convertDataDownloadFile(res);
-              await ReactNativeBlobUtil.fs
-                .writeFile(T.urlFile, res.base64(), 'base64')
-                .then((e: any) => {
-                  if (Platform.OS === 'android') {
-                    if (!hardProfile) {
-                      ReactNativeBlobUtil.android.actionViewIntent(
-                        T.urlFile,
-                        T.type,
-                      );
-                    } else {
-                      if (T?.urlFile?.endsWith('.pdf')) {
-                        ReactNativeBlobUtil.android.actionViewIntent(
-                          T.urlFile,
-                          T.type,
-                        );
-                      }
-                    }
-                  } else {
-                    ReactNativeBlobUtil.ios.previewDocument(T.urlFile);
-                  }
-                  Toast.show({
-                    content: 'alert.taithanhcong',
-                    multilanguage: true,
+              if (Platform.OS === 'android') {
+                const T = convertDataDownloadFile(res);
+                await ReactNativeBlobUtil.fs
+                  .writeFile(T.urlFile, res.base64(), 'base64')
+                  .then(async (e: any) => {
+                    await ReactNativeBlobUtil.android.actionViewIntent(
+                      T.urlFile,
+                      T.type,
+                    );
                   });
-                });
+              } else {
+                await ReactNativeBlobUtil.ios.previewDocument(res.path());
+              }
+
+              Toast.show({
+                content: 'alert.taithanhcong',
+                multilanguage: true,
+              });
               setLoading(false);
             })
             .catch(err => {
-              Log('rrorrr', err);
               Toast.show({
                 content: 'alert.daxayraloi',
                 multilanguage: true,
               });
+              Log('errror ', err);
+            })
+            .finally(() => {
               setLoading(false);
             });
         },
@@ -113,6 +122,7 @@ function CardSignature() {
     } catch (error) {
       Log('errorr', error);
     } finally {
+      // setLoading(false);
     }
   };
 
@@ -220,24 +230,14 @@ function CardSignature() {
         </Div>
       </Div>
       <Div
-        flexDirection={'row'}
         alignItems={'center'}
         paddingHorizontal={20}
         justifyContent={'center'}>
-        <Label
-          textAlign={'center'}
-          size={14}>{`digitalsignature.contentdownload`}</Label>
-        {!investmentProfile?.isReceivedHardProfile && I18nState == 'en' && (
-          <Label
-            size={14}
-            fontWeight={'700'}
-            marginTop={5}
-            multilanguage={false}>
-            {I18nState == 'en'
-              ? `If you're US-CITIZEN, please send FATCA document to our company`
-              : ''}
-          </Label>
-        )}
+        <Label textAlign={'center'} size={14}>
+          {hardProfile
+            ? `digitalsignature.contentdownload2`
+            : `digitalsignature.contentdownload`}
+        </Label>
       </Div>
       <Div
         width={'100%'}
@@ -268,11 +268,31 @@ function CardSignature() {
                 resizeMode={'contain'}
                 marginRight={10}
               />
-              <Label
-                fontWeight={'700'}>{`digitalsignature.taihopdongdaky`}</Label>
+              <Label fontWeight={'700'} size={15}>
+                {hardProfile
+                  ? `digitalsignature.taihopdongdaky`
+                  : `digitalsignature.taihopdongmotaikhoan`}
+              </Label>
             </>
           )}
         </Button>
+      </Div>
+
+      <Div
+        alignItems={'center'}
+        paddingHorizontal={20}
+        justifyContent={'center'}>
+        {!investmentProfile?.isReceivedHardProfile && I18nState == 'en' && (
+          <Label
+            size={14}
+            fontWeight={'700'}
+            textAlign={'center'}
+            multilanguage={false}>
+            {I18nState == 'en'
+              ? `If you're US-CITIZEN, please send FATCA document to our company`
+              : ''}
+          </Label>
+        )}
       </Div>
     </>
   );

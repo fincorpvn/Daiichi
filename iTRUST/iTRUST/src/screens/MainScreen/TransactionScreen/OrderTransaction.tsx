@@ -141,13 +141,12 @@ function OrderTransaction() {
             }
             if (
               (orderType == 'SELL' || orderType == 'TRANSFER') &&
-              currentUser?.investmentProfile?.status?.code !=
-                'INVESTMENT_PROFILE_ACCEPT'
+              !currentUser?.investmentProfile?.isReceivedHardProfile
             ) {
               const content =
                 I18nState == 'vi'
                   ? `Tài khoản của quý khách hiện tại chưa được duyệt hoặc chưa nhận được hồ sơ gốc/chưa ký hợp đồng điện tử. Nên không thể thực hiện lệnh bán/ chuyển đổi.`
-                  : `ou cannot create redemption/switching transaction due to pending account approval or not received hardcopy Open Account Contract/ unsigned e-Contract`;
+                  : `You cannot create redemption/switching transaction due to pending account approval or not received hardcopy Open Account Contract/ unsigned e-Contract`;
               if (
                 currentUser?.investmentProfile?.status?.code !=
                   `INVESTMENT_PROFILE_APPROVE` ||
@@ -158,8 +157,8 @@ function OrderTransaction() {
                 Alert.show({
                   content: content,
                   multilanguage: false,
-                  // titleConfirm: 'alert.kydientu',
-                  titleCancel: 'alert.desau',
+                  type: 2,
+                  titleClose: 'alert.dongy',
                   onCancel: () => {},
                   onConfirm: () => {
                     navigate('DigitalSignatureScreen');

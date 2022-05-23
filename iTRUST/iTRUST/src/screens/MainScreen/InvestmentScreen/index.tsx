@@ -41,23 +41,28 @@ function InvestmentScreen() {
   }, []);
 
   useEffect(() => {
-    setData([...listProduct]);
+    controlDeboundHandle(textFilter);
     return () => {};
-  }, [listProduct]);
-
-  useEffect(() => {
-    if (!!textFilter.replace(/ /g, '')?.length) {
-      const t = textFilter?.toLocaleLowerCase()?.replace(/ /g, '') || '';
-      controlDeboundHandle(t);
-    } else {
-      setData([...listProduct]);
-    }
-    return () => {
-      if (debounceHandle.current) {
-        clearTimeout(debounceHandle.current);
-      }
-    };
   }, [textFilter]);
+
+  // useEffect(() => {
+  //   setData([...listProduct]);
+  //   return () => {};
+  // }, [listProduct]);
+
+  // useEffect(() => {
+  //   if (!!textFilter.replace(/ /g, '')?.length) {
+  //     const t = textFilter?.toLocaleLowerCase()?.replace(/ /g, '') || '';
+  //     controlDeboundHandle(t);
+  //   } else {
+  //     setData([...listProduct]);
+  //   }
+  //   return () => {
+  //     if (debounceHandle.current) {
+  //       clearTimeout(debounceHandle.current);
+  //     }
+  //   };
+  // }, [textFilter]);
 
   const controlDeboundHandle = (t: string) => {
     try {
@@ -65,16 +70,17 @@ function InvestmentScreen() {
         clearTimeout(debounceHandle.current);
       }
       debounceHandle.current = setTimeout(() => {
-        setData(
-          [...listProduct].filter((a: any) => {
-            const start = a.code.toLocaleLowerCase().replace(/ /g, '') || '';
-            const end = t?.toLocaleLowerCase()?.replace(/ /g, '') || '';
-            if (!t.length) {
-              return true;
-            }
-            return start.includes(end);
-          }),
-        );
+        dispatch(loadProduct({productCodeOrName: t}));
+        // setData(
+        //   [...listProduct].filter((a: any) => {
+        //     const start = a.code.toLocaleLowerCase().replace(/ /g, '') || '';
+        //     const end = t?.toLocaleLowerCase()?.replace(/ /g, '') || '';
+        //     if (!t.length) {
+        //       return true;
+        //     }
+        //     return start.includes(end);
+        //   }),
+        // );
       }, 300);
     } catch (error) {}
   };
@@ -124,7 +130,7 @@ function InvestmentScreen() {
           </Button>
         </Div>
       </HeaderBack>
-      <ListInvestMent data={data} />
+      <ListInvestMent data={listProduct} />
     </Div>
   );
 }

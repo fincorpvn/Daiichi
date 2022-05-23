@@ -35,7 +35,6 @@ function ItemListHistoryOrder(p: {data: any}) {
           data: p.data,
         });
       }}
-      shadow={true}
       marginHorizontal={16}
       borderRadius={8}
       borderWidth={0.8}

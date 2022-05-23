@@ -59,16 +59,16 @@ function RegisterScreen() {
     navigate('LoginScreen');
   };
 
-  useEffect(() => {
-    if (route.params?.isClearData) {
-      clearData();
-    }
-    return () => {};
-  }, [isFocus]);
+  // useEffect(() => {
+  //   if (route.params?.isClearData) {
+  //     clearData();
+  //   }
+  //   return () => {};
+  // }, [isFocus]);
 
-  const clearData = () => {
-    Promise.all([setName(''), setPhone(''), setEmail(''), setProvince(null)]);
-  };
+  // const clearData = () => {
+  //   Promise.all([setName(''), setPhone(''), setEmail(''), setProvince(null)]);
+  // };
 
   useEffect(() => {
     if (phone.length && !phone.startsWith('0')) {

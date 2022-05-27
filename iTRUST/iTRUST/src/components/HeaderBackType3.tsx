@@ -47,7 +47,7 @@ function HeaderBackType3() {
           justifyContent={'center'}>
           <Label
             size={16}
-            color={Ecolors.whiteColor}
+            color={Ecolors.textColor}
             multilanguage={false}
             fontWeight={'500'}>
             {removeUtf8(name?.toLocaleUpperCase() || '') || ''}
@@ -55,8 +55,8 @@ function HeaderBackType3() {
           <Div flexDirection={'row'} alignItems={'center'} flex={1}>
             <Label
               size={13}
-              color={Ecolors.grayColor}>{`profile.sotaikhoan`}</Label>
-            <Label size={13} multilanguage={false} color={Ecolors.grayColor}>
+              color={Ecolors.textColor}>{`profile.sotaikhoan`}</Label>
+            <Label size={13} multilanguage={false} color={Ecolors.textColor}>
               {investmentProfile?.number || ''}
             </Label>
           </Div>

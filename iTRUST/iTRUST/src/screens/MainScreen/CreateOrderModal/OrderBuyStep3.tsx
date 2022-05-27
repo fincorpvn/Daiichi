@@ -65,6 +65,7 @@ function ContentCoppy(p: {
   content: string;
   isBorderBottom?: boolean;
   marginTop?: number;
+  isBtn?: boolean;
 }) {
   return (
     <RowSpaceItem marginTop={p.marginTop} isBorderBottom={p.isBorderBottom}>
@@ -76,20 +77,24 @@ function ContentCoppy(p: {
           {p.content}
         </Label>
       </Div>
-      <Button
-        onPress={() => {
-          copyToClipboard(p.content);
-        }}
-        width={61}
-        height={26}
-        alignItems={'center'}
-        justifyContent={'center'}
-        borderRadius={5}
-        backgroundColor={Ecolors.yellowColor}>
-        <Label size={14} multilanguage={false}>
-          COPY
-        </Label>
-      </Button>
+      {p.isBtn ? (
+        <Button
+          onPress={() => {
+            copyToClipboard(p.content);
+          }}
+          width={61}
+          height={26}
+          alignItems={'center'}
+          justifyContent={'center'}
+          borderRadius={5}
+          backgroundColor={Ecolors.yellowColor}>
+          <Label size={14} multilanguage={false}>
+            COPY
+          </Label>
+        </Button>
+      ) : (
+        <Div width={61} height={26} />
+      )}
     </RowSpaceItem>
   );
 }
@@ -158,6 +163,10 @@ function OrderBuyStep3({
             marginHorizontal={17}
             size={14}
             marginTop={18}>{`createordermodal.contentxacnhanthanhtoan`}</Label>
+          <Label
+            marginHorizontal={17}
+            marginTop={3}
+            size={14}>{`createordermodal.luuyttck`}</Label>
           <Div
             borderRadius={8}
             marginHorizontal={18}
@@ -171,6 +180,7 @@ function OrderBuyStep3({
             paddingBottom={24}>
             <ContentCoppy
               title={`createordermodal.tenthuhuong`}
+              isBtn={true}
               content={
                 I18nState == 'vi'
                   ? bankSuperVisory?.name
@@ -180,12 +190,14 @@ function OrderBuyStep3({
             />
             <ContentCoppy
               marginTop={11}
+              isBtn={true}
               title={`createordermodal.sotaikhoan`}
               content={bankSuperVisory?.number || ''}
               isBorderBottom={true}
             />
             <ContentCoppy
               marginTop={11}
+              isBtn={false}
               title={`createordermodal.nganhang`}
               content={
                 I18nState == 'vi'
@@ -196,6 +208,7 @@ function OrderBuyStep3({
             />
             <ContentCoppy
               marginTop={11}
+              isBtn={true}
               title={`createordermodal.noidung`}
               content={excuseTempVolumn?.investmentNumber || ''}
               isBorderBottom={!!scheme.productSchemeIsAutoBuy}

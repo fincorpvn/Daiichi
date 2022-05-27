@@ -43,7 +43,7 @@ const ArrayTime = [
       year: Y - 3,
     }),
     vi: `3 năm`,
-    en: `3 year`,
+    en: `3 years`,
   },
   {
     title: 'investmentscreen.thang',
@@ -54,7 +54,7 @@ const ArrayTime = [
       year: Y - 5,
     }),
     vi: `5 năm`,
-    en: `5 year`,
+    en: `5 years`,
   },
 ];
 

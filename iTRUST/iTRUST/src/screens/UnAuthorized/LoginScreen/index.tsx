@@ -19,7 +19,7 @@ import {
   saveName,
 } from 'reducer/authen';
 import {navigate} from 'services';
-import {ScrollView} from 'react-native';
+import {ScrollView, StatusBar} from 'react-native';
 import {useIsFocused} from '@react-navigation/core';
 import TouchID from 'react-native-touch-id';
 import {getAccount, getStoreData} from 'utils/storage';
@@ -218,6 +218,7 @@ function LoginScreen() {
 
   return (
     <ScrollView keyboardShouldPersistTaps={'handled'}>
+      <StatusBar barStyle={'light-content'} />
       <ImageView
         source={Icons.fincorpbanner}
         style={{

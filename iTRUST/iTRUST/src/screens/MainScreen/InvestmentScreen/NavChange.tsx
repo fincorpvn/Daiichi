@@ -39,6 +39,7 @@ function NavChange() {
 
   const {
     tradingDayOfNavCurrently,
+    valuationdate,
     navPercent,
     navMax,
     navMin,
@@ -69,7 +70,7 @@ function NavChange() {
             justifyContent={'flex-start'}>
             <Label size={14}>{`investmentscreen.taingay`}</Label>
             <Label multilanguage={false}>{` ${
-              tradingDayOfNavCurrently ?? ''
+              valuationdate || tradingDayOfNavCurrently || ''
             }`}</Label>
           </Div>
         </Div>
@@ -124,7 +125,7 @@ function NavChange() {
         paddingHorizontal={16}>
         <ComNav
           string={`investmentscreen.NAVtaingay`}
-          date={tradingDayOfNavCurrently}
+          date={valuationdate || tradingDayOfNavCurrently}
           value={navCurrently}
         />
         <ComNav string={`investmentscreen.NAVcaonhat`} value={navMax} />

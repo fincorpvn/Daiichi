@@ -20,7 +20,7 @@ function DigitalSignatureScreen() {
   return (
     <Div backgroundColor={Ecolors.whiteColor} height={'100%'}>
       <HeaderBack
-        isHideBack={route.params.isHideBack}
+        isHideBack={!!route.params?.isHideBack}
         type={2}
         title={`digitalsignature.hopdongdientu`}
       />

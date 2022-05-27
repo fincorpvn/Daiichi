@@ -355,6 +355,7 @@ export default {
     lenhban: 'Redeem',
     lenhmuahoandoi: 'Switch-In Orders',
     lenhbanhoandoi: 'Switch-Out Orders',
+    lenhhoandoi: 'Switch Orders',
     tungay: 'From date',
     toingay: 'To date',
     taolenhmua: 'Subscribe order',
@@ -468,6 +469,8 @@ export default {
     vuilongchuyentientruoc:
       'Investor should transfer money before trading date',
     thongtinchuyenkhoan: 'Bank transfer information',
+    luuyttck:
+      'Please copy exactly all information to ensure the order successful.',
     tenthuhuong: 'Beneficial Owner',
     sotaikhoan: 'Account number',
     nganhang: 'Bank',

@@ -8,13 +8,13 @@ import {
   LoadingIndicator,
   Toast,
 } from 'components';
-import {Ecolors, Icons} from 'constant';
-import React, {useRef, useState} from 'react';
+import { Ecolors, Icons } from 'constant';
+import React, { useRef, useState } from 'react';
 import ImageResizer from 'react-native-image-resizer';
-import {doUploadFileSignature} from 'screens/MainScreen/DigitalSignature/func';
-import {navigate} from 'services';
-import {useAppSelector} from 'store/hooks';
-import {getImageCamera, getImageLibrary, Log, widthScreen} from 'utils';
+import { doUploadFileSignature } from 'screens/MainScreen/DigitalSignature/func';
+import { navigate } from 'services';
+import { useAppSelector } from 'store/hooks';
+import { getImageCamera, getImageLibrary, Log, widthScreen } from 'utils';
 import ComActionUpload from './ComActionUpload';
 import SignatureDraw from './SignatureDraw';
 const Btn = (p: {
@@ -96,12 +96,6 @@ function RowButtonAction() {
               await getImageCamera().then((image: any) => {
                 const size = image[0]?.fileSize / 1000000;
                 if (image[0]) {
-                  // if (size > 5) {
-                  //   Alert.showError({
-                  //     content: 'alert.dungluongtoida',
-                  //   });
-                  //   return;
-                  // }
                   ImageResizer.createResizedImage(
                     image[0].uri,
                     800,
@@ -110,14 +104,19 @@ function RowButtonAction() {
                     80,
                     0,
                   )
-                    .then(({uri}) => {
+                    .then(({ uri }) => {
                       doUploadFileSignature({
                         link: uri,
                         I18nState: I18nState,
                         setLoading: setLoading,
                       });
                     })
-                    .catch(err => {});
+                    .catch(err => {
+                      Alert.showError({
+                        content: 'alert.dungluongtoida',
+                      });
+                      return;
+                    });
                   return;
                 }
               });
@@ -129,7 +128,7 @@ function RowButtonAction() {
                 });
               }
             } finally {
-              hide(async () => {});
+              hide(async () => { });
             }
           }}
           onGallery={async () => {
@@ -157,14 +156,19 @@ function RowButtonAction() {
                     80,
                     0,
                   )
-                    .then(({uri}) => {
+                    .then(({ uri }) => {
                       doUploadFileSignature({
                         link: uri,
                         I18nState: I18nState,
                         setLoading: setLoading,
                       });
                     })
-                    .catch(err => {});
+                    .catch(err => {
+                      Alert.showError({
+                        content: 'alert.dungluongtoida',
+                      });
+                      return;
+                    });
                 }
               });
             } catch (error) {
@@ -173,9 +177,10 @@ function RowButtonAction() {
                   content: 'alert.daxayraloi',
                   multilanguage: true,
                 });
-              }
+                return
+              };
             } finally {
-              hide(async () => {});
+              hide(async () => { });
             }
           }}
         />

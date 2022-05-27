@@ -223,6 +223,8 @@ export default {
     nghenghiep: 'Nghề nghiệp',
     chucvu: 'Chức vụ',
     mucthunhaphangthang: 'Mức thu nhập hàng tháng',
+    //
+
     hosogoc: 'Hồ sơ gốc',
     quocgia: 'Quốc gia',
     tinhthanhpho: 'Tỉnh/Thành phố',
@@ -260,6 +262,7 @@ export default {
     chinhanh: 'Chi nhánh',
     content:
       'Thông tin bắt buộc và thông tin tài khoản này được chuyển khoản khi thực hiện lệnh bán.',
+
     vuilongchonnganhang: 'Vui lòng chọn ngân hàng',
     vuilongchonchinhanh: 'Vui lòng chọn chi nhánh',
     // address info modal
@@ -356,6 +359,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     lenhban: 'Lệnh bán',
     lenhmuahoandoi: 'Lệnh mua hoán đổi',
     lenhbanhoandoi: 'Lệnh bán hoán đổi',
+    lenhhoandoi: 'Lệnh hoán đổi',
     tungay: 'Từ ngày',
     toingay: 'Tới ngày',
     taolenhmua: 'Tạo lệnh mua',
@@ -468,6 +472,8 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     chuyenkhoanquanganhang: 'Chuyển khoản qua ngân hàng',
     vuilongchuyentientruoc: 'Vui lòng chuyển tiền trước',
     thongtinchuyenkhoan: 'Thông tin chuyển khoản',
+    luuyttck:
+      'Vui lòng copy chính xác các thông tin để đảm bảo lệnh được khớp.',
     tenthuhuong: 'Người thụ hưởng',
     sotaikhoan: 'Số tài khoản',
     nganhang: 'Ngân hàng',

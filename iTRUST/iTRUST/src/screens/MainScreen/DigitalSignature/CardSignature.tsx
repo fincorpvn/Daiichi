@@ -66,7 +66,7 @@ function CardSignature() {
         Platform.OS === 'android'
           ? RNFS.DownloadDirectoryPath
           : RNFS.DocumentDirectoryPath
-      }/Mio_Plus/${getUuid()}.pdf`;
+      }/${stringApp.appLink}/${getUuid()}.pdf`;
       await requestPermisson(
         Platform.OS === 'android'
           ? PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
@@ -120,6 +120,7 @@ function CardSignature() {
         },
       );
     } catch (error) {
+      setLoading(false);
       Log('errorr', error);
     } finally {
       // setLoading(false);

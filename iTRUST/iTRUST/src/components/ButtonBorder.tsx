@@ -53,7 +53,7 @@ function ButtonBorder({
         justifyContent={'center'}
         borderRadius={5}
         borderColor={Ecolors.transparent}
-        borderWidth={0.8}
+        borderWidth={1}
         backgroundColor={isDisable ? Ecolors.disableColor : Ecolors.mainColor}>
         {loading ? (
           <LoadingIndicator />
@@ -135,7 +135,7 @@ function ButtonBorder({
         justifyContent={'center'}
         borderRadius={5}
         borderColor={Ecolors.textColor}
-        borderWidth={0.8}
+        borderWidth={1}
         backgroundColor={Ecolors.whiteColor}>
         {loading ? (
           <LoadingIndicator color={Ecolors.whiteColor} />

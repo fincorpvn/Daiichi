@@ -44,7 +44,7 @@ function SBtn(Props: {
       justifyContent={'space-between'}
       borderWidth={0.5}
       backgroundColor={Props.backgroundColor || 'transparent'}
-      borderColor={Ecolors.bordercolor}
+      borderColor={Ecolors.grayColor}
       paddingLeft={18}
       paddingRight={16}>
       <Div flex={1}>
@@ -77,7 +77,7 @@ function Dropdown(p: {
   initData?: Array<{
     id: string;
     name: string;
-    nameEn: string;
+    nameen: string;
   }>;
 }) {
   const buttonRef = useRef(null);

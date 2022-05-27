@@ -20,8 +20,8 @@ function BottomSheetDialog(p: {children: any; style?: ViewStyle}, ref) {
         useNativeDriverForBackdrop={true}
         isVisible={stateModal}
         style={[s.modalcontaier, (p.style && p.style) || {}]}
-        backdropOpacity={1}
-        backdropColor={Ecolors.transparentLoading}
+        backdropOpacity={0.2}
+        backdropColor={Ecolors.black}
         animationIn={'slideInUp'}
         animationInTiming={200}
         animationOut={'slideOutDown'}

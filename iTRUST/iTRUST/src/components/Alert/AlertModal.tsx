@@ -7,7 +7,6 @@ import {Log} from 'utils';
 
 function AlertModal() {
   const route = useRoute<any>();
-  Log('route?.params', route?.params.type);
   useEffect(() => {
     return () => {
       route?.params?.onClose && route?.params?.onClose();
@@ -42,8 +41,9 @@ function AlertModal() {
           </Div>
           <Button
             onPress={() => {
-              route?.params?.onClose && route?.params?.onClose();
-              goBack();
+              goBack().then(() => {
+                route?.params?.onClose && route?.params?.onClose();
+              });
             }}
             widthHeight={46}
             alignItems={'center'}
@@ -98,8 +98,9 @@ function AlertModal() {
               width={148}
               title={route?.params?.titleCancel}
               onPress={() => {
-                goBack();
-                route?.params?.onCancel && route?.params?.onCancel();
+                goBack().then(() => {
+                  route?.params?.onCancel && route?.params?.onCancel();
+                });
               }}
             />
             <ButtonBorder
@@ -107,8 +108,9 @@ function AlertModal() {
               width={148}
               title={route?.params?.titleConfirm}
               onPress={() => {
-                goBack();
-                route?.params?.onConfirm && route?.params?.onConfirm();
+                goBack().then(() => {
+                  route?.params?.onConfirm && route?.params?.onConfirm();
+                });
               }}
             />
           </Div>
@@ -124,8 +126,9 @@ function AlertModal() {
               width={148}
               title={route?.params?.titleClose}
               onPress={() => {
-                goBack();
-                route?.params?.onConfirm && route?.params?.onConfirm();
+                goBack().then(() => {
+                  route?.params?.onConfirm && route?.params?.onConfirm();
+                });
               }}
             />
           </Div>

@@ -11,7 +11,7 @@ import {
   Label,
   LoadingIndicator,
 } from 'components';
-import {Ecolors, Icons, stringApp} from 'constant';
+import {Ecolors, Icons} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {Platform, ScrollView, StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -19,12 +19,7 @@ import {useDispatch} from 'react-redux';
 import {doLogin, getInfo} from 'reducer/authen';
 import {apiAuth, goBack, navigate, uploadFile} from 'services';
 import {useAppSelector} from 'store/hooks';
-import {
-  converRistInfoInDto,
-  getAddressRejectWard,
-  heightScale,
-  Log,
-} from 'utils';
+import {getAddressRejectWard, heightScale, Log} from 'utils';
 import Line from './Line';
 
 function Lbl(p: {content: string; marginTop?: number}) {
@@ -101,9 +96,6 @@ function ReviewInfoModal() {
   } = route?.params?.data;
   const [bank, setBank] = useState<any>(null);
   const [branch, setBranch] = useState<any>(null);
-  const [annualIncome, setAnnualIncome] = useState<any>(null);
-  const [job, setJob] = useState<string>('');
-  const [position, setPosition] = useState<string>('');
   const [number, setNumber] = useState('');
   const [ward, setWard] = useState<any>(null);
   const [address, setAddress] = useState<string>('');
@@ -111,7 +103,6 @@ function ReviewInfoModal() {
   const [isEditAddress, setIsEditAddress] = useState<boolean>(false);
   const [isLike, setIsLike] = useState<boolean>(true);
   const [isAccept, setIsAccept] = useState<boolean>(false);
-  const [isAcceptFatca, setIsAcceptFatca] = useState<boolean>(true);
   //
   //
   const [mailingCountry, setMailingCountry] = useState<any>(null);
@@ -119,8 +110,6 @@ function ReviewInfoModal() {
   const [mailingDistrict, setMailingDistrict] = useState<any>(null);
   const [mailingWard, setMailingWard] = useState<any>(null);
   const [mailingAddress, setMailingAddress] = useState<string>('');
-  //
-  const [riskAssessment, setRiskAssessment] = useState<any>({});
   //
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -165,6 +154,13 @@ function ReviewInfoModal() {
     }
     return () => {};
   }, [isLike]);
+
+  const gotoEsign = () => {
+    navigate('DigitalSignatureScreen', {
+      isHideBack: true,
+    });
+    return;
+  };
 
   const onConfirm = async () => {
     // check dataaa
@@ -225,9 +221,6 @@ function ReviewInfoModal() {
           branchId: `${branch?.id || bank?.id || ''}`,
           name: name || currentUser.name || userRedux.name,
           number: number,
-          job: job || '',
-          position: position || '',
-          annualIncome: annualIncome?.name || annualIncome?.nameEn || '',
         },
         userAddress: {
           permanentAddress: address,
@@ -242,10 +235,9 @@ function ReviewInfoModal() {
           mailingDistrictId: mailingDistrict?.id,
           mailingWardId: mailingWard?.id,
         },
-        riskInfoInDto: converRistInfoInDto(riskAssessment),
-        name: name || currentUser?.name || userRedux?.name, // 'Nguyen Thanh Phong';
-        email: email || currentUser?.email || userRedux?.email, //'po.ntp.19946@gmail.com';
-        phone: phone || currentUser?.phone || userRedux?.phone,
+        name: name || currentUser.name || userRedux.name, // 'Nguyen Thanh Phong';
+        email: email || currentUser.email || userRedux.email, //'po.ntp.19946@gmail.com';
+        phone: phone || currentUser.phone || userRedux.phone,
       };
       const res = await apiAuth.createEKYC(data);
       setLoading(false);
@@ -266,14 +258,14 @@ function ReviewInfoModal() {
             titleClose: `alert.dongy`,
             onClose: async () => {
               if (route.params.data.isKYC) {
-                navigate('DigitalSignatureScreen');
+                gotoEsign();
                 return;
               }
               navigate('OverviewScreen');
             },
             onConfirm: async () => {
               if (route.params.data.isKYC) {
-                navigate('DigitalSignatureScreen');
+                gotoEsign();
                 return;
               }
               navigate('OverviewScreen');
@@ -288,7 +280,7 @@ function ReviewInfoModal() {
         titleClose: `alert.dongy`,
         onClose: async () => {
           if (route.params.data.isKYC) {
-            navigate('DigitalSignatureScreen');
+            gotoEsign();
             return;
           }
           if (statusScreen != 'main') {
@@ -299,7 +291,7 @@ function ReviewInfoModal() {
         },
         onConfirm: async () => {
           if (route.params.data.isKYC) {
-            navigate('DigitalSignatureScreen');
+            gotoEsign();
             return;
           }
           if (statusScreen != 'main') {
@@ -310,7 +302,7 @@ function ReviewInfoModal() {
         },
         onCancel: () => {
           if (route.params.data.isKYC) {
-            navigate('DigitalSignatureScreen');
+            gotoEsign();
             return;
           }
           if (statusScreen != 'main') {
@@ -410,34 +402,6 @@ function ReviewInfoModal() {
             value={branch}
             paddingHorizontal={0}
             onChange={a => setBranch(a)}
-          />
-          <Lbl marginTop={13} content={`accountverify.nghenghiep`} />
-          <InputItem
-            // keyboardType={'number-pad'}
-            value={job}
-            onChangeText={a => setJob(a)}
-            marginHorizontal={0}
-            marginTop={6}
-          />
-          <Lbl marginTop={13} content={`accountverify.chucvu`} />
-          <InputItem
-            // keyboardType={'number-pad'}
-            value={position}
-            onChangeText={a => setPosition(a)}
-            marginHorizontal={0}
-            marginTop={6}
-          />
-          <Lbl marginTop={13} content={`accountverify.mucthunhaphangthang`} />
-          <Dropdown
-            multilanguage={true}
-            isActive={true}
-            content={`accountverify.mucthunhaphangthang`}
-            // url={`bank/branch/list?bankId=${bank?.id || 0}`}
-            initData={stringApp.monthlyIncom}
-            marginTop={6}
-            value={annualIncome}
-            paddingHorizontal={0}
-            onChange={a => setAnnualIncome(a)}
           />
         </ItemII>
         <ItemII
@@ -809,12 +773,9 @@ function ReviewInfoModal() {
             <Label
               lineHeight={22}
               size={15}>{`accountverify.contentdiachi1`}</Label>
-            {`${email || currentUser?.email || userRedux?.email || ''}`}
+            {`${email || currentUser.email || ''}`}
           </Label>
-          <Label marginBottom={10} marginTop={10} lineHeight={22} size={15}>
-            {`accountverify.contentinhoso`}
-          </Label>
-          {/* <Label
+          <Label
             marginTop={5}
             lineHeight={22}
             size={15}>{`accountverify.contentdiachi2`}</Label>
@@ -823,7 +784,7 @@ function ReviewInfoModal() {
             lineHeight={22}
             marginBottom={10}
             marginTop={5}
-            size={15}>{`accountverify.contentdiachi3`}</Label> */}
+            size={15}>{`accountverify.contentdiachi3`}</Label>
           <Div padding={10} backgroundColor={Ecolors.spaceColor} marginTop={5}>
             <Label
               marginTop={8}
@@ -857,37 +818,6 @@ function ReviewInfoModal() {
           </Div>
           <Div
             flexDirection={'row'}
-            paddingTop={17}
-            alignItems={'flex-start'}
-            justifyContent={'flex-start'}>
-            <Button
-              widthHeight={25}
-              onPress={() => {
-                setIsAcceptFatca(a => !a);
-              }}
-              marginRight={13}
-              borderWidth={1}
-              alignItems={'center'}
-              justifyContent={'center'}
-              borderColor={
-                isAcceptFatca ? Ecolors.mainColor : Ecolors.spaceColor
-              }
-              borderRadius={25}>
-              <ImageView
-                source={isAcceptFatca ? Icons.check : Icons.uncheck}
-                widthHeight={20}
-                tintColor={
-                  isAcceptFatca ? Ecolors.mainColor : Ecolors.grayColor
-                }
-              />
-            </Button>
-            <Div flex={1}>
-              <Label>{`accountverify.tongdongyvoidieukhoanfatca`}</Label>
-            </Div>
-          </Div>
-          <Div
-            flexDirection={'row'}
-            width={'100%'}
             paddingBottom={24}
             paddingTop={17}
             alignItems={'center'}
@@ -909,42 +839,10 @@ function ReviewInfoModal() {
                 tintColor={isAccept ? Ecolors.mainColor : Ecolors.grayColor}
               />
             </Button>
-            <Div flex={1}>
-              <Label>{`accountverify.toidongyvoidieukhoantren`}</Label>
-            </Div>
+            <Label>{`accountverify.toidongyvoidieukhoantren`}</Label>
           </Div>
         </ItemII>
 
-        <ItemII
-          title={'reviewinfoscreen.danhgiamucdoruiro'}
-          icon={Icons.riskassessment}>
-          {stringApp.riskAssessment.map((item: any, index: number) => {
-            return (
-              <Div marginTop={13} key={item.id}>
-                <Label multilanguage={false}>
-                  {I18nState == 'vi' ? item.content : item.contentEn}
-                </Label>
-                <Dropdown
-                  marginTop={13}
-                  paddingHorizontal={0}
-                  multilanguage={false}
-                  isActive={true}
-                  value={riskAssessment[item.id]}
-                  content={I18nState == 'vi' ? item.content : item.contentEn}
-                  initData={item.data}
-                  onChange={datachange => {
-                    setRiskAssessment(a => {
-                      return {
-                        ...a,
-                        [item.id]: datachange,
-                      };
-                    });
-                  }}
-                />
-              </Div>
-            );
-          })}
-        </ItemII>
         <Div height={120} />
       </ScrollView>
       <Div
@@ -960,13 +858,9 @@ function ReviewInfoModal() {
           type={1}
           isDisable={
             !isAccept ||
-            !isAcceptFatca ||
             !number.length ||
-            !job.length ||
-            !position.length ||
             !bank ||
             !branch ||
-            !annualIncome ||
             //
             (!ward && !userAddress?.ward) ||
             !address.length ||
@@ -975,7 +869,6 @@ function ReviewInfoModal() {
             !mailingProvince ||
             !mailingDistrict ||
             !mailingWard ||
-            !(Object.keys(riskAssessment).length < 5) ||
             !mailingAddress.length
           }
           onPress={() => {

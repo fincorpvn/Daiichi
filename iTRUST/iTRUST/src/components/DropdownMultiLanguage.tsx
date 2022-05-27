@@ -39,7 +39,7 @@ function DropdownMultiLanguage(P: {}) {
       minWidth={55}
       borderRadius={30}
       paddingVertical={5}
-      backgroundColor={Ecolors.redColor}>
+      backgroundColor={Ecolors.mainColor}>
       <ImageView
         source={activeLanguage.icons || Icons.vietnam}
         height={22}

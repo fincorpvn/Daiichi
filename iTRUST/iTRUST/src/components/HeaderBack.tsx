@@ -21,6 +21,7 @@ interface IpropsHeaderBack {
   onLayout?: (t: any) => void;
   step?: number;
   isShowStep?: boolean;
+  isHideBack?: boolean;
 }
 
 function HeaderBack({
@@ -36,6 +37,7 @@ function HeaderBack({
   step,
   isShowStep,
   contentCenter,
+  isHideBack,
 }: IpropsHeaderBack) {
   const insests = useSafeAreaInsets();
 
@@ -52,7 +54,7 @@ function HeaderBack({
           // backgroundColor={Ecolors.mainColor}
         >
           <Div flexDirection={'row'} justifyContent={'flex-start'}>
-            <Label size={18} fontWeight={'700'}>
+            <Label size={18} color={Ecolors.whiteColor} fontWeight={'700'}>
               {title}
             </Label>
           </Div>
@@ -81,23 +83,27 @@ function HeaderBack({
           paddingRight={24}
           // backgroundColor={Ecolors.mainColor}
         >
-          <Button
-            onPress={() => goBack()}
-            height={40}
-            width={60}
-            paddingLeft={10}
-            paddingVertical={10}
-            flexDirection={'row'}
-            alignItems={'center'}
-            justifyContent={'flex-start'}>
-            <ImageView
-              source={Icons.back}
-              width={8}
-              height={14}
-              resizeMode={'contain'}
-              tintColor={Ecolors.textColor}
-            />
-          </Button>
+          {isHideBack ? (
+            <Div height={40} width={60} />
+          ) : (
+            <Button
+              onPress={() => goBack()}
+              height={40}
+              width={60}
+              paddingLeft={10}
+              paddingVertical={10}
+              flexDirection={'row'}
+              alignItems={'center'}
+              justifyContent={'flex-start'}>
+              <ImageView
+                source={Icons.back}
+                width={8}
+                height={14}
+                resizeMode={'contain'}
+                tintColor={Ecolors.whiteColor}
+              />
+            </Button>
+          )}
           <Div
             flexDirection={'row'}
             alignItems={'center'}
@@ -107,7 +113,7 @@ function HeaderBack({
               textAlign={'center'}
               multilanguage={multilanguage ?? true}
               size={16}
-              color={Ecolors.textColor}>
+              color={Ecolors.whiteColor}>
               {title}
             </Label>
           </Div>
@@ -122,9 +128,9 @@ function HeaderBack({
               alignItems={'center'}
               justifyContent={'flex-end'}>
               {loading ? (
-                <ActivityIndicator size={'small'} color={Ecolors.textColor} />
+                <ActivityIndicator size={'small'} color={Ecolors.whiteColor} />
               ) : (
-                <Label color={Ecolors.textColor}>{titleRight}</Label>
+                <Label color={Ecolors.whiteColor}>{titleRight}</Label>
               )}
             </Button>
           )}

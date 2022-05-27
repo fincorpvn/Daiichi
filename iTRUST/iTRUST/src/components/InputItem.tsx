@@ -93,7 +93,7 @@ function InputItem({
             ? Ecolors.redColor
             : isFocus
             ? Ecolors.focusColor
-            : Ecolors.bordercolor
+            : Ecolors.grayColor
         }
         borderRadius={5}
         justifyContent={'flex-start'}
@@ -132,11 +132,9 @@ function InputItem({
             onChangeText={(evt: string) => onChangeText && onChangeText(evt)}
           />
         ) : (
-          <Div marginVertical={10}>
-            <Label multilanguage={false} size={15} color={Ecolors.textColor}>
-              {value || ''}
-            </Label>
-          </Div>
+          <Label multilanguage={false} size={15} color={Ecolors.textColor}>
+            {value || ''}
+          </Label>
         )}
         {isInput && renderButtonRight && renderButtonRight()}
         {isShowAndHide && (

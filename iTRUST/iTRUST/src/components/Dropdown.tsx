@@ -15,6 +15,7 @@ import {useAppSelector} from 'store/hooks';
 import {
   heightScale,
   heightScreen,
+  Log,
   removeAllSpace,
   removeUtf8,
   widthScale,

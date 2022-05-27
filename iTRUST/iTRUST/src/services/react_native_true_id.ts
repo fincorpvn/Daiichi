@@ -4,8 +4,9 @@ import {convertStringTime, getAddressRejectWard} from './../utils/utils';
 import RNTrueId from 'react-native-true-id';
 import {getStoreToken} from 'utils/storage';
 import {Platform} from 'react-native';
-import {urlApp} from 'constant';
+import {urlApp, Ecolors} from 'constant';
 
+var stringJsonColor = `{\"main_color\":\"${Ecolors.mainColor}\",\"second_color\":\"${Ecolors.spaceColor}\",\"text_color\":\"${Ecolors.textColor}\",\"border_input_color\":\"${Ecolors.bordercolor}\",\"background_color\":\"${Ecolors.whiteColor}\",\"close_color\":\"${Ecolors.textColor}\"}`;
 var PublicFaceScanEncryptionKey =
   '-----BEGIN PUBLIC KEY-----\n' +
   'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtYdqkDpAE9umyJDfapTa\n' +
@@ -29,6 +30,7 @@ var configInfo = {
   zoomPublicKey: PublicFaceScanEncryptionKey,
   zoomAuthURL: 'https://onboard-liveness.trueid.ai/liveness/key',
   language: 'vi',
+  themeColor: stringJsonColor,
 };
 
 export function startScan(
@@ -42,8 +44,6 @@ export function startScan(
   return new Promise(
     async (resolve: (e: any) => void, reject: (e: any) => void) => {
       try {
-        console.log('RNTrueId', RNTrueId);
-
         const token = await getStoreToken();
         await RNTrueId.configure({
           ...configInfo,
@@ -140,97 +140,97 @@ export function startScan(
             cardInfo,
           };
 
-          if (decision.code == -1) {
-            // yeu cau nhap laij, toi da 3 lan
-            //
-            reject(null);
-          } else {
-            const photoAfterURL = await uploadFile({
-              fileBase64:
-                Platform.OS === 'android'
-                  ? backCardImage.replace(/\n/g, '')
-                  : backCardImage,
-            });
-            const photoBeforeURL = await uploadFile({
-              fileBase64:
-                Platform.OS === 'android'
-                  ? frontCardImage.replace(/\n/g, '')
-                  : frontCardImage,
-            });
-            const avatarUrl = await uploadFile({
-              fileBase64:
-                Platform.OS === 'android'
-                  ? person.selfie.replace(/\n/g, '')
-                  : person.selfie,
-            });
-            const listProvince = await apiMain.getProvince({
-              countryId: 234,
-            });
-            const province = listProvince.data.find(
-              (a: any) =>
-                a.administrativeCode == front.id_address_province.code,
-            );
-            const listDistrict = await apiMain.getDistrict({
-              provinceId: province.id,
-            });
+          // if (decision.code == -1) {
+          //   // yeu cau nhap laij, toi da 3 lan
+          //   //
+          //   reject(null);
+          // } else {
+          //   const photoAfterURL = await uploadFile({
+          //     fileBase64:
+          //       Platform.OS === 'android'
+          //         ? backCardImage.replace(/\n/g, '')
+          //         : backCardImage,
+          //   });
+          //   const photoBeforeURL = await uploadFile({
+          //     fileBase64:
+          //       Platform.OS === 'android'
+          //         ? frontCardImage.replace(/\n/g, '')
+          //         : frontCardImage,
+          //   });
+          //   const avatarUrl = await uploadFile({
+          //     fileBase64:
+          //       Platform.OS === 'android'
+          //         ? person.selfie.replace(/\n/g, '')
+          //         : person.selfie,
+          //   });
+          //   const listProvince = await apiMain.getProvince({
+          //     countryId: 234,
+          //   });
+          //   const province = listProvince.data.find(
+          //     (a: any) =>
+          //       a.administrativeCode == front.id_address_province.code,
+          //   );
+          //   const listDistrict = await apiMain.getDistrict({
+          //     provinceId: province.id,
+          //   });
 
-            const district = listDistrict.data.find(
-              (a: any) =>
-                a.administrativeCode == front.id_address_district.code,
-            );
-            const listWard = await apiMain.getWard({
-              districtId: district.id,
-            });
-            const ward = listWard.data.find(
-              (a: any) => a.administrativeCode == front.id_address_ward?.code,
-            );
-            const userProfile = {
-              gender: person.gender == 'MALE' ? 1 : 2,
-              dob: convertStringTime(person.dob || ''),
-              nationalityId: 234,
-              idTypeId: 1,
-              idNo: person.idNumber,
-              dateOfIssue: convertStringTime(person.doi),
-              placeOfIssue: person.givenPlace,
-              photoBeforeURL,
-              photoBeforeFileName: 'cmnd-mat-truoc',
-              photoAfterURL,
-              photoAfterFileName: 'cmnd-mat-sau',
-              avatarUrl,
-              avatarFileName: 'chan-dung',
-            };
-            const userAddress = {
-              permanentAddress: getAddressRejectWard(
-                ward,
-                front.id_address.value,
-              ),
-              countryId: 234,
-              provinceId: province.id,
-              districtId: district.id,
-              wardId: ward?.id || 0,
-              //
-              mailingAddress: getAddressRejectWard(
-                ward,
-                front.id_address.value,
-              ),
-              mailingCountryId: 234,
-              mailingProvinceId: province.id,
-              mailingDistrictId: district.id,
-              mailingWardId: ward?.id || 0,
-            };
-            console.log('callback', {
-              photoAfterURL,
-              photoBeforeURL,
-              avatarUrl,
-            });
-            resolve({
-              userProfile,
-              userAddress,
-              isKYC: !!decision?.code,
-              name: person.fullname,
-            });
-            return null;
-          }
+          //   const district = listDistrict.data.find(
+          //     (a: any) =>
+          //       a.administrativeCode == front.id_address_district.code,
+          //   );
+          //   const listWard = await apiMain.getWard({
+          //     districtId: district.id,
+          //   });
+          //   const ward = listWard.data.find(
+          //     (a: any) => a.administrativeCode == front.id_address_ward?.code,
+          //   );
+          //   const userProfile = {
+          //     gender: person.gender == 'MALE' ? 1 : 2,
+          //     dob: convertStringTime(person.dob || ''),
+          //     nationalityId: 234,
+          //     idTypeId: 1,
+          //     idNo: person.idNumber,
+          //     dateOfIssue: convertStringTime(person.doi),
+          //     placeOfIssue: person.givenPlace,
+          //     photoBeforeURL,
+          //     photoBeforeFileName: 'cmnd-mat-truoc',
+          //     photoAfterURL,
+          //     photoAfterFileName: 'cmnd-mat-sau',
+          //     avatarUrl,
+          //     avatarFileName: 'chan-dung',
+          //   };
+          //   const userAddress = {
+          //     permanentAddress: getAddressRejectWard(
+          //       ward,
+          //       front.id_address.value,
+          //     ),
+          //     countryId: 234,
+          //     provinceId: province.id,
+          //     districtId: district.id,
+          //     wardId: ward?.id || 0,
+          //     //
+          //     mailingAddress: getAddressRejectWard(
+          //       ward,
+          //       front.id_address.value,
+          //     ),
+          //     mailingCountryId: 234,
+          //     mailingProvinceId: province.id,
+          //     mailingDistrictId: district.id,
+          //     mailingWardId: ward?.id || 0,
+          //   };
+          //   console.log('callback', {
+          //     photoAfterURL,
+          //     photoBeforeURL,
+          //     avatarUrl,
+          //   });
+          //   resolve({
+          //     userProfile,
+          //     userAddress,
+          //     isKYC: !!decision?.code,
+          //     name: person.fullname,
+          //   });
+          //   return null;
+          // }
         });
       } catch (error) {
         console.log('errror', error);

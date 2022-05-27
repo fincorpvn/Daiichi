@@ -17,7 +17,7 @@ export default {
     forgotpass: 'Quên mật khẩu ?',
     signuptitle: 'Bạn chưa có tài khoản? ',
     signup: 'Đăng ký!',
-    accountplacehoder: 'Số điện thoại/CMND/CCCD',
+    accountplacehoder: 'Nhập số điện thoại',
     passwordplacehoder: 'Mật khẩu',
     fincorp: `${stringApp.companyName}`,
     thefintechdeveloper: 'The fintech developer',
@@ -655,4 +655,9 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
       'Chúng tôi không thể xác minh thông tin bạn đang cung cấp vì chất lượng hình chụp không tốt. Vui lòng làm lại!',
   },
   //
+  component: {
+    ngay: 'Ngày',
+    thang: 'Tháng',
+    nam: 'Năm',
+  },
 };

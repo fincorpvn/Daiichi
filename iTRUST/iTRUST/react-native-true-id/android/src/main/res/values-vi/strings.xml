@@ -5,7 +5,7 @@
     <string name="true_id_back_side_photo">Chụp giấy tờ mặt sau</string>
     <string name="true_id_front_side_message">Vui lòng di chuyển camera để thấy rõ mặt trước, không che khuất bất kỳ thông tin trên CMND/CCCD.</string>
     <string name="true_id_back_side_message">Vui lòng di chuyển camera để thấy rõ mặt sau, không che khuất bất kỳ thông tin trên CMND/CCCD.</string>
-    <string name="true_use_this_photo">Sử dụng</string>
+    <string name="true_use_this_photo">Sử dụng hình này</string>
     <string name="true_retake_photo">Chụp lại</string>
     <string name="true_please_wait_while_we_scanning_your_identity">Hệ thống đang thực hiện kiểm tra eKYC.\nVui lòng đợi...</string>
     <string name="true_ocr_scanning">Đang kiểm tra thông tin giấy tờ</string>
@@ -59,7 +59,7 @@
     <string name="true_personal_info">Thông tin cá nhân</string>
     <string name="true_personal_info_note">Vui lòng kiểm tra và xác nhận thông tin dưới đây là đúng.</string>
     <string name="true_name">Họ tên</string>
-    <string name="true_id_number">Số hiệu giấy tờ</string>
+    <string name="true_id_number">Số CMND/CCCD</string>
     <string name="true_confirm">Xác nhận</string>
     <string name="true_place_of_issue">Nơi cấp</string>
     <string name="true_expiry_date">Ngày hết hạn</string>
@@ -69,10 +69,12 @@
     <string name="true_address">Địa chỉ thường trú</string>
     <string name="true_capture">Chụp ảnh</string>
     <string name="true_feedback_move_phone_closer">Di chuyển lại gần</string>
+    <string name="true_feedback_move_phone_further">Di chuyển ra xa hơn</string>
     <string name="true_presession_frame_your_face">Để mặt của bạn trong hình Bầu Dục</string>
     <string name="true_sex">Giới tính</string>
     <string name="true_male">Nam</string>
     <string name="true_female">Nữ</string>
     <string name="true_id_type">Loại giấy tờ</string>
     <string name="true_capture_borken">Ảnh bạn chụp bị lỗi</string>
+    <string name="true_token_expired">Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại</string>
 </resources>

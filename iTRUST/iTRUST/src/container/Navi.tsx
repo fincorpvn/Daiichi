@@ -57,7 +57,7 @@ function Navi() {
   }, [statusScreen]);
 
   const gotoEKYC = () => {
-    if (currentUser?.investmentProfile?.isReceivedHardProfile === 0) {
+    if (currentUser?.investmentProfile?.isReceivedHardProfile == 0) {
       setTimeout(() => {
         navigate('ControlEKYCScreen', {
           onBack: () => {

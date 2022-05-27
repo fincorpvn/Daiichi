@@ -63,7 +63,6 @@ function AccountInfoModal() {
   const getCountry = async () => {
     try {
       const res = await apiMain.getCountry();
-      // console.log('ress', res);
       const c = res.data.find((a: any) => a.id == mailingCountryId);
       if (c) {
         setCountry(c);

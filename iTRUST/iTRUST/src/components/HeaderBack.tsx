@@ -151,6 +151,7 @@ function HeaderBack({
                   source={iconRight || Icons.edit}
                   width={16}
                   height={19}
+                  tintColor={Ecolors.textColor}
                   resizeMode={'contain'}
                 />
               )}

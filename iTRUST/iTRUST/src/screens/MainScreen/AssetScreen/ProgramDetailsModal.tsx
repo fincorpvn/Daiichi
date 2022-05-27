@@ -153,7 +153,9 @@ function ProgramDetailsModal(p: {data: any}) {
           />
           <T
             title={`assetscreen.sldonviquy`}
-            content={convertNav(data?.totalOfUnit ?? 0, true)}
+            content={`${convertNav(data?.totalOfUnit ?? 0, true)} ${
+              I18nState == 'vi' ? 'CCQ' : 'Units'
+            }`}
             isLine={true}
           />
           <T

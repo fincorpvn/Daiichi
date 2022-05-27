@@ -17,7 +17,7 @@ export default {
     forgotpass: 'Forgot password ?',
     signuptitle: 'You do not have an account? ',
     signup: 'Register!',
-    accountplacehoder: 'Mobile phone number/ID Card',
+    accountplacehoder: 'Mobile phone number',
     passwordplacehoder: 'Password',
     fincorp: `${stringApp.appName}`,
     thefintechdeveloper: 'Invest in what matters',
@@ -656,4 +656,9 @@ export default {
       'Currently, we cannot verify your information because of bad quality pictures. Please try later!',
   },
   //
+  component: {
+    ngay: 'Day',
+    thang: 'Month',
+    nam: 'Year',
+  },
 };

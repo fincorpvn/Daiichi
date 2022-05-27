@@ -130,7 +130,7 @@ function OrderTransaction() {
         justifyContent={'center'}>
         <ButtonBorder
           onPress={() => {
-            if (currentUser?.investmentProfile?.isReceivedHardProfile === 0) {
+            if (currentUser?.investmentProfile?.isReceivedHardProfile == 0) {
               navigate('ControlEKYCScreen', {
                 onBack: () => {
                   navigate('TransactionScreen');

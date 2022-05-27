@@ -1,5 +1,19 @@
 # react-native-true-id
 
+## UPDATE CONFIG COLOR 
+# version 1.6.0
+* color config will be format by JSON with 5 key :
+- "main_color" : "#C6322D"-> color on button capture, color progress( text and progressbar), color on indicator(active - topbar) ,
+  background color on Button confirm/ button dialog/ button confirm-info, text color on Button Retake
+- "second_color":"#F5F5F5" -> color on indicator(deactive - topbar),background Button Retake
+- "text_color":"#30363D" -> color all text on title -topbar, description on topbar, title and text on Screen Personal Info
+- "border_input_color":"#C4C5CE" -> color border on edittext of screen Screen Personal Info
+- "background_color":"#FFFFFF" -> background all screen 
+- "close_color":"#FFFFFF" -> button back,close on modal
+
+if json not input color. it will be get default color(color of VNC).
+Color need be start with "#" and lenght 7 or 9 character . "#FFFFFF" or "#80FFFFFF"
+
 ## Getting started
 
 Install trueID React Native

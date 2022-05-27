@@ -88,7 +88,7 @@ function EditBankInfoModal() {
 
   const onConfirm = async () => {
     try {
-      if (!name.length || !number.length || !bank) {
+      if (!name.length || !number.length || !bank || !branch) {
         Alert.showError({
           content: `alert.vuilongnhapdayduthongtintaikhoannganhang`,
           onPress: () => {},
@@ -140,7 +140,6 @@ function EditBankInfoModal() {
         },
       });
     } catch (error: any) {
-      console.log('error', error);
       Alert.showError({
         content: I18nState == 'vi' ? error.message : error.messageEn,
         multilanguage: false,
@@ -151,8 +150,6 @@ function EditBankInfoModal() {
       setLoading(false);
     }
   };
-
-  Log('branch', branch);
 
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>

@@ -47,10 +47,10 @@ export function startScan(
         const token = await getStoreToken();
         await RNTrueId.configure({
           ...configInfo,
-          accessToken: token,
+          accessToken: `${token}`,
           ...config,
         });
-        console.log('RNTrueId', RNTrueId);
+        console.log('RNTrueId', {RNTrueId, accessToken: `${token}`});
         return RNTrueId.start(async (cardInfo: any) => {
           startLoading && startLoading();
           const {

@@ -1,4 +1,4 @@
-import { useRoute } from '@react-navigation/core';
+import {useRoute} from '@react-navigation/core';
 import {
   Alert,
   ButtonBorder,
@@ -7,20 +7,20 @@ import {
   ImageView,
   Label,
 } from 'components';
-import { Icons } from 'constant';
-import React, { useEffect, useRef, useState } from 'react';
-import { Platform } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { getInfo } from 'reducer/authen';
-import { apiAuth, goBack, navigate, startScan, uploadFile } from 'services';
-import { img } from 'services/test';
-import { useAppSelector } from 'store/hooks';
-import { Log } from 'utils';
-import { setStoreToken } from 'utils/storage';
+import {Icons} from 'constant';
+import React, {useEffect, useRef, useState} from 'react';
+import {Platform} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {getInfo} from 'reducer/authen';
+import {apiAuth, goBack, navigate, startScan, uploadFile} from 'services';
+import {img} from 'services/test';
+import {useAppSelector} from 'store/hooks';
+import {Log} from 'utils';
+import {setStoreToken} from 'utils/storage';
 
 function ControlEKYCScreen() {
   const route = useRoute<any>();
-  const { statusScreen } = useAppSelector(state => state.authen);
+  const {statusScreen} = useAppSelector(state => state.authen);
   const [loading, setLoading] = useState(false);
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
   const countTime = useRef<number>(1);
@@ -82,8 +82,8 @@ function ControlEKYCScreen() {
           language: I18nState,
           ...(res &&
             !!accessToken.current.length && {
-            accessToken: res.data.access_token || accessToken.current,
-          }),
+              accessToken: res.data.access_token || accessToken.current,
+            }),
         },
       );
       if (!!scanData) {

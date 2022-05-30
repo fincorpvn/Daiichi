@@ -11,7 +11,7 @@ import {
 } from 'reducer/transaction';
 import {navigate} from 'services';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
-import {heightScale} from 'utils';
+import {heightScale, Log} from 'utils';
 import ListOrderTransaction from './ListOrderTransaction';
 
 const convertTitleOrderType = (a: string) => {
@@ -130,7 +130,7 @@ function OrderTransaction() {
         justifyContent={'center'}>
         <ButtonBorder
           onPress={() => {
-            if (currentUser?.investmentProfile?.isReceivedHardProfile == 0) {
+            if (!currentUser?.investmentProfile?.status) {
               navigate('ControlEKYCScreen', {
                 onBack: () => {
                   navigate('TransactionScreen');

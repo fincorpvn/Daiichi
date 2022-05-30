@@ -11,6 +11,7 @@ import {Ecolors, stringApp} from 'constant';
 import React, {useCallback, useEffect, useState} from 'react';
 import {ScrollView} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useDispatch} from 'react-redux';
 import {getInfo} from 'reducer/authen';
 import {getInvestmentProfile} from 'reducer/authen/selector';
@@ -60,14 +61,16 @@ function QQ(p: {
                 }
               />
             </Button>
-            <Button
-              onPress={() => {
-                onSelect(item);
-              }}>
-              <Label multilanguage={false} size={14}>
-                {I18nState == 'vi' ? item.name : item.nameEn}
-              </Label>
-            </Button>
+            <Div flex={1}>
+              <Button
+                onPress={() => {
+                  onSelect(item);
+                }}>
+                <Label multilanguage={false} size={14}>
+                  {I18nState == 'vi' ? item.name : item.nameEn}
+                </Label>
+              </Button>
+            </Div>
           </Div>
         );
       })}
@@ -81,6 +84,7 @@ function RiskConfirmModal() {
   const [listSelect, setListSelect] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const insets = useSafeAreaInsets();
   const investmentProfile = useAppSelector(state =>
     getInvestmentProfile(state),
   );
@@ -159,7 +163,7 @@ function RiskConfirmModal() {
         keyExtractor={keyExtractor}
       />
       <Div
-        marginBottom={40}
+        marginBottom={insets.bottom + 15}
         width={'100%'}
         alignItems={'center'}
         justifyContent={'center'}>

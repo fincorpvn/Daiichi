@@ -26,7 +26,8 @@ import {useDispatch} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 // import {handleNotification} from 'services';
 import {StatusBar} from 'react-native';
-import {Ecolors} from 'constant';
+import {Ecolors, Icons} from 'constant';
+import {Log} from 'utils';
 
 enableScreens(false);
 enableFreeze(true);
@@ -44,27 +45,38 @@ function Navi() {
 
   useEffect(() => {
     SplashScreen.hide();
-    dispatch(changeLanguage(activeLanguage));
+    // dispatch(changeLanguage(activeLanguage));
+    dispatch(
+      changeLanguage({
+        code: 'vi',
+        name: 'Vie',
+        icons: Icons.vietnam,
+      }),
+    );
     return () => {};
   }, []);
 
   useEffect(() => {
     if (statusScreen == 'main') {
-      dispatch(getInfo({}));
-      gotoEKYC();
+      getInfoAndEKYC();
     }
     return () => {};
   }, [statusScreen]);
 
-  const gotoEKYC = () => {
-    if (currentUser?.investmentProfile?.isReceivedHardProfile == 0) {
-      setTimeout(() => {
-        navigate('ControlEKYCScreen', {
-          onBack: () => {
-            navigate('OverviewScreen');
-          },
-        });
-      }, 300);
+  const getInfoAndEKYC = async () => {
+    const r: any = await dispatch(getInfo({}));
+    if (!!r) {
+      gotoEKYC(r.payload);
+    }
+  };
+
+  const gotoEKYC = (currentUser: any) => {
+    if (!currentUser?.investmentProfile?.status) {
+      navigate('ControlEKYCScreen', {
+        onBack: () => {
+          navigate('OverviewScreen');
+        },
+      });
     }
   };
 

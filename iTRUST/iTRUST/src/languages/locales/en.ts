@@ -432,6 +432,8 @@ export default {
     xemthem: 'Show more',
   },
   createordermodal: {
+    tudongtieptucdautu: 'Automatically continue to invest',
+    ngaythanhtoanhangthang: 'Monthly payment date',
     datlenhmua: 'Subscribe order',
     datlenhban: 'Redeem order',
     datlenhchuyendoi: 'Switch order',

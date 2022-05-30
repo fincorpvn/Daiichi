@@ -45,7 +45,7 @@ function Chart() {
             left: widthScale(50),
             bottom: widthScale(10),
           }}
-          domainPadding={{y: widthScale(10)}}>
+          domainPadding={{y: widthScale(20)}}>
           {/* custom number chart */}
           <VictoryChart>
             <VictoryAxis

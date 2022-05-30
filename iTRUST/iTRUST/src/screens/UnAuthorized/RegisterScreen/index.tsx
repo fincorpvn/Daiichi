@@ -83,7 +83,7 @@ function RegisterScreen() {
         phone,
         name,
         email,
-        province,
+        // province,
       })
     ) {
       navigate('SetPasswordScreen', {
@@ -93,7 +93,7 @@ function RegisterScreen() {
           phone,
           userRefCode,
           phonePostal,
-          province,
+          // province,
         },
       });
     } else {
@@ -169,7 +169,7 @@ function RegisterScreen() {
           <Lbl marginTop={13} content={`registerscreen.email`} />
           <InputItem
             inputRef={emailRef}
-            placeholder={`${exp}: Abc@gmail.com`}
+            placeholder={`${exp}: dfvn@gmail.com`}
             marginTop={6}
             titleError={
               email.length
@@ -237,7 +237,7 @@ function RegisterScreen() {
                     : `registerscreen.sodienthoaikhongduocdetrong`
                 }
                 inputRef={phoneRef}
-                placeholder={`${exp}: 03...`}
+                placeholder={`${exp}: 0968686800`}
                 keyboardType={'number-pad'}
                 marginHorizontal={0}
                 maxLength={10}
@@ -255,7 +255,7 @@ function RegisterScreen() {
               />
             </Div>
           </Div>
-          <Lbl marginTop={13} content={`accountverify.chondiachilienhe`} />
+          {/* <Lbl marginTop={13} content={`accountverify.chondiachilienhe`} />
           <Dropdown
             url={`province/list?countryId=${234}`}
             content={`accountverify.vuilongchondiachilienhe`}
@@ -267,7 +267,7 @@ function RegisterScreen() {
             onChange={(a: any) => {
               setProvince(a);
             }}
-          />
+          /> */}
 
           <Label
             marginTop={13}>{`registerscreen.magioithieucuanguoibanhang`}</Label>

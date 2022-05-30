@@ -84,12 +84,12 @@ const ComL = (p: {
             <Label
               fontWeight={'700'}
               size={14}
-              multilanguage={false}>{`\n\nLưu ý: `}</Label>
+              multilanguage={false}>{`\n\nLưu ý:\n`}</Label>
             <Label
               multilanguage={false}
               size={
                 14
-              }>{`Nếu quý khách chuyển tiền sớm, lệnh sẽ được khớp với các phiên giao dịch sớm hơn trong tháng.`}</Label>
+              }>{`- Nếu quý khách chuyển tiền sớm, lệnh sẽ được khớp với các phiên giao dịch sớm hơn trong tháng.\n- Quý khách có thể chọn một ngày bất kỳ trong tháng làm ngày thanh toán Chương trình Đầu tư Định kỳ và cố gắng đảm bảo việc duy trì đóng tiền theo kế hoạch đã đăng ký.\n- Quý khách cũng có thể chuyển tiền mua CCQ nhiều lần trong tháng tùy theo kế hoạch đầu tư của mình.`}</Label>
           </Label>
         ) : (
           <Label size={14} multilanguage={false}>
@@ -105,12 +105,12 @@ const ComL = (p: {
             <Label
               fontWeight={'700'}
               size={14}
-              multilanguage={false}>{`\n\nNotice: `}</Label>
+              multilanguage={false}>{`\n\nNotice: \n`}</Label>
             <Label
               multilanguage={false}
               size={
                 14
-              }>{`If you transfer money early this time, your SIP will be applied for closed trading session in month.`}</Label>
+              }>{`- If you transfer money early, the order will be matched with trading sessions earlier in the month.\n- You can choose any day of the month as your Recurring Investment Program payment date and try to ensure ensure the maintenance of payment according to the registered plan.\n- You can also transfer money to buy CCQ several times a month depending on your investment plan.`}</Label>
           </Label>
         )}
       </Label>

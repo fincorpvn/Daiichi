@@ -46,7 +46,7 @@ export const apiAuth = {
         username: params.username || '',
         password: params.password || '',
         confirmPassword: params.confirmPassword || '',
-        provinceId: params.provinceId || 0,
+        // provinceId: params.provinceId || 0,
         phonePostal: params.phonePostal || '',
         userRefCode: params.userRefCode || null,
       });

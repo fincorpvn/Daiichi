@@ -74,8 +74,7 @@ function SetPasswordScreen() {
   const confirmPassRef = useRef(null);
 
   const gotoRequestOtp = async () => {
-    const {name, phone, phonePostal, email, userRefCode, province} =
-      params.data;
+    const {name, phone, phonePostal, email, userRefCode} = params.data;
     try {
       setLoading(true);
       if (
@@ -93,7 +92,7 @@ function SetPasswordScreen() {
           confirmPassword,
           userRefCode,
           username: phone,
-          provinceId: province.id,
+          // provinceId: province.id,
         });
         if (res.status == 200) {
           navigate('OtpRequestModal', {

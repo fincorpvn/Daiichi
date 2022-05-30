@@ -1,4 +1,4 @@
-import React, {useImperativeHandle, useState} from 'react';
+import React, {useEffect, useImperativeHandle, useState} from 'react';
 import Modal from 'react-native-modal';
 import {StyleSheet, ViewStyle} from 'react-native';
 import {Ecolors} from 'constant';
@@ -8,7 +8,10 @@ function BottomSheetDialog(p: {children: any; style?: ViewStyle}, ref) {
       setStateModal(true);
     },
     hide: () => {
-      setStateModal(false);
+      return new Promise(async (rs, rj) => {
+        await setStateModal(false);
+        rs(true);
+      });
     },
   }));
   const [stateModal, setStateModal] = useState<boolean>(false);

@@ -8,13 +8,13 @@ import {
   LoadingIndicator,
   Toast,
 } from 'components';
-import { Ecolors, Icons } from 'constant';
-import React, { useRef, useState } from 'react';
+import {Ecolors, Icons} from 'constant';
+import React, {useRef, useState} from 'react';
 import ImageResizer from 'react-native-image-resizer';
-import { doUploadFileSignature } from 'screens/MainScreen/DigitalSignature/func';
-import { navigate } from 'services';
-import { useAppSelector } from 'store/hooks';
-import { getImageCamera, getImageLibrary, Log, widthScreen } from 'utils';
+import {doUploadFileSignature} from 'screens/MainScreen/DigitalSignature/func';
+import {navigate} from 'services';
+import {useAppSelector} from 'store/hooks';
+import {getImageCamera, getImageLibrary, Log, widthScreen} from 'utils';
 import ComActionUpload from './ComActionUpload';
 import SignatureDraw from './SignatureDraw';
 const Btn = (p: {
@@ -53,9 +53,10 @@ function RowButtonAction() {
   const [stateimage, setStateImage] = useState<any>(null);
   const hide = (cb?: () => void) => {
     if (bottomSheetUpload.current) {
-      bottomSheetUpload.current.hide();
+      bottomSheetUpload.current.hide().then(() => {
+        cb && cb();
+      });
     }
-    cb && cb();
   };
 
   return (
@@ -93,32 +94,34 @@ function RowButtonAction() {
           }}
           onCamera={async () => {
             try {
-              await getImageCamera().then((image: any) => {
-                const size = image[0]?.fileSize / 1000000;
-                if (image[0]) {
-                  ImageResizer.createResizedImage(
-                    image[0].uri,
-                    800,
-                    600,
-                    'JPEG',
-                    80,
-                    0,
-                  )
-                    .then(({ uri }) => {
-                      doUploadFileSignature({
-                        link: uri,
-                        I18nState: I18nState,
-                        setLoading: setLoading,
+              hide(async () => {
+                await getImageCamera().then((image: any) => {
+                  const size = image[0]?.fileSize / 1000000;
+                  if (image[0]) {
+                    ImageResizer.createResizedImage(
+                      image[0].uri,
+                      800,
+                      600,
+                      'JPEG',
+                      80,
+                      0,
+                    )
+                      .then(({uri}) => {
+                        doUploadFileSignature({
+                          link: uri,
+                          I18nState: I18nState,
+                          setLoading: setLoading,
+                        });
+                      })
+                      .catch(err => {
+                        Alert.showError({
+                          content: 'alert.dungluongtoida',
+                        });
+                        return;
                       });
-                    })
-                    .catch(err => {
-                      Alert.showError({
-                        content: 'alert.dungluongtoida',
-                      });
-                      return;
-                    });
-                  return;
-                }
+                    return;
+                  }
+                });
               });
             } catch (error) {
               if (!!error) {
@@ -128,48 +131,50 @@ function RowButtonAction() {
                 });
               }
             } finally {
-              hide(async () => { });
+              // hide(async () => {});
             }
           }}
           onGallery={async () => {
             try {
-              await getImageLibrary().then((image: any) => {
-                const size = image[0]?.fileSize / 1000000;
-                if (image[0]) {
-                  // if (size > 5) {
-                  //   Alert.showError({
-                  //     content: 'alert.dungluongtoida',
-                  //   });
-                  //   return;
-                  // }
-                  if (image[0].uri.endsWith('.gif')) {
-                    Alert.showError({
-                      content: 'alert.dinhdanganhkhongphuhop',
-                    });
-                    return;
-                  }
-                  ImageResizer.createResizedImage(
-                    image[0].uri,
-                    800,
-                    600,
-                    'JPEG',
-                    80,
-                    0,
-                  )
-                    .then(({ uri }) => {
-                      doUploadFileSignature({
-                        link: uri,
-                        I18nState: I18nState,
-                        setLoading: setLoading,
-                      });
-                    })
-                    .catch(err => {
+              hide(async () => {
+                await getImageLibrary().then((image: any) => {
+                  const size = image[0]?.fileSize / 1000000;
+                  if (image[0]) {
+                    // if (size > 5) {
+                    //   Alert.showError({
+                    //     content: 'alert.dungluongtoida',
+                    //   });
+                    //   return;
+                    // }
+                    if (image[0].uri.endsWith('.gif')) {
                       Alert.showError({
-                        content: 'alert.dungluongtoida',
+                        content: 'alert.dinhdanganhkhongphuhop',
                       });
                       return;
-                    });
-                }
+                    }
+                    ImageResizer.createResizedImage(
+                      image[0].uri,
+                      800,
+                      600,
+                      'JPEG',
+                      80,
+                      0,
+                    )
+                      .then(({uri}) => {
+                        doUploadFileSignature({
+                          link: uri,
+                          I18nState: I18nState,
+                          setLoading: setLoading,
+                        });
+                      })
+                      .catch(err => {
+                        Alert.showError({
+                          content: 'alert.dungluongtoida',
+                        });
+                        return;
+                      });
+                  }
+                });
               });
             } catch (error) {
               if (!!error) {
@@ -177,10 +182,10 @@ function RowButtonAction() {
                   content: 'alert.daxayraloi',
                   multilanguage: true,
                 });
-                return
-              };
+                return;
+              }
             } finally {
-              hide(async () => { });
+              // hide(async () => {});
             }
           }}
         />

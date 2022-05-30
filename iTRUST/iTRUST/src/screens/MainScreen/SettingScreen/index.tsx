@@ -110,14 +110,14 @@ function SettingScreen() {
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack type={2} title={`settingscreen.caidatvabaomat`} />
-      <RowItem
+      {/* <RowItem
         onPress={() => {
           //   change language
           navigate('SettingLanguageModal');
         }}
         title={`settingscreen.ngonngu`}
         icon={Icons.forward}
-      />
+      /> */}
       {/* <RowItem
         onPress={() => {
           // setIsActiveNoti(a => !a);

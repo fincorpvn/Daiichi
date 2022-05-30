@@ -18,7 +18,7 @@ export default {
     signuptitle: 'Bạn chưa có tài khoản? ',
     signup: 'Đăng ký!',
     accountplacehoder: 'Nhập số điện thoại',
-    passwordplacehoder: 'Mật khẩu',
+    passwordplacehoder: 'Nhập mật khẩu',
     fincorp: `${stringApp.companyName}`,
     thefintechdeveloper: 'The fintech developer',
     welcome: `Welcome to ${stringApp.companyName}!`,
@@ -437,6 +437,8 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     xemthem: 'Xem thêm',
   },
   createordermodal: {
+    tudongtieptucdautu: 'Tự động tiếp tục đầu tư',
+    ngaythanhtoanhangthang: 'Ngày thanh toán hàng tháng',
     datlenhban: 'Đặt lệnh bán',
     datlenhmua: 'Đặt lệnh mua',
     datlenhchuyendoi: 'Đặt lệnh chuyển đổi',

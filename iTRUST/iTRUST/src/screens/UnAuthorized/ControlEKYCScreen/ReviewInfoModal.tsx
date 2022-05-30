@@ -241,77 +241,36 @@ function ReviewInfoModal() {
       };
       const res = await apiAuth.createEKYC(data);
       setLoading(false);
-
       if (res.status == 200) {
         dispatch(getInfo({}));
-        if (statusScreen != 'main' && route.params.data.isKYC) {
-          // const r: any = await dispatch(
-          //   doLogin({
-          //     username: currentUser?.phone || '',
-          //     password: currentUser?.password || '',
-          //   }),
-          // );
-          Alert.show({
-            content: I18nState == 'vi' ? res.message : res.messageEn,
-            multilanguage: false,
-            type: 2,
-            titleClose: `alert.dongy`,
-            onClose: async () => {
-              if (route.params.data.isKYC) {
-                gotoEsign();
-                return;
-              }
+        Alert.show({
+          content: I18nState == 'vi' ? res.message : res.messageEn,
+          multilanguage: false,
+          type: 2,
+          titleClose: `alert.dongy`,
+          onClose: async () => {
+            gotoEsign;
+          },
+          onConfirm: async () => {
+            gotoEsign();
+          },
+        });
+        return;
+      } else {
+        Alert.showError({
+          content: I18nState == 'vi' ? res.message : res.messageEn,
+          multilanguage: false,
+          type: 2,
+          titleClose: `alert.dongy`,
+          onPress: () => {
+            if (statusScreen != 'main') {
+              navigate('LoginScreen');
+            } else {
               navigate('OverviewScreen');
-            },
-            onConfirm: async () => {
-              if (route.params.data.isKYC) {
-                gotoEsign();
-                return;
-              }
-              navigate('OverviewScreen');
-            },
-          });
-        }
+            }
+          },
+        });
       }
-      Alert.show({
-        content: I18nState == 'vi' ? res.message : res.messageEn,
-        multilanguage: false,
-        type: 2,
-        titleClose: `alert.dongy`,
-        onClose: async () => {
-          if (route.params.data.isKYC) {
-            gotoEsign();
-            return;
-          }
-          if (statusScreen != 'main') {
-            navigate('LoginScreen');
-          } else {
-            navigate('OverviewScreen');
-          }
-        },
-        onConfirm: async () => {
-          if (route.params.data.isKYC) {
-            gotoEsign();
-            return;
-          }
-          if (statusScreen != 'main') {
-            navigate('LoginScreen');
-          } else {
-            navigate('OverviewScreen');
-          }
-        },
-        onCancel: () => {
-          if (route.params.data.isKYC) {
-            gotoEsign();
-            return;
-          }
-          if (statusScreen != 'main') {
-            navigate('LoginScreen');
-          } else {
-            navigate('OverviewScreen');
-          }
-        },
-      });
     } catch (error: any) {
       Alert.show({
         content: I18nState == 'vi' ? error.message : error.messageEn,

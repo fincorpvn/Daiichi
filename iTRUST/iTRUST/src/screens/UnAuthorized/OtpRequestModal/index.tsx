@@ -250,7 +250,7 @@ function OtpRequestModal() {
       if (res.status == 200) {
         goBack();
         setTimeout(() => {
-          if (params.onConfirm) {
+          if (!!params.onConfirm) {
             params.onConfirm();
           }
         }, 150);

@@ -236,7 +236,7 @@ function LoginScreen() {
         <Label size={20} fontWeight="700">
           {`loginscreen.login`}
         </Label>
-        <DropdownMultiLanguage />
+        {/* <DropdownMultiLanguage /> */}
       </Div>
       {/* login form  */}
       <Div marginTop={33} paddingHorizontal={29} flexDirection={'column'}>

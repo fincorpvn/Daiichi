@@ -218,10 +218,16 @@ function EditAccountInfoModal() {
         nationalityId: `${nationality?.id}` || '234',
         photoAfterFileName: photoAfter?.fileName || '',
         photoAfterURL:
-          photoAfter?.dataUPload || photoAfter?.uri || photoAfter?.url || '',
+          photoAfter?.dataUPload?.url ||
+          photoAfter?.uri ||
+          photoAfter?.url ||
+          '',
         photoBeforeFileName: photoBefore?.fileName || '',
         photoBeforeURL:
-          photoBefore?.dataUPload || photoBefore?.uri || photoBefore?.url || '',
+          photoBefore?.dataUPload?.url ||
+          photoBefore?.uri ||
+          photoBefore?.url ||
+          '',
         placeOfIssue: placeOfIssue,
         nationality,
       });
@@ -235,10 +241,16 @@ function EditAccountInfoModal() {
         nationalityId: nationality?.id || '234',
         photoAfterFileName: photoAfter?.fileName || '',
         photoAfterURL:
-          photoAfter?.dataUPload || photoAfter?.uri || photoAfter?.url || '',
+          photoAfter?.dataUPload?.url ||
+          photoAfter?.uri ||
+          photoAfter?.url ||
+          '',
         photoBeforeFileName: photoBefore?.fileName || '',
         photoBeforeURL:
-          photoBefore?.dataUPload || photoBefore?.uri || photoBefore?.url || '',
+          photoBefore?.dataUPload?.url ||
+          photoBefore?.uri ||
+          photoBefore?.url ||
+          '',
         placeOfIssue: placeOfIssue,
       });
       if (res.status == 200) {

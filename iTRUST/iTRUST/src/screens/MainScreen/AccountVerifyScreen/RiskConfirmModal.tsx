@@ -99,6 +99,13 @@ function RiskConfirmModal() {
   const confirm = async () => {
     try {
       setLoading(true);
+      if (Object.keys(listSelect || {})?.length != 5) {
+        Alert.showError({
+          content: `alert.vuilongchondayduthongtin`,
+          onPress: () => {},
+        });
+        return;
+      }
       const res = await apiAuth.riskUpdate(listSelect);
       if (res.status == 200) {
         dispatch(getInfo({}));

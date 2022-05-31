@@ -609,6 +609,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     bieuphi: 'Biểu phí',
   },
   alert: {
+    vuilongchondayduthongtin: 'Vui lòng chọn đầy đủ thông tin !',
     capnhatmucdoruirothanhcong: 'Cập nhật mức độ rủi ro thành công !',
     taochukysothanhcong: 'Quý khách đã ký hợp đồng điện tử thành công!',
     logout: 'Đăng xuất',

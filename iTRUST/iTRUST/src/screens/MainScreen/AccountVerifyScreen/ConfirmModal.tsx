@@ -59,6 +59,7 @@ function ConfirmModal() {
         dispatch(getInfo({}));
       }
     } catch (error: any) {
+      Log('er', error);
       Alert.showError({
         multilanguage: false,
         content: I18nState == 'vi' ? error.message : error.messageEn,
@@ -198,6 +199,7 @@ function ConfirmModal() {
             alignItems={'center'}
             justifyContent={'center'}>
             <ButtonBorder
+              type={isAccept ? 1 : 2}
               width={343}
               loading={loading}
               onPress={() => confirm()}

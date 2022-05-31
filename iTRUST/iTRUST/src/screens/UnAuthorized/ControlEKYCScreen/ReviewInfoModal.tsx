@@ -219,7 +219,7 @@ function ReviewInfoModal() {
         userBankAccount: {
           bankId: `${bank?.id || ''}`,
           branchId: `${branch?.id || bank?.id || ''}`,
-          name: name || currentUser.name || userRedux.name,
+          name: name || currentUser?.name || userRedux?.name,
           number: number,
         },
         userAddress: {
@@ -235,9 +235,9 @@ function ReviewInfoModal() {
           mailingDistrictId: mailingDistrict?.id,
           mailingWardId: mailingWard?.id,
         },
-        name: name || currentUser.name || userRedux.name, // 'Nguyen Thanh Phong';
-        email: email || currentUser.email || userRedux.email, //'po.ntp.19946@gmail.com';
-        phone: phone || currentUser.phone || userRedux.phone,
+        name: name || currentUser?.name || userRedux.name, // 'Nguyen Thanh Phong';
+        email: email || currentUser?.email || userRedux.email, //'po.ntp.19946@gmail.com';
+        phone: phone || currentUser?.phone || userRedux.phone,
       };
       const res = await apiAuth.createEKYC(data);
       setLoading(false);
@@ -260,15 +260,14 @@ function ReviewInfoModal() {
         Alert.showError({
           content: I18nState == 'vi' ? res.message : res.messageEn,
           multilanguage: false,
-          type: 2,
-          titleClose: `alert.dongy`,
-          onPress: () => {
-            if (statusScreen != 'main') {
-              navigate('LoginScreen');
-            } else {
-              navigate('OverviewScreen');
-            }
-          },
+          // titleClose: `alert.dongy`,
+          // onPress: () => {
+          //   if (statusScreen != 'main') {
+          //     navigate('LoginScreen');
+          //   } else {
+          //     navigate('OverviewScreen');
+          //   }
+          // },
         });
       }
     } catch (error: any) {
@@ -732,7 +731,7 @@ function ReviewInfoModal() {
             <Label
               lineHeight={22}
               size={15}>{`accountverify.contentdiachi1`}</Label>
-            {`${email || currentUser.email || ''}`}
+            {`${email || currentUser?.email || ''}`}
           </Label>
           <Label
             marginTop={5}

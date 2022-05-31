@@ -279,7 +279,6 @@ function EditAccountInfoModal() {
         },
       });
     } catch (error: any) {
-      console.log('err', error);
       Alert.showError({
         content: I18nState == 'vi' ? error.message : error.messageEn,
         multilanguage: false,

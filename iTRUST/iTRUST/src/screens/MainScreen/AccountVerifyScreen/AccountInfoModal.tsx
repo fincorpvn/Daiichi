@@ -17,7 +17,7 @@ import {getInvestmentProfile} from 'reducer/authen/selector';
 import {navigate} from 'services';
 import {apiMain} from 'services/apis/apiMain';
 import {useAppSelector} from 'store/hooks';
-import {convertTimestamp, widthScale, widthScreen} from 'utils';
+import {convertTimestamp, Log, widthScale, widthScreen} from 'utils';
 
 function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
   return (
@@ -52,6 +52,7 @@ function AccountInfoModal() {
     dateOfIssue,
     placeOfIssue,
     mailingCountryId,
+    nationalityId,
     userPhotos,
   } = currentUser;
 
@@ -63,7 +64,9 @@ function AccountInfoModal() {
   const getCountry = async () => {
     try {
       const res = await apiMain.getCountry();
-      const c = res.data.find((a: any) => a.id == mailingCountryId);
+      const c = res.data.find(
+        (a: any) => a.id == mailingCountryId || a.id == nationalityId,
+      );
       if (c) {
         setCountry(c);
       }

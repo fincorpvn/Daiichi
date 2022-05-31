@@ -609,6 +609,7 @@ export default {
     bieuphi: 'Tariffs',
   },
   alert: {
+    vuilongchondayduthongtin: 'Please select full information!',
     capnhatmucdoruirothanhcong: 'Update the risk level successfully !',
     logout: 'Log Out',
     taithanhcong: 'Download complete',

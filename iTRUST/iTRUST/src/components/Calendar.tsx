@@ -8,7 +8,7 @@ import {
   widthScale,
   widthScreen,
 } from 'utils';
-const size = widthScreen / 3 - 50;
+const size = 105;
 
 function Calendar(Props: {onChange: (e: any) => void; initValue?: any}) {
   const [date, setDate] = useState<any>(null);

@@ -118,10 +118,10 @@ function AccountVerifyScreen() {
           )} */}
           <ItemCard
             onPress={() => {
-              // navigate('DigitalSignatureScreen');
-              navigate('ReviewInfoModal', {
-                data: {},
-              });
+              navigate('DigitalSignatureScreen');
+              // navigate('ReviewInfoModal', {
+              //   data: {},
+              // });
             }}
             isCheck={investmentProfile?.isReceivedHardProfile}
             title={'accountverify.hopdongdientu'}

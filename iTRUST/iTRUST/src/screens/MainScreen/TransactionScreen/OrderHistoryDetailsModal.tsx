@@ -279,7 +279,7 @@ function OrderHistoryDetailsModal() {
             </RowSpaceItem>
           </Div>
         </Div>
-        <Div
+        {/* <Div
           width={'100%'}
           alignItems={'center'}
           justifyContent={'center'}
@@ -315,7 +315,7 @@ function OrderHistoryDetailsModal() {
               </>
             )}
           </Button>
-        </Div>
+        </Div> */}
       </ScrollView>
     </Div>
   );

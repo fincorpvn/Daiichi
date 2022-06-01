@@ -1,7 +1,7 @@
 import {doGetAxios, doPostAxios} from 'services/apis/axios';
 export const apiInvestment = {
-  loadProduct: async (params: {}) => {
-    const url = 'product/active-list?productCodeOrName=';
+  loadProduct: async (params: {productCodeOrName}) => {
+    const url = `product/active-list?productCodeOrName=${params.productCodeOrName}`;
     return doGetAxios(url);
   },
   loadnav: async (params: {

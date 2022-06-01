@@ -2,7 +2,7 @@ import {Div, Label, LoadingIndicator} from 'components';
 import {Ecolors, Efonts} from 'constant';
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {getDataChart, getLoadingNav} from 'reducer/investment';
+import {getDataChart, getLoadingNav, getMaxMinNav} from 'reducer/investment';
 import {Defs, LinearGradient, Stop} from 'react-native-svg';
 import {convertNav, convertNumber, widthScale, widthScreen} from 'utils';
 import {AnimatePropTypeInterface} from 'victory-core';
@@ -14,6 +14,7 @@ import {
   VictoryLabel,
   VictoryAxis,
   VictoryGroup,
+  VictoryTheme,
 } from 'victory-native';
 import {StyleSheet} from 'react-native';
 
@@ -23,6 +24,7 @@ const animate: AnimatePropTypeInterface = {
 
 function Chart() {
   const data = useSelector((state: any) => getDataChart(state));
+  const t = useSelector((state: any) => getMaxMinNav(state));
   const loadingNav = useSelector((state: any) => getLoadingNav(state));
   return (
     <Div minHeight={270}>
@@ -38,6 +40,9 @@ function Chart() {
       )}
       {!!data.length ? (
         <VictoryChart
+          domain={{
+            y: [t.min - t.min / 3, t.max + t.min / 3],
+          }}
           width={widthScreen}
           padding={{
             right: widthScale(10),
@@ -45,6 +50,7 @@ function Chart() {
             left: widthScale(50),
             bottom: widthScale(10),
           }}
+          theme={VictoryTheme.grayscale}
           domainPadding={{y: widthScale(20)}}>
           {/* custom number chart */}
           <VictoryChart>
@@ -68,7 +74,7 @@ function Chart() {
               }}
             />
 
-            <VictoryScatter
+            {/* <VictoryScatter
               style={{data: {fill: Ecolors.mainColor}}}
               size={widthScale(2)}
               labels={({datum}) => datum.y}
@@ -90,7 +96,7 @@ function Chart() {
                   x: 1,
                 },
               ]}
-            />
+            /> */}
             <VictoryAxis
               style={{
                 axis: {stroke: Ecolors.grayColor},

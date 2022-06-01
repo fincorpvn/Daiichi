@@ -5,9 +5,10 @@ import {
   Div,
   HeaderBack,
   HTMLView,
+  ImageView,
   Label,
 } from 'components';
-import {Ecolors} from 'constant';
+import {Ecolors, Icons} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
@@ -24,6 +25,7 @@ function ConfirmModal() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [isAccept, setIsAccept] = useState<boolean>(false);
+  const [isAcceptFatca, setIsAcceptFatca] = useState<boolean>(true);
   const dispatch = useDispatch();
   const investmentProfile = useAppSelector(state =>
     getInvestmentProfile(state),
@@ -36,30 +38,32 @@ function ConfirmModal() {
     return () => {};
   }, []);
 
-  const getData = async () => {
-    try {
-      setLoading(true);
-      const res = await apiAuth.getConfirmProfile();
-      if (res.status == 200) {
-        setData(res.data);
-      }
-    } catch (error) {
-      Log('resres', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const res = await apiAuth.getConfirmProfile();
+  //     if (res.status == 200) {
+  //       setData(res.data);
+  //     }
+  //   } catch (error) {
+  //     Log('resres', error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const confirm = async () => {
     try {
       setLoading(true);
+      if (!isAccept || !isAcceptFatca) {
+        return;
+      }
       const res = await apiAuth.approveUser();
       if (res.status == 200) {
         navigate('AccountVerifyScreen');
         dispatch(getInfo({}));
       }
     } catch (error: any) {
-      Log('er', error);
       Alert.showError({
         multilanguage: false,
         content: I18nState == 'vi' ? error.message : error.messageEn,
@@ -191,15 +195,81 @@ function ConfirmModal() {
                 />
               )}
             </Button>
-            <Label>{`accountverify.toidongyvoidieukhoantren`}</Label>
+            <Div flex={1}>
+              <Label>{`accountverify.toidongyvoidieukhoantren`}</Label>
+            </Div>
           </Div>
+          <Div
+            flexDirection={'row'}
+            paddingHorizontal={16}
+            paddingBottom={24}
+            // borderTopWidth={1}
+            // borderTopColor={Ecolors.spaceColor}
+            paddingTop={17}
+            alignItems={'center'}
+            justifyContent={'flex-start'}>
+            <Button
+              widthHeight={30}
+              onPress={() => {
+                setIsAcceptFatca(a => !a);
+              }}
+              marginRight={13}
+              borderWidth={0.8}
+              alignItems={'center'}
+              justifyContent={'center'}
+              borderColor={
+                isAcceptFatca ? Ecolors.mainColor : Ecolors.spaceColor
+              }
+              borderRadius={5}>
+              {isAcceptFatca && (
+                <Div
+                  widthHeight={25}
+                  borderRadius={5}
+                  backgroundColor={Ecolors.mainColor}
+                />
+              )}
+            </Button>
+            <Div flex={1}>
+              <Label>{`accountverify.tongdongyvoidieukhoanfatca`}</Label>
+            </Div>
+          </Div>
+          {/* <Div
+            flexDirection={'row'}
+            paddingTop={17}
+            alignItems={'flex-start'}
+            justifyContent={'flex-start'}>
+            <Button
+              widthHeight={25}
+              onPress={() => {
+                setIsAcceptFatca(a => !a);
+              }}
+              marginRight={13}
+              borderWidth={1}
+              alignItems={'center'}
+              justifyContent={'center'}
+              borderColor={
+                isAcceptFatca ? Ecolors.mainColor : Ecolors.spaceColor
+              }
+              borderRadius={25}>
+              <ImageView
+                source={isAcceptFatca ? Icons.check : Icons.uncheck}
+                widthHeight={20}
+                tintColor={
+                  isAcceptFatca ? Ecolors.mainColor : Ecolors.grayColor
+                }
+              />
+            </Button>
+            <Div flex={1}>
+              <Label>{`accountverify.tongdongyvoidieukhoanfatca`}</Label>
+            </Div>
+          </Div> */}
           <Div
             marginBottom={40}
             width={'100%'}
             alignItems={'center'}
             justifyContent={'center'}>
             <ButtonBorder
-              type={isAccept ? 1 : 2}
+              type={isAcceptFatca && isAccept ? 1 : 2}
               width={343}
               loading={loading}
               onPress={() => confirm()}

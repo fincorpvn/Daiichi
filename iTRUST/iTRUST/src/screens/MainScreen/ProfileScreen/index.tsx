@@ -57,14 +57,15 @@ function ProfileScreen() {
       isForward: true,
       isLine: true,
       onPress: () => {
-        if (
-          currentUser?.investmentProfile?.status?.code ==
-            'INVESTMENT_PROFILE_APPROVE' ||
-          currentUser?.investmentProfile?.status?.code ==
-            'INVESTMENT_PROFILE_ACCEPT'
-        ) {
-          navigate('DigitalSignatureScreen');
-        }
+        navigate('DigitalSignatureScreen');
+        // if (
+        //   currentUser?.investmentProfile?.status?.code ==
+        //     'INVESTMENT_PROFILE_APPROVE' ||
+        //   currentUser?.investmentProfile?.status?.code ==
+        //     'INVESTMENT_PROFILE_ACCEPT'
+        // ) {
+        //   navigate('DigitalSignatureScreen');
+        // }
       },
     },
     // {

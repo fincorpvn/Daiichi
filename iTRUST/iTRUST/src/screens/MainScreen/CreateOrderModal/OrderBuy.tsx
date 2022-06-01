@@ -103,9 +103,12 @@ function OrderBuy({setStepTimeLine, stepTimeLine, initData}: Props) {
       const ses = await apiInvestment.checkOverCurrentSession({
         productId: e.id,
       });
+      const aaa = await apiInvestment.loadBuy({
+        id: e.id,
+      });
 
       if (res.status == 200) {
-        setListScheme(res.data.productPrograms);
+        setListScheme(aaa.data);
       }
       if (ses.status == 200) {
         setCurrentSession(ses.data);

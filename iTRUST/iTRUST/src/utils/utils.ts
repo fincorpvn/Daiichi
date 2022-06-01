@@ -13,6 +13,13 @@ const regEmail =
 const regPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9|#?!@$%^&*-]).{6,}$/;
 const regPhone = /([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/;
 
+export const converRistInfoInDto = (t: any) => {
+  const obj = {};
+  Object.keys(t).map((item: any, index: number) => {
+    obj[item] = t[item].id;
+  });
+  return obj;
+};
 export function convertReceiveAmount(
   status: boolean,
   I18nState: 'en' | 'vi' | string,
@@ -43,7 +50,8 @@ export const convertDataDownloadFile = (
     .replace('attachment; filename="', '')
     .replace(/"/g, '');
   const i = new Date().getTime();
-  const type = r.respInfo.headers?.[`content-type`];
+  const type = `application/pdf`;
+  // const type = r.respInfo.headers?.[`content-type`];
   const urlFile = `${link}${i}-${name}`;
   return {
     name: `${i}-${name}`,
@@ -75,6 +83,10 @@ export const convertNumber = (num: number | string, hideD?: boolean) => {
 
 export const convertAmount = (num: number | string, hideD?: boolean) => {
   if (!num) return `${num}${hideD ? '' : ` đ`}`;
+  if (!parseInt(`${num}`)) {
+    return '';
+  }
+
   const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
   const ar = Math.abs(
     typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
@@ -619,27 +631,27 @@ export const checkLogin = (p: {name: string; pass: string}) => {
   return true;
 };
 
-export function getMaxMinNAV(t: Array<any>) {
-  let max = null;
-  let min = null;
-  t.map((item: any, index: number) => {
-    if (!max) {
-      max = item.y;
-    } else if (item.y >= max) {
-      max = item.y;
-    }
-    if (!min) {
-      min = item.y;
-    } else if (item.y <= min) {
-      min = item.y;
-    }
-  });
-  return {
-    max: max || 10000,
-    min: min || 0,
-    space: (max || 10000) / 3,
-  };
-}
+// export function getMaxMinNAV(t: Array<any>) {
+//   let max = null;
+//   let min = null;
+//   t.map((item: any, index: number) => {
+//     if (!max) {
+//       max = item.y;
+//     } else if (item.y >= max) {
+//       max = item.y;
+//     }
+//     if (!min) {
+//       min = item.y;
+//     } else if (item.y <= min) {
+//       min = item.y;
+//     }
+//   });
+//   return {
+//     max: max || 10000,
+//     min: min || 0,
+//     space: (max || 10000) / 3,
+//   };
+// }
 
 export function Log(t?: string | object, r?: any) {
   if (__DEV__) {

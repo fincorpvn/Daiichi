@@ -109,7 +109,6 @@ function OrderSell({setStepTimeLine, stepTimeLine, initData}: Props) {
         productId: e.id,
       });
 
-      Log('ressss', res);
       if (productDetails.status == 200) {
         setProduct(productDetails.data);
       }

@@ -65,6 +65,55 @@ export const getDataChart = createSelector(
   },
 );
 
+export const getMaxMinNav = createSelector(
+  [dataNav, idFocus],
+  (dataNav, idFocus) => {
+    // let r = 1;
+    let DD = dataNav[idFocus] || [];
+    let max = null;
+    let min = null;
+    DD.map((item: any, index: number) => {
+      if (!max) {
+        max = item.nav;
+      } else if (item.nav >= max) {
+        max = item.nav;
+      }
+      if (!min) {
+        min = item.nav;
+      } else if (item.nav <= min) {
+        min = item.nav;
+      }
+    });
+    return {
+      max: max || 10000,
+      min: min || 0,
+      space: (max || 10000) / 3,
+    };
+    // const last = DD[DD.length - 1];
+    // let control = 50;
+    // if (DD?.length > control) {
+    //   r = Math.round(DD.length / control);
+    // }
+
+    // const d =
+    //   DD.filter(
+    //     (item: any, index: number) => index % r == 0 && index < DD.length,
+    //   ).map((item: any, index: number) => {
+    //     return {y: item.nav, x: item.navDate};
+    //   }) || [];
+    // if (d.length) {
+    //   return d.concat([
+    //     {
+    //       y: last?.nav || 0,
+    //       x: last?.navDate || 0,
+    //     },
+    //   ]);
+    // } else {
+    //   return [];
+    // }
+  },
+);
+
 export const getDataNavSelector = createSelector(
   [dataNav, idFocus],
   (dataNav, idFocus) => {

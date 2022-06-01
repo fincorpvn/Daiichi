@@ -241,7 +241,7 @@ export const apiAuth = {
     return doGetAxios(url);
   },
   approveUser: () => {
-    const url = `user/investment/approve-by-user`;
+    const url = `user/investment/approve-by-user?fatca=false`;
     return doGetAxios(url);
   },
   updateInvestmentInfo: (params: {
@@ -279,6 +279,7 @@ export const apiAuth = {
       avatarUrl: string; //avata url   '"https://s3-ap-southeast-1.amazonaws.com/mio-3/dev/70454e55-6340-407d-b51e-9eb8db96f4be.png"';
       avatarFileName: string; //name chan dun  'chan-dung';
     };
+    riskInfoInDto: any;
     userAddress: {
       permanentAddress: string; //  '95/48 Huynh Văn Bánh';
       countryId: number; // viet nam default 234  234;

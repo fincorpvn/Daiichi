@@ -58,10 +58,9 @@ function CardSignature() {
     setLoading(true);
     try {
       const token = await getStoreToken();
-      const url = !hardProfile
-        ? `user/file/contract`
-        : `esignature/download-contract`;
+      const url = `esignature/download-contract`;
       const bburl = `${urlApp.APIURL}api/${url}`;
+      Log('bburl', bburl);
       const link = `${
         Platform.OS === 'android'
           ? RNFS.DownloadDirectoryPath
@@ -85,6 +84,7 @@ function CardSignature() {
               Authorization: token ? `Bearer ${token}` : '',
               'Content-Type': 'application/json',
               'request-id': getUuid(),
+              Origin: urlApp.DomainName,
             })
             .then(async (res: any) => {
               if (Platform.OS === 'android') {

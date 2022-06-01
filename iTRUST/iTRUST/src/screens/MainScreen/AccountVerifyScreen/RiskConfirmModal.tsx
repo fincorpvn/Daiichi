@@ -92,20 +92,17 @@ function RiskConfirmModal() {
   const {email, riskInfo} = currentUser;
 
   useEffect(() => {
-    setListSelect(currentUser?.riskInfo || {});
+    let objjj = {};
+    stringApp.riskAssessment.map((item: any, index: number) => {
+      objjj[item.id] = item.data[0];
+    });
+    setListSelect({...objjj, ...currentUser?.riskInfo} || {});
     return () => {};
   }, [currentUser]);
 
   const confirm = async () => {
     try {
       setLoading(true);
-      if (Object.keys(listSelect || {})?.length != 5) {
-        Alert.showError({
-          content: `alert.vuilongchondayduthongtin`,
-          onPress: () => {},
-        });
-        return;
-      }
       const res = await apiAuth.riskUpdate(listSelect);
       if (res.status == 200) {
         dispatch(getInfo({}));

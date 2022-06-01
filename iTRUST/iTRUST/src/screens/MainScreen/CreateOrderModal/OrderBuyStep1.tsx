@@ -128,7 +128,7 @@ function OrderBuyStep1({
             isInput={!!product && !!scheme}
             value={amount}
             onChangeText={(t: string) => {
-              setAmount(convertNumber(`${t}`, true));
+              setAmount(convertAmount(`${t}`, true));
             }}
             keyboardType={'number-pad'}
             marginTop={6}

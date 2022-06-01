@@ -81,7 +81,7 @@ function OrderTransaction() {
         <ButtonBorder
           marginTop={20}
           size={14}
-          width={103}
+          width={125}
           height={36}
           onPress={() => onChangeOrderType('BUY')}
           type={orderType == 'BUY' ? 1 : 3}
@@ -91,7 +91,7 @@ function OrderTransaction() {
         <ButtonBorder
           marginTop={20}
           size={14}
-          width={103}
+          width={125}
           height={36}
           onPress={() => onChangeOrderType('SELL')}
           type={orderType == 'SELL' ? 1 : 3}
@@ -101,23 +101,23 @@ function OrderTransaction() {
         <ButtonBorder
           marginTop={20}
           size={14}
-          width={103}
+          width={125}
           height={36}
           onPress={() => onChangeOrderType('TRANSFER')}
           type={orderType == 'TRANSFER' ? 1 : 3}
           title={`transactionscreen.lenhhoandoi`}
         />
         <Div width={16} />
-        {/*  <ButtonBorder
+        <ButtonBorder
           marginTop={20}
           size={14}
-          width={105}
+          width={125}
           height={36}
           onPress={() => onChangeOrderType('TRANSFER_BUY')}
           type={orderType == 'TRANSFER_BUY' ? 1 : 3}
           title={`transactionscreen.lenhmuahoandoi`}
         />
-        <Div width={16} /> */}
+        <Div width={16} />
       </ScrollView>
       <Div flex={1}>
         <ListOrderTransaction />

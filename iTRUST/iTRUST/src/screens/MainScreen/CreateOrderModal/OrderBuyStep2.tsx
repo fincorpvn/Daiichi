@@ -5,7 +5,7 @@ import {ScrollView} from 'react-native';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, convertTimestamp, copyToClipboard} from 'utils';
+import {convertNumber, convertTimestamp, copyToClipboard, Log} from 'utils';
 
 interface Props {
   product: any;
@@ -212,9 +212,7 @@ function OrderBuyStep2({
                 alignItems={'center'}
                 justifyContent={'flex-end'}>
                 <Label multilanguage={false} size={14}>
-                  {I18nState == 'vi'
-                    ? scheme?.productSchemeName
-                    : scheme?.productSchemeNameEn}
+                  {I18nState == 'vi' ? scheme?.name : scheme?.nameEn}
                 </Label>
               </Div>
             </RowSpaceItem>
@@ -342,7 +340,10 @@ function OrderBuyStep2({
               // content={`${currentUser?.name || ''}-${
               //   excuseTempVolumn?.investmentNumber
               // }-${scheme?.tradeCode || ''}`}
-              content={excuseTempVolumn?.investmentNumber || ''}
+              content={
+                `${excuseTempVolumn?.investmentNumber}-${scheme?.tradeCode}` ||
+                ''
+              }
             />
             {scheme && scheme.productSchemeIsAutoBuy && (
               <>

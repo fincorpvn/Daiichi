@@ -41,16 +41,16 @@ function Chart() {
       {!!data.length ? (
         <VictoryChart
           domain={{
-            y: [t.min - t.min / 3, t.max + t.min / 3],
+            y: [t.min, t.max + t.min / 10],
           }}
           width={widthScreen}
           padding={{
             right: widthScale(10),
             top: widthScale(40),
             left: widthScale(50),
-            bottom: widthScale(10),
+            bottom: widthScale(20),
           }}
-          theme={VictoryTheme.grayscale}
+          // theme={VictoryTheme.grayscale}
           domainPadding={{y: widthScale(20)}}>
           {/* custom number chart */}
           <VictoryChart>
@@ -77,10 +77,10 @@ function Chart() {
             {/* <VictoryScatter
               style={{data: {fill: Ecolors.mainColor}}}
               size={widthScale(2)}
-              labels={({datum}) => datum.y}
+              labels={({datum}) => convertNumber(datum.y, true)}
               labelComponent={
                 <VictoryLabel
-                  dx={-widthScale(10)}
+                  dx={-widthScale(20)}
                   dy={widthScale(5)}
                   style={{
                     fontSize: widthScale(10),
@@ -92,7 +92,7 @@ function Chart() {
               }
               data={[
                 {
-                  y: 0,
+                  y: t.min,
                   x: 1,
                 },
               ]}
@@ -167,8 +167,8 @@ function Chart() {
                 y1="0%"
                 x2="0%"
                 y2="100%">
-                <Stop offset="0%" stopColor={'#FBDADC'} stopOpacity={1} />
-                <Stop offset="100%" stopColor={'#ffffff'} stopOpacity={1} />
+                <Stop offset="0%" stopColor={'#FBDADC'} stopOpacity={0.8} />
+                <Stop offset="100%" stopColor={'#ffffff'} stopOpacity={0.5} />
               </LinearGradient>
             </Defs>
           </VictoryGroup>

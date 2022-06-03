@@ -337,11 +337,8 @@ function OrderBuyStep2({
               isBtn={true}
               isBorderBottom={!!scheme.productSchemeIsAutoBuy}
               title={`createordermodal.noidung`}
-              // content={`${currentUser?.name || ''}-${
-              //   excuseTempVolumn?.investmentNumber
-              // }-${scheme?.tradeCode || ''}`}
               content={
-                `${excuseTempVolumn?.investmentNumber}-${scheme?.tradeCode}` ||
+                `${excuseTempVolumn?.investmentNumber} - ${scheme?.tradeCode}` ||
                 ''
               }
             />

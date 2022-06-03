@@ -61,7 +61,7 @@ export const convertDataDownloadFile = (
 };
 
 export const convertNumber = (num: number | string, hideD?: boolean) => {
-  if (!num) return `${num}${hideD ? '' : ` đ`}`;
+  if (!num) return `${num}${hideD ? '' : ` (VNĐ)`}`;
   const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
   const ar = Math.abs(
     typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
@@ -78,11 +78,13 @@ export const convertNumber = (num: number | string, hideD?: boolean) => {
     })
     .reverse()
     .join('');
-  return `${strhead}${str}${ar[1] ? `.${ar[1]}` : ''}${!!hideD ? '' : ' đ'}`;
+  return `${strhead}${str}${ar[1] ? `.${ar[1]}` : ''}${
+    !!hideD ? '' : ' (VNĐ)'
+  }`;
 };
 
 export const convertAmount = (num: number | string, hideD?: boolean) => {
-  if (!num) return `${num}${hideD ? '' : ` đ`}`;
+  if (!num) return `${num}${hideD ? '' : ` (VNĐ)`}`;
   if (!parseInt(`${num}`)) {
     return '';
   }
@@ -111,12 +113,12 @@ export const convertAmount = (num: number | string, hideD?: boolean) => {
     .reverse()
     .join('');
   return `${strhead}${str}${isDot != -1 ? `.${last ?? ''}` : ''}${
-    !!hideD ? '' : ' đ'
+    !!hideD ? '' : ' (VNĐ)'
   }`;
 };
 
 export const convertNav = (num: number | string, hideD?: boolean) => {
-  if (!num) return `${num}${hideD ? '' : ' đ'}`;
+  if (!num) return `${num}${hideD ? '' : ' (VNĐ)'}`;
   const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
   const ar = Math.abs(
     typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
@@ -139,7 +141,7 @@ export const convertNav = (num: number | string, hideD?: boolean) => {
     })
     .reverse()
     .join('');
-  return `${strhead}${str}${last}${!!hideD ? '' : ' đ'}`;
+  return `${strhead}${str}${last}${!!hideD ? '' : ' (VNĐ)'}`;
 };
 
 export const convertPercent = (num: string | number | any) => {
@@ -524,14 +526,14 @@ export const removeUtf8 = (s: string) => {
   str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
   str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
   str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
-  str = str.replace(/đ/g, 'd');
+  str = str.replace(/(VNĐ)/g, 'd');
   str = str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, 'A');
   str = str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, 'E');
   str = str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g, 'I');
   str = str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, 'O');
   str = str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, 'U');
   str = str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, 'Y');
-  str = str.replace(/Đ/g, 'D');
+  str = str.replace(/(VNĐ)/g, 'D');
   return str;
 };
 
@@ -686,6 +688,38 @@ export function convertStringFeeSell(p: {
     }`;
   }
   return content;
+}
+export function convertStringFeeBuy(p: {
+  beginValue?: number;
+  endValue?: number;
+  I18nState?: 'vi' | 'en';
+}) {
+  const {beginValue, endValue, I18nState} = p;
+  if (beginValue == 0) {
+    return `Dưới ${convertNumber(endValue || 0, true)}`;
+  }
+  if (endValue == -1) {
+    return `Từ ${convertNumber(beginValue || 0, true)}`;
+  }
+  return `${convertNumber(beginValue || 0, true)} - ${convertNumber(
+    endValue || 0,
+    true,
+  )}`;
+
+  // if (p.beginValue == 0) {
+  //   content = `${p.I18nState == 'vi' ? 'Dưới' : 'Under'} ${p.endValue} ${
+  //     p.I18nState == 'vi' ? 'ngày' : 'days'
+  //   }`;
+  // } else if (p.beginValue == 730) {
+  //   content = `${p.I18nState == 'vi' ? 'Trên' : 'Above'} ${p.beginValue} ${
+  //     p.I18nState == 'vi' ? 'ngày' : 'days'
+  //   }`;
+  // } else {
+  //   content = `${p.beginValue} - ${p.endValue} ${
+  //     p.I18nState == 'vi' ? 'ngày' : 'days'
+  //   }`;
+  // }
+  // return content;
 }
 
 export function hidePhoneNumberOTP(t?: string) {

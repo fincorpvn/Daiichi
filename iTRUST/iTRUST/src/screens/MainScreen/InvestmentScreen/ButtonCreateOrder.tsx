@@ -9,6 +9,14 @@ import {useAppSelector} from 'store/hooks';
 function ButtonCreateOrder() {
   const insets = useSafeAreaInsets();
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
+  const {
+    email,
+    phone,
+    riskInfo,
+    bankAccountIsFull,
+    userInfoIsFull,
+    userAddressIsFull,
+  } = currentUser;
   const productDetails = useAppSelector(state => getProductFocus(state));
   return (
     <Div
@@ -21,9 +29,16 @@ function ButtonCreateOrder() {
       <ButtonBorder
         title={`investmentscreen.taolenhmua`}
         onPress={() => {
-          if (currentUser.investmentProfile?.isReceivedHardProfile === 0) {
-            navigate('ControlEKYCScreen');
-            return;
+          if (!currentUser?.investmentProfile?.status) {
+            if (!userInfoIsFull && !bankAccountIsFull && !userAddressIsFull) {
+              navigate('ControlEKYCScreen', {
+                onBack: () => {
+                  navigate('OverviewScreen');
+                },
+              });
+            } else {
+              navigate('AccountVerifyScreen');
+            }
           }
           navigate('CreateOrderModal', {
             orderType: 'BUY',

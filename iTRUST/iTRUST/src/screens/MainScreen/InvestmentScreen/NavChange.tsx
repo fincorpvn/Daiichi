@@ -27,7 +27,7 @@ function ComNav(p: {string: string; date?: string; value: string | number}) {
         )}
       </Div>
       <Label textAlign={'center'} fontWeight={'700'} multilanguage={false}>
-        {convertNav(p.value ?? '')}
+        {convertNav(p.value ?? '', true)}
       </Label>
     </Div>
   );

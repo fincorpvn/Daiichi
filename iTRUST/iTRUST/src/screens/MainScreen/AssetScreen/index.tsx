@@ -54,7 +54,7 @@ function AssetScreen() {
               </Label>
             </Div>
             <PercentAsset />
-           {/*  <ProgramList /> */}
+            <ProgramList />
             <Div height={100} />
           </>
         )}

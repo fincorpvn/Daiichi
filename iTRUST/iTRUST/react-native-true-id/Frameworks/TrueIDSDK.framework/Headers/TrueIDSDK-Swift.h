@@ -298,6 +298,16 @@ SWIFT_CLASS("_TtC9TrueIDSDK3EID")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+
+SWIFT_CLASS("_TtC9TrueIDSDK12HeaderConfig")
+@interface HeaderConfig : NSObject
+@property (nonatomic, copy) NSString * _Nonnull origin;
+- (nonnull instancetype)initWithJsonString:(NSString * _Nonnull)jsonString;
+- (nonnull instancetype)initWithOrigin:(NSString * _Nonnull)origin OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
 typedef SWIFT_ENUM(NSInteger, LivenessDetectionMode, closed) {
   LivenessDetectionModeNone = 0,
   LivenessDetectionModeActive = 1,
@@ -412,7 +422,7 @@ SWIFT_CLASS("_TtC9TrueIDSDK6Person")
 
 SWIFT_CLASS("_TtC9TrueIDSDK6TrueID")
 @interface TrueID : NSObject
-+ (void)configureWithConfigInfo:(ConfigInfo * _Nonnull)configInfo configColor:(ColorConfig * _Nonnull)configColor;
++ (void)configureWithConfigInfo:(ConfigInfo * _Nonnull)configInfo configColor:(ColorConfig * _Nonnull)configColor configHeader:(HeaderConfig * _Nonnull)configHeader;
 + (void)startWithListener:(void (^ _Nonnull)(CardInfo * _Nonnull))listener;
 + (NSString * _Nonnull)requestId SWIFT_WARN_UNUSED_RESULT;
 + (NSInteger)getRetryCounter SWIFT_WARN_UNUSED_RESULT;

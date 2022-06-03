@@ -4,6 +4,9 @@ import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {getProductFocus, loadProduct, unFocusProduct} from 'reducer/investment';
+import Chart from 'screens/MainScreen/InvestmentScreen/Chart';
+import NavChange from 'screens/MainScreen/InvestmentScreen/NavChange';
+import RowTime from 'screens/MainScreen/InvestmentScreen/RowTime';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {convertNumber} from 'utils';
@@ -57,7 +60,12 @@ function InvestmentDetailsScreen() {
         multilanguage={false}
         title={I18nState == 'vi' ? name : nameEn || ''}
       />
-      <ListNav />
+      <ScrollView>
+        <NavChange />
+        <RowTime />
+        <Chart />
+        <ListNav />
+      </ScrollView>
       <ButtonCreateOrder />
     </Div>
   );

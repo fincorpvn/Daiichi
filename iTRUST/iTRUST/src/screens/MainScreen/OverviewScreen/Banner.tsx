@@ -12,6 +12,14 @@ function Item(p: {item: any}) {
   const listProduct = useAppSelector(state => getListProduct(state));
   const [loading, setLoading] = useState<boolean>(false);
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
+  const {
+    email,
+    phone,
+    riskInfo,
+    bankAccountIsFull,
+    userInfoIsFull,
+    userAddressIsFull,
+  } = currentUser;
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const onPress = async () => {
     setLoading(true);
@@ -34,14 +42,16 @@ function Item(p: {item: any}) {
             );
           }
         }
-        if (currentUser.investmentProfile?.isReceivedHardProfile === 0) {
-          navigate('ControlEKYCScreen', {
-            onBack: () => {
-              navigate('OverviewScreen');
-            },
-          });
-          // EKYC();
-          return;
+        if (!currentUser?.investmentProfile?.status) {
+          if (!userInfoIsFull && !bankAccountIsFull && !userAddressIsFull) {
+            navigate('ControlEKYCScreen', {
+              onBack: () => {
+                navigate('OverviewScreen');
+              },
+            });
+          } else {
+            navigate('AccountVerifyScreen');
+          }
         }
         navigate('CreateOrderModal', {
           orderType: 'BUY',
@@ -98,6 +108,8 @@ function Banner() {
   const onViewableItemsChanged = React.useRef<any>((res: any) => {
     onChangeItemFocus(res?.viewableItems?.[0].item);
   });
+  const viewConfigRef = React.useRef({viewAreaCoveragePercentThreshold: 50});
+
   const scrollX = useRef<any>(new Animated.Value(0)).current;
 
   const onChangeItemFocus = (res: any) => {
@@ -127,6 +139,8 @@ function Banner() {
         renderItem={renderItem}
         snapToInterval={widthScreen}
         snapToAlignment={'start'}
+        decelerationRate={'fast'}
+        viewabilityConfig={viewConfigRef.current}
       />
       <Div
         marginTop={25}

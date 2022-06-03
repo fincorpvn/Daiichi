@@ -4,7 +4,7 @@ import {convertStringTime, getAddressRejectWard} from './../utils/utils';
 import RNTrueId from 'react-native-true-id';
 import {getStoreToken} from 'utils/storage';
 import {Platform} from 'react-native';
-import {urlApp, Ecolors} from 'constant';
+import {urlApp, Ecolors, stringApp} from 'constant';
 
 var stringJsonColor = `{\"main_color\":\"${Ecolors.mainColor}\",\"second_color\":\"${Ecolors.spaceColor}\",\"text_color\":\"${Ecolors.textColor}\",\"border_input_color\":\"${Ecolors.bordercolor}\",\"background_color\":\"${Ecolors.whiteColor}\",\"close_color\":\"${Ecolors.textColor}\"}`;
 var PublicFaceScanEncryptionKey =
@@ -17,6 +17,7 @@ var PublicFaceScanEncryptionKey =
   'ooH/fMuPZLFnevxlyFAsC+RJ1Tb355gaAmkFDiVKZJzOzY8gWjVpA6fxXrJe1V9o\n' +
   '/wIDAQAB\n' +
   '-----END PUBLIC KEY-----';
+var stringHeaderConfig = `{\"Origin\":\"${urlApp.DomainName}\"}`;
 
 var configInfo = {
   domain: `${urlApp.APIURL}api`,
@@ -31,6 +32,7 @@ var configInfo = {
   zoomAuthURL: 'https://onboard-liveness.trueid.ai/liveness/key',
   language: 'vi',
   themeColor: stringJsonColor,
+  headerConfig: stringHeaderConfig,
 };
 
 export function startScan(
@@ -233,7 +235,6 @@ export function startScan(
           // }
         });
       } catch (error) {
-        console.log('errror', error);
         endLoading && endLoading();
         reject(null);
         throw null;

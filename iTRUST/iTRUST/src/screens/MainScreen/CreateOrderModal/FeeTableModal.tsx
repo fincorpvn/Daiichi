@@ -6,7 +6,12 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {goBack} from 'services';
 import {doGetAxios} from 'services/apis/axios';
 import {useAppSelector} from 'store/hooks';
-import {convertPercent, convertStringFeeSell, Log} from 'utils';
+import {
+  convertPercent,
+  convertStringFeeBuy,
+  convertStringFeeSell,
+  Log,
+} from 'utils';
 
 function FeeTableModal() {
   const I18nState = useAppSelector(state => state.languages.I18nState);
@@ -80,18 +85,37 @@ function FeeTableModal() {
         );
       case 'product-program/buy-fee':
         return (
-          <Div>
+          <Div paddingBottom={25}>
+            <Div
+              flexDirection={'row'}
+              paddingTop={19}
+              paddingBottom={11}
+              borderBottomWidth={0.7}
+              borderBottomColor={Ecolors.spaceColor}
+              alignItems={'center'}
+              justifyContent={'space-between'}
+              marginHorizontal={17}>
+              <Label
+                fontWeight={'500'}
+                size={14}>{`createordermodal.giatrimua`}</Label>
+              <Label
+                fontWeight={'500'}
+                size={14}>{`createordermodal.phimua`}</Label>
+            </Div>
             {data?.map((item: any, index: number) => {
               return (
                 <Div
                   key={index}
                   width={'100%'}
-                  height={63}
+                  paddingVertical={5}
                   alignItems={'center'}
+                  paddingHorizontal={17}
                   flexDirection={'row'}
-                  justifyContent={'center'}>
-                  <Label>{`createordermodal.phimua`}</Label>
-                  <Label multilanguage={false}>
+                  justifyContent={'space-between'}>
+                  <Label size={14} multilanguage={false}>
+                    {convertStringFeeBuy({...item, I18nState: I18nState})}
+                  </Label>
+                  <Label size={14} multilanguage={false}>
                     {` ${convertPercent(item.rate)}`}{' '}
                   </Label>
                 </Div>

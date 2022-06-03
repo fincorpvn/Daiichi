@@ -41,6 +41,7 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
     public String getName() {
         return "TrueId";
     }
+
     @ReactMethod
     public void setLanguage(ReadableMap data) {
         String language = data.getString("language");
@@ -57,26 +58,21 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
             String accessToken = data.getString("accessToken");
 
             ConfigInfo configInfo;
-//            if (!data.hasKey("zoomLicenseKey")) {
             configInfo = new ConfigInfo(domain, domainPath, appId, appSecret);
-//            }
-//            else {
-//                String zoomLicenseKey = data.getString("zoomLicenseKey");
-//                String zoomPublicKey = data.getString("zoomPublicKey");
-//                String zoomServerBaseURL = data.getString("zoomServerBaseURL");
-//                configInfo = new ConfigInfo(domain, domainPath, authDomain, authDomainPath, appId, appSecret, zoomLicenseKey, zoomServerBaseURL, zoomPublicKey);
-//            }
-            if (data.hasKey("themeColor")) {
+            if (data.hasKey("themeColor") || data.hasKey("headerConfig")) {
                 String themeColor = data.getString("themeColor");
-                TrueID.configure(getCurrentActivity(), configInfo, accessToken,themeColor);
-            }
-            else
-                TrueID.configure(getCurrentActivity(), configInfo,accessToken);
+                if (data.hasKey("headerConfig")) {
+                    String headerConfig = data.getString("headerConfig");
+                    TrueID.configure(getCurrentActivity(), configInfo, accessToken, themeColor, headerConfig);
+                } else {
+                    TrueID.configure(getCurrentActivity(), configInfo, accessToken, themeColor);
+                }
+            } else
+                TrueID.configure(getCurrentActivity(), configInfo, accessToken);
 
             String language = data.getString("language");
             TrueID.setLanguage(getCurrentActivity(), language);
-        }
-        else {
+        } else {
             this.showAlert("trueID doesn't support Android less than 6");
         }
     }
@@ -95,11 +91,10 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                         Bitmap selfie = person.getSelfie();
                         if (selfie == null) {
                             base64 = "";
-                        }
-                        else {
+                        } else {
                             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                             selfie.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                            byte[] byteArray = byteArrayOutputStream .toByteArray();
+                            byte[] byteArray = byteArrayOutputStream.toByteArray();
 
                             base64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
                         }
@@ -114,8 +109,7 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                         personMap.putString("origin", person.getOrigin());
                         personMap.putString("dueDate", person.getDueDate());
                         personMap.putString("selfie", base64);
-                    }
-                    else {
+                    } else {
                         personMap.putString("idNumber", "");
                         personMap.putString("gender", "");
                         personMap.putString("dob", "");
@@ -130,7 +124,7 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                     // records
                     DetectionType[] recordTypes = DetectionType.values();
                     WritableMap records = new WritableNativeMap();
-                    for (int i=0; i<recordTypes.length; i++) {
+                    for (int i = 0; i < recordTypes.length; i++) {
                         DetectionType type = recordTypes[i];
                         CheckingRecord r = cardInfo.getRecord(type);
                         WritableMap rMap = new WritableNativeMap();
@@ -139,8 +133,7 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                             rMap.putString("message", r.message);
                             rMap.putInt("type", i);
                             rMap.putBoolean("status", r.status);
-                        }
-                        else {
+                        } else {
                             rMap.putString("name", "");
                             rMap.putString("message", "");
                             rMap.putInt("type", i);
@@ -157,25 +150,25 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                     image = cardInfo.getFrontCardImage();
                     if (image == null) {
                         frontBase64 = "";
-                    }
-                    else {
+                    } else {
                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                         image.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                        byte[] byteArray = byteArrayOutputStream .toByteArray();
+                        byte[] byteArray = byteArrayOutputStream.toByteArray();
 
-                        frontBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT);;
+                        frontBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                        ;
                     }
 
                     image = cardInfo.getBackCardImage();
                     if (image == null) {
                         backBase64 = "";
-                    }
-                    else {
+                    } else {
                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                         image.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                        byte[] byteArray = byteArrayOutputStream .toByteArray();
+                        byte[] byteArray = byteArrayOutputStream.toByteArray();
 
-                        backBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT);;
+                        backBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                        ;
                     }
 
                     // result

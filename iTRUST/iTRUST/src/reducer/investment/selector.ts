@@ -89,28 +89,6 @@ export const getMaxMinNav = createSelector(
       min: min || 0,
       space: (max || 10000) / 3,
     };
-    // const last = DD[DD.length - 1];
-    // let control = 50;
-    // if (DD?.length > control) {
-    //   r = Math.round(DD.length / control);
-    // }
-
-    // const d =
-    //   DD.filter(
-    //     (item: any, index: number) => index % r == 0 && index < DD.length,
-    //   ).map((item: any, index: number) => {
-    //     return {y: item.nav, x: item.navDate};
-    //   }) || [];
-    // if (d.length) {
-    //   return d.concat([
-    //     {
-    //       y: last?.nav || 0,
-    //       x: last?.navDate || 0,
-    //     },
-    //   ]);
-    // } else {
-    //   return [];
-    // }
   },
 );
 

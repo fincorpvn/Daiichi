@@ -68,7 +68,7 @@ function ListNav(p: {}) {
     } finally {
       setTimeout(() => {
         setLoading(false);
-      }, 500);
+      }, 200);
     }
   };
 
@@ -81,9 +81,6 @@ function ListNav(p: {}) {
   const ListHeaderComponent = useCallback(() => {
     return (
       <>
-        <NavChange />
-        <RowTime />
-        <Chart />
         <Div
           paddingTop={16}
           paddingBottom={23}
@@ -129,6 +126,7 @@ function ListNav(p: {}) {
     <FlatList
       ref={flatlistRef}
       data={data}
+      scrollEnabled={false}
       extraData={data}
       removeClippedSubviews={Platform.OS === 'android'}
       initialNumToRender={10}

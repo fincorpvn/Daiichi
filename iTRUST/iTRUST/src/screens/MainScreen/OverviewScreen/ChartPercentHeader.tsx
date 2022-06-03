@@ -68,7 +68,11 @@ function ChartPercentHeader({itemFocus, setItemFocus}: Props) {
           sections={section}
         />
       </Div>
-      <Div marginLeft={21} flexDirection={'column'} alignItems={'flex-start'}>
+      <Div
+        marginLeft={21}
+        flex={1}
+        flexDirection={'column'}
+        alignItems={'flex-start'}>
         <Label>{`overviewscreen.tonggiatridaututb`}</Label>
         <Label
           size={19}

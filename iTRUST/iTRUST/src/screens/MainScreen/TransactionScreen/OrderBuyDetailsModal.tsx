@@ -79,7 +79,7 @@ function OrderBuyDetailsModal() {
   } = route?.params?.data;
 
   const bankNote = `${
-    `${investmentProfile?.number}-${productProgramTradeCode}` || ''
+    `${investmentProfile?.number} - ${productProgramTradeCode}` || ''
   }`;
 
   const onDeleteOrder = () => {

@@ -211,7 +211,7 @@ function OrderBuyStep3({
               isBtn={true}
               title={`createordermodal.noidung`}
               content={
-                `${excuseTempVolumn?.investmentNumber}-${scheme?.tradeCode}` ||
+                `${excuseTempVolumn?.investmentNumber} - ${scheme?.tradeCode}` ||
                 ''
               }
               isBorderBottom={!!scheme.productSchemeIsAutoBuy}

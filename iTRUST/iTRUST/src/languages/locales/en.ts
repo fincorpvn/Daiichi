@@ -432,6 +432,7 @@ export default {
     xemthem: 'Show more',
   },
   createordermodal: {
+    giatrimua: 'Purchase value',
     tudongtieptucdautu: 'Automatically continue to invest',
     ngaythanhtoanhangthang: 'Monthly payment date',
     datlenhmua: 'Subscribe order',

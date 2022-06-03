@@ -35,7 +35,14 @@ function OrderTransaction() {
   const orderType = useAppSelector(state => state.transaction.orderType);
   const isFocus = useIsFocused();
   const I18nState = useAppSelector(state => state.languages.I18nState);
-
+  const {
+    email,
+    phone,
+    riskInfo,
+    bankAccountIsFull,
+    userInfoIsFull,
+    userAddressIsFull,
+  } = currentUser;
   const onChangeOrderType = (
     a: 'BUY' | 'SELL' | 'TRANSFER' | 'TRANSFER_BUY',
   ) => {
@@ -131,12 +138,15 @@ function OrderTransaction() {
         <ButtonBorder
           onPress={() => {
             if (!currentUser?.investmentProfile?.status) {
-              navigate('ControlEKYCScreen', {
-                onBack: () => {
-                  navigate('TransactionScreen');
-                },
-              });
-              // EKYC();
+              if (!userInfoIsFull && !bankAccountIsFull && !userAddressIsFull) {
+                navigate('ControlEKYCScreen', {
+                  onBack: () => {
+                    navigate('OverviewScreen');
+                  },
+                });
+              } else {
+                navigate('AccountVerifyScreen');
+              }
               return;
             }
             if (

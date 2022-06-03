@@ -40,7 +40,14 @@ function Navi() {
     state => state.languages.activeLanguage,
   );
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
-
+  const {
+    email,
+    phone,
+    riskInfo,
+    bankAccountIsFull,
+    userInfoIsFull,
+    userAddressIsFull,
+  } = currentUser;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -72,11 +79,15 @@ function Navi() {
 
   const gotoEKYC = (currentUser: any) => {
     if (!currentUser?.investmentProfile?.status) {
-      navigate('ControlEKYCScreen', {
-        onBack: () => {
-          navigate('OverviewScreen');
-        },
-      });
+      if (!userInfoIsFull && !bankAccountIsFull && !userAddressIsFull) {
+        navigate('ControlEKYCScreen', {
+          onBack: () => {
+            navigate('OverviewScreen');
+          },
+        });
+      } else {
+        navigate('AccountVerifyScreen');
+      }
     }
   };
 

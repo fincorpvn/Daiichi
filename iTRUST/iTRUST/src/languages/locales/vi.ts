@@ -437,6 +437,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     xemthem: 'Xem thêm',
   },
   createordermodal: {
+    giatrimua: 'Giá trị mua',
     tudongtieptucdautu: 'Tự động tiếp tục đầu tư',
     ngaythanhtoanhangthang: 'Ngày thanh toán hàng tháng',
     datlenhban: 'Đặt lệnh bán',

@@ -1,3 +1,4 @@
+import {useIsFocused, useRoute} from '@react-navigation/core';
 import {
   Button,
   ButtonBorder,
@@ -34,6 +35,8 @@ function Lbl(props: ILblProps) {
 }
 
 function RegisterScreen() {
+  const route = useRoute<any>();
+  const isFocus = useIsFocused();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -56,6 +59,17 @@ function RegisterScreen() {
     navigate('LoginScreen');
   };
 
+  // useEffect(() => {
+  //   if (route.params?.isClearData) {
+  //     clearData();
+  //   }
+  //   return () => {};
+  // }, [isFocus]);
+
+  // const clearData = () => {
+  //   Promise.all([setName(''), setPhone(''), setEmail(''), setProvince(null)]);
+  // };
+
   useEffect(() => {
     if (phone.length && !phone.startsWith('0')) {
       setPhone(a => `0${a}`);
@@ -69,7 +83,7 @@ function RegisterScreen() {
         phone,
         name,
         email,
-        province,
+        // province,
       })
     ) {
       navigate('SetPasswordScreen', {
@@ -79,7 +93,7 @@ function RegisterScreen() {
           phone,
           userRefCode,
           phonePostal,
-          province,
+          // province,
         },
       });
     } else {
@@ -155,7 +169,7 @@ function RegisterScreen() {
           <Lbl marginTop={13} content={`registerscreen.email`} />
           <InputItem
             inputRef={emailRef}
-            placeholder={`${exp}: Abc@gmail.com`}
+            placeholder={`${exp}: dfvn@gmail.com`}
             marginTop={6}
             titleError={
               email.length
@@ -223,7 +237,7 @@ function RegisterScreen() {
                     : `registerscreen.sodienthoaikhongduocdetrong`
                 }
                 inputRef={phoneRef}
-                placeholder={`${exp}: 03...`}
+                placeholder={`${exp}: 0968686800`}
                 keyboardType={'number-pad'}
                 marginHorizontal={0}
                 maxLength={10}
@@ -241,10 +255,10 @@ function RegisterScreen() {
               />
             </Div>
           </Div>
-          <Label marginTop={13}>{`accountverify.tinhthanhpho`}</Label>
+          {/* <Lbl marginTop={13} content={`accountverify.chondiachilienhe`} />
           <Dropdown
             url={`province/list?countryId=${234}`}
-            content={`accountverify.vuilongchontinhthanhpho`}
+            content={`accountverify.vuilongchondiachilienhe`}
             multilanguage={true}
             value={province}
             paddingHorizontal={0}
@@ -253,7 +267,7 @@ function RegisterScreen() {
             onChange={(a: any) => {
               setProvince(a);
             }}
-          />
+          /> */}
 
           <Label
             marginTop={13}>{`registerscreen.magioithieucuanguoibanhang`}</Label>

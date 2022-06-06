@@ -4,9 +4,11 @@ import {onFocusProduct} from '.';
 
 export const loadProduct = createAsyncThunk(
   `product@/load`,
-  async (params: {}, {rejectWithValue, dispatch}) => {
+  async (params: {productCodeOrName?: string}, {rejectWithValue, dispatch}) => {
     try {
-      const res = await apiInvestment.loadProduct({});
+      const res = await apiInvestment.loadProduct({
+        productCodeOrName: params?.productCodeOrName || '',
+      });
       if (res.status == 200) {
         return res.data;
       }

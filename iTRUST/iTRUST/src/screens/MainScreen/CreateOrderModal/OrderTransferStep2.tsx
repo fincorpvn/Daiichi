@@ -16,6 +16,7 @@ interface Props {
   stepTimeLine: any;
   currentSession: any;
   onNext: () => void;
+  onPre: () => void;
 }
 
 function RowSpaceItem(p: {
@@ -78,6 +79,7 @@ function OrderTransferStep2({
   destScheme,
   amount,
   stepTimeLine,
+  onPre,
   onNext,
   currentSession,
 }: Props) {
@@ -210,7 +212,7 @@ function OrderTransferStep2({
           height={48}
           type={2}
           onPress={() => {
-            goBack();
+            onPre && onPre();
           }}
           title={`createordermodal.quaylai`}
         />

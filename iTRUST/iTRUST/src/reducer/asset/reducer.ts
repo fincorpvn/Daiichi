@@ -4,7 +4,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 interface IinitialState {
   asset: {
     productList?: Array<any>;
-    sumOfInterestOrHole?: number;
+    sumOfInterestOrHole?: number | string;
     sumOfValueCurrently?: number;
     sumOfValueInvested?: number;
   };

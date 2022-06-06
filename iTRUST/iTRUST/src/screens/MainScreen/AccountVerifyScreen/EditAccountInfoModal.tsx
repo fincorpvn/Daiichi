@@ -10,6 +10,7 @@ import {
   ImageView,
   InputItem,
   Label,
+  LoadingIndicator,
 } from 'components';
 import {Ecolors, EStyle, Icons} from 'constant';
 import React, {useEffect, useState} from 'react';
@@ -118,7 +119,8 @@ function EditAccountInfoModal() {
   const [dob, setDob] = useState<any>(null);
   const [dateOfIssue, setDateOfIssue] = useState<any>(null);
   const [photoAfter, setPhotoAfter] = useState<any>(null);
-  const [isPhotoAfter, setIsPhotoAfter] = useState<boolean>(false);
+  const [loadingPhotoAfter, setLoadingPhotoAfter] = useState<boolean>(false);
+  const [loadingPhotoBefore, setLoadingPhotoBefore] = useState<boolean>(false);
   const [photoBefore, setPhotoBefore] = useState<any>(null);
   const [placeOfIssue, setPlaceOfIssue] = useState<string>('');
   const [idNo, setIdNo] = useState<string>('');
@@ -173,27 +175,9 @@ function EditAccountInfoModal() {
 
   const onGetImage = async (callback: (e: any) => void) => {
     try {
-      // setLoadingUploadImage(true);
       const img: any = await getImageLibrary();
       if (img?.length > 0) {
         const image = img[0];
-
-        // const obj = {
-        //   clientApiKey: 'FPLATFORM-ANGULAR-KEY2',
-        //   requestId: getUuid(),
-        //   applyOriginalFileName: true,
-        //   fileType: 'FILE',
-        //   fileUpload: {
-        //     name: 'file',
-        //     filename: image.fileName,
-        //     type: image.type,
-        //     data: RNFetchBlob.wrap(
-        //       Platform.OS === 'android'
-        //         ? image.uri?.replace('file://', '')
-        //         : image.uri,
-        //     ),
-        //   },
-        // };
         const dataUPload: any = await uploadFile({
           fileBase64:
             Platform.OS === 'android'
@@ -201,15 +185,11 @@ function EditAccountInfoModal() {
               : image.base64,
         });
         callback && callback({...image, dataUPload});
-        Log('dataUPloaddataUPload', {dataUPload, image});
-        // if (dataUPload?.listFileUploaded?.length > 0) {
-        //   callback && callback(dataUPload?.listFileUploaded?.[0]);
-        // }
       }
     } catch (error) {
-      Log('error', {error});
     } finally {
-      setLoadingUploadImage(false);
+      setLoadingPhotoAfter(false);
+      setLoadingPhotoBefore(false);
     }
   };
 
@@ -238,10 +218,16 @@ function EditAccountInfoModal() {
         nationalityId: `${nationality?.id}` || '234',
         photoAfterFileName: photoAfter?.fileName || '',
         photoAfterURL:
-          photoAfter?.dataUPload || photoAfter?.uri || photoAfter?.url || '',
+          photoAfter?.dataUPload?.url ||
+          photoAfter?.uri ||
+          photoAfter?.url ||
+          '',
         photoBeforeFileName: photoBefore?.fileName || '',
         photoBeforeURL:
-          photoBefore?.dataUPload || photoBefore?.uri || photoBefore?.url || '',
+          photoBefore?.dataUPload?.url ||
+          photoBefore?.uri ||
+          photoBefore?.url ||
+          '',
         placeOfIssue: placeOfIssue,
         nationality,
       });
@@ -255,10 +241,16 @@ function EditAccountInfoModal() {
         nationalityId: nationality?.id || '234',
         photoAfterFileName: photoAfter?.fileName || '',
         photoAfterURL:
-          photoAfter?.dataUPload || photoAfter?.uri || photoAfter?.url || '',
+          photoAfter?.dataUPload?.url ||
+          photoAfter?.uri ||
+          photoAfter?.url ||
+          '',
         photoBeforeFileName: photoBefore?.fileName || '',
         photoBeforeURL:
-          photoBefore?.dataUPload || photoBefore?.uri || photoBefore?.url || '',
+          photoBefore?.dataUPload?.url ||
+          photoBefore?.uri ||
+          photoBefore?.url ||
+          '',
         placeOfIssue: placeOfIssue,
       });
       if (res.status == 200) {
@@ -287,7 +279,6 @@ function EditAccountInfoModal() {
         },
       });
     } catch (error: any) {
-      console.log('err', error);
       Alert.showError({
         content: I18nState == 'vi' ? error.message : error.messageEn,
         multilanguage: false,
@@ -307,7 +298,6 @@ function EditAccountInfoModal() {
         name: 'CMND/CCCD',
         namevn: 'CMND/CCCD',
       });
-      setIsPhotoAfter(true);
     } else {
       setType({
         id: '5',
@@ -341,6 +331,7 @@ function EditAccountInfoModal() {
 
         <Label marginTop={16} marginLeft={16}>{`accountverify.hoten`}</Label>
         <InputItem
+          isInput={false}
           onChangeText={setName}
           marginTop={6}
           marginHorizontal={16}
@@ -368,6 +359,7 @@ function EditAccountInfoModal() {
         />
         <Label marginTop={13} marginLeft={16}>{`accountverify.email`}</Label>
         <InputItem
+          isInput={false}
           onChangeText={setEmail}
           value={email}
           marginHorizontal={16}
@@ -401,6 +393,7 @@ function EditAccountInfoModal() {
           <Div marginLeft={20} flex={1}>
             <InputItem
               onChangeText={setPhone}
+              isInput={false}
               value={phone}
               marginHorizontal={0}
             />
@@ -476,6 +469,7 @@ function EditAccountInfoModal() {
             borderRadius={5}
             width={162}
             onPress={() => {
+              setLoadingPhotoBefore(true);
               onGetImage((a: any) => {
                 setPhotoBefore((b: any) => {
                   return {
@@ -501,13 +495,17 @@ function EditAccountInfoModal() {
               justifyContent={'center'}
               flex={1}
               backgroundColor={Ecolors.transparentLoading}>
-              <ImageView
-                width={26}
-                height={24}
-                resizeMode={'contain'}
-                tintColor={Ecolors.whiteColor}
-                source={Icons.camera}
-              />
+              {loadingPhotoBefore ? (
+                <LoadingIndicator color={Ecolors.mainColor} />
+              ) : (
+                <ImageView
+                  width={26}
+                  height={24}
+                  resizeMode={'contain'}
+                  tintColor={Ecolors.whiteColor}
+                  source={Icons.camera}
+                />
+              )}
             </Div>
           </Button>
           <Button
@@ -515,6 +513,7 @@ function EditAccountInfoModal() {
             borderRadius={5}
             width={162}
             onPress={() => {
+              setLoadingPhotoAfter(true);
               onGetImage((a: any) => {
                 setPhotoAfter((b: any) => {
                   return {
@@ -540,53 +539,20 @@ function EditAccountInfoModal() {
               justifyContent={'center'}
               flex={1}
               backgroundColor={Ecolors.transparentLoading}>
-              <ImageView
-                width={26}
-                height={24}
-                resizeMode={'contain'}
-                tintColor={Ecolors.whiteColor}
-                source={Icons.camera}
-              />
+              {loadingPhotoAfter ? (
+                <LoadingIndicator color={Ecolors.mainColor} />
+              ) : (
+                <ImageView
+                  width={26}
+                  height={24}
+                  resizeMode={'contain'}
+                  tintColor={Ecolors.whiteColor}
+                  source={Icons.camera}
+                />
+              )}
             </Div>
           </Button>
         </Div>
-
-        {/* <DivPhoto
-          loading={loadingUploadImage}
-          value={photoBefore}
-          onGetImage={() => {
-            onGetImage((a: any) =>
-              setPhotoBefore((b: any) => {
-                return {
-                  ...b,
-                  ...a,
-                };
-              }),
-            );
-          }}
-        />
-        {isPhotoAfter && (
-          <DivPhoto
-            title={`accountverify.taianhmatsau`}
-            onGetImage={() => {
-              onGetImage((a: any) =>
-                setPhotoAfter((b: any) => {
-                  return {
-                    ...b,
-                    ...a,
-                  };
-                }),
-              );
-            }}
-            value={photoAfter}
-            loading={loadingUploadImage}
-          />
-        )} */}
-        {/* <ButtonBorder
-          onPress={() => onConfirm()}
-          loading={loading || loadingUploadImage}
-          title={`accountverify.guithongtin`}
-        /> */}
         <Div height={340} />
       </ScrollView>
     </Div>

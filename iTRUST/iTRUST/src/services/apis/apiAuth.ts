@@ -1,5 +1,6 @@
+import {Log} from 'utils';
 import {setStoreToken} from 'utils/storage';
-import {doGetAxios, doPostAxios} from './axios';
+import {doGetAxios, doPostAxios, axiosMultipart} from './axios';
 
 export const apiAuth = {
   login: async (params: IParamsLogin) => {
@@ -33,6 +34,7 @@ export const apiAuth = {
     confirmPassword?: string;
     phonePostal?: string;
     username?: string;
+    provinceId?: string | number;
     userRefCode?: string | null;
   }) => {
     try {
@@ -44,6 +46,7 @@ export const apiAuth = {
         username: params.username || '',
         password: params.password || '',
         confirmPassword: params.confirmPassword || '',
+        // provinceId: params.provinceId || 0,
         phonePostal: params.phonePostal || '',
         userRefCode: params.userRefCode || null,
       });
@@ -317,6 +320,31 @@ export const apiAuth = {
   },
   activeAccount: async (params: {phone: string}) => {
     const url = `user/active-account-create`;
+    return doPostAxios(url, params);
+  },
+  riskUpdate: async (params: {
+    experienceInvestment: number;
+    holdingTime: number;
+    realized: number;
+    requirement: number;
+    totalAsset: number;
+  }) => {
+    const url = `user/investment/risk-update`;
+    return doPostAxios(url, params);
+  },
+  createEsignature: (params: any) => {
+    const url = `esignature/create`;
+    return axiosMultipart(url, params);
+  },
+  confirmCreateEsignature: (params: {
+    expiredDurationInMinutes?: number;
+    expiredTime?: number;
+    otpTransId?: string;
+    time?: number;
+    transId?: string;
+    otp?: string;
+  }) => {
+    const url = 'esignature/confirm';
     return doPostAxios(url, params);
   },
 };

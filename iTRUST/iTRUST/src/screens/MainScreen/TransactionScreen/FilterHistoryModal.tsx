@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   BottomSheetDialog,
   Button,
@@ -10,6 +10,8 @@ import {
 import {Ecolors, EStyle, Icons} from 'constant';
 import {goBack, navigate} from 'services';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
+import {getListProduct} from 'reducer/investment';
+import {useAppSelector} from 'store/hooks';
 import {
   convertTimestamp,
   joinObjectCalendar,
@@ -20,6 +22,7 @@ import {
 import {useDispatch} from 'react-redux';
 import {loadHistory} from 'reducer/transaction';
 import {View, Platform} from 'react-native';
+import {apiInvestment} from 'services/apis/apiInvestment';
 
 function BtnAction(p: {
   isSelect?: boolean;
@@ -102,14 +105,16 @@ const Arr = [
 ];
 
 function FilterHistoryModal(props: {onBack?: () => void}) {
+  const [listProduct, setProductList] = useState<any>([]);
+  const I18nState = useAppSelector(state => state.languages.I18nState);
   const [isShowCalendar, setIsShowCalendar] = useState(false);
   const [orderTypeId, setOrderTypeId] = useState(0);
+  const [productProgramId, setProductProgramId] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(-1);
   const [fromDate, setFromDate] = useState<any>(null);
   const [toDate, setToDate] = useState<any>(null);
   const value = useRef<'from' | 'to'>('from');
-
   const dispatch = useDispatch();
-
   const pressBack = () => {
     if (props.onBack) {
       props.onBack();
@@ -117,7 +122,26 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
     }
     goBack();
   };
+  useEffect(() => {
+    investmentLoadScheme();
+    return () => {};
+  }, []);
 
+  const investmentLoadScheme = async () => {
+    const res = await apiInvestment.investmentLoadScheme({
+      productId: null,
+    });
+    if (res.status == 200) {
+      setProductList(res?.data || []);
+      console.log(res.data);
+    }
+  };
+
+  const setProductFillter = (e: any, a: any) => {
+    setCurrentIndex(a);
+    setProductProgramId(e);
+    console.log(e);
+  };
   const onChange = (e: any, a: any) => {
     if (a) {
       if (value.current == 'from') {
@@ -138,6 +162,9 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
 
   const onAcceptFilter = () => {
     let obj = {};
+    if (productProgramId) {
+      obj[`productProgramId`] = productProgramId;
+    }
     if (orderTypeId) {
       obj[`orderTypeId`] = orderTypeId;
     }
@@ -205,6 +232,46 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
         </Div>
         {/* content */}
         <Div paddingHorizontal={20} paddingTop={18}>
+          <Label
+            fontWeight={'700'}
+            marginBottom={5}>{`createordermodal.chonsanpham`}</Label>
+          <Div paddingBottom={30}>
+            {listProduct?.map((item: any, index: number) => {
+              return (
+                <Div>
+                  <Button
+                    onPress={() => setProductFillter(item?.id, index)}
+                    flexDirection="column">
+                    <Div flexDirection="row" alignItems="center">
+                      {currentIndex != index ? (
+                        <ImageView
+                          source={Icons.unCheckPro}
+                          widthHeight={20}
+                          resizeMode={'contain'}
+                        />
+                      ) : (
+                        <ImageView
+                          source={Icons.checkPro}
+                          widthHeight={20}
+                          resizeMode={'contain'}
+                        />
+                      )}
+
+                      <Label
+                        size={14}
+                        multilanguage={false}
+                        marginHorizontal={15}
+                        marginVertical={5}>
+                        {I18nState == 'en' ? item.nameEn : item.name}
+                      </Label>
+                    </Div>
+                  </Button>
+                </Div>
+              );
+            })}
+          </Div>
+        </Div>
+        <Div paddingHorizontal={20}>
           <Label
             fontWeight={
               '500'

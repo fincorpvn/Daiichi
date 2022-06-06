@@ -5,9 +5,16 @@ import AlertModal from 'components/Alert/AlertModal';
 import AlertError from 'components/Alert/AlertError';
 import ViewPDF from 'components/ViewPDF';
 import DropdownModal from 'components/DropdownModal';
-import {fadeInOut, translateYModal} from 'container/optionsNavigate';
+import {
+  fadeInOut,
+  translateXOptionsScreen,
+  translateYModal,
+} from 'container/optionsNavigate';
 import SplashScreen from './SplashScreen';
 import SignatureDraw from './MainScreen/DigitalSignature/SignatureDraw';
+import DigitalSignatureScreen from './MainScreen/DigitalSignature/DigitalSignatureScreen';
+import ProgramDetailsModal from 'screens/MainScreen/AssetScreen/ProgramDetailsModal';
+import FilterHistoryModal from 'screens/MainScreen/TransactionScreen/FilterHistoryModal';
 
 const stackSplash = [
   {
@@ -42,9 +49,24 @@ const componentAction = [
     options: fadeInOut,
   },
   {
+    name: 'ProgramDetailsModal',
+    component: ProgramDetailsModal,
+    options: fadeInOut,
+  },
+  {
+    name: 'FilterHistoryModal',
+    component: FilterHistoryModal,
+    options: fadeInOut,
+  },
+  {
     name: 'ViewPDF',
     component: ViewPDF,
     options: translateYModal,
+  },
+  {
+    name: 'DigitalSignatureScreen',
+    component: DigitalSignatureScreen,
+    options: translateXOptionsScreen,
   },
 ];
 

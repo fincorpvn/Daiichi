@@ -10,6 +10,8 @@ import {
 import {Icons} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
 import {Platform} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {getInfo} from 'reducer/authen';
 import {apiAuth, goBack, navigate, startScan, uploadFile} from 'services';
 import {img} from 'services/test';
 import {useAppSelector} from 'store/hooks';
@@ -24,6 +26,7 @@ function ControlEKYCScreen() {
   const countTime = useRef<number>(1);
   const accessToken = useRef<string>('');
   const I18nState = useAppSelector(state => state.languages.I18nState);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (route.params?.data) {
@@ -45,6 +48,7 @@ function ControlEKYCScreen() {
       });
       if (res.status == 200) {
         await setStoreToken(res.data.access_token);
+        dispatch(getInfo({}));
         accessToken.current = res.data.access_token;
       }
     } catch (error) {

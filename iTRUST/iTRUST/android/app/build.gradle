@@ -156,10 +156,10 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('itrust.jks')
-            storePassword 'itrust@2022'
+            storeFile file('keystore.jks')
+        storePassword 'itrust2022'
             keyAlias 'com.fplatform.iTRUST'
-            keyPassword 'itrust@2022'
+            keyPassword 'itrust2022'
         }
     }
     buildTypes {
@@ -215,6 +215,7 @@ dependencies {
     implementation project(':react-native-splash-screen')
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation project(path: ':react-native-true-id')
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'

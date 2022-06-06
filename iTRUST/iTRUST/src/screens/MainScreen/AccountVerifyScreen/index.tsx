@@ -1,4 +1,4 @@
-import {Div, HeaderBack} from 'components';
+import {Div, HeaderBack, Label} from 'components';
 import {Ecolors, Icons} from 'constant';
 import React from 'react';
 import {getInvestmentProfile} from 'reducer/authen/selector';
@@ -8,11 +8,16 @@ import ItemCard from './ItemCard';
 
 function AccountVerifyScreen() {
   const currentUser = useAppSelector(state => state.authen.currentUser);
-  const investmentProfile = useAppSelector(state =>
-    getInvestmentProfile(state),
-  );
-  const {email, phone, bankAccountIsFull, userInfoIsFull, userAddressIsFull} =
-    currentUser;
+  const {investmentProfile} = currentUser;
+  const {
+    email,
+    phone,
+    riskInfo,
+    bankAccountIsFull,
+    userInfoIsFull,
+    userAddressIsFull,
+  } = currentUser;
+  const I18nState = useAppSelector(state => state.languages.I18nState);
 
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
@@ -47,16 +52,83 @@ function AccountVerifyScreen() {
         title={'accountverify.thongtindiachi'}
         isLine={true}
       />
-      {userInfoIsFull && bankAccountIsFull && userAddressIsFull && (
+      {/* {userInfoIsFull && bankAccountIsFull && userAddressIsFull && (
         <ItemCard
           onPress={() => {
-            navigate('ConfirmModal');
+            navigate('RiskConfirmModal');
+            // navigate('ReviewInfoModal', {
+            //   data: {},
+            // });
           }}
-          isCheck={!!investmentProfile}
-          title={'accountverify.xacthuchoantat'}
+          isCheck={!!riskInfo}
+          title={'accountverify.danhgiamucdoruiro'}
           isLine={true}
-          isEnd={true}
         />
+      )} */}
+      <ItemCard
+        onPress={() => {
+          navigate('RiskConfirmModal');
+          // navigate('ReviewInfoModal', {
+          //   data: {},
+          // });
+        }}
+        isCheck={!!riskInfo}
+        title={'accountverify.danhgiamucdoruiro'}
+        isLine={true}
+      />
+      <ItemCard
+        onPress={() => {
+          if (
+            userInfoIsFull &&
+            bankAccountIsFull &&
+            userAddressIsFull &&
+            riskInfo
+          ) {
+            navigate('ConfirmModal');
+            return;
+          }
+        }}
+        isCheck={!!investmentProfile?.status}
+        title={'accountverify.xacthuchoantat'}
+        isLine={true}
+        // isEnd={true}
+      />
+      {userInfoIsFull && bankAccountIsFull && userAddressIsFull && riskInfo && (
+        <>
+          {/* <ItemCard
+            onPress={() => {
+              navigate('ConfirmModal');
+            }}
+            isCheck={!!investmentProfile?.status}
+            title={'accountverify.xacthuchoantat'}
+            isLine={true}
+            // isEnd={true}
+          /> */}
+          {/* {(investmentProfile?.status?.code == 'INVESTMENT_PROFILE_APPROVE' ||
+            investmentProfile?.status?.code == 'INVESTMENT_PROFILE_ACCEPT') && (
+            <ItemCard
+              onPress={() => {
+                navigate('DigitalSignatureScreen');
+              }}
+              isCheck={investmentProfile?.isReceivedHardProfile}
+              title={'accountverify.hopdongdientu'}
+              isLine={true}
+              isEnd={true}
+            />
+          )} */}
+          <ItemCard
+            onPress={() => {
+              // navigate('DigitalSignatureScreen');
+              navigate('ReviewInfoModal', {
+                data: {},
+              });
+            }}
+            isCheck={investmentProfile?.isReceivedHardProfile}
+            title={'accountverify.hopdongdientu'}
+            isLine={true}
+            isEnd={true}
+          />
+        </>
       )}
     </Div>
   );

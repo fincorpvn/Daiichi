@@ -61,6 +61,15 @@ function OrderSell({setStepTimeLine, stepTimeLine, initData}: Props) {
     }
   };
 
+  const onPre = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({
+        x: stepTimeLine ? (stepTimeLine - 2) * widthScreen : widthScreen,
+        animated: true,
+      });
+    }
+  };
+
   const onExcuseTempVolumn = async () => {
     try {
       const res = await apiInvestment.investmentExcuseTempMoney({
@@ -149,6 +158,7 @@ function OrderSell({setStepTimeLine, stepTimeLine, initData}: Props) {
         <OrderSellStep2
           stepTimeLine={stepTimeLine}
           onNext={onNext}
+          onPre={onPre}
           product={product}
           scheme={scheme}
           amount={amount}
@@ -160,6 +170,7 @@ function OrderSell({setStepTimeLine, stepTimeLine, initData}: Props) {
           currentSession={currentSession}
           stepTimeLine={stepTimeLine}
           amount={amount}
+          onPre={onPre}
           product={product}
           scheme={scheme}
         />

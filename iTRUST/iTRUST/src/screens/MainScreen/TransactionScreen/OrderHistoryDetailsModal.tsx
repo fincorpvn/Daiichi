@@ -6,6 +6,7 @@ import {
   ImageView,
   Label,
   LoadingIndicator,
+  Toast,
 } from 'components';
 import {Ecolors, EStyle, Icons, urlApp} from 'constant';
 import React, {useState} from 'react';
@@ -13,6 +14,7 @@ import {Platform, ScrollView} from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {useAppSelector} from 'store/hooks';
 import {
+  convertDataDownloadFile,
   convertNav,
   convertNumber,
   convertTimestamp,
@@ -76,31 +78,46 @@ function OrderHistoryDetailsModal() {
           ? PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
           : PERMISSIONS.IOS.MEDIA_LIBRARY,
         () => {
-          return ReactNativeBlobUtil.config({
-            appendExt: 'pdf',
-            path: link,
-            fileCache: true,
-          })
+          const obj =
+            Platform.OS === 'ios'
+              ? {
+                  appendExt: 'pdf',
+                  path: link,
+                  fileCache: true,
+                }
+              : {};
+          return ReactNativeBlobUtil.config(obj)
             .fetch('GET', bburl, {
-              //some headers ..
               Authorization: token ? `Bearer ${token}` : '',
               'Content-Type': 'application/json',
               'request-id': getUuid(),
             })
             .then(async (res: any) => {
-              const p = await res.path();
               if (Platform.OS === 'android') {
-                ReactNativeBlobUtil.android.actionViewIntent(
-                  p,
-                  'application/pdf',
-                );
+                const T = convertDataDownloadFile(res);
+                await ReactNativeBlobUtil.fs
+                  .writeFile(T.urlFile, res.base64(), 'base64')
+                  .then(async (e: any) => {
+                    await ReactNativeBlobUtil.android.actionViewIntent(
+                      T.urlFile,
+                      T.type,
+                    );
+                  });
               } else {
-                ReactNativeBlobUtil.fs.writeFile(link, res.base64(), 'base64');
-                ReactNativeBlobUtil.ios.previewDocument(link);
+                await ReactNativeBlobUtil.ios.previewDocument(res.path());
               }
+
+              Toast.show({
+                content: 'alert.taithanhcong',
+                multilanguage: true,
+              });
               setLoading(false);
             })
             .catch(err => {
+              Toast.show({
+                content: 'alert.daxayraloi',
+                multilanguage: true,
+              });
               Log('errror ', err);
             })
             .finally(() => {
@@ -109,7 +126,6 @@ function OrderHistoryDetailsModal() {
         },
       );
     } catch (error) {
-      Log('errorr', error);
     } finally {
       // setLoading(false);
     }
@@ -146,7 +162,6 @@ function OrderHistoryDetailsModal() {
             borderColor={Ecolors.bordercolor}
             style={EStyle.shadowItem}
             backgroundColor={Ecolors.whiteColor}
-            shadow={true}
             paddingHorizontal={16}
             paddingTop={17}
             paddingBottom={26}>

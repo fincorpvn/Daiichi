@@ -52,15 +52,13 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             String domain = data.getString("domain");
             String domainPath = data.getString("domainPath");
-            String authDomain = data.getString("authDomain");
-            String authDomainPath = data.getString("authDomainPath");
             String appId = data.getString("appId");
             String appSecret = data.getString("appSecret");
             String accessToken = data.getString("accessToken");
 
             ConfigInfo configInfo;
 //            if (!data.hasKey("zoomLicenseKey")) {
-            configInfo = new ConfigInfo(domain, domainPath, authDomain, authDomainPath, appId, appSecret);
+            configInfo = new ConfigInfo(domain, domainPath, appId, appSecret);
 //            }
 //            else {
 //                String zoomLicenseKey = data.getString("zoomLicenseKey");
@@ -68,8 +66,13 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
 //                String zoomServerBaseURL = data.getString("zoomServerBaseURL");
 //                configInfo = new ConfigInfo(domain, domainPath, authDomain, authDomainPath, appId, appSecret, zoomLicenseKey, zoomServerBaseURL, zoomPublicKey);
 //            }
+            if (data.hasKey("themeColor")) {
+                String themeColor = data.getString("themeColor");
+                TrueID.configure(getCurrentActivity(), configInfo, accessToken,themeColor);
+            }
+            else
+                TrueID.configure(getCurrentActivity(), configInfo,accessToken);
 
-            TrueID.configure(getCurrentActivity(), configInfo,accessToken);
             String language = data.getString("language");
             TrueID.setLanguage(getCurrentActivity(), language);
         }

@@ -4,6 +4,7 @@ import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
+import {removeUtf8} from 'utils';
 
 function HeaderBackType3() {
   const insests = useSafeAreaInsets();
@@ -30,7 +31,7 @@ function HeaderBackType3() {
           borderRadius={40}
           alignItems={'center'}
           justifyContent={'center'}
-          backgroundColor={Ecolors.whiteColor}>
+          backgroundColor={Ecolors.spaceColor}>
           <ImageView
             source={Icons.profile}
             tintColor={Ecolors.textColor}
@@ -44,12 +45,18 @@ function HeaderBackType3() {
           flexDirection={'column'}
           alignItems={'flex-start'}
           justifyContent={'center'}>
-          <Label size={16} multilanguage={false} fontWeight={'500'}>
-            {name || '--'}
+          <Label
+            size={16}
+            color={Ecolors.textColor}
+            multilanguage={false}
+            fontWeight={'500'}>
+            {removeUtf8(name?.toLocaleUpperCase() || '') || ''}
           </Label>
           <Div flexDirection={'row'} alignItems={'center'} flex={1}>
-            <Label size={13}>{`profile.sotaikhoan`}</Label>
-            <Label size={13} multilanguage={false}>
+            <Label
+              size={13}
+              color={Ecolors.textColor}>{`profile.sotaikhoan`}</Label>
+            <Label size={13} multilanguage={false} color={Ecolors.textColor}>
               {investmentProfile?.number || ''}
             </Label>
           </Div>

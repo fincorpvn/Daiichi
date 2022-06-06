@@ -52,6 +52,14 @@ function OrderBuy({setStepTimeLine, stepTimeLine, initData}: Props) {
       });
     }
   };
+  const onPre = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({
+        x: stepTimeLine ? (stepTimeLine - 2) * widthScreen : widthScreen,
+        animated: true,
+      });
+    }
+  };
 
   const onScroll = (e: any) => {
     const offset = Math.round(e.nativeEvent.contentOffset.x / widthScreen) + 1;
@@ -143,6 +151,7 @@ function OrderBuy({setStepTimeLine, stepTimeLine, initData}: Props) {
         <OrderBuyStep2
           stepTimeLine={stepTimeLine}
           onNext={onNext}
+          onPre={onPre}
           product={product}
           beginBuyAutoStartDate={beginBuyAutoStartDate}
           scheme={scheme}
@@ -158,6 +167,7 @@ function OrderBuy({setStepTimeLine, stepTimeLine, initData}: Props) {
           bankSuperVisory={bankSuperVisory}
           amount={amount}
           currentSession={currentSession}
+          onPre={onPre}
           product={product}
           scheme={scheme}
         />

@@ -8,7 +8,7 @@ export const doLogin = createAsyncThunk(
   async (params: IParamsLogin, {rejectWithValue, dispatch}) => {
     try {
       const res = await apiAuth.login(params);
-      if (res) {
+      if (res.status == 200) {
         dispatch(changeStatusScreen('main'));
         dispatch(getInfo({}));
         setAccount({

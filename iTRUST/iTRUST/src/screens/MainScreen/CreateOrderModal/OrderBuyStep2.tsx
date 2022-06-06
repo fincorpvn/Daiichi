@@ -17,6 +17,7 @@ interface Props {
   bankSuperVisory: any;
   stepTimeLine?: number;
   onNext?: () => void;
+  onPre?: () => void;
 }
 
 function RowSpaceItem(p: {
@@ -52,6 +53,7 @@ function ContentCoppy(p: {
   content: string;
   isBorderBottom?: boolean;
   marginTop?: number;
+  isBtn?: boolean;
 }) {
   return (
     <RowSpaceItem marginTop={p.marginTop} isBorderBottom={p.isBorderBottom}>
@@ -63,20 +65,24 @@ function ContentCoppy(p: {
           {p.content}
         </Label>
       </Div>
-      <Button
-        onPress={() => {
-          copyToClipboard(p.content);
-        }}
-        width={61}
-        height={26}
-        alignItems={'center'}
-        justifyContent={'center'}
-        borderRadius={5}
-        backgroundColor={Ecolors.yellowColor}>
-        <Label size={14} multilanguage={false}>
-          COPY
-        </Label>
-      </Button>
+      {p.isBtn ? (
+        <Button
+          onPress={() => {
+            copyToClipboard(p.content);
+          }}
+          width={61}
+          height={26}
+          alignItems={'center'}
+          justifyContent={'center'}
+          borderRadius={5}
+          backgroundColor={Ecolors.yellowColor}>
+          <Label size={14} multilanguage={false}>
+            COPY
+          </Label>
+        </Button>
+      ) : (
+        <Div width={61} height={26} />
+      )}
     </RowSpaceItem>
   );
 }
@@ -91,6 +97,7 @@ function OrderBuyStep2({
   stepTimeLine,
   beginBuyAutoStartDate,
   onNext,
+  onPre,
 }: Props) {
   // console.log('adasda', {
   //   product,
@@ -287,6 +294,7 @@ function OrderBuyStep2({
           <Label
             fontWeight={'700'}
             marginTop={18}>{`createordermodal.thongtinchuyenkhoan`}</Label>
+          <Label marginTop={3}>{`createordermodal.luuyttck`}</Label>
           <Div
             width={'100%'}
             marginTop={9}
@@ -300,6 +308,7 @@ function OrderBuyStep2({
             paddingBottom={24}>
             <ContentCoppy
               title={`createordermodal.tenthuhuong`}
+              isBtn={true}
               content={
                 I18nState == 'vi'
                   ? bankSuperVisory?.name
@@ -309,6 +318,7 @@ function OrderBuyStep2({
             />
             <ContentCoppy
               marginTop={11}
+              isBtn={true}
               title={`createordermodal.sotaikhoan`}
               content={bankSuperVisory?.number || ''}
               isBorderBottom={true}
@@ -316,6 +326,7 @@ function OrderBuyStep2({
             <ContentCoppy
               marginTop={11}
               title={`createordermodal.nganhang`}
+              isBtn={false}
               content={
                 I18nState == 'vi'
                   ? bankSuperVisory?.dataBank?.name
@@ -325,6 +336,7 @@ function OrderBuyStep2({
             />
             <ContentCoppy
               marginTop={11}
+              isBtn={true}
               isBorderBottom={!!scheme.productSchemeIsAutoBuy}
               title={`createordermodal.noidung`}
               // content={`${currentUser?.name || ''}-${
@@ -362,7 +374,8 @@ function OrderBuyStep2({
           height={48}
           type={2}
           onPress={() => {
-            goBack();
+            // goBack();
+            onPre && onPre();
           }}
           title={`createordermodal.quaylai`}
         />

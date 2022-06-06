@@ -41,42 +41,52 @@ function ProfileScreen() {
 
   const listData = [
     {
-      title: `profile.hosogoc`,
+      title: `profile.hosomotaikhoan`,
       icon: Icons.digitalsignature,
-      iconRight: !hardProfile ? Icons.uncheck : Icons.check,
-      iconRightColor: !hardProfile ? Ecolors.grayColor : Ecolors.greenColor,
-      iconRightSize: 20,
+      iconRight: !hardProfile ? Icons.forward : Icons.check,
+      iconRightColor: !hardProfile ? Ecolors.textColor : Ecolors.greenColor,
+      iconRightSize: !hardProfile ? 12 : 20,
       content: !hardProfile
         ? I18nState == 'vi'
           ? 'Chưa nhận'
-          : 'Not received'
+          : 'No submission'
         : I18nState == 'vi'
         ? 'Đã nhận'
-        : 'Complete',
-      contentColor: !hardProfile ? Ecolors.redColor : Ecolors.greenColor,
-      isForward: true,
-      isLine: true,
-    },
-    {
-      title: `profile.chukyso`,
-      icon: Icons.digitalsignature,
-      iconRight: !hardProfile ? Icons.uncheck : Icons.check,
-      iconRightColor: !hardProfile ? Ecolors.grayColor : Ecolors.greenColor,
-      iconRightSize: 20,
-      content: !hardProfile
-        ? I18nState == 'vi'
-          ? 'Chưa nhận'
-          : 'Not received'
-        : I18nState == 'vi'
-        ? 'Đã nhận'
-        : 'Complete',
+        : 'Full submission',
       contentColor: !hardProfile ? Ecolors.redColor : Ecolors.greenColor,
       isForward: true,
       isLine: true,
       onPress: () => {
-        navigate('DigitalSignatureScreen');
+        if (
+          currentUser?.investmentProfile?.status?.code ==
+            'INVESTMENT_PROFILE_APPROVE' ||
+          currentUser?.investmentProfile?.status?.code ==
+            'INVESTMENT_PROFILE_ACCEPT'
+        ) {
+          navigate('DigitalSignatureScreen');
+        }
       },
     },
+    // {
+    //   title: `profile.chukyso`,
+    //   icon: Icons.digitalsignature,
+    //   iconRight: !hardProfile ? Icons.uncheck : Icons.check,
+    //   iconRightColor: !hardProfile ? Ecolors.grayColor : Ecolors.greenColor,
+    //   iconRightSize: 20,
+    //   content: !hardProfile
+    //     ? I18nState == 'vi'
+    //       ? 'Chưa nhận'
+    //       : 'Not received'
+    //     : I18nState == 'vi'
+    //     ? 'Đã nhận'
+    //     : 'Complete',
+    //   contentColor: !hardProfile ? Ecolors.redColor : Ecolors.greenColor,
+    //   isForward: true,
+    //   isLine: true,
+    //   onPress: () => {
+    //     navigate('DigitalSignatureScreen');
+    //   },
+    // },
     {
       type: 'space',
     },

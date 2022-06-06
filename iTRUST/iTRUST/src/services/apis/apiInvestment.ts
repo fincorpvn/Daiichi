@@ -1,8 +1,7 @@
 import {doGetAxios, doPostAxios} from 'services/apis/axios';
-import {Log} from 'utils';
 export const apiInvestment = {
   loadProduct: async (params: {}) => {
-    const url = 'product/active-list';
+    const url = 'product/active-list?productCodeOrName=';
     return doGetAxios(url);
   },
   loadnav: async (params: {

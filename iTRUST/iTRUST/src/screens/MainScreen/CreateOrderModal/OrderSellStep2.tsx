@@ -21,6 +21,7 @@ interface Props {
   bankSuperVisory: any;
   stepTimeLine?: number;
   onNext?: () => void;
+  onPre?: () => void;
 }
 
 function RowSpaceItem(p: {
@@ -60,6 +61,7 @@ function OrderSellStep2({
   bankSuperVisory,
   stepTimeLine,
   onNext,
+  onPre,
 }: Props) {
   const [loading, setLoading] = useState(false);
   const I18nState = useAppSelector(state => state.languages.I18nState);
@@ -226,7 +228,7 @@ function OrderSellStep2({
           height={48}
           type={2}
           onPress={() => {
-            goBack();
+            onPre && onPre();
           }}
           title={`createordermodal.quaylai`}
         />

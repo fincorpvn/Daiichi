@@ -59,6 +59,8 @@ export enum Icons {
   investment = require('../assets/footerapp/investment.png'),
   asset = require('../assets/footerapp/asset.png'),
   profile = require('../assets/footerapp/profile.png'),
+  riskassessment = require('../assets/riskassessment/riskassessment.png'),
+  iconapp = require('../assets/iconapp/iconapp.png'),
   //  list icon profile
   profileinfo = require('../assets/profiletab/profileinfo.png'),
   changepass = require('../assets/profiletab/changepass.png'),

@@ -8,7 +8,7 @@ export default {
     ProfileScreen: 'Account',
   },
   splashscreen: {
-    hi: 'Welcome to Fincorp',
+    hi: `Welcome to ${stringApp.companyName}`,
     continue: 'Next',
   },
   loginscreen: {
@@ -17,7 +17,7 @@ export default {
     forgotpass: 'Forgot password ?',
     signuptitle: 'You do not have an account? ',
     signup: 'Register!',
-    accountplacehoder: 'Mobile phone number/ID Card',
+    accountplacehoder: 'Mobile phone number',
     passwordplacehoder: 'Password',
     fincorp: `${stringApp.appName}`,
     thefintechdeveloper: 'Invest in what matters',
@@ -67,9 +67,10 @@ export default {
     //
     dieukhoandieukienmotaikhoan: 'Terms and conditions for opening an account',
     dieukhoansudung: 'Terms of use',
-    content: `After completing this confirmation step, the account opening contract information will be sent to your email \nPlease print, sign and send a letter to the address: \n - Customer Care Department of Joint Stock Company Fincorp Fund Management: 17th Floor, Sunwah Building, 115 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (84) 28 3827 8535 \n - Head Office: \n 17th Floor, Court Sunwah House, 115 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (84) 28 3827 8535 \n - Representative office in Hanoi: 6th Floor, International Center, 17 Ngo Quyen, Hoan Kiem District , Hanoi (84) 24 3936 4630`,
+    content: `After completing this confirmation step, the account opening contract information will be sent to your email \nPlease print, sign and send a letter to the address: \n - Customer Care Department of Joint Stock Company ${stringApp.companyName} Fund Management: 17th Floor, Sunwah Building, 115 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (84) 28 3827 8535 \n - Head Office: \n 17th Floor, Court Sunwah House, 115 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City (84) 28 3827 8535 \n - Representative office in Hanoi: 6th Floor, International Center, 17 Ngo Quyen, Hoan Kiem District , Hanoi (84) 24 3936 4630`,
     //
     hoantat: 'Completed',
+    danhgiamucdoruiro: 'Risk assessment',
   },
   forgotpasswordscreen: {
     forgotpassword: 'Forgot Password',
@@ -159,8 +160,9 @@ export default {
     changeaddress: 'Change mail address',
     logout: 'Log out',
     myrefcode: 'Referral Code: ',
+    chukyso: 'Digital signatures',
     //trangthaitkdautu: 'Account Status: ',
-    hosomotaikhoan: 'Document: ',
+    hosomotaikhoan: 'Application form',
     sotaikhoan: 'Account number - ',
     contentlogininfo: 'Are you sure you want to update your editing?',
     change: 'Change',
@@ -210,9 +212,12 @@ export default {
   accountverify: {
     thongtintaikhoan: 'Account Information',
     thongtincanhan: 'Personal information',
+    hopdongdientu: 'E-Contract',
     thongtinnganhang: 'Bank account information',
     thongtindiachi: 'Address information',
     xacthuchoantat: 'Confirmation complete',
+    chondiachilienhe: 'Select contact address',
+    vuilongchondiachilienhe: 'Select province/city',
     // trangthaitkdautu: 'Trạng thái tài khoản đầu tư',
     hosogoc: 'Original file',
     quocgia: 'Country',
@@ -220,12 +225,17 @@ export default {
     tinhthanhphotheodiachilienhe: 'Province/City (by contact address)',
     quanhuyen: 'District',
     phuongxa: 'Wards',
+    nghenghiep: 'Job',
+    chucvu: 'Position',
+    mucthunhaphangthang: 'Monthly income',
     // account info modal
     // trangthaitkdautu: 'Trạng thái tài khoản đầu tư',
     vuilongchonquocgia: 'Please select a country',
     vuilongchontinhthanhpho: 'Please select a province/city',
     vuilongchonquanhuyen: 'Please select a county/district',
     vuilongchonphuongxa: 'Please select a ward',
+    danhgiamucdoruiro: 'Risk assessment',
+    guithongtin: 'Send information',
     //
     thongtinnhadautu: '1. Investor information',
     hoten: 'Fullname',
@@ -257,7 +267,6 @@ export default {
     chinhanh: 'Branch',
     content:
       'This required information and account information is transferred when the sell order is executed.',
-    guithongtin: 'Send information',
     vuilongchonnganhang: 'Please select a bank',
     vuilongchonchinhanh: 'Please select a branch',
     // address info modal
@@ -269,23 +278,25 @@ export default {
     dieukhoan: 'Rules',
     xacnhanhoantat: 'Confirmation complete',
     hoantat: 'Completed',
+    tongdongyvoidieukhoanfatca:
+      'I agree to answer: No to all questions related to FATCA',
+    contentinhoso: `Please print, sign and mail to the company's address in the contact section!`,
     contentdiachi1:
       'After completing this confirmation step, the account opening contract information will be sent to your email : ',
     contentdiachi2: 'Please print, sign and send a letter to the address: ',
-    contentdiachi3:
-      '- Customer Care Department of Joint Stock Company Fincorp Fund Management: 17th Floor, Sunwah Building, 115 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \n(84) 28 3827 8535 \n - Head Office: \n 17th Floor, Court Sunwah House, 115 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \n(84) 28 3827 8535 \n - Representative office in Hanoi: 6th Floor, International Center, 17 Ngo Quyen, Hoan Kiem District , Hanoi \n(84) 24 3936 4630',
+    contentdiachi3: `- Customer Care Department of Joint Stock Company ${stringApp.companyName} Fund Management: 17th Floor, Sunwah Building, 115 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \n(84) 28 3827 8535 \n - Head Office: \n 17th Floor, Court Sunwah House, 115 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City \n(84) 28 3827 8535 \n - Representative office in Hanoi: 6th Floor, International Center, 17 Ngo Quyen, Hoan Kiem District , Hanoi \n(84) 24 3936 4630`,
     toidongyvoidieukhoantren: 'I agree to the terms and conditions.',
     titleconfirm:
       'To start trading, you need to confirm the information and agree to the terms and conditions below:',
     congboruiro: 'RISK DISCLOSURE & ACKNOWLEDGEMENTS.',
     title1: '1. Risk disclosure.',
-    content1: `I, as an Investor, have reviewed the provided information on Open-ended funds (OEFs) and fully understand what an OEF is.\n\nI, as an Investor, understand that I am participating into a product that invests into the Vietnamese securities market, including stocks, bonds and other securities instruments. I understand securities investments are subject to market risks and may fluctuate in value.\n\nMy expected return (if any) in OEFs is not guaranteed. I understand the actual return may be lower or higher than the expected or historical return.\n\nMy investments in OEFs may suffer losses if the securities that the OEFs invest into do not perform, or if the market is not favorable. I understand I may lose part of my investments if performance is not as expected.\n\nFincorp or Fincorp's Partners cannot provide any guarantees, either explicitly or implicitly. I understand Fincorp and Fincorp's Partners are under no legal obligation to compensate me for any losses to my investments.\n`,
+    content1: `I, as an Investor, have reviewed the provided information on Open-ended funds (OEFs) and fully understand what an OEF is.\n\nI, as an Investor, understand that I am participating into a product that invests into the Vietnamese securities market, including stocks, bonds and other securities instruments. I understand securities investments are subject to market risks and may fluctuate in value.\n\nMy expected return (if any) in OEFs is not guaranteed. I understand the actual return may be lower or higher than the expected or historical return.\n\nMy investments in OEFs may suffer losses if the securities that the OEFs invest into do not perform, or if the market is not favorable. I understand I may lose part of my investments if performance is not as expected.\n\n${stringApp.companyName} or ${stringApp.companyName}'s Partners cannot provide any guarantees, either explicitly or implicitly. I understand ${stringApp.companyName} and ${stringApp.companyName}'s Partners are under no legal obligation to compensate me for any losses to my investments.\n`,
     title2: '2. Acknoweldgements.',
-    content2: `I have responsibility to read and agree with the Prospectus and Charter of the respective funds.\n\nI am responsible for my investment decision and accept all the investment risks.\n\nI understand and agree that Fincorp may submit my information and the information related to this account to the governing authority in Vietnam and/or the IRS upon their request in accordance with the FATCA-compliant regulations.\n\nI hereby confirm that the above information is true and accurate. I agree to notify Fincorp of any changes to the declared information.\n\nIn cases where my Subscription Orders are either invalid or sent after the cut-off time for a trading cycle, I authorize Distributor to keep my Subscription amount and subscribe for the next one (01) trading cycle.\n\nInvestors agree and acknowledge that Fincorp reserves the right to share investors’ information, including investment returns and investment transactions, with (the partner that introduced the investor to Fincorp), for the purpose of reporting, reconciliation and analysis.\n\nInvestors are fully responsible for all bank transfer charges (if applicable) that may be levied when subscribing, redeeming or exchanging fund units managed by Fincorp.\n`,
+    content2: `I have responsibility to read and agree with the Prospectus and Charter of the respective funds.\n\nI am responsible for my investment decision and accept all the investment risks.\n\nI understand and agree that ${stringApp.companyName} may submit my information and the information related to this account to the governing authority in Vietnam and/or the IRS upon their request in accordance with the FATCA-compliant regulations.\n\nI hereby confirm that the above information is true and accurate. I agree to notify ${stringApp.companyName} of any changes to the declared information.\n\nIn cases where my Subscription Orders are either invalid or sent after the cut-off time for a trading cycle, I authorize Distributor to keep my Subscription amount and subscribe for the next one (01) trading cycle.\n\nInvestors agree and acknowledge that ${stringApp.companyName} reserves the right to share investors’ information, including investment returns and investment transactions, with (the partner that introduced the investor to ${stringApp.companyName}), for the purpose of reporting, reconciliation and analysis.\n\nInvestors are fully responsible for all bank transfer charges (if applicable) that may be levied when subscribing, redeeming or exchanging fund units managed by ${stringApp.companyName}.\n`,
     title3:
       'In addition, there is an additional part of the commitment for investors to declare when related to US citizenship in Section III.SUPPLEMENTAL INFORMATION.',
-    content3: `I here by confirm the information provided above is true, accurate and complete.\n\nSubject to applicable local laws, I hereby consent for Fincorp Investment Management Ltd to share my information with domestic and overseas tax authorities where necessary to establish my tax liability in any jurisdiction.\n\nWhere required by domestic or overseas regulators or tax authorities, I consent and agree that Fincorp may withhold such amounts as may be required according to applicable laws, regulations and directives.\n\nI undertake to notify Fincorp within 30 calendar days if there is a change in any information which I have provided to Fincorp.\n`,
-    contentconfirm: `1.Risk disclosure \n\nI, as an Investor, have reviewed the provided information on Open-ended funds (OEFs) and fully understand what an OEF is.\n\nI, as an Investor, understand that I am participating into a product that invests into the Vietnamese securities market, including stocks, bonds and other securities instruments. I understand securities investments are subject to market risks and may fluctuate in value.\n My expected return (if any) in OEFs is not guaranteed. I understand the actual return may be lower or higher than the expected or historical return.\nMy investments in OEFs may suffer losses if the securities that the OEFs invest into do not perform, or if the market is not favorable. I understand I may lose part of my investments if performance is not as expected.\nFincorp or Fincorp's Partners cannot provide any guarantees, either explicitly or implicitly. I understand Fincorp and Fincorp's Partners are under no legal obligation to compensate me for any losses to my investments.\n\n2.Acknoweldgements\n\nI have responsibility to read and agree with the Prospectus and Charter of the respective funds\nI am responsible for my investment decision and accept all the investment risks.\nI understand and agree that Fincorp may submit my information and the information related to this account to the governing authority in Vietnam and/or the IRS upon their request in accordance with the FATCA-compliant regulations.\n I hereby confirm that the above information is true and accurate. I agree to notify Fincorp of any changes to the declared information.\nn cases where my Subscription Orders are either invalid or sent after the cut-off time for a trading cycle, I authorize Distributor to keep my Subscription amount and subscribe for the next one (01) trading cycle.\nInvestors agree and acknowledge that Fincorp reserves the right to share investors’ information, including investment returns and investment transactions, with (the partner that introduced the investor to Fincorp), for the purpose of reporting, reconciliation and analysis.\n Investors are fully responsible for all bank transfer charges (if applicable) that may be levied when subscribing, redeeming or exchanging fund units managed by Fincorp.`,
+    content3: `I here by confirm the information provided above is true, accurate and complete.\n\nSubject to applicable local laws, I hereby consent for ${stringApp.companyName} Investment Management Ltd to share my information with domestic and overseas tax authorities where necessary to establish my tax liability in any jurisdiction.\n\nWhere required by domestic or overseas regulators or tax authorities, I consent and agree that ${stringApp.companyName} may withhold such amounts as may be required according to applicable laws, regulations and directives.\n\nI undertake to notify ${stringApp.companyName} within 30 calendar days if there is a change in any information which I have provided to ${stringApp.companyName}.\n`,
+    contentconfirm: `1.Risk disclosure \n\nI, as an Investor, have reviewed the provided information on Open-ended funds (OEFs) and fully understand what an OEF is.\n\nI, as an Investor, understand that I am participating into a product that invests into the Vietnamese securities market, including stocks, bonds and other securities instruments. I understand securities investments are subject to market risks and may fluctuate in value.\n My expected return (if any) in OEFs is not guaranteed. I understand the actual return may be lower or higher than the expected or historical return.\nMy investments in OEFs may suffer losses if the securities that the OEFs invest into do not perform, or if the market is not favorable. I understand I may lose part of my investments if performance is not as expected.\n${stringApp.companyName} or ${stringApp.companyName}'s Partners cannot provide any guarantees, either explicitly or implicitly. I understand ${stringApp.companyName} and ${stringApp.companyName}'s Partners are under no legal obligation to compensate me for any losses to my investments.\n\n2.Acknoweldgements\n\nI have responsibility to read and agree with the Prospectus and Charter of the respective funds\nI am responsible for my investment decision and accept all the investment risks.\nI understand and agree that ${stringApp.companyName} may submit my information and the information related to this account to the governing authority in Vietnam and/or the IRS upon their request in accordance with the FATCA-compliant regulations.\n I hereby confirm that the above information is true and accurate. I agree to notify ${stringApp.companyName} of any changes to the declared information.\nn cases where my Subscription Orders are either invalid or sent after the cut-off time for a trading cycle, I authorize Distributor to keep my Subscription amount and subscribe for the next one (01) trading cycle.\nInvestors agree and acknowledge that ${stringApp.companyName} reserves the right to share investors’ information, including investment returns and investment transactions, with (the partner that introduced the investor to ${stringApp.companyName}), for the purpose of reporting, reconciliation and analysis.\n Investors are fully responsible for all bank transfer charges (if applicable) that may be levied when subscribing, redeeming or exchanging fund units managed by ${stringApp.companyName}.`,
     //
     save: 'Save',
   },
@@ -344,6 +355,7 @@ export default {
     lenhban: 'Redeem',
     lenhmuahoandoi: 'Switch-In Orders',
     lenhbanhoandoi: 'Switch-Out Orders',
+    lenhhoandoi: 'Switch Orders',
     tungay: 'From date',
     toingay: 'To date',
     taolenhmua: 'Subscribe order',
@@ -404,19 +416,24 @@ export default {
     taolenhmua: 'Subscribe order',
     thaydoisovoidaunam: 'Year to Date return',
     taingay: 'at date',
-    giatriNAVCCQ: 'Nav/Unit (VND)',
-    NAVtaingay: 'NAV at date',
+    Taingay: 'Date',
+    giatriNAVCCQ: 'NAV',
+    NAVtaingay: 'NAV at ',
     tangtruongNAVCCQ: 'NAV/Unit growth - ',
     NAVcaonhat: 'Highest NAV',
     NAVthapnhat: 'Lowest NAV',
+    NAV: 'NAV',
     khongconoidunghienthi: 'No Data',
     thang: 'Month',
     tatca: 'All time',
     navccq: 'NAV/Unit',
     thongtinquy: 'Fund information',
     xemchitiet: 'See details',
+    xemthem: 'Show more',
   },
   createordermodal: {
+    tudongtieptucdautu: 'Automatically continue to invest',
+    ngaythanhtoanhangthang: 'Monthly payment date',
     datlenhmua: 'Subscribe order',
     datlenhban: 'Redeem order',
     datlenhchuyendoi: 'Switch order',
@@ -454,6 +471,8 @@ export default {
     vuilongchuyentientruoc:
       'Investor should transfer money before trading date',
     thongtinchuyenkhoan: 'Bank transfer information',
+    luuyttck:
+      'Please copy exactly all information to ensure the order successful.',
     tenthuhuong: 'Beneficial Owner',
     sotaikhoan: 'Account number',
     nganhang: 'Bank',
@@ -479,7 +498,7 @@ export default {
     ban: 'Redeem',
     giatriuoctinhsauthuephi: 'Estimated value after taxes, fees',
     datlenhbanthanhcong: 'You have successfully placed a sell order',
-    camonquykhach: 'thank you',
+    camonquykhach: 'Thank you',
     // create order transder
     thongtinccqchuyendoi: 'Source Fund Information',
     chonccqchuyendoi: 'Select the switch fund',
@@ -537,7 +556,7 @@ export default {
     tongloilo: 'Total gain/loss',
     taisan: 'Asset',
     //
-    NAVhientai: 'Current NAV',
+    NAVhientai: 'NAV',
     tonggiatridaututrungbinh: 'Total AVG investment',
     giamuatrungbinh: `Average buying NAV/Unit`,
     tonggiatrithitruong: 'Total market value',
@@ -574,21 +593,40 @@ export default {
     thuvien: 'Library',
     huy: 'Cancel',
     chonhinhanh: 'Select image',
+    taive: 'Download',
+    hopdongdientu: 'E-Contract',
+    xemtruoc: 'Preview',
+    kydientu: 'Sign now',
+    taichuky: 'Upload signature',
+    chukycuaban: 'Your signature',
+    taihopdongdaky: 'Download signed Account Opening Contract',
+    taihopdongmotaikhoan: 'Download Account Opening Form',
+    contentdownload:
+      'Please review Your account opening form before e-signing contract. Click Sign Now and follow e-sign steps',
+    contentdownload2: `Your Account Opening Contract is verified by esigned You please download your Account Opening Contract by clicking button below`,
   },
   feetable: {
     bieuphi: 'Tariffs',
   },
   alert: {
+    vuilongchondayduthongtin: 'Please select full information!',
+    capnhatmucdoruirothanhcong: 'Update the risk level successfully !',
     logout: 'Log Out',
+    taithanhcong: 'Download complete',
+    taochukysothanhcong: 'You have been signed e-contract successfully!',
     contentlogout: 'Are you sure you want to log out?',
+    dinhdanganhkhongphuhop:
+      'The signature image you uploaded is not in the correct format. Please select image files with the format extention (.png,.jpg, .jpeg)',
     dong: 'Close',
+    kydientu: 'Ký điện tử',
+    desau: 'Để sau',
     xoalenh: 'Delete order success',
     dangxuat: 'Log Out',
     doiemailthanhcong: 'Change email success',
     doimatkhauthanhcong: 'Change password success',
     capnhatdiachithanhcong: 'Address update successful',
     capnhatthongtincanhanthanhcong: 'Personal information updated successful',
-
+    dungluongtoida: 'Maximum size is 5MB',
     capnhatthongtintaikhoannganhangthanhcong:
       'Bank account information updated successful',
     // thong bao
@@ -612,9 +650,18 @@ export default {
 
     emailcuphaikhacemailmoi: `Old email must be different from New email`,
     xacnhanxoalenhgiaodich: 'Confirm delete transaction order?',
+    registernhapquaotp:
+      'Your session is expired, please refresh and create a new transaction',
+    nhapotpquasoluong:
+      'You have tried 3 times with invalid OTP. For security reasons please login again.',
     matkhaucuphaikhacmatkhaumoi: `The old password must be different from the new password`,
     ekycfail:
       'Currently, we cannot verify your information because of bad quality pictures. Please try later!',
   },
   //
+  component: {
+    ngay: 'Day',
+    thang: 'Month',
+    nam: 'Year',
+  },
 };

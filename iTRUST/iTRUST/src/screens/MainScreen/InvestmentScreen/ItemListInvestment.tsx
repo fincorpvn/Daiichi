@@ -16,6 +16,7 @@ interface IData {
   name: string;
   nameEn: string;
   tradingDayOfNavCurrently: string;
+  valuationdate: string;
   navPre: string | number;
   navCurrently: string | number;
   navPercent: string | number;
@@ -34,6 +35,7 @@ function ItemListInvestment({data}: IProps) {
     id,
     color,
     tradingDayOfNavCurrently,
+    valuationdate,
     navPercent,
     navCurrently,
     nameEn,
@@ -74,7 +76,7 @@ function ItemListInvestment({data}: IProps) {
             justifyContent={'flex-start'}>
             <Label size={14}>{`investmentscreen.taingay`}</Label>
             <Label multilanguage={false}>{` ${
-              tradingDayOfNavCurrently ?? ''
+              valuationdate || tradingDayOfNavCurrently || ''
             }`}</Label>
           </Div>
         </Div>

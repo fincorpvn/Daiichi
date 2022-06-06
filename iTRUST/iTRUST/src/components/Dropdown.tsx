@@ -15,6 +15,7 @@ import {useAppSelector} from 'store/hooks';
 import {
   heightScale,
   heightScreen,
+  Log,
   removeAllSpace,
   removeUtf8,
   widthScale,
@@ -44,7 +45,7 @@ function SBtn(Props: {
       justifyContent={'space-between'}
       borderWidth={0.5}
       backgroundColor={Props.backgroundColor || 'transparent'}
-      borderColor={Ecolors.bordercolor}
+      borderColor={Ecolors.grayColor}
       paddingLeft={18}
       paddingRight={16}>
       <Div flex={1}>

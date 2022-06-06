@@ -38,7 +38,6 @@ function ItemAutoInvestTransaction(p: {data: any}) {
         });
       }}
       isScale={false}
-      shadow={true}
       marginHorizontal={16}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}

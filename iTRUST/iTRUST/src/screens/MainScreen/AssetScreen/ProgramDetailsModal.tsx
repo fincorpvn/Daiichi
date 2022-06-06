@@ -48,7 +48,9 @@ function T(p: {
   );
 }
 
-function ProgramDetailsModal() {
+function ProgramDetailsModal(p: {data: any}) {
+  const route = useRoute<any>();
+  const {name, nameEn} = route.params.data;
   const insests = useSafeAreaInsets();
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const [data, setData] = useState<any>(null);
@@ -81,8 +83,6 @@ function ProgramDetailsModal() {
     }
   };
 
-  const route = useRoute<any>();
-  const {name, nameEn} = route.params.data;
   return (
     <Button
       isScale={false}
@@ -153,7 +153,9 @@ function ProgramDetailsModal() {
           />
           <T
             title={`assetscreen.sldonviquy`}
-            content={convertNav(data?.totalOfUnit ?? 0, true)}
+            content={`${convertNav(data?.totalOfUnit ?? 0, true)} ${
+              I18nState == 'vi' ? 'CCQ' : 'Units'
+            }`}
             isLine={true}
           />
           <T

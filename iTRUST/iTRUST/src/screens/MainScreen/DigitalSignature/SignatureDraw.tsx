@@ -1,7 +1,16 @@
-import {Button, ButtonBorder, Div, ImageView, Label} from 'components';
-import {Ecolors, EStyle, Icons} from 'constant';
+import {
+  Button,
+  ButtonBorder,
+  Div,
+  ImageView,
+  Label,
+  LoadingIndicator,
+} from 'components';
+import {Ecolors, Icons} from 'constant';
 import React, {useRef, useState} from 'react';
+import {doUploadFileSignature} from 'screens/MainScreen/DigitalSignature/func';
 import {goBack} from 'services';
+import {useAppSelector} from 'store/hooks';
 import DrawLine from './DrawLine';
 
 interface T {
@@ -10,13 +19,22 @@ interface T {
 }
 
 function SignatureDraw() {
+  const I18nState = useAppSelector(state => state.languages.I18nState);
+  const [loading, setLoading] = useState<boolean>(false);
   const drawlineRef = useRef<T>(null);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState<string>('');
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const onAccept = () => {
     if (drawlineRef.current) {
       drawlineRef.current.accept((res: string) => {
-        setImage(res);
+        goBack().then(() => {
+          doUploadFileSignature({
+            link: res,
+            setLoading: setLoading,
+            I18nState: I18nState,
+          });
+        });
       });
     }
   };
@@ -33,16 +51,18 @@ function SignatureDraw() {
       alignItems={'center'}
       justifyContent={'center'}
       backgroundColor={Ecolors.transparentLoading}>
-      {!!image && (
-        <>
-          <ImageView
-            source={{
-              uri: image,
-            }}
-            widthHeight={200}
-            resizeMode={'contain'}
-          />
-        </>
+      {loading && (
+        <Div
+          position={'absolute'}
+          zIndex={999}
+          elevation={999}
+          backgroundColor={Ecolors.transparentLoading}
+          alignItems={'center'}
+          justifyContent={'center'}
+          width={'100%'}
+          height={'100%'}>
+          <LoadingIndicator color={Ecolors.mainColor} />
+        </Div>
       )}
       <Div
         width={345}
@@ -62,7 +82,7 @@ function SignatureDraw() {
           borderBottomColor={Ecolors.spaceColor}
           justifyContent={'space-between'}>
           <Div widthHeight={50} />
-          <Label fontWeight={'700'}>{`digitalsignature.chukyso`}</Label>
+          <Label fontWeight={'700'}>{`digitalsignature.chukycuaban`}</Label>
           <Button
             widthHeight={50}
             alignItems={'center'}
@@ -78,7 +98,7 @@ function SignatureDraw() {
           </Button>
         </Div>
         {/* view drawer */}
-        <DrawLine ref={drawlineRef} />
+        <DrawLine setIsVisible={setIsVisible} ref={drawlineRef} />
         {/* footer */}
         <Div width={288} height={1} backgroundColor={Ecolors.spaceColor} />
         <Label
@@ -103,6 +123,8 @@ function SignatureDraw() {
             title={'digitalsignature.xoa'}
           />
           <ButtonBorder
+            loading={loading}
+            isDisable={!isVisible}
             onPress={() => {
               onAccept();
             }}

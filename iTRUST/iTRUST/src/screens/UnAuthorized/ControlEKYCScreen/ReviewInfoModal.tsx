@@ -79,6 +79,8 @@ function ReviewInfoModal() {
   const insets = useSafeAreaInsets();
   const dispatch = useDispatch();
   const I18nState = useAppSelector(state => state.languages.I18nState);
+  const userRedux = useAppSelector(state => state.authen.currentUser);
+
   const {statusScreen} = useAppSelector(state => state.authen);
   const {
     userProfile,
@@ -153,6 +155,13 @@ function ReviewInfoModal() {
     return () => {};
   }, [isLike]);
 
+  const gotoEsign = () => {
+    navigate('DigitalSignatureScreen', {
+      isHideBack: true,
+    });
+    return;
+  };
+
   const onConfirm = async () => {
     // check dataaa
     if (
@@ -210,7 +219,7 @@ function ReviewInfoModal() {
         userBankAccount: {
           bankId: `${bank?.id || ''}`,
           branchId: `${branch?.id || bank?.id || ''}`,
-          name: name || currentUser.name,
+          name: name || currentUser?.name || userRedux?.name,
           number: number,
         },
         userAddress: {
@@ -226,9 +235,9 @@ function ReviewInfoModal() {
           mailingDistrictId: mailingDistrict?.id,
           mailingWardId: mailingWard?.id,
         },
-        name: name || currentUser.name, // 'Nguyen Thanh Phong';
-        email: email || currentUser.email, //'po.ntp.19946@gmail.com';
-        phone: phone || currentUser.phone,
+        name: name || currentUser?.name || userRedux.name, // 'Nguyen Thanh Phong';
+        email: email || currentUser?.email || userRedux.email, //'po.ntp.19946@gmail.com';
+        phone: phone || currentUser?.phone || userRedux.phone,
       };
       const res = await apiAuth.createEKYC(data);
       setLoading(false);
@@ -240,19 +249,25 @@ function ReviewInfoModal() {
           type: 2,
           titleClose: `alert.dongy`,
           onClose: async () => {
-            if (statusScreen != 'main') {
-              navigate('LoginScreen');
-            } else {
-              navigate('OverviewScreen');
-            }
+            gotoEsign;
           },
           onConfirm: async () => {
-            if (statusScreen != 'main') {
-              navigate('LoginScreen');
-            } else {
-              navigate('OverviewScreen');
-            }
+            gotoEsign();
           },
+        });
+        return;
+      } else {
+        Alert.showError({
+          content: I18nState == 'vi' ? res.message : res.messageEn,
+          multilanguage: false,
+          // titleClose: `alert.dongy`,
+          // onPress: () => {
+          //   if (statusScreen != 'main') {
+          //     navigate('LoginScreen');
+          //   } else {
+          //     navigate('OverviewScreen');
+          //   }
+          // },
         });
       }
     } catch (error: any) {
@@ -262,10 +277,18 @@ function ReviewInfoModal() {
         type: 2,
         titleClose: `alert.dongy`,
         onClose: () => {
-          // goBack();
+          if (statusScreen != 'main') {
+            navigate('LoginScreen');
+          } else {
+            navigate('OverviewScreen');
+          }
         },
         onConfirm: () => {
-          // goBack();
+          if (statusScreen != 'main') {
+            navigate('LoginScreen');
+          } else {
+            navigate('OverviewScreen');
+          }
         },
       });
     } finally {
@@ -361,7 +384,7 @@ function ReviewInfoModal() {
                   : 'Male'
                 : I18nState == 'vi'
                 ? 'Nữ'
-                : 'FeMale'
+                : 'Female'
             }
             marginHorizontal={0}
           />
@@ -387,7 +410,7 @@ function ReviewInfoModal() {
           <InputItem
             marginTop={6}
             isInput={false}
-            value={email || currentUser?.email || ''}
+            value={email || currentUser?.email || userRedux?.email || ''}
             marginHorizontal={0}
           />
           <Lbl marginTop={13} content={`reviewinfoscreen.sodienthoai`} />
@@ -409,7 +432,7 @@ function ReviewInfoModal() {
             <Div width={198}>
               <InputItem
                 isInput={false}
-                value={phone || currentUser?.phone || ''}
+                value={phone || currentUser?.phone || userRedux?.phone || ''}
                 marginHorizontal={0}
               />
             </Div>
@@ -698,7 +721,7 @@ function ReviewInfoModal() {
             marginTop={15}
             size={15}
             fontWeight={'700'}>{`reviewinfoscreen.dieukhoansudung`}</Label>
-          {/* <Label
+          <Label
             marginTop={10}
             color={Ecolors.mainColor}
             fontWeight={'700'}
@@ -708,7 +731,7 @@ function ReviewInfoModal() {
             <Label
               lineHeight={22}
               size={15}>{`accountverify.contentdiachi1`}</Label>
-            {`${email || ''}`}
+            {`${email || currentUser?.email || ''}`}
           </Label>
           <Label
             marginTop={5}
@@ -719,7 +742,7 @@ function ReviewInfoModal() {
             lineHeight={22}
             marginBottom={10}
             marginTop={5}
-            size={15}>{`accountverify.contentdiachi3`}</Label> */}
+            size={15}>{`accountverify.contentdiachi3`}</Label>
           <Div padding={10} backgroundColor={Ecolors.spaceColor} marginTop={5}>
             <Label
               marginTop={8}
@@ -763,7 +786,7 @@ function ReviewInfoModal() {
                 setIsAccept(a => !a);
               }}
               marginRight={13}
-              borderWidth={0.8}
+              borderWidth={1}
               alignItems={'center'}
               justifyContent={'center'}
               borderColor={isAccept ? Ecolors.mainColor : Ecolors.spaceColor}

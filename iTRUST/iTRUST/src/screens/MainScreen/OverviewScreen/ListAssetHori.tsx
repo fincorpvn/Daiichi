@@ -75,6 +75,7 @@ function ListAssetHori({itemFocus, setItemFocus}: Props) {
         viewabilityConfig={viewConfigRef.current}
         bouncesZoom={true}
         snapToAlignment={'start'}
+        decelerationRate={'fast'}
         snapToInterval={widthScale(259) + widthScale(20)}
         scrollEventThrottle={16}
         onScroll={Animated.event(

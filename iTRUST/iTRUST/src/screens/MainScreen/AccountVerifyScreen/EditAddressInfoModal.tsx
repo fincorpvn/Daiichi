@@ -104,12 +104,12 @@ function EditAddressInfoModal() {
         !permanentProvince ||
         !permanentDistrict ||
         !permanentWard ||
-        !permanentAddress.length ||
+        !permanentAddress?.length ||
         !mailingCountry ||
         !mailingProvince ||
         !mailingDistrict ||
         !mailingWard ||
-        !mailingAddress.length
+        !mailingAddress?.length
       ) {
         Alert.showError({
           content: `alert.vuilongnhapdayduthongtindiachi`,

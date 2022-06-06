@@ -1,11 +1,14 @@
 import {useRoute} from '@react-navigation/core';
 import {Button, ButtonBorder, Div, ImageView, Label} from 'components';
 import {Ecolors, EStyle, Icons} from 'constant';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {goBack} from 'services';
 
 function AlertError() {
   const route = useRoute<any>();
+  useEffect(() => {
+    return () => {};
+  }, []);
   return (
     <Div screen={true} alignItems={'center'} justifyContent={'center'}>
       <Div
@@ -39,10 +42,11 @@ function AlertError() {
           alignItems={'center'}
           justifyContent={'center'}
           onPress={() => {
-            goBack();
-            if (route?.params?.onPress) {
-              route?.params?.onPress();
-            }
+            goBack().then(() => {
+              if (route?.params?.onPress) {
+                route?.params?.onPress();
+              }
+            });
           }}>
           <Label
             size={16}

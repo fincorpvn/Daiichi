@@ -66,6 +66,15 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
     }
   };
 
+  const onPre = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({
+        x: stepTimeLine ? (stepTimeLine - 2) * widthScreen : widthScreen,
+        animated: true,
+      });
+    }
+  };
+
   const onExcuseTempVolumn = async () => {
     // return;
     try {
@@ -178,6 +187,7 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
         <OrderTransferStep2
           scheme={scheme}
           onNext={onNext}
+          onPre={onPre}
           product={product}
           stepTimeLine={stepTimeLine}
           currentSession={currentSession}
@@ -189,6 +199,7 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
           destScheme={destScheme}
           destProduct={destProduct}
           amount={amount}
+          onPre={onPre}
           stepTimeLine={stepTimeLine}
           scheme={scheme}
           product={product}

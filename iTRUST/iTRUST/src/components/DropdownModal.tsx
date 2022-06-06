@@ -170,8 +170,8 @@ function DropdownModal() {
           borderTopLeftRadius={5}
           width={'100%'}
           borderTopRightRadius={5}
-          borderWidth={0.8}
-          borderColor={Ecolors.bordercolor}>
+          borderWidth={1}
+          borderColor={Ecolors.spaceColor}>
           <Div
             flexDirection={'row'}
             alignItems={'center'}
@@ -201,9 +201,9 @@ function DropdownModal() {
               alignItems={'center'}
               justifyContent={'flex-start'}
               borderRadius={5}
-              borderWidth={0.8}
+              borderWidth={1}
               marginBottom={10}
-              borderColor={Ecolors.bordercolor}>
+              borderColor={Ecolors.spaceColor}>
               <Input
                 value={textsearch}
                 onChangeText={(e: string) => setTextsearch(e)}

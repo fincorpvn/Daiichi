@@ -2,13 +2,13 @@ import {StyleSheet, Appearance} from 'react-native';
 
 export enum WhiteColor {
   textColor = '#231F20',
-  linkColor = '#0E85D9',
+  linkColor = '#5046BB',
   focusColor = '#0E85D9',
   whiteColor = '#FFFFFF',
   grayColor = '#C4C5CE',
-  mainColor = '#ED1C24',
-  mainColorSpace = '#D81921',
-  bordercolor = '#EFE8DF',
+  mainColor = '#8A7864',
+  mainColorSpace = '#8A7864',
+  bordercolor = '#D0C4B3',
   disableColor = '#E9EAEF',
   greenColor = '#16C79A',
   redColor = '#ED1C24',
@@ -75,13 +75,13 @@ export const EStyle = StyleSheet.create({
     elevation: 9,
   },
   shadowItem: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 1,
+    // },
+    // shadowOpacity: 0.2,
+    // shadowRadius: 1.41,
+    // elevation: 2,
   },
 });

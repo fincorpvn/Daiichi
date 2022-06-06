@@ -8,7 +8,7 @@ import {
   widthScale,
   widthScreen,
 } from 'utils';
-const size = widthScreen / 3 - widthScale(45);
+const size = 105;
 
 function Calendar(Props: {onChange: (e: any) => void; initValue?: any}) {
   const [date, setDate] = useState<any>(null);
@@ -84,7 +84,8 @@ function Calendar(Props: {onChange: (e: any) => void; initValue?: any}) {
           paddingHorizontal={0}
           initData={parseArrayNum(numDate)}
           isActive={true}
-          content={'dd'}
+          content={'component.ngay'}
+          multilanguage={true}
           value={date}
           onChange={e => setDate(e)}
         />
@@ -92,7 +93,8 @@ function Calendar(Props: {onChange: (e: any) => void; initValue?: any}) {
           paddingHorizontal={0}
           width={size}
           initData={parseArrayNum(numMonth)}
-          content={'mm'}
+          content={'component.thang'}
+          multilanguage={true}
           isActive={true}
           onChange={e => setMonth(e)}
           value={month}
@@ -101,7 +103,8 @@ function Calendar(Props: {onChange: (e: any) => void; initValue?: any}) {
           paddingHorizontal={0}
           width={size}
           initData={parseArrayNum(numYear, true)}
-          content={'yyyy'}
+          content={'component.nam'}
+          multilanguage={true}
           isActive={true}
           onChange={e => setYear(e)}
           value={year}

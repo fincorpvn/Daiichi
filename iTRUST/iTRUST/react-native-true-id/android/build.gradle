@@ -111,6 +111,7 @@ dependencies {
     // trueID end
     implementation 'com.mixpanel.android:mixpanel-android:5.9.1'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.github.devsideal:VectorChildFinder:1.0.0'
 }
 
 def configureReactNativePom(def pom) {

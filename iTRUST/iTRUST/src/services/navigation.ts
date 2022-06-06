@@ -9,25 +9,33 @@ export function navigate(
   params?: object,
   cancelDebounce?: boolean,
 ) {
-  if (name == 'AlertModal') {
+  return new Promise((rs, rj) => {
+    if (name == 'AlertModal') {
+      navigationRef.current?.navigate(name, params);
+      rs('');
+      return;
+    }
+    // if (timeoutref.current && !cancelDebounce) {
+    //   return;
+    // }
+    if (__DEV__) {
+      console.log('SCEEN:', name);
+    }
     navigationRef.current?.navigate(name, params);
-    return;
-  }
-  // if (timeoutref.current && !cancelDebounce) {
-  //   return;
-  // }
-  if (__DEV__) {
-    console.log('SCEEN:', name);
-  }
-  navigationRef.current?.navigate(name, params);
+    rs('');
+    return '';
+  });
   // timeoutref.current = setTimeout(() => {
   //   clearTimeout(timeoutref.current);
   //   timeoutref.current = null;
   // }, 0);
 }
-
 export function goBack() {
-  if (navigationRef.current) {
-    navigationRef.current?.goBack();
-  }
+  return new Promise((rs, rj) => {
+    if (navigationRef.current) {
+      navigationRef.current?.goBack();
+    }
+    rs('');
+    return '';
+  });
 }

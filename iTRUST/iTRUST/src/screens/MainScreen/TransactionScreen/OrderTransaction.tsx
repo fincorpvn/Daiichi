@@ -1,5 +1,5 @@
 import {useIsFocused} from '@react-navigation/core';
-import {ButtonBorder, Div, Label} from 'components';
+import {Alert, ButtonBorder, Div, Label} from 'components';
 import {Ecolors} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {FlatList, ScrollView, StyleSheet} from 'react-native';
@@ -11,7 +11,7 @@ import {
 } from 'reducer/transaction';
 import {navigate} from 'services';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
-import {heightScale} from 'utils';
+import {heightScale, Log} from 'utils';
 import ListOrderTransaction from './ListOrderTransaction';
 
 const convertTitleOrderType = (a: string) => {
@@ -34,6 +34,7 @@ function OrderTransaction() {
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
   const orderType = useAppSelector(state => state.transaction.orderType);
   const isFocus = useIsFocused();
+  const I18nState = useAppSelector(state => state.languages.I18nState);
 
   const onChangeOrderType = (
     a: 'BUY' | 'SELL' | 'TRANSFER' | 'TRANSFER_BUY',
@@ -80,7 +81,7 @@ function OrderTransaction() {
         <ButtonBorder
           marginTop={20}
           size={14}
-          width={130}
+          width={103}
           height={36}
           onPress={() => onChangeOrderType('BUY')}
           type={orderType == 'BUY' ? 1 : 3}
@@ -90,7 +91,7 @@ function OrderTransaction() {
         <ButtonBorder
           marginTop={20}
           size={14}
-          width={130}
+          width={103}
           height={36}
           onPress={() => onChangeOrderType('SELL')}
           type={orderType == 'SELL' ? 1 : 3}
@@ -100,23 +101,23 @@ function OrderTransaction() {
         <ButtonBorder
           marginTop={20}
           size={14}
-          width={130}
+          width={103}
           height={36}
           onPress={() => onChangeOrderType('TRANSFER')}
           type={orderType == 'TRANSFER' ? 1 : 3}
-          title={`transactionscreen.lenhbanhoandoi`}
+          title={`transactionscreen.lenhhoandoi`}
         />
         <Div width={16} />
-        <ButtonBorder
+        {/*  <ButtonBorder
           marginTop={20}
           size={14}
-          width={130}
+          width={105}
           height={36}
           onPress={() => onChangeOrderType('TRANSFER_BUY')}
           type={orderType == 'TRANSFER_BUY' ? 1 : 3}
           title={`transactionscreen.lenhmuahoandoi`}
         />
-        <Div width={16} />
+        <Div width={16} /> */}
       </ScrollView>
       <Div flex={1}>
         <ListOrderTransaction />
@@ -129,7 +130,7 @@ function OrderTransaction() {
         justifyContent={'center'}>
         <ButtonBorder
           onPress={() => {
-            if (currentUser.investmentProfile?.isReceivedHardProfile === 0) {
+            if (!currentUser?.investmentProfile?.status) {
               navigate('ControlEKYCScreen', {
                 onBack: () => {
                   navigate('TransactionScreen');
@@ -138,9 +139,38 @@ function OrderTransaction() {
               // EKYC();
               return;
             }
+            if (
+              (orderType == 'SELL' || orderType == 'TRANSFER') &&
+              !currentUser?.investmentProfile?.isReceivedHardProfile
+            ) {
+              const content =
+                I18nState == 'vi'
+                  ? `Tài khoản của quý khách hiện tại chưa được duyệt hoặc chưa nhận được hồ sơ gốc/chưa ký hợp đồng điện tử. Nên không thể thực hiện lệnh bán/ chuyển đổi.`
+                  : `You cannot create redemption/switching transaction due to pending account approval or not received hardcopy Open Account Contract/ unsigned e-Contract`;
+              if (
+                currentUser?.investmentProfile?.status?.code !=
+                  `INVESTMENT_PROFILE_APPROVE` ||
+                (currentUser?.investmentProfile?.status?.code ==
+                  'INVESTMENT_PROFILE_APPROVE' &&
+                  !currentUser?.investmentProfile?.isReceivedHardProfile)
+              ) {
+                Alert.show({
+                  content: content,
+                  multilanguage: false,
+                  type: 2,
+                  titleClose: 'alert.dongy',
+                  onCancel: () => {},
+                  onConfirm: () => {
+                    navigate('DigitalSignatureScreen');
+                  },
+                });
+                return;
+              }
+            }
             navigate('CreateOrderModal', {
               orderType,
             });
+            return;
           }}
           type={1}
           title={convertTitleOrderType(orderType)}
@@ -153,6 +183,7 @@ function OrderTransaction() {
 const s = StyleSheet.create({
   scrollviewHeader: {
     maxHeight: heightScale(60),
+    marginBottom: heightScale(10),
   },
 });
 

@@ -100,7 +100,7 @@ function ChartPercentHeader({itemFocus, setItemFocus}: Props) {
             }
             fontWeight={'700'}
             multilanguage={false}>
-            {`${convertPercent(asset?.sumOfInterestOrHole)}`}
+            {`${convertPercent(Math.abs(asset?.sumOfInterestOrHole || 0))}`}
           </Label>
         </Div>
       </Div>

@@ -1,7 +1,12 @@
-import {Div, ImageView} from 'components';
-import {Ecolors, EStyle} from 'constant';
-import React, {useEffect, useState} from 'react';
-import {Image} from 'react-native';
+import { Div, ImageView } from 'components';
+import { Ecolors, EStyle, urlApp } from 'constant';
+import React, { useEffect, useState } from 'react';
+import { Image, Platform } from 'react-native';
+import ReactNativeBlobUtil from 'react-native-blob-util';
+import { PERMISSIONS } from 'react-native-permissions';
+import { getUuid, heightScreen, Log, requestPermisson, widthScreen } from 'utils';
+import { getStoreToken } from 'utils/storage';
+import RNFS from 'react-native-fs';
 
 interface T {
   width: number;
@@ -10,7 +15,7 @@ interface T {
 
 const defaultSize = 153;
 
-const Com = (p: {width?: number; marginTop?: number; height?: number}) => {
+const Com = (p: { width?: number; marginTop?: number; height?: number }) => {
   return (
     <Div
       backgroundColor={Ecolors.spaceColor}
@@ -26,26 +31,98 @@ function DemoSignature() {
     width: 153,
     height: 153,
   });
-  // const uri =
-  //   'file:///data/user/0/com.fplatform/cache/rn_image_picker_lib_temp_e502ba08-dcc9-44bc-b899-06bc08ba75aa.jpg';
+  const [token, setToken] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   getSizeImage();
-  //   return () => {};
-  // }, []);
+  useEffect(() => {
+    // getToken();
+    // setTimeout(() => {
+    //   downloadConfirm();
+    // }, 100);
+    // return () => {};
+  }, []);
+  const getToken = async () => {
+    const r = await getStoreToken();
+    if (r) {
+      setToken(r);
+    }
+  };
+  const downloadConfirm = async () => {
+    try {
+      if (loading) {
+        return;
+      }
+      setLoading(true);
+      const id = getUuid();
+      const token = await getStoreToken();
+      const url = `esignature/download-contract`;
+      const bburl = `${urlApp.APIURL}api/${url}`;
+      // return;
+      const link = `${Platform.OS === 'android'
+          ? RNFS.DownloadDirectoryPath
+          : RNFS.DocumentDirectoryPath
+        }/Mio_Plus/${id}.pdf`;
+      await requestPermisson(
+        Platform.OS === 'android'
+          ? PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
+          : PERMISSIONS.IOS.MEDIA_LIBRARY,
+        async () => {
+          return await ReactNativeBlobUtil.config({
+            appendExt: 'pdf',
+            path: link,
+            fileCache: true,
+          })
+            .fetch('GET', bburl, {
+              Authorization: token ? `Bearer ${token}` : '',
+              'Content-Type': 'application/json',
+              'request-id': id,
+            })
+            .then(async (res: any) => {
+              const p = await res.path();
+              if (Platform.OS === 'android') {
+                ReactNativeBlobUtil.android.actionViewIntent(
+                  p,
+                  'application/pdf',
+                );
+              } else {
+                ReactNativeBlobUtil.fs.writeFile(link, res.base64(), 'base64');
+                ReactNativeBlobUtil.ios.previewDocument(link);
+              }
+              setLoading(false);
+            })
+            .catch(err => {
+              Log('errror ', err);
+            })
+            .finally(() => {
+              setLoading(false);
+            });
+        },
+      );
+    } catch (error) {
+      Log('errorr', error);
+    } finally {
+      // setLoading(false);
+    }
+  };
 
-  // const getSizeImage = () => {
-  //   Image.getSize(uri, (width: number, height: number) => {
-  //     console.log('res', {
-  //       width,
-  //       height,
-  //     });
-  //     setStateSizeImage({
-  //       width: 153,
-  //       height: Math.round((height / width) * defaultSize),
-  //     });
-  //   });
-  // };
+  // if (token) {
+  //   return (
+  //     <WebView
+  //       style={{
+  //         width: widthScreen,
+  //         height: heightScreen,
+  //         flex: 1,
+  //       }}
+  //       source={{
+  //         uri: urlApp.APIURL + 'api/' + 'esignature/download-contract',
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           'content-type': 'application/json',
+  //         },
+  //       }}
+  //     />
+  //   );
+  // }
 
   return (
     <Div

@@ -11,14 +11,7 @@ import {
 import {Ecolors, Icons, stringApp} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
 import {useAppSelector} from 'store/hooks';
-import {
-  checkLogin,
-  getUuid,
-  Log,
-  parseMultilanguage,
-  widthScale,
-  widthScreen,
-} from 'utils';
+import {checkLogin, parseMultilanguage, widthScale, widthScreen} from 'utils';
 import {
   changeBiometryType,
   changeIsSupport,
@@ -26,7 +19,7 @@ import {
   saveName,
 } from 'reducer/authen';
 import {navigate} from 'services';
-import {Platform, ScrollView} from 'react-native';
+import {ScrollView, StatusBar} from 'react-native';
 import {useIsFocused} from '@react-navigation/core';
 import TouchID from 'react-native-touch-id';
 import {getAccount, getStoreData} from 'utils/storage';
@@ -100,21 +93,17 @@ function LoginScreen() {
 
   useEffect(() => {
     if (isBio) {
-      checkAccountStorage();
+      checkAccountStorage(true);
     }
     return () => {};
   }, [isBio]);
 
-  const checkAccountStorage = async () => {
+  const checkAccountStorage = async (t?: boolean) => {
     try {
       const res = await getStoreData('isAccountTouchID');
       if (res) {
         setIsHaveAccount(true);
-        if (isSupport && biometryType.length) {
-          doLoginWithBiometry(biometryType);
-        } else {
-          checkBiometryType();
-        }
+        checkBiometryType();
         return;
       }
       setIsHaveAccount(false);
@@ -130,8 +119,6 @@ function LoginScreen() {
       TouchID.isSupported()
         .then(res => {
           if (res === 'TouchID' || res === 'FaceID' || !!res) {
-            // setBioMetryType(res);
-            doLoginWithBiometry(biometryType);
             dispatch(changeBiometryType(res));
             dispatch(changeIsSupport(true));
           } else {
@@ -218,20 +205,11 @@ function LoginScreen() {
       });
     } finally {
     }
-    // navigate('ControlEKYCScreen');
-    // return;
   };
 
   const gotoRegister = () => {
     navigate('RegisterScreen');
     return;
-    // navigate('ReviewInfoModal', {
-    //   data: {
-    //     email: '1231232131 email',
-    //     phone: '1232131',
-    //     name: 'string',
-    //   },
-    // });
   };
 
   const gotoForgotPassword = () => {
@@ -240,6 +218,7 @@ function LoginScreen() {
 
   return (
     <ScrollView keyboardShouldPersistTaps={'handled'}>
+      <StatusBar barStyle={'light-content'} />
       <ImageView
         source={Icons.fincorpbanner}
         style={{
@@ -257,7 +236,7 @@ function LoginScreen() {
         <Label size={20} fontWeight="700">
           {`loginscreen.login`}
         </Label>
-        <DropdownMultiLanguage />
+        {/* <DropdownMultiLanguage /> */}
       </Div>
       {/* login form  */}
       <Div marginTop={33} paddingHorizontal={29} flexDirection={'column'}>
@@ -350,7 +329,7 @@ function LoginScreen() {
           <Button
             heightWidth={48}
             borderWidth={0.5}
-            borderColor={Ecolors.bordercolor}
+            borderColor={Ecolors.grayColor}
             borderRadius={5}
             alignItems={'center'}
             justifyContent={'center'}

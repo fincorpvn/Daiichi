@@ -3,7 +3,7 @@ import {Icons} from 'constant';
 import I18n from 'languages/i18n';
 
 interface ILanguage {
-  code: string;
+  code: 'en' | 'vi';
   name: string;
   icons: any;
 }

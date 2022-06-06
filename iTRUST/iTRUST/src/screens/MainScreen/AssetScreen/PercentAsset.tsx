@@ -54,7 +54,7 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
               color={interestOrHole < 0 ? Ecolors.redColor : Ecolors.greenColor}
               size={14}
               multilanguage={false}>
-              {` (${interestOrHole < 0 ? '-' : '+'}${convertPercent(
+              {` (${interestOrHole < 0 ? '' : '+'}${convertPercent(
                 interestOrHole,
               )})`}
             </Label>

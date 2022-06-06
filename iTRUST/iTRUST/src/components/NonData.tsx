@@ -32,11 +32,11 @@ function NonData(p: {
               size={24}
               marginTop={28}
               fontWeight={'700'}>{`overviewscreen.banchuacotaisan`}</Label>
-            <Label
+            {/* <Label
               marginTop={9}
               size={14}
               textAlign={'center'}
-              marginHorizontal={30}>{`overviewscreen.contentnondata`}</Label>
+              marginHorizontal={30}>{`overviewscreen.contentnondata`}</Label> */}
           </>
         </>
       )}

@@ -84,12 +84,12 @@ function ItemTable(p: {item: any}) {
       width={311}
       minHeight={216}
       borderRadius={8}
+      borderWidth={0.8}
       borderColor={Ecolors.bordercolor}
       overflow={'hidden'}
       backgroundColor={Ecolors.whiteColor}
       style={EStyle.shadowItem}
-      marginRight={16}
-      borderWidth={0.8}>
+      marginRight={16}>
       <RowSpaceItem marginTop={13}>
         <Label size={14}>{`assetscreen.quychuongtrinh`}</Label>
         <Label size={14}>{`assetscreen.phiengiaodich`}</Label>

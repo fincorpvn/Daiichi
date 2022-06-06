@@ -189,7 +189,7 @@ function OrderTransferStep1({
               <Label marginTop={13}>{`createordermodal.navkitruoc`}</Label>
               <InputItem
                 isInput={false}
-                value={convertNav(product?.navPre)}
+                value={convertNav(product?.navCurrently)}
                 marginTop={6}
                 marginHorizontal={0}
               />

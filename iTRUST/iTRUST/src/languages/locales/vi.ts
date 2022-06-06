@@ -262,7 +262,6 @@ export default {
     chinhanh: 'Chi nhánh',
     content:
       'Thông tin bắt buộc và thông tin tài khoản này được chuyển khoản khi thực hiện lệnh bán.',
-
     vuilongchonnganhang: 'Vui lòng chọn ngân hàng',
     vuilongchonchinhanh: 'Vui lòng chọn chi nhánh',
     // address info modal

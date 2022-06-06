@@ -137,7 +137,6 @@ function ConfirmModal() {
             size={15}
             fontWeight={'700'}
             color={Ecolors.mainColor}>{`accountverify.congboruiro`}</Label>
-
           <Label
             marginTop={8}
             size={15}

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package com.fplatform.iTRUST;
+=======
+package com.vinacapital.mio;
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 
 import android.os.Bundle; // here
 
@@ -23,6 +27,10 @@ public class MainActivity extends ReactActivity {
 
   @Override
   protected String getMainComponentName() {
+<<<<<<< HEAD
     return "iTRUST";
+=======
+    return "Mio_Plus";
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
   }
 }

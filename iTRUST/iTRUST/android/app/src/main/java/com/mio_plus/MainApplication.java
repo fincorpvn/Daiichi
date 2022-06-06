@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package com.fplatform.iTRUST;
+=======
+package com.vinacapital.mio;
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 
 import android.app.Application;
 import android.content.Context;
@@ -69,7 +73,11 @@ public class MainApplication extends Application implements ReactApplication {
          * We use reflection here to pick up the class that initializes Flipper,
          * since Flipper library is not available in release mode
          */
+<<<<<<< HEAD
         Class<?> aClass = Class.forName("com.fplatform.iTRUST.ReactNativeFlipper");
+=======
+        Class<?> aClass = Class.forName("com.vinacapital.mio.ReactNativeFlipper");
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

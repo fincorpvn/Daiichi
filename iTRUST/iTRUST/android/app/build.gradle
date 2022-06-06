@@ -135,7 +135,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
+<<<<<<< HEAD
         applicationId "com.fplatform.iTRUST"
+=======
+        applicationId "com.vinacapital.mio"
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -156,10 +160,17 @@ android {
 
     signingConfigs {
         debug {
+<<<<<<< HEAD
             storeFile file('keystore.jks')
         storePassword 'itrust2022'
             keyAlias 'com.fplatform.iTRUST'
             keyPassword 'itrust2022'
+=======
+            storeFile file('mio.keystore')
+            storePassword 'Splus@2019'
+            keyAlias 'com.vinacapital.mio'
+            keyPassword 'Splus@2019'
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
         }
     }
     buildTypes {
@@ -215,7 +226,10 @@ dependencies {
     implementation project(':react-native-splash-screen')
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+<<<<<<< HEAD
     implementation project(path: ':react-native-true-id')
+=======
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'

@@ -25,8 +25,13 @@
 		730FA48327D9F5E4001F7375 /* FBReactNativeSpec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48227D9F5E4001F7375 /* FBReactNativeSpec.framework */; };
 		730FA48527D9F5E4001F7375 /* RNFBApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48427D9F5E4001F7375 /* RNFBApp.framework */; };
 		730FA48727D9F5E4001F7375 /* RNFBMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48627D9F5E4001F7375 /* RNFBMessaging.framework */; };
+<<<<<<< HEAD
 		733369B1280E524900C58804 /* Plashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 733369B0280E524900C58804 /* Plashscreen.png */; };
 		733D4DEF27DF379900E27359 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 733D4DEE27DF379900E27359 /* GoogleService-Info.plist */; };
+=======
+		733D4DEF27DF379900E27359 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 733D4DEE27DF379900E27359 /* GoogleService-Info.plist */; };
+		735F811027CDFC0600CCD538 /* Plashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 735F810F27CDFC0600CCD538 /* Plashscreen.png */; };
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 		735F811227CDFC2B00CCD538 /* RNBootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 735F811127CDFC2B00CCD538 /* RNBootSplash.storyboard */; };
 		73E0967027D60C8900D002AB /* OpenSSL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737FED5427D5B5EB008C8F9C /* OpenSSL.xcframework */; };
 		73E0967127D60C8F00D002AB /* double-conversion.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73898B7B27D601B900B1427A /* double-conversion.xcframework */; };
@@ -83,7 +88,10 @@
 		730FA48227D9F5E4001F7375 /* FBReactNativeSpec.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBReactNativeSpec.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		730FA48427D9F5E4001F7375 /* RNFBApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		730FA48627D9F5E4001F7375 /* RNFBMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+<<<<<<< HEAD
 		733369B0280E524900C58804 /* Plashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plashscreen.png; path = ../../../../../AS/Plashscreen.png; sourceTree = "<group>"; };
+=======
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 		733D4DEE27DF379900E27359 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		735478EC27D9E6C7008A1930 /* Permission_PhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Permission_PhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		735478EE27D9E6D1008A1930 /* Permission_Camera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Permission_Camera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +102,10 @@
 		735478F827D9E7D2008A1930 /* RNFBApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		735478FA27D9E7D3008A1930 /* RNFBMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		735478FC27D9E91F008A1930 /* RNPermissions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNPermissions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+<<<<<<< HEAD
+=======
+		735F810F27CDFC0600CCD538 /* Plashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plashscreen.png; path = ../../../../../Downloads/Plashscreen.png; sourceTree = "<group>"; };
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 		735F811127CDFC2B00CCD538 /* RNBootSplash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RNBootSplash.storyboard; sourceTree = "<group>"; };
 		737FED5427D5B5EB008C8F9C /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework"; sourceTree = "<group>"; };
 		73898B7B27D601B900B1427A /* double-conversion.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "double-conversion.xcframework"; path = "Pods/Flipper-DoubleConversion/Frameworks/double-conversion.xcframework"; sourceTree = "<group>"; };
@@ -170,7 +182,11 @@
 			children = (
 				733D4DEE27DF379900E27359 /* GoogleService-Info.plist */,
 				7309843327D71423000A047D /* iTRUST.entitlements */,
+<<<<<<< HEAD
 				733369B0280E524900C58804 /* Plashscreen.png */,
+=======
+				735F810F27CDFC0600CCD538 /* Plashscreen.png */,
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -385,9 +401,15 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				C8F5A1E5AA4A4F5197C85FF5 /* Roboto-Black.ttf in Resources */,
+<<<<<<< HEAD
 				80CEB7A2678F40B3B3633030 /* Roboto-BlackItalic.ttf in Resources */,
 				6CC6672188504506995A9BD8 /* Roboto-Bold.ttf in Resources */,
 				733369B1280E524900C58804 /* Plashscreen.png in Resources */,
+=======
+				735F811027CDFC0600CCD538 /* Plashscreen.png in Resources */,
+				80CEB7A2678F40B3B3633030 /* Roboto-BlackItalic.ttf in Resources */,
+				6CC6672188504506995A9BD8 /* Roboto-Bold.ttf in Resources */,
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 				41EFCCE155B1426DB507CD39 /* Roboto-BoldItalic.ttf in Resources */,
 				A2A698646B0B4B4B91409D6B /* Roboto-Italic.ttf in Resources */,
 				84E7AA618B05499795AD3330 /* Roboto-Light.ttf in Resources */,
@@ -649,8 +671,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iTRUST/iTRUST.entitlements;
+<<<<<<< HEAD
 				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 67J6WUBVUP;
+=======
+				CURRENT_PROJECT_VERSION = 12;
+				DEVELOPMENT_TEAM = BL48QZN6DB;
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "$(inherited)";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -659,10 +686,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fplatform.fincorp.vn;
+=======
+				MARKETING_VERSION = 5.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miovinacapital;
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 				PRODUCT_NAME = iTRUST;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -677,8 +711,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iTRUST/iTRUST.entitlements;
+<<<<<<< HEAD
 				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 67J6WUBVUP;
+=======
+				CURRENT_PROJECT_VERSION = 12;
+				DEVELOPMENT_TEAM = BL48QZN6DB;
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "$(inherited) $(inherited)";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -687,10 +726,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fplatform.fincorp.vn;
+=======
+				MARKETING_VERSION = 5.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miovinacapital;
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 				PRODUCT_NAME = iTRUST;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

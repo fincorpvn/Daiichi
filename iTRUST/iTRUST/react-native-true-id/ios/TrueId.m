@@ -24,6 +24,7 @@ RCT_EXPORT_METHOD(configure:(NSDictionary*)data) {
             NSString *zoomAuthURL = [data objectForKey:@"zoomAuthURL"];
              NSString *accessToken = [data objectForKey:@"accessToken"];
             NSString *language = [data objectForKey:@"language"];
+<<<<<<< HEAD
             NSString *themeColor = [data objectForKey:@"themeColor"];
             NSString *headerConfig = [data objectForKey:@"headerConfig"];   
 
@@ -38,6 +39,13 @@ RCT_EXPORT_METHOD(configure:(NSDictionary*)data) {
             [TrueID setLanguageWithLanguage: language];
 
             [TrueID configureWithConfigInfo:configInfo configColor: colorConfig configHeader: headerConfig];
+=======
+            configInfo = [[ConfigInfo alloc] initWithDomain:domain domainPath:domainPath authDomain:authDomain authDomainPath:authDomainPath appId:appId appSecret:appSecret zoomLicenseKey:zoomLicenseKey zoomServerBaseURL: zoomServerBaseURL zoomPublicKey:zoomPublicKey zoomAuthURL:zoomAuthURL zoomClient:@"" accessToken:accessToken];
+
+             [TrueID setLanguageWithLanguage: language];
+
+            [TrueID configureWithConfigInfo:configInfo];
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
         }
         else {
             [self showAlert:@"trueID doesn't support iOS less than 9"];

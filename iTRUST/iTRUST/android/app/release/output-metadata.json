@@ -4,7 +4,11 @@
     "type": "APK",
     "kind": "Directory"
   },
+<<<<<<< HEAD
   "applicationId": "com.fplatform.iTRUST",
+=======
+  "applicationId": "com.vinacapital.mio",
+>>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
   "variantName": "processReleaseResources",
   "elements": [
     {

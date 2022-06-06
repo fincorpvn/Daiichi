@@ -89,6 +89,7 @@ function CardSignature() {
             .then(async (res: any) => {
               if (Platform.OS === 'android') {
                 const T = convertDataDownloadFile(res);
+                Log('resss', res);
                 await ReactNativeBlobUtil.fs
                   .writeFile(T.urlFile, res.base64(), 'base64')
                   .then(async (e: any) => {

@@ -533,7 +533,12 @@ function OtpRequestModal() {
         <ButtonBorder
           width={317}
           loading={loadingConfirm}
-          onPress={() => onPressBtnConfirm()}
+          onPress={() => {
+            if (isInTime && otp.length) {
+              onPressBtnConfirm();
+              return;
+            }
+          }}
           type={isInTime && otp.length >= 6 ? 1 : 2}
           title={`otprequestmodal.confirm`}
         />

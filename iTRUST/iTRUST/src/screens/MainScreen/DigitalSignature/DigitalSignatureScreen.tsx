@@ -29,7 +29,7 @@ function DigitalSignatureScreen() {
           <CardSignature />
         </Div>
       </ScrollView>
-      {!!investmentProfile?.isReceivedHardProfile && <RowButtonAction />}
+      {!investmentProfile?.isReceivedHardProfile && <RowButtonAction />}
     </Div>
   );
 }

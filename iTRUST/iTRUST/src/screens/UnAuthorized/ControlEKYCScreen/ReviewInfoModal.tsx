@@ -165,6 +165,16 @@ function ReviewInfoModal() {
     }
     return () => {};
   }, [isLike]);
+
+  useEffect(() => {
+    let objjj = {};
+    stringApp.riskAssessment.map((item: any, index: number) => {
+      objjj[item.id] = item.data[0];
+    });
+    setRiskAssessment(objjj || {});
+    return;
+  }, []);
+
   const gotoEsign = () => {
     navigate('DigitalSignatureScreen', {
       isHideBack: true,
@@ -197,19 +207,19 @@ function ReviewInfoModal() {
     }
     try {
       setLoading(true);
-      const photoAfterURL = await uploadFile({
+      const photoAfterURL: any = await uploadFile({
         fileBase64:
           Platform.OS === 'android'
             ? backCardImage.replace(/\n/g, '')
             : backCardImage,
       });
-      const photoBeforeURL = await uploadFile({
+      const photoBeforeURL: any = await uploadFile({
         fileBase64:
           Platform.OS === 'android'
             ? frontCardImage.replace(/\n/g, '')
             : frontCardImage,
       });
-      const avatarUrl = await uploadFile({
+      const avatarUrl: any = await uploadFile({
         fileBase64:
           Platform.OS === 'android'
             ? person.selfie.replace(/\n/g, '')
@@ -218,11 +228,11 @@ function ReviewInfoModal() {
       const data: any = {
         userProfile: {
           ...route.params.data.userProfile,
-          photoBeforeURL,
+          photoBeforeURL: photoBeforeURL?.url,
           photoBeforeFileName: 'cmnd-mat-truoc',
-          photoAfterURL,
+          photoAfterURL: photoAfterURL?.url,
           photoAfterFileName: 'cmnd-mat-sau',
-          avatarUrl,
+          avatarUrl: avatarUrl?.url,
           avatarFileName: 'chan-dung',
         },
         isKYC: route.params.data.isKYC,
@@ -248,6 +258,7 @@ function ReviewInfoModal() {
           mailingDistrictId: mailingDistrict?.id,
           mailingWardId: mailingWard?.id,
         },
+        isFatca: isAcceptFatca,
         riskInfoInDto: converRistInfoInDto(riskAssessment),
         name: name || currentUser?.name || userRedux?.name, // 'Nguyen Thanh Phong';
         email: email || currentUser?.email || userRedux?.email, //'po.ntp.19946@gmail.com';
@@ -341,25 +352,26 @@ function ReviewInfoModal() {
       //   },
       // });
     } catch (error: any) {
+      Log('errr', error);
       Alert.show({
         content: I18nState == 'vi' ? error.message : error.messageEn,
         multilanguage: false,
         type: 2,
         titleClose: `alert.dongy`,
-        onClose: () => {
-          if (statusScreen != 'main') {
-            navigate('LoginScreen');
-          } else {
-            navigate('OverviewScreen');
-          }
-        },
-        onConfirm: () => {
-          if (statusScreen != 'main') {
-            navigate('LoginScreen');
-          } else {
-            navigate('OverviewScreen');
-          }
-        },
+        // onClose: () => {
+        //   if (statusScreen != 'main') {
+        //     navigate('LoginScreen');
+        //   } else {
+        //     navigate('OverviewScreen');
+        //   }
+        // },
+        // onConfirm: () => {
+        //   if (statusScreen != 'main') {
+        //     navigate('LoginScreen');
+        //   } else {
+        //     navigate('OverviewScreen');
+        //   }
+        // },
       });
     } finally {
       setLoading(false);
@@ -945,6 +957,7 @@ function ReviewInfoModal() {
                   {I18nState == 'vi' ? item.content : item.contentEn}
                 </Label>
                 <Dropdown
+                  multiline={true}
                   marginTop={13}
                   paddingHorizontal={0}
                   multilanguage={false}
@@ -995,7 +1008,6 @@ function ReviewInfoModal() {
             !mailingProvince ||
             !mailingDistrict ||
             !mailingWard ||
-            !(Object.keys(riskAssessment).length < 5) ||
             !mailingAddress.length
           }
           onPress={() => {

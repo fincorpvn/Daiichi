@@ -127,15 +127,17 @@ function DropdownModal() {
         borderBottomWidth={1}
         borderBottomColor={Ecolors.spaceColor}
         paddingLeft={22}>
-        <Label
-          numberOfLines={!multiline ? 1 : undefined}
-          color={isFocus ? Ecolors.blue : Ecolors.textColor}
-          multilanguage={false}>
-          {params.item.code ? `${params.item.code} - ` : ''}
-          {I18nState == 'en'
-            ? params.item.nameEn || params.item.name
-            : params.item.name || params.item.name}
-        </Label>
+        <Div flex={1}>
+          <Label
+            numberOfLines={!multiline ? 1 : undefined}
+            color={isFocus ? Ecolors.blue : Ecolors.textColor}
+            multilanguage={false}>
+            {params.item.code ? `${params.item.code} - ` : ''}
+            {I18nState == 'en'
+              ? params.item.nameEn || params.item.name
+              : params.item.name || params.item.name}
+          </Label>
+        </Div>
       </Button>
     );
   };
@@ -177,9 +179,11 @@ function DropdownModal() {
             alignItems={'center'}
             paddingLeft={14}
             justifyContent={'space-between'}>
-            <Label fontWeight={'700'} multilanguage={multilanguage || false}>
-              {title}
-            </Label>
+            <Div flex={1}>
+              <Label fontWeight={'700'} multilanguage={multilanguage || false}>
+                {title}
+              </Label>
+            </Div>
             <Button
               onPress={() => {
                 goBack();

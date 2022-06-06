@@ -1,6 +1,5 @@
 # react-native-true-id
 
-<<<<<<< HEAD
 ## UPDATE CONFIG COLOR 
 # version 1.6.0
 * color config will be format by JSON with 5 key :
@@ -15,8 +14,6 @@
 if json not input color. it will be get default color(color of VNC).
 Color need be start with "#" and lenght 7 or 9 character . "#FFFFFF" or "#80FFFFFF"
 
-=======
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 ## Getting started
 
 Install trueID React Native

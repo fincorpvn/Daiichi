@@ -41,10 +41,6 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
     public String getName() {
         return "TrueId";
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
     @ReactMethod
     public void setLanguage(ReadableMap data) {
         String language = data.getString("language");
@@ -56,35 +52,13 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             String domain = data.getString("domain");
             String domainPath = data.getString("domainPath");
-<<<<<<< HEAD
-=======
-            String authDomain = data.getString("authDomain");
-            String authDomainPath = data.getString("authDomainPath");
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
             String appId = data.getString("appId");
             String appSecret = data.getString("appSecret");
             String accessToken = data.getString("accessToken");
 
             ConfigInfo configInfo;
-<<<<<<< HEAD
-            configInfo = new ConfigInfo(domain, domainPath, appId, appSecret);
-            if (data.hasKey("themeColor") || data.hasKey("headerConfig")) {
-                String themeColor = data.getString("themeColor");
-                if (data.hasKey("headerConfig")) {
-                    String headerConfig = data.getString("headerConfig");
-                    TrueID.configure(getCurrentActivity(), configInfo, accessToken, themeColor, headerConfig);
-                } else {
-                    TrueID.configure(getCurrentActivity(), configInfo, accessToken, themeColor);
-                }
-            } else
-                TrueID.configure(getCurrentActivity(), configInfo, accessToken);
-
-            String language = data.getString("language");
-            TrueID.setLanguage(getCurrentActivity(), language);
-        } else {
-=======
 //            if (!data.hasKey("zoomLicenseKey")) {
-            configInfo = new ConfigInfo(domain, domainPath, authDomain, authDomainPath, appId, appSecret);
+            configInfo = new ConfigInfo(domain, domainPath, appId, appSecret);
 //            }
 //            else {
 //                String zoomLicenseKey = data.getString("zoomLicenseKey");
@@ -92,13 +66,17 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
 //                String zoomServerBaseURL = data.getString("zoomServerBaseURL");
 //                configInfo = new ConfigInfo(domain, domainPath, authDomain, authDomainPath, appId, appSecret, zoomLicenseKey, zoomServerBaseURL, zoomPublicKey);
 //            }
+            if (data.hasKey("themeColor")) {
+                String themeColor = data.getString("themeColor");
+                TrueID.configure(getCurrentActivity(), configInfo, accessToken,themeColor);
+            }
+            else
+                TrueID.configure(getCurrentActivity(), configInfo,accessToken);
 
-            TrueID.configure(getCurrentActivity(), configInfo,accessToken);
             String language = data.getString("language");
             TrueID.setLanguage(getCurrentActivity(), language);
         }
         else {
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
             this.showAlert("trueID doesn't support Android less than 6");
         }
     }
@@ -117,18 +95,11 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                         Bitmap selfie = person.getSelfie();
                         if (selfie == null) {
                             base64 = "";
-<<<<<<< HEAD
-                        } else {
-                            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                            selfie.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                            byte[] byteArray = byteArrayOutputStream.toByteArray();
-=======
                         }
                         else {
                             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                             selfie.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
                             byte[] byteArray = byteArrayOutputStream .toByteArray();
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 
                             base64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
                         }
@@ -143,12 +114,8 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                         personMap.putString("origin", person.getOrigin());
                         personMap.putString("dueDate", person.getDueDate());
                         personMap.putString("selfie", base64);
-<<<<<<< HEAD
-                    } else {
-=======
                     }
                     else {
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
                         personMap.putString("idNumber", "");
                         personMap.putString("gender", "");
                         personMap.putString("dob", "");
@@ -163,11 +130,7 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                     // records
                     DetectionType[] recordTypes = DetectionType.values();
                     WritableMap records = new WritableNativeMap();
-<<<<<<< HEAD
-                    for (int i = 0; i < recordTypes.length; i++) {
-=======
                     for (int i=0; i<recordTypes.length; i++) {
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
                         DetectionType type = recordTypes[i];
                         CheckingRecord r = cardInfo.getRecord(type);
                         WritableMap rMap = new WritableNativeMap();
@@ -176,12 +139,8 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                             rMap.putString("message", r.message);
                             rMap.putInt("type", i);
                             rMap.putBoolean("status", r.status);
-<<<<<<< HEAD
-                        } else {
-=======
                         }
                         else {
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
                             rMap.putString("name", "");
                             rMap.putString("message", "");
                             rMap.putInt("type", i);
@@ -198,15 +157,6 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                     image = cardInfo.getFrontCardImage();
                     if (image == null) {
                         frontBase64 = "";
-<<<<<<< HEAD
-                    } else {
-                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                        image.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                        byte[] byteArray = byteArrayOutputStream.toByteArray();
-
-                        frontBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                        ;
-=======
                     }
                     else {
                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -214,21 +164,11 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                         byte[] byteArray = byteArrayOutputStream .toByteArray();
 
                         frontBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT);;
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
                     }
 
                     image = cardInfo.getBackCardImage();
                     if (image == null) {
                         backBase64 = "";
-<<<<<<< HEAD
-                    } else {
-                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                        image.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                        byte[] byteArray = byteArrayOutputStream.toByteArray();
-
-                        backBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                        ;
-=======
                     }
                     else {
                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -236,7 +176,6 @@ public class TrueIdModule extends ReactContextBaseJavaModule {
                         byte[] byteArray = byteArrayOutputStream .toByteArray();
 
                         backBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT);;
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
                     }
 
                     // result

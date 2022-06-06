@@ -87,18 +87,12 @@
     <string name="true_address">Permanent address</string>
     <string name="true_capture">Capture</string>
     <string name="true_feedback_move_phone_closer">Move Closer</string>
-<<<<<<< HEAD
     <string name="true_feedback_move_phone_further">Move further</string>
-=======
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
     <string name="true_presession_frame_your_face">Frame Your Face In The Oval</string>
     <string name="true_sex">Sex</string>
     <string name="true_male">Male</string>
     <string name="true_female">Female</string>
     <string name="true_id_type">ID type</string>
     <string name="true_capture_borken">The picture you took is broken</string>
-<<<<<<< HEAD
     <string name="true_token_expired">The session has expired. Please log in again</string>
-=======
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 </resources>

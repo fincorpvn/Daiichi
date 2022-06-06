@@ -1,12 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.reactlibrary">
     <uses-sdk
-<<<<<<< HEAD
             android:minSdkVersion="23"
             android:targetSdkVersion="29"/>
 </manifest>
-=======
-            android:targetSdkVersion="29"/>
-</manifest>
-
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c

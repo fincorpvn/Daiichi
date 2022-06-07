@@ -28,10 +28,6 @@
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 8d9f0c399d9dbf946a73edad9211041ca403a57c
 #   target 'iTRUSTTests' do
 #     inherit! :complete
 #     # Pods for testing

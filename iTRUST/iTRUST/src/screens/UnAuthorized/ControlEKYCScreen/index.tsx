@@ -87,7 +87,7 @@ function ControlEKYCScreen() {
         },
       );
       if (!!scanData) {
-        if (scanData?.result?.kyc_result?.decision?.code == -1) {
+        if (scanData?.cardInfo?.result?.kyc_result?.decision?.code == -1) {
           Alert.showError({
             content: `alert.ekycfail`,
             onPress: () => {

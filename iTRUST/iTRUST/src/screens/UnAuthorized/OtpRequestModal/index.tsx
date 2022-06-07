@@ -534,7 +534,7 @@ function OtpRequestModal() {
           width={317}
           loading={loadingConfirm}
           onPress={() => {
-            if (isInTime && otp.length) {
+            if (isInTime && otp.length >= 6) {
               onPressBtnConfirm();
               return;
             }

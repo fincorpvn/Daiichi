@@ -32,9 +32,9 @@ function ButtonCreateOrder() {
           if (!currentUser?.investmentProfile?.status) {
             if (!userInfoIsFull && !bankAccountIsFull && !userAddressIsFull) {
               navigate('ControlEKYCScreen', {
-                onBack: () => {
-                  navigate('InvestmentScreen');
-                },
+                // onBack: () => {
+                //   navigate('InvestmentDetailsScreen');
+                // },
               });
             } else {
               navigate('AccountVerifyScreen');

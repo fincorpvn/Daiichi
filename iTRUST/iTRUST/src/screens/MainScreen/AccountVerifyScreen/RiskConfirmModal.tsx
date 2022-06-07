@@ -135,6 +135,9 @@ function RiskConfirmModal() {
         data={p.item}
         I18nState={I18nState}
         onSelect={(s: any) => {
+          if (currentUser?.investmentProfile?.status) {
+            return;
+          }
           setListSelect(t => {
             return {
               ...t,

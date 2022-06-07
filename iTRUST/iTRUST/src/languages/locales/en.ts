@@ -658,6 +658,7 @@ export default {
     matkhaucuphaikhacmatkhaumoi: `The old password must be different from the new password`,
     ekycfail:
       'Currently, we cannot verify your information because of bad quality pictures. Please try later!',
+    ekycfail3: `Chúng tôi không thể xác minh thông tin bạn đang cung cấp vì chất lượng hình chụp không tốt. Quý khách vui lòng khai báo thông tin cá nhân thủ công.`,
   },
   //
   component: {

@@ -135,6 +135,9 @@ function RiskConfirmModal() {
         data={p.item}
         I18nState={I18nState}
         onSelect={(s: any) => {
+          if (currentUser?.investmentProfile?.status) {
+            return;
+          }
           setListSelect(t => {
             return {
               ...t,
@@ -166,18 +169,20 @@ function RiskConfirmModal() {
         ItemSeparatorComponent={ItemSeparatorComponent}
         keyExtractor={keyExtractor}
       />
-      <Div
-        marginBottom={insets.bottom + 15}
-        width={'100%'}
-        alignItems={'center'}
-        justifyContent={'center'}>
-        <ButtonBorder
-          width={343}
-          loading={loading}
-          onPress={() => confirm()}
-          title={`accountverify.guithongtin`}
-        />
-      </Div>
+      {!currentUser?.investmentProfile?.status && (
+        <Div
+          marginBottom={insets.bottom + 15}
+          width={'100%'}
+          alignItems={'center'}
+          justifyContent={'center'}>
+          <ButtonBorder
+            width={343}
+            loading={loading}
+            onPress={() => confirm()}
+            title={`accountverify.guithongtin`}
+          />
+        </Div>
+      )}
     </Div>
   );
 }

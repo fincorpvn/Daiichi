@@ -124,7 +124,7 @@ export function startScan(
           resolve({
             userProfile,
             userAddress,
-            isKYC: !!decision?.code,
+            isKYC: decision?.code == 1,
             name: person.fullname,
             person,
             backCardImage,
@@ -134,7 +134,7 @@ export function startScan(
           return {
             userProfile,
             userAddress,
-            isKYC: !!decision?.code,
+            isKYC: decision?.code == 1,
             name: person.fullname,
             person,
             backCardImage,

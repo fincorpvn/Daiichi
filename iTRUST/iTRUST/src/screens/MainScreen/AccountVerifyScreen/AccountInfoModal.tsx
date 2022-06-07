@@ -149,7 +149,14 @@ function AccountInfoModal() {
         </RowSpaceItem>
         <RowSpaceItem>
           <Label>{`accountverify.noicap`}</Label>
-          <Label multilanguage={false}>{placeOfIssue}</Label>
+          <Div
+            flex={1}
+            flexDirection={'row'}
+            paddingLeft={10}
+            alignItems={'center'}
+            justifyContent={'flex-end'}>
+            <Label multilanguage={false}>{placeOfIssue}</Label>
+          </Div>
         </RowSpaceItem>
         <Div
           padding={16}

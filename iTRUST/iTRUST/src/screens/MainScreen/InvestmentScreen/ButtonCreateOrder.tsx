@@ -32,13 +32,14 @@ function ButtonCreateOrder() {
           if (!currentUser?.investmentProfile?.status) {
             if (!userInfoIsFull && !bankAccountIsFull && !userAddressIsFull) {
               navigate('ControlEKYCScreen', {
-                onBack: () => {
-                  navigate('OverviewScreen');
-                },
+                // onBack: () => {
+                //   navigate('InvestmentDetailsScreen');
+                // },
               });
             } else {
               navigate('AccountVerifyScreen');
             }
+            return;
           }
           navigate('CreateOrderModal', {
             orderType: 'BUY',
@@ -47,6 +48,7 @@ function ButtonCreateOrder() {
               // scheme: item,
             },
           });
+          return;
         }}
         width={317}
         height={48}

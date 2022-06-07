@@ -656,6 +656,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
       'Giao dịch của Quý Khách đã hết hiệu lực. Vui lòng tạo giao dịch mới',
     ekycfail:
       'Chúng tôi không thể xác minh thông tin bạn đang cung cấp vì chất lượng hình chụp không tốt. Vui lòng làm lại!',
+    ekycfail3: `Chúng tôi không thể xác minh thông tin bạn đang cung cấp vì chất lượng hình chụp không tốt. Quý khách vui lòng khai báo thông tin cá nhân thủ công.`,
   },
   //
   component: {

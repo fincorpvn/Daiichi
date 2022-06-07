@@ -140,9 +140,9 @@ function OrderTransaction() {
             if (!currentUser?.investmentProfile?.status) {
               if (!userInfoIsFull && !bankAccountIsFull && !userAddressIsFull) {
                 navigate('ControlEKYCScreen', {
-                  onBack: () => {
-                    navigate('OverviewScreen');
-                  },
+                  // onBack: () => {
+                  //   navigate('TransactionScreen');
+                  // },
                 });
               } else {
                 navigate('AccountVerifyScreen');

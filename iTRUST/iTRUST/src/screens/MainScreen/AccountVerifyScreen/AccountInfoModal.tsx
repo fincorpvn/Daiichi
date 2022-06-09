@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   Button,
   ButtonBorder,
@@ -10,14 +11,16 @@ import {
   InputItem,
   Label,
 } from 'components';
-import {Ecolors, Icons} from 'constant';
+import {Ecolors, Icons, urlApp} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {getInvestmentProfile} from 'reducer/authen/selector';
 import {navigate} from 'services';
 import {apiMain} from 'services/apis/apiMain';
+import {doGetAxios, doPostAxios} from 'services/apis/axios';
 import {useAppSelector} from 'store/hooks';
 import {convertTimestamp, Log, widthScale, widthScreen} from 'utils';
+import {getStoreToken} from 'utils/storage';
 
 function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
   return (
@@ -40,6 +43,7 @@ function AccountInfoModal() {
   const investmentProfile = useAppSelector(state =>
     getInvestmentProfile(state),
   );
+  const [token, setToken] = useState<string>('');
   const [country, setCountry] = useState<any>(null);
   const {
     email,
@@ -58,8 +62,28 @@ function AccountInfoModal() {
 
   useEffect(() => {
     getCountry();
+    // getTokenn();
+    // downloadImage();
     return () => {};
   }, []);
+
+  // const downloadImage = async () => {
+  //   const ul = `dowload/file?${userPhotos[0].url}`;
+  //   try {
+  //     Log('rrr', {ul});
+  //     const r = await doGetAxios(ul);
+  //   } catch (error) {
+  //     Log('error', {error});
+  //   } finally {
+  //   }
+  // };
+
+  // const getTokenn = async () => {
+  //   const t = await getStoreToken();
+  //   if (t) {
+  //     setToken(t);
+  //   }
+  // };
 
   const getCountry = async () => {
     try {
@@ -77,7 +101,12 @@ function AccountInfoModal() {
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack
         type={2}
-        iconRight={!investmentProfile ? Icons.edit : null}
+        iconRight={
+          !investmentProfile ||
+          investmentProfile?.code == 'INVESTMENT_PROFILE_REJECT'
+            ? Icons.edit
+            : null
+        }
         title={`accountverify.thongtincanhan`}
         onRightPress={() => {
           navigate('EditAccountInfoModal');
@@ -170,112 +199,26 @@ function AccountInfoModal() {
                 key={index}
                 height={103}
                 borderRadius={5}
-                source={{
-                  uri: item.url,
-                }}
+                borderWidth={1}
+                resizeMode={'contain'}
+                borderColor={Ecolors.bordercolor}
+                source={Icons.profile}
+                // source={{
+                //   uri: item.url,
+                //   headers: {
+                //     origin: `${urlApp.DomainName}`,
+                //     Authorization: `Bearer ${token}`,
+                //     [`Content-Type`]: 'application/json',
+                //   },
+                // }}
+                // source={{
+                //   uri: `${urlApp.IMAGEURL}${item.fileName}`,
+                // }}
               />
             );
           })}
         </Div>
-        {/*  */}
-        {/* <Lbl content={`accountverify.hovatendaydu`} />
-        <InputItem
-          marginTop={10}
-          marginHorizontal={5}
-          isInput={false}
-          value={name}
-        />
-        <Lbl content={`accountverify.gioitinh`} />
-        <GenderCheckbox value={gender} onChange={a => setGender(a)} />
-        <Lbl content={`accountverify.ngaysinh`} />
-        <Calendar onChange={(e: any) => setdob(e)} />
-        <Lbl content={`accountverify.quoctich`} />
-        <Dropdown
-          marginTop={10}
-          isActive={true}
-          paddingHorizontal={5}
-          multilanguage={true}
-          content={`accountverify.quoctich`}
-          url={`country/list`}
-          value={nationality}
-          onChange={a => setNationality(a)}
-        />
-        <Lbl content={`accountverify.email`} />
-        <InputItem
-          isInput={false}
-          value={email}
-          marginHorizontal={5}
-          marginTop={10}
-        />
-        <Lbl content={`accountverify.sodienthoai`} />
-        <InputItem value={phone} marginHorizontal={5} marginTop={10} />
-        <Lbl content={`accountverify.thongtincmnd`} />
-        <Label>{`accountverify.chuy`}</Label>
-        <Lbl content={`accountverify.loaigiayto`} />
-        <Dropdown
-          marginTop={10}
-          paddingHorizontal={5}
-          isActive={true}
-          multilanguage={true}
-          value={type}
-          onChange={a => setType(a)}
-          content={`accountverify.vuilongchonloaigiayto`}
-        />
-        <Lbl content={`accountverify.sohieugiayto`} />
-        <InputItem
-          value={no}
-          onChangeText={setNo}
-          isInput={true}
-          marginHorizontal={5}
-          marginTop={10}
-        />
-        <Lbl content={`accountverify.ngaycap`} />
-        <Calendar onChange={(e: any) => setDateOfIssue(e)} />
-        <Lbl content={`accountverify.noicap`} />
-        <InputItem
-          value={placeOfIssue}
-          onChangeText={setPlaceOfIssue}
-          isInput={true}
-          marginHorizontal={5}
-          marginTop={10}
-        />
 
-        <DivPhoto
-          loading={loadingUploadImage}
-          value={photoBefore}
-          onGetImage={() => {
-            onGetImage((a: any) =>
-              setPhotoBefore((b: any) => {
-                return {
-                  ...b,
-                  ...a,
-                };
-              }),
-            );
-          }}
-        />
-        {isPhotoAfter && (
-          <DivPhoto
-            title={`accountverify.taianhmatsau`}
-            onGetImage={() => {
-              onGetImage((a: any) =>
-                setPhotoAfter((b: any) => {
-                  return {
-                    ...b,
-                    ...a,
-                  };
-                }),
-              );
-            }}
-            value={photoAfter}
-            loading={loadingUploadImage}
-          />
-        )}
-        <ButtonBorder
-          onPress={() => onConfirm()}
-          loading={loading || loadingUploadImage}
-          title={`accountverify.guithongtin`}
-        /> */}
         <Div height={200} />
       </ScrollView>
     </Div>

@@ -127,8 +127,16 @@ function OrderBuyStep1({
           <InputItem
             isInput={!!product && !!scheme}
             value={amount}
-            onChangeText={(t: string) => {
-              setAmount(convertAmount(`${t}`, true));
+            onChangeText={(e: string) => {
+              if (!e.length) {
+                setAmount(e);
+                return;
+              }
+              const t: string = e[e.length ? e.length - 1 : 0];
+              const reg = /^[0-9|.]*$/;
+              if (reg.test(t)) {
+                setAmount(convertAmount(`${e}`, true));
+              }
             }}
             keyboardType={'number-pad'}
             marginTop={6}

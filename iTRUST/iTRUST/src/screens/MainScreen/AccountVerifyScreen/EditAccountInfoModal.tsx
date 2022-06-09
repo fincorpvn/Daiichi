@@ -1,5 +1,6 @@
 import {
   Alert,
+  BottomSheetDialog,
   Button,
   ButtonBorder,
   Calendar,
@@ -11,22 +12,26 @@ import {
   InputItem,
   Label,
   LoadingIndicator,
+  Toast,
 } from 'components';
 import {Ecolors, EStyle, Icons} from 'constant';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   ActivityIndicator,
   Platform,
   ScrollView,
   StyleSheet,
 } from 'react-native';
+import ImageResizer from 'react-native-image-resizer';
 import {useDispatch} from 'react-redux';
 import {getInfo} from 'reducer/authen';
+import ComActionUpload from 'screens/MainScreen/DigitalSignature/ComActionUpload';
 import {apiAuth, goBack, navigate, uploadFile} from 'services';
 import {apiMain} from 'services/apis/apiMain';
 import {useAppSelector} from 'store/hooks';
 import {
   convertTimestamp,
+  getImageCamera,
   getImageLibrary,
   getUuid,
   joinObjectCalendar,
@@ -35,6 +40,10 @@ import {
   widthScale,
   widthScreen,
 } from 'utils';
+const currentDate = convertTimestamp(new Date().toString()).split('/');
+const D = parseInt(currentDate[0]);
+const M = parseInt(currentDate[1]);
+const Y = parseInt(currentDate[2]);
 
 function Lbl(p: {content: string}) {
   return (
@@ -126,6 +135,8 @@ function EditAccountInfoModal() {
   const [idNo, setIdNo] = useState<string>('');
 
   const I18nState = useAppSelector(state => state.languages.I18nState);
+  const bottomSheetUpload = useRef<any>(null);
+  const imageUpload = useRef<'before' | 'after'>('before');
 
   useEffect(() => {
     setTimeout(() => {
@@ -134,6 +145,14 @@ function EditAccountInfoModal() {
     }, 200);
     return () => {};
   }, [currentUser]);
+
+  const hide = (cb?: () => void) => {
+    if (bottomSheetUpload.current) {
+      bottomSheetUpload.current.hide().then(() => {
+        cb && cb();
+      });
+    }
+  };
 
   const getCountryData = async () => {
     try {
@@ -193,8 +212,54 @@ function EditAccountInfoModal() {
     }
   };
 
+  const onUploadImage = async (r: any) => {
+    try {
+      if (imageUpload.current == 'before') {
+        setLoadingPhotoBefore(true);
+      } else {
+        setLoadingPhotoAfter(true);
+      }
+      const dataUpload: any = await uploadFile({
+        fileBase64: r.base64,
+      });
+      if (dataUpload) {
+        if (imageUpload.current == 'before') {
+          setPhotoBefore({...r, ...dataUpload});
+        } else {
+          setPhotoAfter({...r, ...dataUpload});
+        }
+      }
+    } catch (error) {
+    } finally {
+      setLoadingPhotoAfter(false);
+      setLoadingPhotoBefore(false);
+    }
+  };
+
+  Log('photoBefore', photoBefore);
+
   const onConfirm = async () => {
     try {
+      // const currentDate = joinObjectCalendar({
+      //   date: D,
+      //   month: M,
+      //   year: Y,
+      // });
+      const a = parseInt(joinObjectCalendar(dob));
+      const b = parseInt(
+        joinObjectCalendar({
+          date: D,
+          month: M,
+          year: Y,
+        }),
+      );
+      if (Math.floor(b - a) < 160000) {
+        Alert.showError({
+          content: `alert.chuadutuoi`,
+          onPress: () => {},
+        });
+        return;
+      }
       setLoading(true);
       if (
         !idNo.length ||
@@ -209,28 +274,28 @@ function EditAccountInfoModal() {
         });
         return;
       }
-      Log('data', {
-        dateOfIssue: joinObjectCalendar(dateOfIssue),
-        dob: joinObjectCalendar(dob),
-        gender: gender,
-        idNo: idNo,
-        idTypeId: type?.id || '5',
-        nationalityId: `${nationality?.id}` || '234',
-        photoAfterFileName: photoAfter?.fileName || '',
-        photoAfterURL:
-          photoAfter?.dataUPload?.url ||
-          photoAfter?.uri ||
-          photoAfter?.url ||
-          '',
-        photoBeforeFileName: photoBefore?.fileName || '',
-        photoBeforeURL:
-          photoBefore?.dataUPload?.url ||
-          photoBefore?.uri ||
-          photoBefore?.url ||
-          '',
-        placeOfIssue: placeOfIssue,
-        nationality,
-      });
+      // Log('data', {
+      //   dateOfIssue: joinObjectCalendar(dateOfIssue),
+      //   dob: joinObjectCalendar(dob),
+      //   gender: gender,
+      //   idNo: idNo,
+      //   idTypeId: type?.id || '5',
+      //   nationalityId: `${nationality?.id}` || '234',
+      //   photoAfterFileName: photoAfter?.fileName || '',
+      //   photoAfterURL:
+      //     photoAfter?.dataUPload?.url ||
+      //     photoAfter?.uri ||
+      //     photoAfter?.url ||
+      //     '',
+      //   photoBeforeFileName: photoBefore?.fileName || '',
+      //   photoBeforeURL:
+      //     photoBefore?.dataUPload?.url ||
+      //     photoBefore?.uri ||
+      //     photoBefore?.url ||
+      //     '',
+      //   placeOfIssue: placeOfIssue,
+      //   nationality,
+      // });
       // return;
       const res = await apiAuth.updateInvestmentInfo({
         dateOfIssue: joinObjectCalendar(dateOfIssue),
@@ -308,254 +373,302 @@ function EditAccountInfoModal() {
   }, [nationality]);
 
   return (
-    <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
-      <HeaderBack
-        loading={loading}
-        titleRight={`accountverify.save`}
-        type={2}
-        onRightPress={() => {
-          onConfirm();
+    <>
+      <BottomSheetDialog
+        style={{
+          flexDirection: 'column',
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'flex-end',
         }}
-        title={`accountverify.thongtincanhan`}
-      />
-      <ScrollView keyboardShouldPersistTaps={'handled'}>
-        <Div
-          flexDirection={'row'}
-          alignItems={'center'}
-          justifyContent={'flex-start'}
-          paddingHorizontal={16}
-          height={48}
-          backgroundColor={'rgba(73, 85, 163, 0.1)'}>
-          <Label>{`accountverify.thongtinnhadautu`}</Label>
-        </Div>
-
-        <Label marginTop={16} marginLeft={16}>{`accountverify.hoten`}</Label>
-        <InputItem
-          isInput={false}
-          onChangeText={setName}
-          marginTop={6}
-          marginHorizontal={16}
-          value={name}
-        />
-
-        <Label marginTop={13} marginLeft={16}>{`accountverify.gioitinh`}</Label>
-        <GenderCheckbox value={gender} onChange={a => setGender(a)} />
-
-        <Label marginTop={24} marginLeft={16}>{`accountverify.ngaysinh`}</Label>
-        <Calendar
-          initValue={reJoinObjectCalendar(convertTimestamp(currentUser.dob))}
-          onChange={(e: any) => setDob(e)}
-        />
-        <Label marginTop={13} marginLeft={16}>{`accountverify.quoctich`}</Label>
-        <Dropdown
-          marginTop={6}
-          isActive={true}
-          paddingHorizontal={16}
-          multilanguage={true}
-          content={`accountverify.quoctich`}
-          url={`country/list`}
-          value={nationality}
-          onChange={a => setNationality(a)}
-        />
-        <Label marginTop={13} marginLeft={16}>{`accountverify.email`}</Label>
-        <InputItem
-          isInput={false}
-          onChangeText={setEmail}
-          value={email}
-          marginHorizontal={16}
-          marginTop={6}
-        />
-
-        <Label
-          marginTop={13}
-          marginLeft={16}>{`accountverify.sodienthoai`}</Label>
-
-        <Div
-          marginTop={6}
-          paddingHorizontal={16}
-          flexDirection={'row'}
-          alignItems={'flex-start'}
-          justifyContent={'space-between'}>
-          <Div width={99}>
-            <InputItem
-              // inputRef={phonePostal}
-              placeholder={''}
-              isInput={false}
-              keyboardType={'name-phone-pad'}
-              marginHorizontal={0}
-              value={'+84'}
-              onSubmitEditing={() => {
-                // focusNextInput(userRefCodeRef.current);
-              }}
-            />
-          </Div>
-
-          <Div marginLeft={20} flex={1}>
-            <InputItem
-              onChangeText={setPhone}
-              isInput={false}
-              value={phone}
-              marginHorizontal={0}
-            />
-          </Div>
-        </Div>
-
-        <Div
-          flexDirection={'row'}
-          alignItems={'center'}
-          justifyContent={'flex-start'}
-          paddingHorizontal={16}
-          height={48}
-          marginTop={38}
-          backgroundColor={'rgba(73, 85, 163, 0.1)'}>
-          <Label>{`accountverify.thongtincmnd`}</Label>
-        </Div>
-        <Label
-          marginTop={28}
-          marginLeft={16}>{`accountverify.loaigiayto`}</Label>
-        <Dropdown
-          marginTop={6}
-          paddingHorizontal={16}
-          isActive={true}
-          initData={[
-            {
-              id: '5',
-              name: 'Mã giao dịch chứng khoán',
-              nameen: 'Mã giao dịch chứng khoán',
-            },
-            {id: '1', name: 'CMND/CCCD', nameen: 'CMND/CCCD'},
-          ]}
-          multilanguage={true}
-          value={type}
-          onChange={a => setType(a)}
-          content={`accountverify.vuilongchonloaigiayto`}
-        />
-        <Label
-          marginTop={13}
-          marginLeft={16}>{`accountverify.sohieugiayto`}</Label>
-        <InputItem
-          value={idNo}
-          onChangeText={setIdNo}
-          isInput={true}
-          marginHorizontal={16}
-          marginTop={6}
-        />
-        <Label marginTop={13} marginLeft={16}>{`accountverify.ngaycap`}</Label>
-        <Calendar
-          initValue={reJoinObjectCalendar(
-            convertTimestamp(currentUser.dateOfIssue),
-          )}
-          onChange={(e: any) => setDateOfIssue(e)}
-        />
-
-        <Label marginTop={13} marginLeft={16}>{`accountverify.noicap`}</Label>
-
-        <InputItem
-          value={placeOfIssue}
-          onChangeText={setPlaceOfIssue}
-          isInput={true}
-          marginHorizontal={16}
-          marginTop={6}
-        />
-
-        <Div
-          paddingHorizontal={16}
-          paddingTop={20}
-          flexDirection={'row'}
-          alignItems={'center'}
-          justifyContent={'space-between'}>
-          <Button
-            overflow={'hidden'}
-            borderRadius={5}
-            width={162}
-            onPress={() => {
-              setLoadingPhotoBefore(true);
-              onGetImage((a: any) => {
-                setPhotoBefore((b: any) => {
-                  return {
-                    ...b,
-                    ...a,
-                  };
+        ref={bottomSheetUpload}>
+        <ComActionUpload
+          onCancel={() => {
+            hide();
+          }}
+          onCamera={async () => {
+            try {
+              hide(async () => {
+                await getImageCamera().then((image: any) => {
+                  if (image[0]) {
+                    onUploadImage(image[0]);
+                  }
+                });
+              });
+            } catch (error) {
+              if (!!error) {
+                Toast.show({
+                  content: 'alert.daxayraloi',
+                  multilanguage: true,
+                });
+              }
+            }
+          }}
+          onGallery={async () => {
+            try {
+              hide(async () => {
+                await getImageLibrary().then((image: any) => {
+                  onUploadImage(image[0]);
+                });
+              });
+            } catch (error) {
+              if (!!error) {
+                Toast.show({
+                  content: 'alert.daxayraloi',
+                  multilanguage: true,
                 });
                 return;
-              });
-            }}
-            height={103}>
-            <ImageView
+              }
+            } finally {
+            }
+          }}
+        />
+      </BottomSheetDialog>
+      <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
+        <HeaderBack
+          loading={loading}
+          titleRight={`accountverify.save`}
+          type={2}
+          onRightPress={() => {
+            onConfirm();
+          }}
+          title={`accountverify.thongtincanhan`}
+        />
+        <ScrollView keyboardShouldPersistTaps={'handled'}>
+          <Div
+            flexDirection={'row'}
+            alignItems={'center'}
+            justifyContent={'flex-start'}
+            paddingHorizontal={16}
+            height={48}
+            backgroundColor={'rgba(73, 85, 163, 0.1)'}>
+            <Label>{`accountverify.thongtinnhadautu`}</Label>
+          </Div>
+
+          <Label marginTop={16} marginLeft={16}>{`accountverify.hoten`}</Label>
+          <InputItem
+            isInput={false}
+            onChangeText={setName}
+            marginTop={6}
+            marginHorizontal={16}
+            value={name}
+          />
+
+          <Label
+            marginTop={13}
+            marginLeft={16}>{`accountverify.gioitinh`}</Label>
+          <GenderCheckbox value={gender} onChange={a => setGender(a)} />
+
+          <Label
+            marginTop={24}
+            marginLeft={16}>{`accountverify.ngaysinh`}</Label>
+          <Calendar
+            initValue={reJoinObjectCalendar(convertTimestamp(currentUser.dob))}
+            onChange={(e: any) => setDob(e)}
+          />
+          <Label
+            marginTop={13}
+            marginLeft={16}>{`accountverify.quoctich`}</Label>
+          <Dropdown
+            marginTop={6}
+            isActive={true}
+            paddingHorizontal={16}
+            multilanguage={true}
+            content={`accountverify.quoctich`}
+            url={`country/list`}
+            value={nationality}
+            onChange={a => setNationality(a)}
+          />
+          <Label marginTop={13} marginLeft={16}>{`accountverify.email`}</Label>
+          <InputItem
+            isInput={false}
+            onChangeText={setEmail}
+            value={email}
+            marginHorizontal={16}
+            marginTop={6}
+          />
+
+          <Label
+            marginTop={13}
+            marginLeft={16}>{`accountverify.sodienthoai`}</Label>
+
+          <Div
+            marginTop={6}
+            paddingHorizontal={16}
+            flexDirection={'row'}
+            alignItems={'flex-start'}
+            justifyContent={'space-between'}>
+            <Div width={99}>
+              <InputItem
+                // inputRef={phonePostal}
+                placeholder={''}
+                isInput={false}
+                keyboardType={'name-phone-pad'}
+                marginHorizontal={0}
+                value={'+84'}
+                onSubmitEditing={() => {
+                  // focusNextInput(userRefCodeRef.current);
+                }}
+              />
+            </Div>
+
+            <Div marginLeft={20} flex={1}>
+              <InputItem
+                onChangeText={setPhone}
+                isInput={false}
+                value={phone}
+                marginHorizontal={0}
+              />
+            </Div>
+          </Div>
+
+          <Div
+            flexDirection={'row'}
+            alignItems={'center'}
+            justifyContent={'flex-start'}
+            paddingHorizontal={16}
+            height={48}
+            marginTop={38}
+            backgroundColor={'rgba(73, 85, 163, 0.1)'}>
+            <Label>{`accountverify.thongtincmnd`}</Label>
+          </Div>
+          <Label
+            marginTop={28}
+            marginLeft={16}>{`accountverify.loaigiayto`}</Label>
+          <Dropdown
+            marginTop={6}
+            paddingHorizontal={16}
+            isActive={true}
+            initData={[
+              {
+                id: '5',
+                name: 'Mã giao dịch chứng khoán',
+                nameen: 'Mã giao dịch chứng khoán',
+              },
+              {id: '1', name: 'CMND/CCCD', nameen: 'CMND/CCCD'},
+            ]}
+            multilanguage={true}
+            value={type}
+            onChange={a => setType(a)}
+            content={`accountverify.vuilongchonloaigiayto`}
+          />
+          <Label
+            marginTop={13}
+            marginLeft={16}>{`accountverify.sohieugiayto`}</Label>
+          <InputItem
+            value={idNo}
+            onChangeText={setIdNo}
+            isInput={true}
+            marginHorizontal={16}
+            marginTop={6}
+          />
+          <Label
+            marginTop={13}
+            marginLeft={16}>{`accountverify.ngaycap`}</Label>
+          <Calendar
+            initValue={reJoinObjectCalendar(
+              convertTimestamp(currentUser.dateOfIssue),
+            )}
+            onChange={(e: any) => setDateOfIssue(e)}
+          />
+
+          <Label marginTop={13} marginLeft={16}>{`accountverify.noicap`}</Label>
+
+          <InputItem
+            value={placeOfIssue}
+            onChangeText={setPlaceOfIssue}
+            isInput={true}
+            marginHorizontal={16}
+            marginTop={6}
+          />
+
+          <Div
+            paddingHorizontal={16}
+            paddingTop={20}
+            flexDirection={'row'}
+            alignItems={'center'}
+            justifyContent={'space-between'}>
+            <Button
+              overflow={'hidden'}
               borderRadius={5}
               width={162}
-              height={103}
-              source={{
-                uri: photoBefore?.uri || photoBefore?.url,
+              onPress={() => {
+                if (!loadingPhotoAfter && !loadingPhotoBefore) {
+                  imageUpload.current = 'before';
+                  bottomSheetUpload.current.show();
+                }
               }}
-            />
-            <Div
-              style={StyleSheet.absoluteFillObject}
-              alignItems={'center'}
-              justifyContent={'center'}
-              flex={1}
-              backgroundColor={Ecolors.transparentLoading}>
-              {loadingPhotoBefore ? (
-                <LoadingIndicator color={Ecolors.mainColor} />
-              ) : (
-                <ImageView
-                  width={26}
-                  height={24}
-                  resizeMode={'contain'}
-                  tintColor={Ecolors.whiteColor}
-                  source={Icons.camera}
-                />
-              )}
-            </Div>
-          </Button>
-          <Button
-            overflow={'hidden'}
-            borderRadius={5}
-            width={162}
-            onPress={() => {
-              setLoadingPhotoAfter(true);
-              onGetImage((a: any) => {
-                setPhotoAfter((b: any) => {
-                  return {
-                    ...b,
-                    ...a,
-                  };
-                });
-                return;
-              });
-            }}
-            height={103}>
-            <ImageView
+              height={103}>
+              <ImageView
+                borderRadius={5}
+                width={162}
+                height={103}
+                source={{
+                  uri: photoBefore?.uri || photoBefore?.url,
+                }}
+              />
+              <Div
+                style={StyleSheet.absoluteFillObject}
+                alignItems={'center'}
+                justifyContent={'center'}
+                flex={1}
+                backgroundColor={Ecolors.transparentLoading}>
+                {loadingPhotoBefore ? (
+                  <LoadingIndicator color={Ecolors.mainColor} />
+                ) : (
+                  <ImageView
+                    width={26}
+                    height={24}
+                    resizeMode={'contain'}
+                    tintColor={Ecolors.whiteColor}
+                    source={Icons.camera}
+                  />
+                )}
+              </Div>
+            </Button>
+            <Button
+              overflow={'hidden'}
               borderRadius={5}
               width={162}
-              height={103}
-              source={{
-                uri: photoAfter?.uri || photoAfter?.url,
+              onPress={() => {
+                if (!loadingPhotoAfter && !loadingPhotoBefore) {
+                  imageUpload.current = 'after';
+                  bottomSheetUpload.current.show();
+                }
               }}
-            />
-            <Div
-              style={StyleSheet.absoluteFillObject}
-              alignItems={'center'}
-              justifyContent={'center'}
-              flex={1}
-              backgroundColor={Ecolors.transparentLoading}>
-              {loadingPhotoAfter ? (
-                <LoadingIndicator color={Ecolors.mainColor} />
-              ) : (
-                <ImageView
-                  width={26}
-                  height={24}
-                  resizeMode={'contain'}
-                  tintColor={Ecolors.whiteColor}
-                  source={Icons.camera}
-                />
-              )}
-            </Div>
-          </Button>
-        </Div>
-        <Div height={340} />
-      </ScrollView>
-    </Div>
+              height={103}>
+              <ImageView
+                borderRadius={5}
+                width={162}
+                height={103}
+                source={{
+                  uri: photoAfter?.uri || photoAfter?.url,
+                }}
+              />
+              <Div
+                style={StyleSheet.absoluteFillObject}
+                alignItems={'center'}
+                justifyContent={'center'}
+                flex={1}
+                backgroundColor={Ecolors.transparentLoading}>
+                {loadingPhotoAfter ? (
+                  <LoadingIndicator color={Ecolors.mainColor} />
+                ) : (
+                  <ImageView
+                    width={26}
+                    height={24}
+                    resizeMode={'contain'}
+                    tintColor={Ecolors.whiteColor}
+                    source={Icons.camera}
+                  />
+                )}
+              </Div>
+            </Button>
+          </Div>
+          <Div height={340} />
+        </ScrollView>
+      </Div>
+    </>
   );
 }
 

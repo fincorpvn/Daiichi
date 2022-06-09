@@ -44,9 +44,9 @@ function EditBankInfoModal() {
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
   useEffect(() => {
-    bindData(bankAccount);
+    bindData(bankAccount, currentUser);
     return () => {};
-  }, [bankAccount]);
+  }, [bankAccount, currentUser]);
 
   const getDataBranch = async () => {
     const res = await doGetAxios(
@@ -60,18 +60,21 @@ function EditBankInfoModal() {
     }
   };
 
-  const bindData = (e: {
-    name?: string;
-    number?: string;
-    branchName?: string;
-    branchName_en?: string;
-    bankName?: string;
-    bankName_en?: string;
-    branchId?: string | number;
-    bankId?: string | number;
-  }) => {
+  const bindData = (
+    e: {
+      name?: string;
+      number?: string;
+      branchName?: string;
+      branchName_en?: string;
+      bankName?: string;
+      bankName_en?: string;
+      branchId?: string | number;
+      bankId?: string | number;
+    },
+    currentUser: any,
+  ) => {
     Promise.all([
-      setName(e?.name || ''),
+      setName(e?.name || currentUser?.name || ''),
       setNumber(e?.number || ''),
       getDataBranch(),
       setBank(
@@ -151,6 +154,14 @@ function EditBankInfoModal() {
     }
   };
 
+  const checkToSetdata = (e: string, func: (r: string) => void) => {
+    const t: string = e[e.length ? e.length - 1 : 0];
+    const reg = /^[0-9]*$/;
+    if (reg.test(t)) {
+      func(e);
+    }
+  };
+
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack
@@ -176,7 +187,7 @@ function EditBankInfoModal() {
           <InputItem
             keyboardType={'number-pad'}
             value={number}
-            onChangeText={a => setNumber(a)}
+            onChangeText={a => checkToSetdata(a, r => setNumber(r))}
             marginHorizontal={0}
             marginTop={6}
           />

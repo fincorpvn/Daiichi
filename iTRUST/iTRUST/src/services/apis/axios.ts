@@ -131,19 +131,6 @@ export async function axiosMultipart(
   url: string,
   params: any,
 ): Promise<IAxiosResponse> {
-  // try {
-  //   const token = await getStoreToken();
-  //   const r = await fetch(baseURL + 'api/' + url, {
-  //     method: 'post',
-  //     body: params,
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'multipart/form-data;',
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  //   const ress = await r.json();
-  // } catch (error) {}
   try {
     const res: AxiosResponse = await aa.post(url, params);
     if (res) {

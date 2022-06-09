@@ -44,7 +44,9 @@ function HeaderBack({
   if (type == 1) {
     return (
       <ImageBackground
-        width={widthScreen}
+        style={{
+          width: widthScreen,
+        }}
         resizeMode={'cover'}
         source={Icons.bgheader}>
         <Div
@@ -67,7 +69,9 @@ function HeaderBack({
   if (type == 2) {
     return (
       <ImageBackground
-        width={widthScreen}
+        style={{
+          width: widthScreen,
+        }}
         resizeMode={'cover'}
         source={Icons.bgheader}>
         <Div
@@ -166,7 +170,9 @@ function HeaderBack({
   if (type == 3) {
     return (
       <ImageBackground
-        width={widthScreen}
+        style={{
+          width: widthScreen,
+        }}
         resizeMode={'cover'}
         source={Icons.bgheader}>
         <HeaderBackType3 />

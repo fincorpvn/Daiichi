@@ -92,7 +92,9 @@ const OtpComp = (
       timeLast.current = new Date();
     });
     return () => {
-      subscription.remove();
+      if (!!subscription) {
+        subscription.remove();
+      }
     };
   }, []);
 
@@ -188,7 +190,13 @@ const OtpComp = (
               padding={0}
               margin={0}
               value={props.otp}
-              onChangeText={props.setOtp}
+              onChangeText={(e: string) => {
+                const t: string = e[e.length ? e.length - 1 : 0];
+                const reg = /^[0-9]*$/;
+                if (reg.test(t)) {
+                  props.setOtp && props.setOtp(e);
+                }
+              }}
               color={Ecolors.transparent}
               maxLength={6}
               keyboardType={'number-pad'}

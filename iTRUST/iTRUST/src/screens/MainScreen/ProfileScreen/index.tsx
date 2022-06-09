@@ -1,4 +1,4 @@
-import {Alert, Div, HeaderBack, ImageView} from 'components';
+import {Alert, Button, Div, HeaderBack, ImageView, Label} from 'components';
 import {Ecolors, Icons} from 'constant';
 import React, {useState} from 'react';
 import {
@@ -243,6 +243,27 @@ function ProfileScreen() {
   const ListHeaderComponent = () => {
     return <CardProfile />;
   };
+  const ListFooterComponent = () => {
+    if (!currentUser?.investmentProfile?.note) {
+      return <></>;
+    }
+    return (
+      <Button
+        onPress={() => {
+          navigate('AccountVerifyScreen');
+        }}
+        marginHorizontal={17}
+        padding={10}
+        borderRadius={10}
+        backgroundColor={`rgba(237, 28, 36, 0.2)`}
+        alignItems={'center'}
+        justifyContent={'center'}>
+        <Label color={Ecolors.redColor} multilanguage={false}>
+          {currentUser?.investmentProfile?.note || ''}
+        </Label>
+      </Button>
+    );
+  };
 
   const onRefresh = () => {
     dispath(getInfo({}));
@@ -270,6 +291,7 @@ function ProfileScreen() {
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           ListHeaderComponent={ListHeaderComponent}
+          ListFooterComponent={ListFooterComponent}
           refreshControl={
             <RefreshControl
               refreshing={loading}

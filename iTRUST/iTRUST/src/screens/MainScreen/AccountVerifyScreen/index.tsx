@@ -31,7 +31,10 @@ function AccountVerifyScreen() {
       <ItemCard
         title={'accountverify.thongtincanhan'}
         isLine={true}
-        isCheck={userInfoIsFull}
+        isCheck={
+          userInfoIsFull &&
+          investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
+        }
         onPress={() => {
           navigate('AccountInfoModal');
         }}

@@ -94,7 +94,7 @@ function RiskConfirmModal() {
   useEffect(() => {
     let objjj = {};
     stringApp.riskAssessment.map((item: any, index: number) => {
-      objjj[item.id] = item.data[0];
+      objjj[item.id] = item.data[0].id;
     });
     setListSelect({...objjj, ...currentUser?.riskInfo} || {});
     return () => {};
@@ -155,6 +155,9 @@ function RiskConfirmModal() {
   const ListHeaderComponent = useCallback(() => {
     return <Div widthHeight={10} />;
   }, []);
+  const ListFooterComponent = useCallback(() => {
+    return <Div widthHeight={30} />;
+  }, []);
 
   const keyExtractor = (item: any, index: number) => `key${item.id}`;
 
@@ -166,6 +169,7 @@ function RiskConfirmModal() {
         extraData={[stringApp.riskAssessment]}
         renderItem={renderItem}
         ListHeaderComponent={ListHeaderComponent}
+        ListFooterComponent={ListFooterComponent}
         ItemSeparatorComponent={ItemSeparatorComponent}
         keyExtractor={keyExtractor}
       />

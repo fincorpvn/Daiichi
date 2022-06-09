@@ -38,7 +38,7 @@ function BankInfoModal() {
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack
         type={2}
-        iconRight={!investmentProfile ? Icons.edit : null}
+        iconRight={!currentUser?.bankAccountIsFull ? Icons.edit : null}
         title={`accountverify.thongtinnganhang`}
         onRightPress={() => {
           navigate('EditBankInfoModal');

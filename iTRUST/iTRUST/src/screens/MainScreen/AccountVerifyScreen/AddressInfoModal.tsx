@@ -112,7 +112,7 @@ function AddressInfoModal() {
       <HeaderBack
         loading={loading}
         type={2}
-        iconRight={!investmentProfile ? Icons.edit : null}
+        iconRight={!currentUser?.userAddressIsFull ? Icons.edit : null}
         onRightPress={() => {
           navigate('EditAddressInfoModal', {
             data: {

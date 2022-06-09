@@ -650,6 +650,8 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     matkhaucuphaikhacmatkhaumoi: `Mật khẩu cũ phải khác mật khẩu mới`,
     emailcuphaikhacemailmoi: `Email cũ phải khác Email mới`,
     xacnhanxoalenhgiaodich: 'Xác nhận xoá lệnh giao dịch ?',
+    chuadutuoi:
+      'Theo quy định về độ tuổi được giao dịch Quỹ phải từ 18 tuổi trở lên. Chúng tôi rất tiếc phải từ chối thông tin đăng ký của nhà đầu tư.',
     nhapotpquasoluong:
       'Sai OTP quá 3 lần. Vì lý do bảo mật vui lòng đăng nhập lại.',
     registernhapquaotp:

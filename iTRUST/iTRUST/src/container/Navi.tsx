@@ -71,9 +71,14 @@ function Navi() {
 
   const gotoEKYC = (currentUser: any) => {
     if (!currentUser?.investmentProfile?.status) {
-      const {userInfoIsFull, bankAccountIsFull, userAddressIsFull} =
+      const {userInfoIsFull, bankAccountIsFull, userAddressIsFull, riskInfo} =
         currentUser;
-      if (!userInfoIsFull && !bankAccountIsFull && !userAddressIsFull) {
+      if (
+        !userInfoIsFull &&
+        !bankAccountIsFull &&
+        !userAddressIsFull &&
+        !riskInfo
+      ) {
         navigate('ControlEKYCScreen', {
           onBack: () => {
             navigate('OverviewScreen');

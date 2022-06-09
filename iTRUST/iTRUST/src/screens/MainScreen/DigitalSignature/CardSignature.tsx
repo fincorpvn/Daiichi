@@ -60,7 +60,6 @@ function CardSignature() {
       const token = await getStoreToken();
       const url = `esignature/download-contract`;
       const bburl = `${urlApp.APIURL}api/${url}`;
-      Log('bburl', bburl);
       const link = `${
         Platform.OS === 'android'
           ? RNFS.DownloadDirectoryPath

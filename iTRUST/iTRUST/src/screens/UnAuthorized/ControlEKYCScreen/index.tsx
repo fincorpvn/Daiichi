@@ -88,18 +88,32 @@ function ControlEKYCScreen() {
       );
       if (!!scanData) {
         if (scanData?.cardInfo?.result?.kyc_result?.decision?.code == -1) {
-          Alert.showError({
-            content:
-              countTime.current > 3 ? `alert.ekycfail3` : `alert.ekycfail`,
-            onPress: () => {
-              if (countTime.current > 3) {
-                navigate('AccountVerifyScreen');
+          if (countTime.current > 3) {
+            Alert.show({
+              type: 2,
+              titleClose: `alert.dongy`,
+              content: `alert.ekycfail3`,
+              multilanguage: true,
+              onClose: () => {
+                if (statusScreen == 'main') {
+                  navigate('AccountVerifyScreen');
+                  return;
+                }
+                navigate('LoginScreen');
                 return;
-              }
-              onGotoEKYC();
-              countTime.current += 1;
-            },
-          });
+              },
+            });
+            return;
+          } else {
+            Alert.showError({
+              content: `alert.ekycfail`,
+              onPress: () => {
+                onGotoEKYC();
+                countTime.current += 1;
+              },
+            });
+            return;
+          }
         } else {
           navigate('ReviewInfoModal', {
             data: {

@@ -12,6 +12,7 @@ function CardProfile(Props: {}) {
     if (!investmentProfile?.status) {
       return I18nState == 'vi' ? 'Chưa xác thực' : 'Unconfirmed';
     }
+    return investmentProfile?.status?.name;
     switch (investmentProfile?.status?.code) {
       case 'INVESTMENT_PROFILE_PENDING':
         return I18nState == 'vi' ? 'Chờ duyệt' : 'Pending';

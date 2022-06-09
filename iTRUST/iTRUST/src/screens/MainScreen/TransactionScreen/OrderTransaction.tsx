@@ -138,7 +138,12 @@ function OrderTransaction() {
         <ButtonBorder
           onPress={() => {
             if (!currentUser?.investmentProfile?.status) {
-              if (!userInfoIsFull && !bankAccountIsFull && !userAddressIsFull) {
+              if (
+                !userInfoIsFull &&
+                !bankAccountIsFull &&
+                !userAddressIsFull &&
+                !riskInfo
+              ) {
                 navigate('ControlEKYCScreen', {
                   // onBack: () => {
                   //   navigate('TransactionScreen');

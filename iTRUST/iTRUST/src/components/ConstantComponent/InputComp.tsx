@@ -38,7 +38,8 @@ import {Ecolors, Efonts} from 'constant';
 export interface IInputProps {
   children?:
     | React.ReactNode
-    | ((state: PressableStateCallbackType) => React.ReactNode);
+    | ((state: PressableStateCallbackType) => React.ReactNode)
+    | any;
   allowFontScaling?: boolean;
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
   autoComplete?: any;

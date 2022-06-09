@@ -26,7 +26,7 @@ function Input(props: IInputProps): JSX.Element {
       {...parseMargin(props)}
       ref={props.inputRef && props.inputRef}
       {...props}>
-      {props.children}
+      {props.children && props.children}
     </ComponentInput>
   );
 }

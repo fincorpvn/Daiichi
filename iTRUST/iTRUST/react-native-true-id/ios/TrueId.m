@@ -25,7 +25,7 @@ RCT_EXPORT_METHOD(configure:(NSDictionary*)data) {
              NSString *accessToken = [data objectForKey:@"accessToken"];
             NSString *language = [data objectForKey:@"language"];
             NSString *themeColor = [data objectForKey:@"themeColor"];
-            NSString *headerConfig = [data objectForKey:@"headerConfig"];   
+            NSString *headerConfigStr = [data objectForKey:@"headerConfig"];
 
             configInfo = [[ConfigInfo alloc] initWithDomain:domain domainPath:domainPath authDomain:authDomain authDomainPath:authDomainPath appId:appId appSecret:appSecret zoomLicenseKey:zoomLicenseKey zoomServerBaseURL: zoomServerBaseURL zoomPublicKey:zoomPublicKey zoomAuthURL:zoomAuthURL zoomClient:@"" accessToken:accessToken];
 
@@ -33,7 +33,7 @@ RCT_EXPORT_METHOD(configure:(NSDictionary*)data) {
             colorConfig =  [[ColorConfig alloc] initWithJsonString: themeColor];
 
             HeaderConfig *headerConfig;
-            headerConfig =  [[HeaderConfig alloc] initWithJsonString: headerConfig];
+            headerConfig =  [[HeaderConfig alloc] initWithJsonString: headerConfigStr];
 
             [TrueID setLanguageWithLanguage: language];
 

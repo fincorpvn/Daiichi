@@ -222,6 +222,7 @@ function EditAccountInfoModal() {
       const dataUpload: any = await uploadFile({
         fileBase64: r.base64,
       });
+      Log('rrr', {r, dataUpload});
       if (dataUpload) {
         if (imageUpload.current == 'before') {
           setPhotoBefore({...r, ...dataUpload});
@@ -235,8 +236,6 @@ function EditAccountInfoModal() {
       setLoadingPhotoBefore(false);
     }
   };
-
-  Log('photoBefore', photoBefore);
 
   const onConfirm = async () => {
     try {
@@ -604,7 +603,10 @@ function EditAccountInfoModal() {
                 width={162}
                 height={103}
                 source={{
-                  uri: photoBefore?.uri || photoBefore?.url,
+                  uri:
+                    photoBefore?.base64Convert ||
+                    photoBefore?.uri ||
+                    photoBefore?.url,
                 }}
               />
               <Div
@@ -642,7 +644,10 @@ function EditAccountInfoModal() {
                 width={162}
                 height={103}
                 source={{
-                  uri: photoAfter?.uri || photoAfter?.url,
+                  uri:
+                    photoAfter?.base64Convert ||
+                    photoAfter?.uri ||
+                    photoAfter?.url,
                 }}
               />
               <Div

@@ -244,25 +244,29 @@ function ProfileScreen() {
     return <CardProfile />;
   };
   const ListFooterComponent = () => {
-    if (!currentUser?.investmentProfile?.note) {
-      return <></>;
+    if (
+      currentUser?.investmentProfile?.note &&
+      currentUser?.investmentProfile?.status?.code ==
+        'INVESTMENT_PROFILE_REJECT'
+    ) {
+      return (
+        <Button
+          onPress={() => {
+            navigate('AccountVerifyScreen');
+          }}
+          marginHorizontal={17}
+          padding={10}
+          borderRadius={10}
+          backgroundColor={`rgba(237, 28, 36, 0.2)`}
+          alignItems={'center'}
+          justifyContent={'center'}>
+          <Label color={Ecolors.redColor} multilanguage={false}>
+            {currentUser?.investmentProfile?.note || ''}
+          </Label>
+        </Button>
+      );
     }
-    return (
-      <Button
-        onPress={() => {
-          navigate('AccountVerifyScreen');
-        }}
-        marginHorizontal={17}
-        padding={10}
-        borderRadius={10}
-        backgroundColor={`rgba(237, 28, 36, 0.2)`}
-        alignItems={'center'}
-        justifyContent={'center'}>
-        <Label color={Ecolors.redColor} multilanguage={false}>
-          {currentUser?.investmentProfile?.note || ''}
-        </Label>
-      </Button>
-    );
+    return <></>;
   };
 
   const onRefresh = () => {

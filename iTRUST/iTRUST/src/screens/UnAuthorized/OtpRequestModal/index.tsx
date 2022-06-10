@@ -415,10 +415,6 @@ function OtpRequestModal() {
   const onConfirmCreateOrderBuy = async () => {
     try {
       setLoadingConfirm(true);
-      Log('123123', {
-        ...requestOnSendOtp,
-        otp,
-      });
       const res = await apiInvestment.buyConfirm({
         ...requestOnSendOtp,
         otp,

@@ -360,7 +360,14 @@ export const getImageCamera = async () => {
           },
           async (res: any) => {
             if (res.assets) {
-              resolve(res.assets);
+              resolve(
+                res.assets.map((item: any, index: number) => {
+                  return {
+                    ...item,
+                    base64Convert: `data:image/png;base64,${item.base64}`,
+                  };
+                }),
+              );
             }
             reject();
           },
@@ -388,7 +395,14 @@ export const getImageLibrary = async () => {
           },
           (res: any) => {
             if (res.assets) {
-              resolve(res.assets);
+              resolve(
+                res.assets.map((item: any, index: number) => {
+                  return {
+                    ...item,
+                    base64Convert: `data:image/png;base64,${item.base64}`,
+                  };
+                }),
+              );
             }
             reject();
           },

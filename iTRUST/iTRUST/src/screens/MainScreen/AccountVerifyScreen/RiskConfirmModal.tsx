@@ -173,7 +173,7 @@ function RiskConfirmModal() {
         ItemSeparatorComponent={ItemSeparatorComponent}
         keyExtractor={keyExtractor}
       />
-      {!currentUser?.investmentProfile?.status && (
+      {!riskInfo && (
         <Div
           marginBottom={insets.bottom + 15}
           width={'100%'}

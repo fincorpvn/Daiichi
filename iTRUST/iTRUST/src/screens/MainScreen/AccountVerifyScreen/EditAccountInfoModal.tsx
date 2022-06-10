@@ -252,7 +252,7 @@ function EditAccountInfoModal() {
           year: Y,
         }),
       );
-      if (Math.floor(b - a) < 160000) {
+      if (Math.floor(b - a) < 180000) {
         Alert.showError({
           content: `alert.chuadutuoi`,
           onPress: () => {},

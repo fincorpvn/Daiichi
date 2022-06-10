@@ -119,11 +119,6 @@ function OrderBuy({setStepTimeLine, stepTimeLine, initData}: Props) {
     }
   };
 
-  console.log('dasdasd', {
-    product,
-    scheme,
-  });
-
   return (
     <Div backgroundColor={Ecolors.whiteColor} width={'100%'}>
       <ScrollView

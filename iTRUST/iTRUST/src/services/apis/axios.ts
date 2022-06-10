@@ -87,7 +87,6 @@ aa.interceptors.response.use(
       };
     }>,
   ) => {
-    console.log('errorr', err);
     throw (
       err.response?.data || {
         message: 'Lỗi mạng',

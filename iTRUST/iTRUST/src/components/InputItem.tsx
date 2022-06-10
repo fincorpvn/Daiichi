@@ -1,8 +1,9 @@
 import {Button, Div, ImageView, Input, Label} from 'components';
-import {Ecolors, Icons} from 'constant';
+import {Ecolors, Efonts, Icons} from 'constant';
 import React, {ReactElement, useEffect, useRef, useState} from 'react';
 import {KeyboardTypeOptions} from 'react-native';
 import {useAppSelector} from 'store/hooks';
+import {Log} from 'utils';
 
 interface PropsInputItem {
   isShowAndHide?: boolean;

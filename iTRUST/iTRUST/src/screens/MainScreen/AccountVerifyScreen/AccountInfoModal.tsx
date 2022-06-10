@@ -10,17 +10,23 @@ import {
   ImageView,
   InputItem,
   Label,
+  LoadingIndicator,
 } from 'components';
-import {Ecolors, Icons, urlApp} from 'constant';
+import {Ecolors, Icons, stringApp, urlApp} from 'constant';
 import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {Platform, ScrollView, StyleSheet} from 'react-native';
 import {getInvestmentProfile} from 'reducer/authen/selector';
 import {navigate} from 'services';
 import {apiMain} from 'services/apis/apiMain';
 import {doGetAxios, doPostAxios} from 'services/apis/axios';
+import {img} from 'services/test';
 import {useAppSelector} from 'store/hooks';
-import {convertTimestamp, Log, widthScale, widthScreen} from 'utils';
+import {convertTimestamp, getUuid, Log, widthScale, widthScreen} from 'utils';
 import {getStoreToken} from 'utils/storage';
+import RNFS from 'react-native-fs';
+import ReactNativeBlobUtil from 'react-native-blob-util';
+import {useDispatch} from 'react-redux';
+import {changeUserPhotos} from 'reducer/authen';
 
 function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
   return (
@@ -43,7 +49,9 @@ function AccountInfoModal() {
   const investmentProfile = useAppSelector(state =>
     getInvestmentProfile(state),
   );
-  const [token, setToken] = useState<string>('');
+  const [listImage, setListImage] = useState<Array<any>>([]);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState<boolean>(false);
   const [country, setCountry] = useState<any>(null);
   const {
     email,
@@ -62,28 +70,60 @@ function AccountInfoModal() {
 
   useEffect(() => {
     getCountry();
-    // getTokenn();
-    // downloadImage();
+    downloadImage();
     return () => {};
   }, []);
 
-  // const downloadImage = async () => {
-  //   const ul = `dowload/file?${userPhotos[0].url}`;
-  //   try {
-  //     Log('rrr', {ul});
-  //     const r = await doGetAxios(ul);
-  //   } catch (error) {
-  //     Log('error', {error});
-  //   } finally {
-  //   }
-  // };
+  const downloadImage = async () => {
+    try {
+      setLoading(true);
+      const token = await getStoreToken();
+      const t = await Promise.all(
+        userPhotos.map(async (item: any, index: number) => {
+          const ul = `download/file?uri=${item.url}`;
+          const bburl = `${urlApp.APIURL}api/${ul}`;
+          return new Promise((resolve, reject) => {
+            ReactNativeBlobUtil.config({})
+              .fetch(
+                'POST',
+                bburl,
+                {
+                  Authorization: token ? `Bearer ${token}` : '',
+                  'Content-Type': 'application/json',
+                  'request-id': getUuid(),
+                  Origin: urlApp.DomainName,
+                },
+                JSON.stringify({
+                  uri: item.url,
+                }),
+              )
+              .then((r: any) => {
+                resolve(r.base64());
+                return;
+              });
+          });
+        }),
+      );
 
-  // const getTokenn = async () => {
-  //   const t = await getStoreToken();
-  //   if (t) {
-  //     setToken(t);
-  //   }
-  // };
+      if (!!t.length) {
+        setListImage(
+          t.map((item: any, index: number) => {
+            return `data:image/png;base64,${item}`;
+          }),
+        );
+        const newList = userPhotos.map((item: any, index: number) => {
+          return {
+            ...item,
+            base64Convert: `data:image/png;base64,${t[index]}`,
+          };
+        });
+        dispatch(changeUserPhotos(newList));
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getCountry = async () => {
     try {
@@ -99,6 +139,21 @@ function AccountInfoModal() {
 
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
+      {loading && (
+        <Div
+          flex={1}
+          width={'100%'}
+          height={'100%'}
+          zIndex={99999}
+          elevation={99999}
+          position={'absolute'}
+          style={StyleSheet.absoluteFillObject}
+          alignItems={'center'}
+          justifyContent={'center'}
+          backgroundColor={Ecolors.transparentLoading}>
+          <LoadingIndicator color={Ecolors.mainColor} />
+        </Div>
+      )}
       <HeaderBack
         type={2}
         iconRight={
@@ -192,29 +247,24 @@ function AccountInfoModal() {
           flexDirection={'row'}
           alignItems={'center'}
           justifyContent={'space-between'}>
-          {userPhotos?.map((item: any, index: number) => {
+          {listImage?.map((item: any, index: number) => {
             return (
-              <ImageView
+              <Div
                 width={162}
-                key={index}
+                overflow={'hidden'}
                 height={103}
+                key={index}
                 borderRadius={5}
                 borderWidth={1}
-                resizeMode={'contain'}
-                borderColor={Ecolors.bordercolor}
-                source={Icons.profile}
-                // source={{
-                //   uri: item.url,
-                //   headers: {
-                //     origin: `${urlApp.DomainName}`,
-                //     Authorization: `Bearer ${token}`,
-                //     [`Content-Type`]: 'application/json',
-                //   },
-                // }}
-                // source={{
-                //   uri: `${urlApp.IMAGEURL}${item.fileName}`,
-                // }}
-              />
+                borderColor={Ecolors.bordercolor}>
+                <ImageView
+                  width={162}
+                  height={103}
+                  source={{
+                    uri: item,
+                  }}
+                />
+              </Div>
             );
           })}
         </Div>

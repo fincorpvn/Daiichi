@@ -60,6 +60,12 @@ const authen = createSlice({
     changeIsSupport(state, action: PayloadAction<boolean>) {
       state.isSupport = action.payload;
     },
+    changeUserPhotos(state, action: PayloadAction<Array<any>>) {
+      state.currentUser = {
+        ...state.currentUser,
+        userPhotos: action.payload,
+      };
+    },
     changeBiometryType(
       state,
       action: PayloadAction<string | 'TouchID' | 'FaceID'>,
@@ -102,5 +108,6 @@ export const {
   changeNoti,
   changeBiometryType,
   changeIsSupport,
+  changeUserPhotos,
 } = actions;
 export default reducer;

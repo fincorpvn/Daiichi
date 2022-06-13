@@ -1,16 +1,21 @@
-import { Div, Label } from 'components';
-import { Ecolors, EStyle } from 'constant';
+import {Div, Label} from 'components';
+import {Ecolors, EStyle} from 'constant';
 import React from 'react';
-import { Animated } from 'react-native';
-import { useAppSelector } from 'store/hooks';
-import { convertNav, convertNumber, convertPercent, convertProductCode } from 'utils';
+import {Animated} from 'react-native';
+import {useAppSelector} from 'store/hooks';
+import {
+  convertNav,
+  convertNumber,
+  convertPercent,
+  convertProductCode,
+} from 'utils';
 
 interface Props {
   data: any;
   scale: any;
 }
 
-function RowSpaceItem(p: { children?: any; paddingTop?: number }) {
+function RowSpaceItem(p: {children?: any; paddingTop?: number}) {
   return (
     <Div
       flexDirection={'row'}
@@ -23,7 +28,7 @@ function RowSpaceItem(p: { children?: any; paddingTop?: number }) {
   );
 }
 
-function ItemListAsset({ data, scale }: Props) {
+function ItemListAsset({data, scale}: Props) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const {
     color,
@@ -84,9 +89,9 @@ function ItemListAsset({ data, scale }: Props) {
                 {convertPercent(ratePercent)}
               </Label>
             </RowSpaceItem>
-            <Label size={14} multilanguage={false} color={Ecolors.gray2x}>
+            {/* <Label size={14} multilanguage={false} color={Ecolors.gray2x}>
               {convertProductCode({ ...data, I18nState: I18nState })}
-            </Label>
+            </Label> */}
             <RowSpaceItem paddingTop={20}>
               <Label size={14} color={Ecolors.grayColor}>
                 {`overviewscreen.tongsocqq`}

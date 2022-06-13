@@ -108,7 +108,7 @@ function ControlEKYCScreen() {
             Alert.showError({
               content: `alert.ekycfail`,
               onPress: () => {
-                onGotoEKYC();
+                // onGotoEKYC();
                 countTime.current += 1;
               },
             });

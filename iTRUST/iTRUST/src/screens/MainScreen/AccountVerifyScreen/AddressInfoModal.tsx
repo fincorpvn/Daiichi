@@ -2,7 +2,10 @@ import {AddressForm, ButtonBorder, Div, HeaderBack, Label} from 'components';
 import {Ecolors, Icons} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
 import {Alert, ScrollView} from 'react-native';
-import {getInvestmentProfile} from 'reducer/authen/selector';
+import {
+  getInvestmentProfile,
+  getStatusEditProfile,
+} from 'reducer/authen/selector';
 import {apiAuth, goBack, navigate} from 'services';
 import {apiMain} from 'services/apis/apiMain';
 import {useAppSelector} from 'store/hooks';
@@ -39,6 +42,7 @@ function AddressInfoModal() {
   const [mailingProvince, setMailingProvince] = useState<any>(null);
   const [mailingWard, setMailingWard] = useState<any>(null);
   //
+  const isEdit = useAppSelector(state => getStatusEditProfile(state));
 
   const investmentProfile = useAppSelector(state =>
     getInvestmentProfile(state),
@@ -112,7 +116,7 @@ function AddressInfoModal() {
       <HeaderBack
         loading={loading}
         type={2}
-        iconRight={!currentUser?.userAddressIsFull ? Icons.edit : null}
+        iconRight={isEdit ? Icons.edit : null}
         onRightPress={() => {
           navigate('EditAddressInfoModal', {
             data: {

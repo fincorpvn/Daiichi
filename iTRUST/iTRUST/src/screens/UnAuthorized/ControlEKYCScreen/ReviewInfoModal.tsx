@@ -825,6 +825,37 @@ function ReviewInfoModal() {
           />
         </ItemII>
         <ItemII
+          title={'reviewinfoscreen.danhgiamucdoruiro'}
+          icon={Icons.riskassessment}>
+          {stringApp.riskAssessment.map((item: any, index: number) => {
+            return (
+              <Div marginTop={13} key={item.id}>
+                <Label multilanguage={false}>
+                  {I18nState == 'vi' ? item.content : item.contentEn}
+                </Label>
+                <Dropdown
+                  multiline={true}
+                  marginTop={13}
+                  paddingHorizontal={0}
+                  multilanguage={false}
+                  isActive={true}
+                  value={riskAssessment[item.id]}
+                  content={I18nState == 'vi' ? item.content : item.contentEn}
+                  initData={item.data}
+                  onChange={datachange => {
+                    setRiskAssessment(a => {
+                      return {
+                        ...a,
+                        [item.id]: datachange,
+                      };
+                    });
+                  }}
+                />
+              </Div>
+            );
+          })}
+        </ItemII>
+        <ItemII
           title={'reviewinfoscreen.dieukhoandieukienmotaikhoan'}
           icon={Icons.condition}>
           <Label
@@ -947,37 +978,6 @@ function ReviewInfoModal() {
           </Div>
         </ItemII>
 
-        <ItemII
-          title={'reviewinfoscreen.danhgiamucdoruiro'}
-          icon={Icons.riskassessment}>
-          {stringApp.riskAssessment.map((item: any, index: number) => {
-            return (
-              <Div marginTop={13} key={item.id}>
-                <Label multilanguage={false}>
-                  {I18nState == 'vi' ? item.content : item.contentEn}
-                </Label>
-                <Dropdown
-                  multiline={true}
-                  marginTop={13}
-                  paddingHorizontal={0}
-                  multilanguage={false}
-                  isActive={true}
-                  value={riskAssessment[item.id]}
-                  content={I18nState == 'vi' ? item.content : item.contentEn}
-                  initData={item.data}
-                  onChange={datachange => {
-                    setRiskAssessment(a => {
-                      return {
-                        ...a,
-                        [item.id]: datachange,
-                      };
-                    });
-                  }}
-                />
-              </Div>
-            );
-          })}
-        </ItemII>
         <Div height={120} />
       </ScrollView>
       <Div

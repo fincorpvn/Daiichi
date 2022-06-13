@@ -32,7 +32,7 @@ function ChartPercentHeader({itemFocus, setItemFocus}: Props) {
         const percentage = Math.round(item.ratePercent * 100) / 100;
         return {
           percentage: percentage > 2 ? percentage : 2,
-          color: item.color,
+          color: item.color || Ecolors.mainColor,
         };
       }),
     );

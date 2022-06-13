@@ -42,7 +42,10 @@ function AccountVerifyScreen() {
       <ItemCard
         title={'accountverify.thongtinnganhang'}
         isLine={true}
-        isCheck={bankAccountIsFull}
+        isCheck={
+          bankAccountIsFull &&
+          investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
+        }
         onPress={() => {
           navigate('BankInfoModal');
         }}
@@ -51,31 +54,21 @@ function AccountVerifyScreen() {
         onPress={() => {
           navigate('AddressInfoModal');
         }}
-        isCheck={userAddressIsFull}
+        isCheck={
+          userAddressIsFull &&
+          investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
+        }
         title={'accountverify.thongtindiachi'}
         isLine={true}
       />
-      {/* {userInfoIsFull && bankAccountIsFull && userAddressIsFull && (
-        <ItemCard
-          onPress={() => {
-            navigate('RiskConfirmModal');
-            // navigate('ReviewInfoModal', {
-            //   data: {},
-            // });
-          }}
-          isCheck={!!riskInfo}
-          title={'accountverify.danhgiamucdoruiro'}
-          isLine={true}
-        />
-      )} */}
       <ItemCard
         onPress={() => {
           navigate('RiskConfirmModal');
-          // navigate('ReviewInfoModal', {
-          //   data: {},
-          // });
         }}
-        isCheck={!!riskInfo}
+        isCheck={
+          !!riskInfo &&
+          investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
+        }
         title={'accountverify.danhgiamucdoruiro'}
         isLine={true}
       />
@@ -98,27 +91,6 @@ function AccountVerifyScreen() {
       />
       {userInfoIsFull && bankAccountIsFull && userAddressIsFull && riskInfo && (
         <>
-          {/* <ItemCard
-            onPress={() => {
-              navigate('ConfirmModal');
-            }}
-            isCheck={!!investmentProfile?.status}
-            title={'accountverify.xacthuchoantat'}
-            isLine={true}
-            // isEnd={true}
-          /> */}
-          {/* {(investmentProfile?.status?.code == 'INVESTMENT_PROFILE_APPROVE' ||
-            investmentProfile?.status?.code == 'INVESTMENT_PROFILE_ACCEPT') && (
-            <ItemCard
-              onPress={() => {
-                navigate('DigitalSignatureScreen');
-              }}
-              isCheck={investmentProfile?.isReceivedHardProfile}
-              title={'accountverify.hopdongdientu'}
-              isLine={true}
-              isEnd={true}
-            />
-          )} */}
           <ItemCard
             onPress={() => {
               navigate('DigitalSignatureScreen');

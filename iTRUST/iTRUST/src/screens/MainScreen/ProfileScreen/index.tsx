@@ -36,7 +36,8 @@ function ProfileScreen() {
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
   const [loading, setLoading] = useState<boolean>(false);
   const I18nState = useAppSelector(state => state.languages.I18nState);
-
+  const {riskInfo, bankAccountIsFull, userInfoIsFull, userAddressIsFull} =
+    currentUser;
   const hardProfile = !!currentUser.investmentProfile?.isReceivedHardProfile;
 
   const listData = [
@@ -57,7 +58,15 @@ function ProfileScreen() {
       isForward: true,
       isLine: true,
       onPress: () => {
-        navigate('DigitalSignatureScreen');
+        if (
+          userInfoIsFull &&
+          bankAccountIsFull &&
+          userAddressIsFull &&
+          riskInfo
+        ) {
+          navigate('DigitalSignatureScreen');
+          return;
+        }
         // if (
         //   currentUser?.investmentProfile?.status?.code ==
         //     'INVESTMENT_PROFILE_APPROVE' ||

@@ -89,16 +89,16 @@ export const convertAmount = (num: number | string, hideD?: boolean) => {
     return '';
   }
 
-  const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
+  const strhead = parseInt(`${num}`?.replace(/[,]/g, '')) >= 0 ? '' : '-';
   const ar = Math.abs(
-    typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
+    typeof num == 'string' ? parseInt(num?.replace(/[,]/g, '')) : num,
   )
     .toString()
     .split('.');
   const isDot = `${num}`.indexOf('.');
   let last = '';
   if (isDot != -1) {
-    last = `${num}`.slice(isDot + 1, `${num}`.length)?.slice(0, 2);
+    last = `${num}`?.slice(isDot + 1, `${num}`.length)?.slice(0, 2);
   } else {
     last = '';
   }
@@ -119,9 +119,9 @@ export const convertAmount = (num: number | string, hideD?: boolean) => {
 
 export const convertNav = (num: number | string, hideD?: boolean) => {
   if (!num) return `${num}${hideD ? '' : ' (VNĐ)'}`;
-  const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
+  const strhead = parseInt(`${num}`?.replace(/[,]/g, '')) >= 0 ? '' : '-';
   const ar = Math.abs(
-    typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
+    typeof num == 'string' ? parseInt(num?.replace(/[,]/g, '')) : num,
   )
     .toString()
     .split('.');
@@ -597,9 +597,9 @@ export const getAddressRejectWard = (address: string) => {
   const index = a.indexOf('xa');
   const indexgg = a.indexOf('phuong');
   if (index != -1) {
-    return address.slice(0, index).replace(/,/g, '');
+    return address?.slice(0, index).replace(/,/g, '');
   } else if (indexgg != -1) {
-    return address.slice(0, indexgg).replace(/,/g, '');
+    return address?.slice(0, indexgg).replace(/,/g, '');
   }
   return '';
 };
@@ -754,6 +754,7 @@ export function convertProductCode(p: {
   code?: string;
   I18nState?: 'vi' | 'en';
 }) {
+  return '';
   let content = '';
   if (p.code === 'VFF') {
     content = `${
@@ -770,7 +771,7 @@ export function convertProductCode(p: {
       p.I18nState == 'vi' ? 'Quỹ Thị trường Tiền tệ' : 'Money Market Fund'
     } `;
   } else {
-    content = `${p.I18nState == 'vi' ? 'dfdf' : 'fdfd'} `;
+    content = `${p.I18nState == 'vi' ? '' : ''} `;
   }
   return content;
 }

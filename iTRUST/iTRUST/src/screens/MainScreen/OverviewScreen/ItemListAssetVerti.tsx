@@ -1,15 +1,20 @@
-import { Button, Div, ImageView, Label } from 'components';
-import { Ecolors, EStyle, Icons } from 'constant';
-import React, { useState } from 'react';
-import { Animated } from 'react-native';
-import { useAppSelector } from 'store/hooks';
-import { convertNav, convertNumber, convertPercent,convertProductCode } from 'utils';
+import {Button, Div, ImageView, Label} from 'components';
+import {Ecolors, EStyle, Icons} from 'constant';
+import React, {useState} from 'react';
+import {Animated} from 'react-native';
+import {useAppSelector} from 'store/hooks';
+import {
+  convertNav,
+  convertNumber,
+  convertPercent,
+  convertProductCode,
+} from 'utils';
 
 interface Props {
   data: any;
 }
 
-function RowSpaceItem(p: { children?: any; paddingTop?: number }) {
+function RowSpaceItem(p: {children?: any; paddingTop?: number}) {
   return (
     <Div
       flexDirection={'row'}
@@ -22,7 +27,7 @@ function RowSpaceItem(p: { children?: any; paddingTop?: number }) {
   );
 }
 
-function ItemListAssetVerti({ data }: Props) {
+function ItemListAssetVerti({data}: Props) {
   const [isDetails, setIsDetails] = useState<boolean>(false);
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
@@ -77,9 +82,9 @@ function ItemListAssetVerti({ data }: Props) {
                 {convertPercent(ratePercent)}
               </Label>
             </Div>
-            <Label size={14} multilanguage={false} color={ Ecolors.gray2x}>
+            {/* <Label size={14} multilanguage={false} color={ Ecolors.gray2x}>
             {convertProductCode({...data, I18nState: I18nState})}
-            </Label>
+            </Label> */}
           </Div>
         </Div>
         <Div flexDirection={'row'} alignItems={'center'}>
@@ -99,7 +104,9 @@ function ItemListAssetVerti({ data }: Props) {
               <Label
                 fontWeight={'700'}
                 multilanguage={false}
-                color={interestOrHole >= 0 ? Ecolors.greenColor : Ecolors.redColor}>
+                color={
+                  interestOrHole >= 0 ? Ecolors.greenColor : Ecolors.redColor
+                }>
                 {convertPercent(Math.abs(interestOrHole))}
               </Label>
             </Div>
@@ -131,8 +138,9 @@ function ItemListAssetVerti({ data }: Props) {
           </RowSpaceItem>
           <RowSpaceItem paddingTop={4}>
             <Label size={14} multilanguage={false}>
-              {`${convertNav(holdingVolume, true)} ${I18nState == 'vi' ? `CCQ` : 'Units'
-                }`}
+              {`${convertNav(holdingVolume, true)} ${
+                I18nState == 'vi' ? `CCQ` : 'Units'
+              }`}
             </Label>
 
             <Label multilanguage={false} size={14}>

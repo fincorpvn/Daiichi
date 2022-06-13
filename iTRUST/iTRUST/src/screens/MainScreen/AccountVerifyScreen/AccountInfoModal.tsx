@@ -15,7 +15,10 @@ import {
 import {Ecolors, Icons, stringApp, urlApp} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {Platform, ScrollView, StyleSheet} from 'react-native';
-import {getInvestmentProfile} from 'reducer/authen/selector';
+import {
+  getInvestmentProfile,
+  getStatusEditProfile,
+} from 'reducer/authen/selector';
 import {navigate} from 'services';
 import {apiMain} from 'services/apis/apiMain';
 import {doGetAxios, doPostAxios} from 'services/apis/axios';
@@ -23,9 +26,9 @@ import {img} from 'services/test';
 import {useAppSelector} from 'store/hooks';
 import {convertTimestamp, getUuid, Log, widthScale, widthScreen} from 'utils';
 import {getStoreToken} from 'utils/storage';
-import RNFS from 'react-native-fs';
+import RNFS, {stat} from 'react-native-fs';
 import ReactNativeBlobUtil from 'react-native-blob-util';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {changeUserPhotos} from 'reducer/authen';
 
 function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
@@ -53,6 +56,7 @@ function AccountInfoModal() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
   const [country, setCountry] = useState<any>(null);
+  const isEdit = useAppSelector(state => getStatusEditProfile(state));
   const {
     email,
     phone,
@@ -156,12 +160,7 @@ function AccountInfoModal() {
       )}
       <HeaderBack
         type={2}
-        iconRight={
-          !investmentProfile ||
-          investmentProfile?.code == 'INVESTMENT_PROFILE_REJECT'
-            ? Icons.edit
-            : null
-        }
+        iconRight={isEdit ? Icons.edit : null}
         title={`accountverify.thongtincanhan`}
         onRightPress={() => {
           navigate('EditAccountInfoModal');

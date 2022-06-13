@@ -14,7 +14,10 @@ import {FlatList} from 'react-native-gesture-handler';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useDispatch} from 'react-redux';
 import {getInfo} from 'reducer/authen';
-import {getInvestmentProfile} from 'reducer/authen/selector';
+import {
+  getInvestmentProfile,
+  getStatusEditProfile,
+} from 'reducer/authen/selector';
 import {apiAuth, navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {heightScreen, Log, widthScreen} from 'utils';
@@ -85,9 +88,7 @@ function RiskConfirmModal() {
   const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
-  const investmentProfile = useAppSelector(state =>
-    getInvestmentProfile(state),
-  );
+  const isEdit = useAppSelector(state => getStatusEditProfile(state));
 
   const {email, riskInfo} = currentUser;
 
@@ -135,7 +136,7 @@ function RiskConfirmModal() {
         data={p.item}
         I18nState={I18nState}
         onSelect={(s: any) => {
-          if (currentUser?.investmentProfile?.status) {
+          if (!isEdit) {
             return;
           }
           setListSelect(t => {
@@ -173,7 +174,7 @@ function RiskConfirmModal() {
         ItemSeparatorComponent={ItemSeparatorComponent}
         keyExtractor={keyExtractor}
       />
-      {!riskInfo && (
+      {isEdit && (
         <Div
           marginBottom={insets.bottom + 15}
           width={'100%'}

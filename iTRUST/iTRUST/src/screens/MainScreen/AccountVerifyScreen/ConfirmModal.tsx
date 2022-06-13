@@ -176,23 +176,21 @@ function ConfirmModal() {
             alignItems={'center'}
             justifyContent={'flex-start'}>
             <Button
-              widthHeight={30}
+              widthHeight={25}
               onPress={() => {
                 setIsAccept(a => !a);
               }}
               marginRight={13}
-              borderWidth={0.8}
+              borderWidth={1}
               alignItems={'center'}
               justifyContent={'center'}
               borderColor={isAccept ? Ecolors.mainColor : Ecolors.spaceColor}
-              borderRadius={5}>
-              {isAccept && (
-                <Div
-                  widthHeight={25}
-                  borderRadius={5}
-                  backgroundColor={Ecolors.mainColor}
-                />
-              )}
+              borderRadius={25}>
+              <ImageView
+                source={isAccept ? Icons.check : Icons.uncheck}
+                widthHeight={20}
+                tintColor={isAccept ? Ecolors.mainColor : Ecolors.grayColor}
+              />
             </Button>
             <Div flex={1}>
               <Label>{`accountverify.toidongyvoidieukhoantren`}</Label>
@@ -202,31 +200,29 @@ function ConfirmModal() {
             flexDirection={'row'}
             paddingHorizontal={16}
             paddingBottom={24}
-            // borderTopWidth={1}
-            // borderTopColor={Ecolors.spaceColor}
             paddingTop={17}
             alignItems={'center'}
             justifyContent={'flex-start'}>
             <Button
-              widthHeight={30}
+              widthHeight={25}
               onPress={() => {
                 setIsAcceptFatca(a => !a);
               }}
               marginRight={13}
-              borderWidth={0.8}
+              borderWidth={1}
               alignItems={'center'}
               justifyContent={'center'}
               borderColor={
                 isAcceptFatca ? Ecolors.mainColor : Ecolors.spaceColor
               }
-              borderRadius={5}>
-              {isAcceptFatca && (
-                <Div
-                  widthHeight={25}
-                  borderRadius={5}
-                  backgroundColor={Ecolors.mainColor}
-                />
-              )}
+              borderRadius={25}>
+              <ImageView
+                source={isAcceptFatca ? Icons.check : Icons.uncheck}
+                widthHeight={20}
+                tintColor={
+                  isAcceptFatca ? Ecolors.mainColor : Ecolors.grayColor
+                }
+              />
             </Button>
             <Div flex={1}>
               <Label>{`accountverify.tongdongyvoidieukhoanfatca`}</Label>

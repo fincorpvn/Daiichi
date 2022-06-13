@@ -1,7 +1,10 @@
 import {Div, HeaderBack, Label} from 'components';
 import {Ecolors, Icons} from 'constant';
 import React, {useEffect, useState} from 'react';
-import {getInvestmentProfile} from 'reducer/authen/selector';
+import {
+  getInvestmentProfile,
+  getStatusEditProfile,
+} from 'reducer/authen/selector';
 import {navigate} from 'services';
 import {doGetAxios} from 'services/apis/axios';
 import {useAppSelector} from 'store/hooks';
@@ -14,6 +17,7 @@ function BankInfoModal() {
     getInvestmentProfile(state),
   );
   const [branch, setBranch] = useState<any>(null);
+  const isEdit = useAppSelector(state => getStatusEditProfile(state));
 
   const {bankAccount} = currentUser;
 
@@ -38,7 +42,7 @@ function BankInfoModal() {
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack
         type={2}
-        iconRight={!currentUser?.bankAccountIsFull ? Icons.edit : null}
+        iconRight={isEdit ? Icons.edit : null}
         title={`accountverify.thongtinnganhang`}
         onRightPress={() => {
           navigate('EditBankInfoModal');

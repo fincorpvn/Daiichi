@@ -14,8 +14,8 @@ import {
   LoadingIndicator,
   Toast,
 } from 'components';
-import {Ecolors, EStyle, Icons} from 'constant';
-import React, {useEffect, useRef, useState} from 'react';
+import { Ecolors, EStyle, Icons } from 'constant';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Platform,
@@ -23,12 +23,12 @@ import {
   StyleSheet,
 } from 'react-native';
 import ImageResizer from 'react-native-image-resizer';
-import {useDispatch} from 'react-redux';
-import {getInfo} from 'reducer/authen';
+import { useDispatch } from 'react-redux';
+import { getInfo } from 'reducer/authen';
 import ComActionUpload from 'screens/MainScreen/DigitalSignature/ComActionUpload';
-import {apiAuth, goBack, navigate, uploadFile} from 'services';
-import {apiMain} from 'services/apis/apiMain';
-import {useAppSelector} from 'store/hooks';
+import { apiAuth, goBack, navigate, uploadFile } from 'services';
+import { apiMain } from 'services/apis/apiMain';
+import { useAppSelector } from 'store/hooks';
 import {
   convertTimestamp,
   getImageCamera,
@@ -45,7 +45,7 @@ const D = parseInt(currentDate[0]);
 const M = parseInt(currentDate[1]);
 const Y = parseInt(currentDate[2]);
 
-function Lbl(p: {content: string}) {
+function Lbl(p: { content: string }) {
   return (
     <Label marginTop={10} multilanguage={false}>
       <Label>{p.content}</Label>
@@ -143,7 +143,7 @@ function EditAccountInfoModal() {
       getCountryData();
       bindData(currentUser);
     }, 200);
-    return () => {};
+    return () => { };
   }, [currentUser]);
 
   const hide = (cb?: () => void) => {
@@ -165,7 +165,7 @@ function EditAccountInfoModal() {
           setNationality(dataNationality);
         }
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const bindData = async (a: any) => {
@@ -176,12 +176,12 @@ function EditAccountInfoModal() {
       setGender(a?.gender || null),
       setType(
         a?.idTypeId == 1
-          ? {id: '1', name: 'CMND/CCCD', namevn: 'CMND/CCCD'}
+          ? { id: '1', name: 'CMND/CCCD', namevn: 'CMND/CCCD' }
           : {
-              id: '5',
-              name: 'Mã giao dịch chứng khoán',
-              nameen: 'Mã giao dịch chứng khoán',
-            },
+            id: '5',
+            name: 'Mã giao dịch chứng khoán',
+            nameen: 'Mã giao dịch chứng khoán',
+          },
       ),
       setDob(reJoinObjectCalendar(convertTimestamp(a?.dob))),
       setDateOfIssue(reJoinObjectCalendar(convertTimestamp(a?.dateOfIssue))),
@@ -203,7 +203,7 @@ function EditAccountInfoModal() {
               ? image.base64.replace(/\n/g, '')
               : image.base64,
         });
-        callback && callback({...image, dataUPload});
+        callback && callback({ ...image, dataUPload });
       }
     } catch (error) {
     } finally {
@@ -222,12 +222,12 @@ function EditAccountInfoModal() {
       const dataUpload: any = await uploadFile({
         fileBase64: r.base64,
       });
-      Log('rrr', {r, dataUpload});
+      Log('rrr', { r, dataUpload });
       if (dataUpload) {
         if (imageUpload.current == 'before') {
-          setPhotoBefore({...r, ...dataUpload});
+          setPhotoBefore({ ...r, ...dataUpload });
         } else {
-          setPhotoAfter({...r, ...dataUpload});
+          setPhotoAfter({ ...r, ...dataUpload });
         }
       }
     } catch (error) {
@@ -255,7 +255,7 @@ function EditAccountInfoModal() {
       if (Math.floor(b - a) < 180000) {
         Alert.showError({
           content: `alert.chuadutuoi`,
-          onPress: () => {},
+          onPress: () => { },
         });
         return;
       }
@@ -269,33 +269,10 @@ function EditAccountInfoModal() {
       ) {
         Alert.showError({
           content: `alert.vuilongnhapdayduthongtincanhan`,
-          onPress: () => {},
+          onPress: () => { },
         });
         return;
       }
-      // Log('data', {
-      //   dateOfIssue: joinObjectCalendar(dateOfIssue),
-      //   dob: joinObjectCalendar(dob),
-      //   gender: gender,
-      //   idNo: idNo,
-      //   idTypeId: type?.id || '5',
-      //   nationalityId: `${nationality?.id}` || '234',
-      //   photoAfterFileName: photoAfter?.fileName || '',
-      //   photoAfterURL:
-      //     photoAfter?.dataUPload?.url ||
-      //     photoAfter?.uri ||
-      //     photoAfter?.url ||
-      //     '',
-      //   photoBeforeFileName: photoBefore?.fileName || '',
-      //   photoBeforeURL:
-      //     photoBefore?.dataUPload?.url ||
-      //     photoBefore?.uri ||
-      //     photoBefore?.url ||
-      //     '',
-      //   placeOfIssue: placeOfIssue,
-      //   nationality,
-      // });
-      // return;
       const res = await apiAuth.updateInvestmentInfo({
         dateOfIssue: joinObjectCalendar(dateOfIssue),
         dob: joinObjectCalendar(dob),
@@ -388,9 +365,9 @@ function EditAccountInfoModal() {
           onCamera={async () => {
             try {
               hide(async () => {
-                await getImageCamera().then((image: any) => {
+                await getImageCamera().then(async (image: any) => {
                   if (image[0]) {
-                    onUploadImage(image[0]);
+                    return onUploadImage(image[0]);
                   }
                 });
               });
@@ -406,8 +383,8 @@ function EditAccountInfoModal() {
           onGallery={async () => {
             try {
               hide(async () => {
-                await getImageLibrary().then((image: any) => {
-                  onUploadImage(image[0]);
+                await getImageLibrary().then(async (image: any) => {
+                  return onUploadImage(image[0]);
                 });
               });
             } catch (error) {
@@ -544,7 +521,7 @@ function EditAccountInfoModal() {
                 name: 'Mã giao dịch chứng khoán',
                 nameen: 'Mã giao dịch chứng khoán',
               },
-              {id: '1', name: 'CMND/CCCD', nameen: 'CMND/CCCD'},
+              { id: '1', name: 'CMND/CCCD', nameen: 'CMND/CCCD' },
             ]}
             multilanguage={true}
             value={type}

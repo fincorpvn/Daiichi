@@ -24,10 +24,11 @@
 		730FA47D27D9F281001F7375 /* ReactNativeART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA47C27D9F281001F7375 /* ReactNativeART.framework */; };
 		730FA48327D9F5E4001F7375 /* FBReactNativeSpec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48227D9F5E4001F7375 /* FBReactNativeSpec.framework */; };
 		730FA48527D9F5E4001F7375 /* RNFBApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48427D9F5E4001F7375 /* RNFBApp.framework */; };
-		730FA48727D9F5E4001F7375 /* RNFBMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48627D9F5E4001F7375 /* RNFBMessaging.framework */; };
 		733369B1280E524900C58804 /* Plashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 733369B0280E524900C58804 /* Plashscreen.png */; };
 		733D4DEF27DF379900E27359 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 733D4DEE27DF379900E27359 /* GoogleService-Info.plist */; };
 		735F811227CDFC2B00CCD538 /* RNBootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 735F811127CDFC2B00CCD538 /* RNBootSplash.storyboard */; };
+		73974EE328573FDC00979FFC /* BVLinearGradient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73974EE228573FDC00979FFC /* BVLinearGradient.framework */; };
+		73974EE52857404B00979FFC /* TouchID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73974EE42857404B00979FFC /* TouchID.framework */; };
 		73E0967027D60C8900D002AB /* OpenSSL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737FED5427D5B5EB008C8F9C /* OpenSSL.xcframework */; };
 		73E0967127D60C8F00D002AB /* double-conversion.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73898B7B27D601B900B1427A /* double-conversion.xcframework */; };
 		80CEB7A2678F40B3B3633030 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12DBF8BF3CD047159634E981 /* Roboto-BlackItalic.ttf */; };
@@ -97,6 +98,8 @@
 		735F811127CDFC2B00CCD538 /* RNBootSplash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RNBootSplash.storyboard; sourceTree = "<group>"; };
 		737FED5427D5B5EB008C8F9C /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework"; sourceTree = "<group>"; };
 		73898B7B27D601B900B1427A /* double-conversion.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "double-conversion.xcframework"; path = "Pods/Flipper-DoubleConversion/Frameworks/double-conversion.xcframework"; sourceTree = "<group>"; };
+		73974EE228573FDC00979FFC /* BVLinearGradient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BVLinearGradient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73974EE42857404B00979FFC /* TouchID.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TouchID.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79A45F37A85148D88F85FCEE /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../src/assets/fonts/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = iTRUST/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		820CB8CC796E72F4BA4FC1B1 /* Pods_iTRUST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTRUST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,9 +137,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73974EE52857404B00979FFC /* TouchID.framework in Frameworks */,
+				73974EE328573FDC00979FFC /* BVLinearGradient.framework in Frameworks */,
 				730FA48327D9F5E4001F7375 /* FBReactNativeSpec.framework in Frameworks */,
 				730FA48527D9F5E4001F7375 /* RNFBApp.framework in Frameworks */,
-				730FA48727D9F5E4001F7375 /* RNFBMessaging.framework in Frameworks */,
 				730FA47D27D9F281001F7375 /* ReactNativeART.framework in Frameworks */,
 				730FA47B27D9F1E4001F7375 /* RNI18n.framework in Frameworks */,
 				730FA47927D9F1D7001F7375 /* RNCMaskedView.framework in Frameworks */,
@@ -185,6 +189,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73974EE42857404B00979FFC /* TouchID.framework */,
+				73974EE228573FDC00979FFC /* BVLinearGradient.framework */,
 				730FA48227D9F5E4001F7375 /* FBReactNativeSpec.framework */,
 				730FA48427D9F5E4001F7375 /* RNFBApp.framework */,
 				730FA48627D9F5E4001F7375 /* RNFBMessaging.framework */,

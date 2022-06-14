@@ -1,12 +1,12 @@
-import {Linking, NativeModules, Platform} from 'react-native';
+import { Linking, NativeModules, Platform } from 'react-native';
 import I18n from 'languages/i18n';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import {check, PERMISSIONS, request, RESULTS} from 'react-native-permissions';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions';
 import Clipboard from '@react-native-community/clipboard';
-import {Alert, Toast} from 'components';
+import { Alert, Toast } from 'components';
 import moment from 'moment';
 import RNFS from 'react-native-fs';
-import {stringApp} from 'constant';
+import { stringApp } from 'constant';
 
 const regEmail =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -78,9 +78,8 @@ export const convertNumber = (num: number | string, hideD?: boolean) => {
     })
     .reverse()
     .join('');
-  return `${strhead}${str}${ar[1] ? `.${ar[1]}` : ''}${
-    !!hideD ? '' : ' (VNĐ)'
-  }`;
+  return `${strhead}${str}${ar[1] ? `.${ar[1]}` : ''}${!!hideD ? '' : ' (VNĐ)'
+    }`;
 };
 
 export const convertAmount = (num: number | string, hideD?: boolean) => {
@@ -112,9 +111,8 @@ export const convertAmount = (num: number | string, hideD?: boolean) => {
     })
     .reverse()
     .join('');
-  return `${strhead}${str}${isDot != -1 ? `.${last ?? ''}` : ''}${
-    !!hideD ? '' : ' (VNĐ)'
-  }`;
+  return `${strhead}${str}${isDot != -1 ? `.${last ?? ''}` : ''}${!!hideD ? '' : ' (VNĐ)'
+    }`;
 };
 
 export const convertNav = (num: number | string, hideD?: boolean) => {
@@ -129,8 +127,8 @@ export const convertNav = (num: number | string, hideD?: boolean) => {
     ar[1]?.length == 2
       ? `.${ar[1]}`
       : ar[1]?.length == 1
-      ? `.${ar[1]}0`
-      : `.00`;
+        ? `.${ar[1]}0`
+        : `.00`;
   const str = [...ar[0]]
     .reverse()
     .map((item, index) => {
@@ -448,21 +446,27 @@ export const requestPermisson = (permissions: any, callback: () => void) => {
         throw error;
       });
   } else {
-    request(permissions).then(r => {
-      console.log('reuquas', r);
-      if (r == 'granted' || r == 'unavailable') {
+    check(permissions).then(r => {
+      console.log('checkekce', r)
+      if (r = 'granted') {
         callback && callback();
-        return;
+      } else {
+        request(permissions).then(r => {
+          if (r == 'granted' || r == 'unavailable') {
+            callback && callback();
+          } else {
+            Alert.show({
+              content: 'Không có quyền truy cập\nVui lòng vào cài đặt',
+              multilanguage: false,
+              onConfirm: () => {
+                Linking.openSettings();
+              },
+            });
+          }
+
+        });
       }
-      Alert.show({
-        content: 'Không có quyền truy cập\nVui lòng vào cài đặt',
-        multilanguage: false,
-        onConfirm: () => {
-          Linking.openSettings();
-        },
-      });
-      return;
-    });
+    })
     return;
     check(permissions).then(r => {
       if (r == 'unavailable') {
@@ -502,9 +506,8 @@ export const joinObjectCalendar = (a: {
   month: number;
   year?: number;
 }) => {
-  return `${a.year}${`${a.month}`.length < 2 ? `0${a.month}` : a.month}${
-    `${a.date}`.length < 2 ? `0${a.date}` : a.date
-  }`;
+  return `${a.year}${`${a.month}`.length < 2 ? `0${a.month}` : a.month}${`${a.date}`.length < 2 ? `0${a.date}` : a.date
+    }`;
 };
 
 export const reJoinObjectCalendar = (a: string) => {
@@ -631,7 +634,7 @@ export const copyToClipboard = (text: string) => {
   });
 };
 
-export const checkLogin = (p: {name: string; pass: string}) => {
+export const checkLogin = (p: { name: string; pass: string }) => {
   if (p.name.length == 0) {
     Alert.showError({
       content: `alert.vuilongnhaptendangnhap`,
@@ -689,17 +692,14 @@ export function convertStringFeeSell(p: {
 }) {
   let content = '';
   if (p.beginValue == 0) {
-    content = `${p.I18nState == 'vi' ? 'Dưới' : 'Under'} ${p.endValue} ${
-      p.I18nState == 'vi' ? 'ngày' : 'days'
-    }`;
+    content = `${p.I18nState == 'vi' ? 'Dưới' : 'Under'} ${p.endValue} ${p.I18nState == 'vi' ? 'ngày' : 'days'
+      }`;
   } else if (p.beginValue == 730) {
-    content = `${p.I18nState == 'vi' ? 'Trên' : 'Above'} ${p.beginValue} ${
-      p.I18nState == 'vi' ? 'ngày' : 'days'
-    }`;
+    content = `${p.I18nState == 'vi' ? 'Trên' : 'Above'} ${p.beginValue} ${p.I18nState == 'vi' ? 'ngày' : 'days'
+      }`;
   } else {
-    content = `${p.beginValue} - ${p.endValue} ${
-      p.I18nState == 'vi' ? 'ngày' : 'days'
-    }`;
+    content = `${p.beginValue} - ${p.endValue} ${p.I18nState == 'vi' ? 'ngày' : 'days'
+      }`;
   }
   return content;
 }
@@ -708,7 +708,7 @@ export function convertStringFeeBuy(p: {
   endValue?: number;
   I18nState?: 'vi' | 'en';
 }) {
-  const {beginValue, endValue, I18nState} = p;
+  const { beginValue, endValue, I18nState } = p;
   if (beginValue == 0) {
     return `Dưới ${convertNumber(endValue || 0, true)}`;
   }
@@ -757,9 +757,8 @@ export function convertProductCode(p: {
   return '';
   let content = '';
   if (p.code === 'VFF') {
-    content = `${
-      p.I18nState == 'vi' ? 'Quỹ Trái phiếu' : 'Fixed Income Fund'
-    } `;
+    content = `${p.I18nState == 'vi' ? 'Quỹ Trái phiếu' : 'Fixed Income Fund'
+      } `;
   } else if (p.code === 'VEOF') {
     content = `${p.I18nState == 'vi' ? 'Quỹ Cổ phiếu' : 'Equity Fund'} `;
   } else if (p.code === 'VESAF') {
@@ -767,9 +766,8 @@ export function convertProductCode(p: {
   } else if (p.code === 'VIBF') {
     content = `${p.I18nState == 'vi' ? 'Quỹ Cân bằng' : 'Balanced Fund'} `;
   } else if (p.code === 'VLBF') {
-    content = `${
-      p.I18nState == 'vi' ? 'Quỹ Thị trường Tiền tệ' : 'Money Market Fund'
-    } `;
+    content = `${p.I18nState == 'vi' ? 'Quỹ Thị trường Tiền tệ' : 'Money Market Fund'
+      } `;
   } else {
     content = `${p.I18nState == 'vi' ? '' : ''} `;
   }

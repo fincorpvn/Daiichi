@@ -4,7 +4,7 @@ package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 
 Pod::Spec.new do |s|
   s.name         = "react-native-true-id"
-  s.version      = "1.5.8"
+  s.version      = "1.5.5"
   s.summary      = package["description"]
   s.description  = <<-DESC
                   Data Lap's PROPERTY
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,swift}"
   s.requires_arc = true
   
-  s.vendored_frameworks = "Frameworks/TrueIDSDK.framework", "Frameworks/FaceTecSDK.framework"
+  s.vendored_frameworks = "Frameworks/TrueIDSDK.framework"
   s.xcconfig            = {
     'ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES' => 'YES'
   }

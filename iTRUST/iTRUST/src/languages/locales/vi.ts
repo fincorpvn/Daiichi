@@ -25,6 +25,7 @@ export default {
     tendangnhap: 'Tên đăng nhập',
     matkhau: 'Mật khẩu',
     kichhoattaikhoan: 'Kích hoạt tài khoản',
+    warning: `Nếu Nhà đầu tư có hơn 01 tài khoản, liên hệ DFVN để được hướng dẫn`,
   },
   reviewinfoscreen: {
     hosocanhan: 'Hồ sơ cá nhân',

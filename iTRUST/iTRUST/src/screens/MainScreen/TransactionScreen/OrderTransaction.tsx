@@ -11,7 +11,7 @@ import {
 } from 'reducer/transaction';
 import {navigate} from 'services';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
-import {heightScale, Log} from 'utils';
+import {checkApproveInvestmentProfile, heightScale, Log} from 'utils';
 import ListOrderTransaction from './ListOrderTransaction';
 
 const convertTitleOrderType = (a: string) => {
@@ -137,53 +137,11 @@ function OrderTransaction() {
         justifyContent={'center'}>
         <ButtonBorder
           onPress={() => {
-            if (!currentUser?.investmentProfile?.status) {
-              if (
-                !userInfoIsFull &&
-                !bankAccountIsFull &&
-                !userAddressIsFull &&
-                !riskInfo
-              ) {
-                navigate('ControlEKYCScreen', {
-                  // onBack: () => {
-                  //   navigate('TransactionScreen');
-                  // },
-                });
-              } else {
-                navigate('AccountVerifyScreen');
-              }
-              return;
-            }
-            if (
-              (orderType == 'SELL' || orderType == 'TRANSFER') &&
-              !currentUser?.investmentProfile?.isReceivedHardProfile
-            ) {
-              const content =
-                I18nState == 'vi'
-                  ? `Tài khoản của quý khách hiện tại chưa được duyệt hoặc chưa nhận được hồ sơ gốc/chưa ký hợp đồng điện tử. Nên không thể thực hiện lệnh bán/ chuyển đổi.`
-                  : `You cannot create redemption/switching transaction due to pending account approval or not received hardcopy Open Account Contract/ unsigned e-Contract`;
-              if (
-                currentUser?.investmentProfile?.status?.code !=
-                  `INVESTMENT_PROFILE_APPROVE` ||
-                (currentUser?.investmentProfile?.status?.code ==
-                  'INVESTMENT_PROFILE_APPROVE' &&
-                  !currentUser?.investmentProfile?.isReceivedHardProfile)
-              ) {
-                Alert.show({
-                  content: content,
-                  multilanguage: false,
-                  type: 2,
-                  titleClose: 'alert.dongy',
-                  onCancel: () => {},
-                  onConfirm: () => {
-                    navigate('DigitalSignatureScreen');
-                  },
-                });
-                return;
-              }
-            }
-            navigate('CreateOrderModal', {
+            checkApproveInvestmentProfile({
+              currentUser,
+              I18nState,
               orderType,
+              initData: {},
             });
             return;
           }}

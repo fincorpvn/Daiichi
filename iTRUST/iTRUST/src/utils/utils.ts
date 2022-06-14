@@ -1,3 +1,4 @@
+import { navigate } from 'services';
 import { Linking, NativeModules, Platform } from 'react-native';
 import I18n from 'languages/i18n';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
@@ -20,6 +21,64 @@ export const converRistInfoInDto = (t: any) => {
   });
   return obj;
 };
+
+export const checkApproveInvestmentProfile = (p: {
+  currentUser: any;
+  orderType: 'SELL' | 'TRANSFER' | 'BUY' | 'TRANSFER_BUY';
+  initData: any;
+  I18nState?: 'vi' | 'en';
+}) => {
+  const { currentUser, orderType, initData, I18nState } = p;
+  const { riskInfo, bankAccountIsFull, userInfoIsFull, userAddressIsFull } =
+    currentUser;
+  if (!currentUser?.investmentProfile?.status) {
+    if (
+      !userInfoIsFull &&
+      !bankAccountIsFull &&
+      !userAddressIsFull &&
+      !riskInfo
+    ) {
+      navigate('ControlEKYCScreen');
+    } else {
+      navigate('AccountVerifyScreen');
+    }
+    return;
+  }
+  if (
+    (orderType == 'SELL' || orderType == 'TRANSFER') &&
+    !currentUser?.investmentProfile?.isReceivedHardProfile
+  ) {
+    const content =
+      I18nState == 'vi'
+        ? `Tài khoản của quý khách hiện tại chưa được duyệt hoặc chưa nhận được hồ sơ gốc/chưa ký hợp đồng điện tử. Nên không thể thực hiện lệnh bán/ chuyển đổi.`
+        : `You cannot create redemption/switching transaction due to pending account approval or not received hardcopy Open Account Contract/ unsigned e-Contract`;
+    if (
+      currentUser?.investmentProfile?.status?.code !=
+      `INVESTMENT_PROFILE_APPROVE` ||
+      (currentUser?.investmentProfile?.status?.code ==
+        'INVESTMENT_PROFILE_APPROVE' &&
+        !currentUser?.investmentProfile?.isReceivedHardProfile)
+    ) {
+      Alert.show({
+        content: content,
+        multilanguage: false,
+        type: 2,
+        titleClose: 'alert.dongy',
+        onCancel: () => { },
+        onConfirm: () => {
+          navigate('DigitalSignatureScreen');
+        },
+      });
+      return;
+    }
+  }
+  navigate('CreateOrderModal', {
+    orderType,
+    initData,
+  });
+  return;
+};
+
 export function convertReceiveAmount(
   status: boolean,
   I18nState: 'en' | 'vi' | string,
@@ -695,6 +754,9 @@ export function convertStringFeeSell(p: {
     content = `${p.I18nState == 'vi' ? 'Dưới' : 'Under'} ${p.endValue} ${p.I18nState == 'vi' ? 'ngày' : 'days'
       }`;
   } else if (p.beginValue == 730) {
+    content = `${p.I18nState == 'vi' ? 'Trên' : 'Above'} ${p.beginValue} ${p.I18nState == 'vi' ? 'ngày' : 'days'
+      }`;
+  } else if (p.endValue == -1) {
     content = `${p.I18nState == 'vi' ? 'Trên' : 'Above'} ${p.beginValue} ${p.I18nState == 'vi' ? 'ngày' : 'days'
       }`;
   } else {

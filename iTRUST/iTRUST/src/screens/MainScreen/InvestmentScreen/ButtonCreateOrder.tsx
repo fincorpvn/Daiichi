@@ -5,9 +5,11 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {getProductFocus} from 'reducer/investment';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
+import {checkApproveInvestmentProfile} from 'utils';
 
 function ButtonCreateOrder() {
   const insets = useSafeAreaInsets();
+  const I18nState = useAppSelector(state => state.languages.I18nState);
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
   const {
     email,
@@ -29,29 +31,13 @@ function ButtonCreateOrder() {
       <ButtonBorder
         title={`investmentscreen.taolenhmua`}
         onPress={() => {
-          if (!currentUser?.investmentProfile?.status) {
-            if (
-              !userInfoIsFull &&
-              !bankAccountIsFull &&
-              !userAddressIsFull &&
-              !riskInfo
-            ) {
-              navigate('ControlEKYCScreen', {
-                // onBack: () => {
-                //   navigate('InvestmentDetailsScreen');
-                // },
-              });
-            } else {
-              navigate('AccountVerifyScreen');
-            }
-            return;
-          }
-          navigate('CreateOrderModal', {
-            orderType: 'BUY',
+          checkApproveInvestmentProfile({
+            currentUser,
+            I18nState,
             initData: {
               product: productDetails,
-              // scheme: item,
             },
+            orderType: 'BUY',
           });
           return;
         }}

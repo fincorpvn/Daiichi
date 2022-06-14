@@ -3,6 +3,7 @@ export enum Icons {
   eyeOpen = require('../assets/eyeOpen/eyeOpen.png'),
   back = require('../assets/back/back.png'),
   close = require('../assets/close/close.png'),
+  warninglogin = require('../assets/warninglogin/warninglogin.png'),
   forward = require('../assets/forward/forward.png'),
   address = require('../assets/address/address.png'),
   condition = require('../assets/condition/condition.png'),

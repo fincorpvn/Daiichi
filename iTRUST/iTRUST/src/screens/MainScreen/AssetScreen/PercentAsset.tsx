@@ -4,11 +4,18 @@ import React from 'react';
 import {getProductList} from 'reducer/asset';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
-import {convertNav, convertNumber, convertPercent} from 'utils';
+import {
+  checkApproveInvestmentProfile,
+  convertNav,
+  convertNumber,
+  convertPercent,
+} from 'utils';
 
 function Item(p: {data: any; isBorderBottom?: boolean}) {
   const {color, code, interestOrHole, programList, sumOfValueNavCurrent} =
     p.data;
+  const currentUser = useAppSelector<any>(state => state.authen.currentUser);
+
   const I18nState = useAppSelector(state => state.languages.I18nState);
   return (
     <>
@@ -66,12 +73,15 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
           justifyContent={'flex-end'}>
           <Button
             onPress={() => {
-              navigate('CreateOrderModal', {
-                orderType: 'BUY',
+              checkApproveInvestmentProfile({
+                currentUser,
+                I18nState,
                 initData: {
                   product: p.data,
                 },
+                orderType: 'BUY',
               });
+              return;
             }}>
             <ImageView
               widthHeight={37}
@@ -81,12 +91,15 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
           </Button>
           <Button
             onPress={() => {
-              navigate('CreateOrderModal', {
-                orderType: 'SELL',
+              checkApproveInvestmentProfile({
+                currentUser,
+                I18nState,
                 initData: {
                   product: p.data,
                 },
+                orderType: 'SELL',
               });
+              return;
             }}>
             <ImageView
               marginHorizontal={9}
@@ -97,12 +110,15 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
           </Button>
           <Button
             onPress={() => {
-              navigate('CreateOrderModal', {
-                orderType: 'TRANSFER',
+              checkApproveInvestmentProfile({
+                currentUser,
+                I18nState,
                 initData: {
                   product: p.data,
                 },
+                orderType: 'TRANSFER',
               });
+              return;
             }}>
             <ImageView
               widthHeight={37}

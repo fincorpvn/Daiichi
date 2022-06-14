@@ -25,6 +25,7 @@ export default {
     tendangnhap: 'Username',
     matkhau: 'Password',
     kichhoattaikhoan: 'Account activation',
+    warning: `If the Investor has more than 01 account, contact DFVN for instructions`,
   },
   reviewinfoscreen: {
     hosocanhan: 'Personal information',

@@ -200,6 +200,7 @@ function OrderTransferStep2({
                 widthHeight={30}
                 resizeMode={'contain'}
                 source={Icons.swap}
+                tintColor={Ecolors.mainColor}
               />
             </Div>
           </RowSpaceItem>

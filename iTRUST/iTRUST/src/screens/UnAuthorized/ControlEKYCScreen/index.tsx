@@ -59,6 +59,7 @@ function ControlEKYCScreen() {
 
   const onGotoEKYC = async () => {
     var res: any = null;
+
     try {
       if (!currentUser) {
         res = await apiAuth.login({
@@ -88,7 +89,7 @@ function ControlEKYCScreen() {
       );
       if (!!scanData) {
         if (scanData?.cardInfo?.result?.kyc_result?.decision?.code == -1) {
-          if (countTime.current > 3) {
+          if (countTime.current > 2) {
             Alert.show({
               type: 2,
               titleClose: `alert.dongy`,
@@ -96,7 +97,9 @@ function ControlEKYCScreen() {
               multilanguage: true,
               onClose: () => {
                 if (statusScreen == 'main') {
-                  navigate('AccountVerifyScreen');
+                  goBack().then(() => {
+                    navigate('AccountVerifyScreen');
+                  });
                   return;
                 }
                 navigate('LoginScreen');
@@ -108,7 +111,6 @@ function ControlEKYCScreen() {
             Alert.showError({
               content: `alert.ekycfail`,
               onPress: () => {
-                // onGotoEKYC();
                 countTime.current += 1;
               },
             });

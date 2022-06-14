@@ -24,6 +24,7 @@ import {useIsFocused} from '@react-navigation/core';
 import TouchID from 'react-native-touch-id';
 import {getAccount, getStoreData} from 'utils/storage';
 import {useDispatch} from 'react-redux';
+import DropdownWarningAlert from 'screens/UnAuthorized/LoginScreen/DropdownWarningAlert';
 
 function LoginScreen() {
   const dispatch = useDispatch();
@@ -171,7 +172,6 @@ function LoginScreen() {
   };
 
   const onLogin = async (p?: {name?: string; pass?: string}) => {
-    //
     try {
       if (
         !checkLogin({
@@ -240,7 +240,13 @@ function LoginScreen() {
       </Div>
       {/* login form  */}
       <Div marginTop={33} paddingHorizontal={29} flexDirection={'column'}>
-        <Label size={16}>{`loginscreen.tendangnhap`}</Label>
+        <Div
+          flexDirection={'row'}
+          alignItems={'center'}
+          justifyContent={'flex-start'}>
+          <Label size={16}>{`loginscreen.tendangnhap`}</Label>
+          <DropdownWarningAlert />
+        </Div>
         <InputItem
           marginTop={6}
           value={username}

@@ -146,10 +146,10 @@ function EditAccountInfoModal() {
     return () => {};
   }, [currentUser]);
 
-  const hide = (cb?: () => void) => {
+  const hide = (cb?: (t?: any) => void) => {
     if (bottomSheetUpload.current) {
-      bottomSheetUpload.current.hide().then(() => {
-        cb && cb();
+      bottomSheetUpload.current.hide((t: any) => {
+        cb && cb(t);
       });
     }
   };
@@ -272,50 +272,6 @@ function EditAccountInfoModal() {
         });
         return;
       }
-      // Log('data', {
-      //   dateOfIssue: joinObjectCalendar(dateOfIssue),
-      //   dob: joinObjectCalendar(dob),
-      //   gender: gender,
-      //   idNo: idNo,
-      //   idTypeId: type?.id || '5',
-      //   nationalityId: `${nationality?.id}` || '234',
-      //   photoAfterFileName: photoAfter?.fileName || '',
-      //   photoAfterURL:
-      //     photoAfter?.dataUPload?.url ||
-      //     photoAfter?.uri ||
-      //     photoAfter?.url ||
-      //     '',
-      //   photoBeforeFileName: photoBefore?.fileName || '',
-      //   photoBeforeURL:
-      //     photoBefore?.dataUPload?.url ||
-      //     photoBefore?.uri ||
-      //     photoBefore?.url ||
-      //     '',
-      //   placeOfIssue: placeOfIssue,
-      //   nationality,
-      // });
-      // return;
-      Log('32313123131', {
-        dateOfIssue: joinObjectCalendar(dateOfIssue),
-        dob: joinObjectCalendar(dob),
-        gender: gender || 0,
-        idNo: idNo,
-        idTypeId: type?.id || '5',
-        nationalityId: nationality?.id || '234',
-        photoAfterFileName: photoAfter?.fileName || '',
-        photoAfterURL:
-          photoAfter?.dataUpload?.url ||
-          photoAfter?.uri ||
-          photoAfter?.url ||
-          '',
-        photoBeforeFileName: photoBefore?.fileName || '',
-        photoBeforeURL:
-          photoBefore?.dataUpload?.url ||
-          photoBefore?.uri ||
-          photoBefore?.url ||
-          '',
-        placeOfIssue: placeOfIssue,
-      });
       const res = await apiAuth.updateInvestmentInfo({
         dateOfIssue: joinObjectCalendar(dateOfIssue),
         dob: joinObjectCalendar(dob),

@@ -51,10 +51,10 @@ function RowButtonAction() {
   const bottomSheetUpload = useRef<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [stateimage, setStateImage] = useState<any>(null);
-  const hide = (cb?: () => void) => {
+  const hide = (cb?: (t?: any) => void) => {
     if (bottomSheetUpload.current) {
-      bottomSheetUpload.current.hide().then(() => {
-        cb && cb();
+      bottomSheetUpload.current.hide((t: any) => {
+        cb && cb(t);
       });
     }
   };
@@ -94,8 +94,8 @@ function RowButtonAction() {
           }}
           onCamera={async () => {
             try {
-              hide(async () => {
-                await getImageCamera().then((image: any) => {
+              hide(async (t: any) => {
+                getImageCamera().then((image: any) => {
                   const size = image[0]?.fileSize / 1000000;
                   if (image[0]) {
                     ImageResizer.createResizedImage(
@@ -136,7 +136,7 @@ function RowButtonAction() {
           }}
           onGallery={async () => {
             try {
-              hide(async () => {
+              hide(async (t: any) => {
                 await getImageLibrary().then((image: any) => {
                   const size = image[0]?.fileSize / 1000000;
                   if (image[0]) {

@@ -10,7 +10,6 @@
 #     :hermes_enabled => false
 #   )
 #   pod 'OpenSSL-Universal'
-#   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 #   pod 'TouchID', :path => "../node_modules/react-native-touch-id"
 #   pod 'RNI18n', :path => '../node_modules/react-native-i18n'
 #   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
@@ -94,10 +93,11 @@ target 'iTRUST' do
   pod 'Permission-FaceID', :path => "#{permissions_path}/FaceID"
   pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications"
   pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
   # pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
   pod 'Permission-MediaLibrary', :path => "#{permissions_path}/MediaLibrary"
   pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
-  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
+  # pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
   pod 'RNI18n', :path => '../node_modules/react-native-i18n'
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
   pod 'react-native-view-shot', :path => '../node_modules/react-native-view-shot'

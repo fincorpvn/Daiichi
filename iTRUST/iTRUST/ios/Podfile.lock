@@ -13,9 +13,6 @@ PODS:
     - ReactCommon/turbomodule/core (= 0.66.3)
   - Firebase/CoreOnly (7.8.1):
     - FirebaseCore (= 7.8.0)
-  - Firebase/Messaging (7.8.1):
-    - Firebase/CoreOnly
-    - FirebaseMessaging (~> 7.8.0)
   - FirebaseCore (7.8.0):
     - FirebaseCoreDiagnostics (~> 7.4)
     - GoogleUtilities/Environment (~> 7.0)
@@ -25,23 +22,6 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Logger (~> 7.0)
     - nanopb (~> 2.30908.0)
-  - FirebaseInstallations (7.11.0):
-    - FirebaseCore (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
-    - PromisesObjC (~> 1.2)
-  - FirebaseInstanceID (7.11.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstallations (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
-  - FirebaseMessaging (7.8.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstanceID (~> 7.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Reachability (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
   - fmt (6.2.1)
   - glog (0.3.5)
   - GoogleDataTransport (8.4.0):
@@ -65,21 +45,10 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.3.2)
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.2)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.3.2)"
-  - GoogleUtilities/AppDelegateSwizzler (7.7.0):
-    - GoogleUtilities/Environment
-    - GoogleUtilities/Logger
-    - GoogleUtilities/Network
   - GoogleUtilities/Environment (7.7.0):
     - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/Logger (7.7.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/Network (7.7.0):
-    - GoogleUtilities/Logger
-    - "GoogleUtilities/NSData+zlib"
-    - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.7.0)"
-  - GoogleUtilities/Reachability (7.7.0):
-    - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.7.0):
     - GoogleUtilities/Logger
   - GoogleUtilitiesComponents (1.1.0):
@@ -423,10 +392,6 @@ PODS:
   - RNFBApp (11.1.2):
     - Firebase/CoreOnly (= 7.8.1)
     - React-Core
-  - RNFBMessaging (11.1.2):
-    - Firebase/Messaging (= 7.8.1)
-    - React-Core
-    - RNFBApp
   - RNFS (2.20.0):
     - React-Core
   - RNGestureHandler (2.4.2):
@@ -503,7 +468,6 @@ DEPENDENCIES:
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
-  - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNI18n (from `../node_modules/react-native-i18n`)
@@ -519,9 +483,6 @@ SPEC REPOS:
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
-    - FirebaseInstallations
-    - FirebaseInstanceID
-    - FirebaseMessaging
     - fmt
     - GoogleDataTransport
     - GoogleMLKit
@@ -645,8 +606,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-device-info"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
-  RNFBMessaging:
-    :path: "../node_modules/@react-native-firebase/messaging"
   RNFS:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
@@ -675,9 +634,6 @@ SPEC CHECKSUMS:
   Firebase: d59ad4129167f9f0d2a4f6c1f0c462254b6002c8
   FirebaseCore: 049029df3096e5c118917029be7da75ee16f3b1b
   FirebaseCoreDiagnostics: 68ad972f99206cef818230f3f3179d52ccfb7f8c
-  FirebaseInstallations: a58d4f72ec5861840b84df489f2668d970df558a
-  FirebaseInstanceID: ad5135045a498d7775903efd39762d2cdfa1be27
-  FirebaseMessaging: 1d5cac3728c042d3d4700ecb56bbac893660a963
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 5337263514dd6f09803962437687240c5dc39aa4
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
@@ -740,7 +696,6 @@ SPEC CHECKSUMS:
   RNDateTimePicker: cad741dac386f8178bf76e86f0a3c4b22173e0e4
   RNDeviceInfo: af47a7d1a09d64c8cbb8b0c883db9bca422a9813
   RNFBApp: bb830cc7f7598e46437b833adc841df345e19e2f
-  RNFBMessaging: ec695fc0b561e06afa33a731d86f7fa3ae49f4c1
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: 61628a2c859172551aa2100d3e73d1e57878392f
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
@@ -751,6 +706,6 @@ SPEC CHECKSUMS:
   TouchID: ba4c656d849cceabc2e4eef722dea5e55959ecf4
   Yoga: 32a18c0e845e185f4a2a66ec76e1fd1f958f22fa
 
-PODFILE CHECKSUM: d60fb1b4ef07b76e0e3734247c69a2719c975731
+PODFILE CHECKSUM: 9c32e321e4c30256e5757696ca9a602ddf5f1485
 
 COCOAPODS: 1.11.2

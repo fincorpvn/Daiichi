@@ -1,14 +1,14 @@
-import {Div, HeaderBack, Label} from 'components';
-import {Ecolors, Icons} from 'constant';
+import { Div, HeaderBack, Label } from 'components';
+import { Ecolors, Icons } from 'constant';
 import React from 'react';
-import {getInvestmentProfile} from 'reducer/authen/selector';
-import {navigate} from 'services';
-import {useAppSelector} from 'store/hooks';
+import { getInvestmentProfile } from 'reducer/authen/selector';
+import { navigate } from 'services';
+import { useAppSelector } from 'store/hooks';
 import ItemCard from './ItemCard';
 
 function AccountVerifyScreen() {
   const currentUser = useAppSelector(state => state.authen.currentUser);
-  const {investmentProfile} = currentUser;
+  const { investmentProfile } = currentUser;
   const {
     email,
     phone,
@@ -88,7 +88,7 @@ function AccountVerifyScreen() {
         isCheck={!!investmentProfile?.status}
         title={'accountverify.xacthuchoantat'}
         isLine={true}
-        // isEnd={true}
+      // isEnd={true}
       />
       {userInfoIsFull && bankAccountIsFull && userAddressIsFull && riskInfo && (
         <>

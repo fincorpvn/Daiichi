@@ -408,9 +408,9 @@ function EditAccountInfoModal() {
           onCamera={async () => {
             try {
               hide(async () => {
-                await getImageCamera().then((image: any) => {
+                await getImageCamera().then(async (image: any) => {
                   if (image[0]) {
-                    onUploadImage(image[0]);
+                    return onUploadImage(image[0]);
                   }
                 });
               });
@@ -426,8 +426,8 @@ function EditAccountInfoModal() {
           onGallery={async () => {
             try {
               hide(async () => {
-                await getImageLibrary().then((image: any) => {
-                  onUploadImage(image[0]);
+                await getImageLibrary().then(async (image: any) => {
+                  return onUploadImage(image[0]);
                 });
               });
             } catch (error) {

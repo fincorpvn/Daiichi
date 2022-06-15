@@ -15,7 +15,7 @@ function BottomSheetDialog(
     hide: () => {
       return new Promise(async (rs, rj) => {
         setStateModal(false, (t: any) => {
-          rs();
+          rs(true);
         });
       });
     },

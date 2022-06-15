@@ -337,6 +337,7 @@ export const apiAuth = {
     const url = `esignature/create`;
     return axiosMultipart(url, params);
   },
+
   confirmCreateEsignature: (params: {
     expiredDurationInMinutes?: number;
     expiredTime?: number;
@@ -347,5 +348,20 @@ export const apiAuth = {
   }) => {
     const url = 'esignature/confirm';
     return doPostAxios(url, params);
+  },
+  confirmCreateEsignatureRisk: (params: {
+    expiredDurationInMinutes?: number;
+    expiredTime?: number;
+    otpTransId?: string;
+    time?: number;
+    transId?: string;
+    otp?: string;
+  }) => {
+    const url = 'esignature-risk/confirm';
+    return doPostAxios(url, params);
+  },
+  createEsignatureRisk: (params: any) => {
+    const url = `esignature-risk/create`;
+    return axiosMultipart(url, params);
   },
 };

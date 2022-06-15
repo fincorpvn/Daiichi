@@ -1,3 +1,4 @@
+import {useRoute} from '@react-navigation/core';
 import {
   Button,
   ButtonBorder,
@@ -8,7 +9,10 @@ import {
 } from 'components';
 import {Ecolors, Icons} from 'constant';
 import React, {useRef, useState} from 'react';
-import {doUploadFileSignature} from 'screens/MainScreen/DigitalSignature/func';
+import {
+  doUploadFileEsignatureRisk,
+  doUploadFileSignature,
+} from 'screens/MainScreen/DigitalSignature/func';
 import {goBack} from 'services';
 import {useAppSelector} from 'store/hooks';
 import DrawLine from './DrawLine';
@@ -24,11 +28,21 @@ function SignatureDraw() {
   const drawlineRef = useRef<T>(null);
   const [image, setImage] = useState<string>('');
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const route = useRoute<any>();
 
   const onAccept = () => {
     if (drawlineRef.current) {
       drawlineRef.current.accept((res: string) => {
         goBack().then(() => {
+          if (route.params?.data?.flowApp == 'CreateEsignatureRisk') {
+            doUploadFileEsignatureRisk({
+              link: res,
+              setLoading: setLoading,
+              I18nState: I18nState,
+              // flowApp: route.params?.data?.flowApp,
+            });
+            return;
+          }
           doUploadFileSignature({
             link: res,
             setLoading: setLoading,

@@ -160,7 +160,11 @@ function EditBankInfoModal() {
   };
 
   const checkToSetdata = (e: string, func: (r: string) => void) => {
-    const t: string = e[e.length ? e.length - 1 : 0];
+    if (e.length == 0) {
+      func(e);
+      return;
+    }
+    const t: string = e[e.length ? e.length - 1 : 0] || '';
     const reg = /^[0-9]*$/;
     if (reg.test(t)) {
       func(e);

@@ -11,6 +11,7 @@ export type appScreen =
   | 'ViewPDF'
   | 'RiskConfirmModal'
   | 'AlertError'
+  | 'OnlineTradingModal'
   | 'DropdownModal'
   | 'ControlEKYCScreen'
   | 'LoginScreen'

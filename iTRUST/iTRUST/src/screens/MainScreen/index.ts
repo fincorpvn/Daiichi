@@ -46,6 +46,7 @@ import MiniEkycModal from './InvestmentScreen/MiniEkycModal';
 // create order
 import CreateOrderModal from './CreateOrderModal';
 import FeeTableModal from './CreateOrderModal/FeeTableModal';
+import OnlineTradingModal from './OnlineTradingModal/OnlineTradingModal';
 // digital signaturescreen
 // import DigitalSignatureScreen from './DigitalSignature/DigitalSignatureScreen';
 
@@ -60,6 +61,7 @@ const screens: any = {
   LoginInfoScreen,
   ChangePasswordScreen,
   ChangeAddressScreen,
+  OnlineTradingModal,
   //
   OtpRequestModal,
   // accoutn verify

@@ -54,7 +54,7 @@ function GenderCheckbox(Props: {value: number; onChange: (a: number) => void}) {
       />
       <Btn
         title={`accountverify.nu`}
-        keycheck={2}
+        keycheck={0}
         onPress={a => Props.onChange && Props.onChange(a)}
         value={Props.value}
       />

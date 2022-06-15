@@ -301,7 +301,7 @@ PODS:
     - React-Core
   - react-native-splash-screen (3.3.0):
     - React-Core
-  - react-native-true-id (1.5.8):
+  - react-native-true-id (1.5.5):
     - GoogleMLKit/FaceDetection (~> 2.1.0)
     - React
   - react-native-view-shot (3.3.0):
@@ -672,7 +672,7 @@ SPEC CHECKSUMS:
   react-native-pdf: de35db0d8f1e5d37e65e887554f7d4bd062af56b
   react-native-safe-area-context: 5b8a418400eb3d8364aa87300e865c0262cc17b9
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
-  react-native-true-id: 48b2f37220409938059a669cd34a78b088cde523
+  react-native-true-id: 1d208ce8b41bec46513e192b6978e3da944956eb
   react-native-view-shot: d9b299d44888c72f3f758b2ae987a98c933e9ad8
   react-native-viewpager: d054b58bf3d377e6b99558da6766463ff7e9b220
   React-perflogger: 73732888d37d4f5065198727b167846743232882

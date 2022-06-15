@@ -116,7 +116,7 @@ function AddressInfoModal() {
       <HeaderBack
         loading={loading}
         type={2}
-        iconRight={isEdit ? Icons.edit : null}
+        iconRight={Icons.edit}
         onRightPress={() => {
           navigate('EditAddressInfoModal', {
             data: {

@@ -16,7 +16,7 @@ import {getInfo} from 'reducer/authen';
 import {apiAuth, goBack, navigate} from 'services';
 import {doGetAxios} from 'services/apis/axios';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
-import {Log, widthScale} from 'utils';
+import {Log, removeUtf8, widthScale} from 'utils';
 
 function Lbl(p: {content: string; marginTop?: number}) {
   return (
@@ -74,7 +74,12 @@ function EditBankInfoModal() {
     currentUser: any,
   ) => {
     Promise.all([
-      setName(e?.name || currentUser?.name || ''),
+      setName(
+        removeUtf8(
+          e?.name?.toLocaleUpperCase() ||
+            currentUser?.name?.toLocaleUpperCase(),
+        ),
+      ),
       setNumber(e?.number || ''),
       getDataBranch(),
       setBank(
@@ -179,7 +184,7 @@ function EditBankInfoModal() {
           <InputItem
             marginTop={6}
             keyboardType={'name-phone-pad'}
-            onChangeText={e => setName(e)}
+            onChangeText={e => setName(removeUtf8(e.toLocaleUpperCase()))}
             value={name}
             marginHorizontal={0}
           />

@@ -78,7 +78,8 @@ function AccountVerifyScreen() {
             userInfoIsFull &&
             bankAccountIsFull &&
             userAddressIsFull &&
-            riskInfo
+            riskInfo &&
+            investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
           ) {
             navigate('ConfirmModal');
             return;

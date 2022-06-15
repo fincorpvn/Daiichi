@@ -14,8 +14,8 @@ import {
   LoadingIndicator,
   Toast,
 } from 'components';
-import { Ecolors, EStyle, Icons } from 'constant';
-import React, { useEffect, useRef, useState } from 'react';
+import {Ecolors, EStyle, Icons} from 'constant';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   ActivityIndicator,
   Platform,
@@ -23,12 +23,12 @@ import {
   StyleSheet,
 } from 'react-native';
 import ImageResizer from 'react-native-image-resizer';
-import { useDispatch } from 'react-redux';
-import { getInfo } from 'reducer/authen';
+import {useDispatch} from 'react-redux';
+import {getInfo} from 'reducer/authen';
 import ComActionUpload from 'screens/MainScreen/DigitalSignature/ComActionUpload';
-import { apiAuth, goBack, navigate, uploadFile } from 'services';
-import { apiMain } from 'services/apis/apiMain';
-import { useAppSelector } from 'store/hooks';
+import {apiAuth, goBack, navigate, uploadFile} from 'services';
+import {apiMain} from 'services/apis/apiMain';
+import {useAppSelector} from 'store/hooks';
 import {
   convertTimestamp,
   getImageCamera,
@@ -45,7 +45,7 @@ const D = parseInt(currentDate[0]);
 const M = parseInt(currentDate[1]);
 const Y = parseInt(currentDate[2]);
 
-function Lbl(p: { content: string }) {
+function Lbl(p: {content: string}) {
   return (
     <Label marginTop={10} multilanguage={false}>
       <Label>{p.content}</Label>
@@ -143,7 +143,7 @@ function EditAccountInfoModal() {
       getCountryData();
       bindData(currentUser);
     }, 200);
-    return () => { };
+    return () => {};
   }, [currentUser]);
 
   const hide = (cb?: () => void) => {
@@ -165,7 +165,7 @@ function EditAccountInfoModal() {
           setNationality(dataNationality);
         }
       }
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const bindData = async (a: any) => {
@@ -176,12 +176,12 @@ function EditAccountInfoModal() {
       setGender(a?.gender || null),
       setType(
         a?.idTypeId == 1
-          ? { id: '1', name: 'CMND/CCCD', namevn: 'CMND/CCCD' }
+          ? {id: '1', name: 'CMND/CCCD', namevn: 'CMND/CCCD'}
           : {
-            id: '5',
-            name: 'Mã giao dịch chứng khoán',
-            nameen: 'Mã giao dịch chứng khoán',
-          },
+              id: '5',
+              name: 'Mã giao dịch chứng khoán',
+              nameen: 'Mã giao dịch chứng khoán',
+            },
       ),
       setDob(reJoinObjectCalendar(convertTimestamp(a?.dob))),
       setDateOfIssue(reJoinObjectCalendar(convertTimestamp(a?.dateOfIssue))),
@@ -203,7 +203,7 @@ function EditAccountInfoModal() {
               ? image.base64.replace(/\n/g, '')
               : image.base64,
         });
-        callback && callback({ ...image, dataUPload });
+        callback && callback({...image, dataUPload});
       }
     } catch (error) {
     } finally {
@@ -222,12 +222,11 @@ function EditAccountInfoModal() {
       const dataUpload: any = await uploadFile({
         fileBase64: r.base64,
       });
-      Log('rrr', { r, dataUpload });
       if (dataUpload) {
         if (imageUpload.current == 'before') {
-          setPhotoBefore({ ...r, ...dataUpload });
+          setPhotoBefore({...r, ...dataUpload, dataUpload});
         } else {
-          setPhotoAfter({ ...r, ...dataUpload });
+          setPhotoAfter({...r, ...dataUpload, dataUpload});
         }
       }
     } catch (error) {
@@ -255,7 +254,7 @@ function EditAccountInfoModal() {
       if (Math.floor(b - a) < 180000) {
         Alert.showError({
           content: `alert.chuadutuoi`,
-          onPress: () => { },
+          onPress: () => {},
         });
         return;
       }
@@ -269,10 +268,54 @@ function EditAccountInfoModal() {
       ) {
         Alert.showError({
           content: `alert.vuilongnhapdayduthongtincanhan`,
-          onPress: () => { },
+          onPress: () => {},
         });
         return;
       }
+      // Log('data', {
+      //   dateOfIssue: joinObjectCalendar(dateOfIssue),
+      //   dob: joinObjectCalendar(dob),
+      //   gender: gender,
+      //   idNo: idNo,
+      //   idTypeId: type?.id || '5',
+      //   nationalityId: `${nationality?.id}` || '234',
+      //   photoAfterFileName: photoAfter?.fileName || '',
+      //   photoAfterURL:
+      //     photoAfter?.dataUPload?.url ||
+      //     photoAfter?.uri ||
+      //     photoAfter?.url ||
+      //     '',
+      //   photoBeforeFileName: photoBefore?.fileName || '',
+      //   photoBeforeURL:
+      //     photoBefore?.dataUPload?.url ||
+      //     photoBefore?.uri ||
+      //     photoBefore?.url ||
+      //     '',
+      //   placeOfIssue: placeOfIssue,
+      //   nationality,
+      // });
+      // return;
+      Log('32313123131', {
+        dateOfIssue: joinObjectCalendar(dateOfIssue),
+        dob: joinObjectCalendar(dob),
+        gender: gender || 0,
+        idNo: idNo,
+        idTypeId: type?.id || '5',
+        nationalityId: nationality?.id || '234',
+        photoAfterFileName: photoAfter?.fileName || '',
+        photoAfterURL:
+          photoAfter?.dataUpload?.url ||
+          photoAfter?.uri ||
+          photoAfter?.url ||
+          '',
+        photoBeforeFileName: photoBefore?.fileName || '',
+        photoBeforeURL:
+          photoBefore?.dataUpload?.url ||
+          photoBefore?.uri ||
+          photoBefore?.url ||
+          '',
+        placeOfIssue: placeOfIssue,
+      });
       const res = await apiAuth.updateInvestmentInfo({
         dateOfIssue: joinObjectCalendar(dateOfIssue),
         dob: joinObjectCalendar(dob),
@@ -282,13 +325,13 @@ function EditAccountInfoModal() {
         nationalityId: nationality?.id || '234',
         photoAfterFileName: photoAfter?.fileName || '',
         photoAfterURL:
-          photoAfter?.dataUPload?.url ||
+          photoAfter?.dataUpload?.url ||
           photoAfter?.uri ||
           photoAfter?.url ||
           '',
         photoBeforeFileName: photoBefore?.fileName || '',
         photoBeforeURL:
-          photoBefore?.dataUPload?.url ||
+          photoBefore?.dataUpload?.url ||
           photoBefore?.uri ||
           photoBefore?.url ||
           '',
@@ -521,7 +564,7 @@ function EditAccountInfoModal() {
                 name: 'Mã giao dịch chứng khoán',
                 nameen: 'Mã giao dịch chứng khoán',
               },
-              { id: '1', name: 'CMND/CCCD', nameen: 'CMND/CCCD' },
+              {id: '1', name: 'CMND/CCCD', nameen: 'CMND/CCCD'},
             ]}
             multilanguage={true}
             value={type}

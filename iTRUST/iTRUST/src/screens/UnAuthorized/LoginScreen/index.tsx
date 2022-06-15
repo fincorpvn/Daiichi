@@ -11,7 +11,13 @@ import {
 import {Ecolors, Icons, stringApp} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
 import {useAppSelector} from 'store/hooks';
-import {checkLogin, parseMultilanguage, widthScale, widthScreen} from 'utils';
+import {
+  checkLogin,
+  Log,
+  parseMultilanguage,
+  widthScale,
+  widthScreen,
+} from 'utils';
 import {
   changeBiometryType,
   changeIsSupport,
@@ -25,6 +31,7 @@ import TouchID from 'react-native-touch-id';
 import {getAccount, getStoreData} from 'utils/storage';
 import {useDispatch} from 'react-redux';
 import DropdownWarningAlert from 'screens/UnAuthorized/LoginScreen/DropdownWarningAlert';
+import useAsyncState from 'services/Hooks';
 
 function LoginScreen() {
   const dispatch = useDispatch();
@@ -32,6 +39,8 @@ function LoginScreen() {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const userNameSaveRedux = useAppSelector(state => state.authen.userName);
   const isBio = useAppSelector(state => state.authen.isBio);
+
+  const [t, setT] = useAsyncState(1);
 
   const activeLanguage = useAppSelector(
     state => state.languages.activeLanguage,
@@ -171,6 +180,8 @@ function LoginScreen() {
     } catch (error: any) {}
   };
 
+  // Log('tttt', t);
+
   const onLogin = async (p?: {name?: string; pass?: string}) => {
     try {
       if (
@@ -218,7 +229,7 @@ function LoginScreen() {
 
   return (
     <ScrollView keyboardShouldPersistTaps={'handled'}>
-      <StatusBar barStyle={'light-content'} />
+      {/* <StatusBar barStyle={'light-content'} /> */}
       <ImageView
         source={Icons.fincorpbanner}
         style={{

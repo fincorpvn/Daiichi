@@ -87,28 +87,35 @@ function AccountInfoModal() {
           const ul = `download/file?uri=${item.url}`;
           const bburl = `${urlApp.APIURL}api/${ul}`;
           return new Promise((resolve, reject) => {
-            ReactNativeBlobUtil.config({})
-              .fetch(
-                'POST',
-                bburl,
-                {
-                  Authorization: token ? `Bearer ${token}` : '',
-                  'Content-Type': 'application/json',
-                  'request-id': getUuid(),
-                  Origin: urlApp.DomainName,
-                },
-                JSON.stringify({
-                  uri: item.url,
-                }),
-              )
-              .then((r: any) => {
-                resolve(r.base64());
-                return;
-              });
+            try {
+              ReactNativeBlobUtil.config({})
+                .fetch(
+                  'POST',
+                  bburl,
+                  {
+                    Authorization: token ? `Bearer ${token}` : '',
+                    'Content-Type': 'application/json',
+                    'request-id': getUuid(),
+                    Origin: urlApp.DomainName,
+                  },
+                  JSON.stringify({
+                    uri: item.url,
+                  }),
+                )
+                .then((r: any) => {
+                  console.log('item', item);
+                  // resolve(r);
+                  // if (r) {
+                  resolve(r.base64());
+                  // }
+                  return;
+                });
+            } catch (error) {
+              reject(error);
+            }
           });
         }),
       );
-
       if (!!t.length) {
         setListImage(
           t.map((item: any, index: number) => {
@@ -124,6 +131,7 @@ function AccountInfoModal() {
         dispatch(changeUserPhotos(newList));
       }
     } catch (error) {
+      Log('erorrr', error);
     } finally {
       setLoading(false);
     }

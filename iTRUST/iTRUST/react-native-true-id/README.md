@@ -1,5 +1,19 @@
 # react-native-true-id
 
+## UPDATE CONFIG COLOR 
+# version 1.6.0
+* color config will be format by JSON with 5 key :
+- "main_color" : "#C6322D"-> color on button capture, color progress( text and progressbar), color on indicator(active - topbar) ,
+  background color on Button confirm/ button dialog/ button confirm-info, text color on Button Retake
+- "second_color":"#F5F5F5" -> color on indicator(deactive - topbar),background Button Retake
+- "text_color":"#30363D" -> color all text on title -topbar, description on topbar, title and text on Screen Personal Info
+- "border_input_color":"#C4C5CE" -> color border on edittext of screen Screen Personal Info
+- "background_color":"#FFFFFF" -> background all screen 
+- "close_color":"#FFFFFF" -> button back,close on modal
+
+if json not input color. it will be get default color(color of VNC).
+Color need be start with "#" and lenght 7 or 9 character . "#FFFFFF" or "#80FFFFFF"
+
 ## Getting started
 
 Install trueID React Native
@@ -41,18 +55,17 @@ import RNTrueId from 'react-native-true-id';
   "-----END PUBLIC KEY-----";
 
   var configInfo = {
-      domain: "https://mio3api.dev.fmarket.vn/web/v1/api",
-     domainPath: "/ekyc/v1.2",
-     authDomain: "https://api.trueid.ai",
-     authDomainPath: "/v1/oauth",
-     appId: "ea8df9ebff8d38479058d7f1d235e097",
-     appSecret: "+xzqA0O4GScV2dSiaB2cDiYVDY7hE0pG6rqN0TTNbU4=",
-     zoomLicenseKey: "dSERDnSNV8KzqajJJMEfA353JgNV27jb",
-     zoomServerBaseURL: "https://liveness-test.trueid.ai",
-     zoomPublicKey: PublicFaceScanEncryptionKey,
-     zoomAuthURL: "https://onboard-liveness.trueid.ai/liveness/key",
-     language: 'vi',
-     accessToken:tokenString// token api mio3api
+    domain: "https://api.trueid.ai",
+    domainPath: "/ekyc/v1.0",
+    authDomain: "https://api.trueid.ai",
+    authDomainPath: "/v1/oauth",
+    appId: "50d8da22d5756eff7f336482ee776b4c",
+    appSecret: "ZCPB+OsoZltvf+S8vb+A2jKfuRNty0s4/sWdNAZZlEE=",
+    zoomLicenseKey: "dMHqo4N8s5PvJnHpMBDn7n35aJddeYki",
+    zoomServerBaseURL: "https://api.zoomauth.com/api/v2/biometrics",
+    zoomPublicKey: PublicFaceScanEncryptionKey,
+    zoomAuthURL: "https://onboard-liveness.trueid.ai/liveness/key"
+
   }
 
 
@@ -63,30 +76,28 @@ RNTrueID.start((cardInfo) => {
   // YOUR CODE HERE
 })
 
+// 
+
+// màn hình chụp ảnh selfie
+// Thiết kế giao diện UI
+// màn hình comfirm 
+
 // get requestId
 var id = RNTrueID.requestId()
 ```
-personMap.putString("idNumber", "");
-personMap.putString("gender", "");
-personMap.putString("dob", "");
-personMap.putString("fullname", "");
-personMap.putString("address", "");
-personMap.putString("doi", "");
-personMap.putString("origin", "");
-personMap.putString("dueDate", "");
-personMap.putString("selfie", "");
+
 ### CardInfo
 CardInfo is object.
 {
   person: {
-    idNumber: "ID",
-    gender: "GENDER",
-    dob: "date of birth",
-    fullname: "NAME",
-    dueDate: "dueDate",
-    address: "address",
-    doi: "date of ID",
-    origin: "",
+    result: "ID",
+    time_used: "GENDER",
+    client_id: "date of birth",
+    request_id: "NAME",
+    attributes: Object - information is extracted from identity cards: id_number, name, dob (date of birth),id_origin, id_address and confidence,
+    input_image_type: 3,
+    liveness_strategy: 3,
+    id_card_token: "token id card",
     selfie: "SELFIE IMAGE BASE 64 STRING"
   },
   records: {

@@ -52,7 +52,6 @@ export function startScan(
           accessToken: `${token}`,
           ...config,
         });
-        console.log('RNTrueId', {RNTrueId, accessToken: `${token}`});
         return RNTrueId.start(async (cardInfo: any) => {
           startLoading && startLoading();
           const {
@@ -92,18 +91,8 @@ export function startScan(
             idNo: person.idNumber,
             dateOfIssue: convertStringTime(person.doi),
             placeOfIssue: person.givenPlace,
-            // photoBeforeURL,
-            // photoBeforeFileName: 'cmnd-mat-truoc',
-            // photoAfterURL,
-            // photoAfterFileName: 'cmnd-mat-sau',
-            // avatarUrl,
-            // avatarFileName: 'chan-dung',
           };
           const userAddress = {
-            // permanentAddress: getAddressRejectWard(
-            //   ward,
-            //   front.id_address.value,
-            // ),
             permanentAddress: front.id_address.value,
             countryId: 234,
             provinceId: province.id,

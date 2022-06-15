@@ -13,6 +13,7 @@ function DropdownWarningAlert() {
           flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
+          height: heightScreen,
         }}
         animationIn={'fadeIn'}
         animationOut={'fadeOut'}

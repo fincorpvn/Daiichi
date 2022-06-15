@@ -222,12 +222,11 @@ function EditAccountInfoModal() {
       const dataUpload: any = await uploadFile({
         fileBase64: r.base64,
       });
-      Log('rrr', {r, dataUpload});
       if (dataUpload) {
         if (imageUpload.current == 'before') {
-          setPhotoBefore({...r, ...dataUpload});
+          setPhotoBefore({...r, ...dataUpload, dataUpload});
         } else {
-          setPhotoAfter({...r, ...dataUpload});
+          setPhotoAfter({...r, ...dataUpload, dataUpload});
         }
       }
     } catch (error) {
@@ -296,6 +295,27 @@ function EditAccountInfoModal() {
       //   nationality,
       // });
       // return;
+      Log('32313123131', {
+        dateOfIssue: joinObjectCalendar(dateOfIssue),
+        dob: joinObjectCalendar(dob),
+        gender: gender || 0,
+        idNo: idNo,
+        idTypeId: type?.id || '5',
+        nationalityId: nationality?.id || '234',
+        photoAfterFileName: photoAfter?.fileName || '',
+        photoAfterURL:
+          photoAfter?.dataUpload?.url ||
+          photoAfter?.uri ||
+          photoAfter?.url ||
+          '',
+        photoBeforeFileName: photoBefore?.fileName || '',
+        photoBeforeURL:
+          photoBefore?.dataUpload?.url ||
+          photoBefore?.uri ||
+          photoBefore?.url ||
+          '',
+        placeOfIssue: placeOfIssue,
+      });
       const res = await apiAuth.updateInvestmentInfo({
         dateOfIssue: joinObjectCalendar(dateOfIssue),
         dob: joinObjectCalendar(dob),
@@ -305,13 +325,13 @@ function EditAccountInfoModal() {
         nationalityId: nationality?.id || '234',
         photoAfterFileName: photoAfter?.fileName || '',
         photoAfterURL:
-          photoAfter?.dataUPload?.url ||
+          photoAfter?.dataUpload?.url ||
           photoAfter?.uri ||
           photoAfter?.url ||
           '',
         photoBeforeFileName: photoBefore?.fileName || '',
         photoBeforeURL:
-          photoBefore?.dataUPload?.url ||
+          photoBefore?.dataUpload?.url ||
           photoBefore?.uri ||
           photoBefore?.url ||
           '',

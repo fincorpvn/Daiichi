@@ -282,96 +282,12 @@ function ReviewInfoModal() {
           },
         });
       }
-
-      //   if (statusScreen != 'main' && route.params.data.isKYC) {
-      //     // const r: any = await dispatch(
-      //     //   doLogin({
-      //     //     username: currentUser?.phone || '',
-      //     //     password: currentUser?.password || '',
-      //     //   }),
-      //     // );
-      //     Alert.show({
-      //       content: I18nState == 'vi' ? res.message : res.messageEn,
-      //       multilanguage: false,
-      //       type: 2,
-      //       titleClose: `alert.dongy`,
-      //       onClose: async () => {
-      //         if (route.params.data.isKYC) {
-      //           navigate('DigitalSignatureScreen');
-      //           return;
-      //         }
-      //         navigate('OverviewScreen');
-      //       },
-      //       onConfirm: async () => {
-      //         if (route.params.data.isKYC) {
-      //           navigate('DigitalSignatureScreen');
-      //           return;
-      //         }
-      //         navigate('OverviewScreen');
-      //       },
-      //     });
-      //   }
-      // }
-      // Alert.show({
-      //   content: I18nState == 'vi' ? res.message : res.messageEn,
-      //   multilanguage: false,
-      //   type: 2,
-      //   titleClose: `alert.dongy`,
-      //   onClose: async () => {
-      //     if (route.params.data.isKYC) {
-      //       navigate('DigitalSignatureScreen');
-      //       return;
-      //     }
-      //     if (statusScreen != 'main') {
-      //       navigate('LoginScreen');
-      //     } else {
-      //       navigate('OverviewScreen');
-      //     }
-      //   },
-      //   onConfirm: async () => {
-      //     if (route.params.data.isKYC) {
-      //       navigate('DigitalSignatureScreen');
-      //       return;
-      //     }
-      //     if (statusScreen != 'main') {
-      //       navigate('LoginScreen');
-      //     } else {
-      //       navigate('OverviewScreen');
-      //     }
-      //   },
-      //   onCancel: () => {
-      //     if (route.params.data.isKYC) {
-      //       navigate('DigitalSignatureScreen');
-      //       return;
-      //     }
-      //     if (statusScreen != 'main') {
-      //       navigate('LoginScreen');
-      //     } else {
-      //       navigate('OverviewScreen');
-      //     }
-      //   },
-      // });
     } catch (error: any) {
-      Log('errr', error);
       Alert.show({
         content: I18nState == 'vi' ? error.message : error.messageEn,
         multilanguage: false,
         type: 2,
         titleClose: `alert.dongy`,
-        // onClose: () => {
-        //   if (statusScreen != 'main') {
-        //     navigate('LoginScreen');
-        //   } else {
-        //     navigate('OverviewScreen');
-        //   }
-        // },
-        // onConfirm: () => {
-        //   if (statusScreen != 'main') {
-        //     navigate('LoginScreen');
-        //   } else {
-        //     navigate('OverviewScreen');
-        //   }
-        // },
       });
     } finally {
       setLoading(false);

@@ -2,6 +2,8 @@ import React, {useEffect, useImperativeHandle, useState} from 'react';
 import Modal from 'react-native-modal';
 import {StyleSheet, ViewStyle} from 'react-native';
 import {Ecolors} from 'constant';
+import useAsyncState from 'services/Hooks';
+import {Log} from 'utils';
 function BottomSheetDialog(
   p: {children: any; style?: ViewStyle; animationOut?: any; animationIn?: any},
   ref,
@@ -12,12 +14,13 @@ function BottomSheetDialog(
     },
     hide: () => {
       return new Promise(async (rs, rj) => {
-        await setStateModal(false);
-        rs(true);
+        setStateModal(false, (t: any) => {
+          rs();
+        });
       });
     },
   }));
-  const [stateModal, setStateModal] = useState<boolean>(false);
+  const [stateModal, setStateModal] = useAsyncState(false);
 
   return (
     <>

@@ -24,11 +24,20 @@ RCT_EXPORT_METHOD(configure:(NSDictionary*)data) {
             NSString *zoomAuthURL = [data objectForKey:@"zoomAuthURL"];
              NSString *accessToken = [data objectForKey:@"accessToken"];
             NSString *language = [data objectForKey:@"language"];
+            NSString *themeColor = [data objectForKey:@"themeColor"];
+            NSString *headerConfigStr = [data objectForKey:@"headerConfig"];
+
             configInfo = [[ConfigInfo alloc] initWithDomain:domain domainPath:domainPath authDomain:authDomain authDomainPath:authDomainPath appId:appId appSecret:appSecret zoomLicenseKey:zoomLicenseKey zoomServerBaseURL: zoomServerBaseURL zoomPublicKey:zoomPublicKey zoomAuthURL:zoomAuthURL zoomClient:@"" accessToken:accessToken];
 
-             [TrueID setLanguageWithLanguage: language];
+            ColorConfig *colorConfig;
+            colorConfig =  [[ColorConfig alloc] initWithJsonString: themeColor];
 
-            [TrueID configureWithConfigInfo:configInfo];
+            HeaderConfig *headerConfig;
+            headerConfig =  [[HeaderConfig alloc] initWithJsonString: headerConfigStr];
+
+            [TrueID setLanguageWithLanguage: language];
+
+            [TrueID configureWithConfigInfo:configInfo configColor: colorConfig configHeader: headerConfig];
         }
         else {
             [self showAlert:@"trueID doesn't support iOS less than 9"];
@@ -112,7 +121,6 @@ RCT_EXPORT_METHOD(start:(RCTResponseSenderBlock)callback) {
                     }
                     res[@"records"] = records;
               
-                    res[@"code"] = [NSString stringWithFormat:@"%ld",(long)cardInfo.code];
                     
                     // front image
                     if (cardInfo.frontCardImage) {

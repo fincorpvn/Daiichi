@@ -169,7 +169,11 @@ function OtpRequestModal() {
         return;
       }
       if (params.data.flowApp == 'CreateEsignature') {
-        onCOnfirmCreateEsignature();
+        onConfirmCreateEsignature();
+        return;
+      }
+      if (params.data.flowApp == 'CreateEsignatureRisk') {
+        onConfirmCreateEsignatureRisk();
         return;
       }
       onConfirm();
@@ -177,7 +181,40 @@ function OtpRequestModal() {
     }
   };
 
-  const onCOnfirmCreateEsignature = async () => {
+  const onConfirmCreateEsignatureRisk = async () => {
+    try {
+      setLoadingConfirm(true);
+      const res = await apiAuth.confirmCreateEsignatureRisk({
+        ...requestOnSendOtp,
+        otp,
+      });
+      if (res.status == 200) {
+        dispatch(getInfo({}));
+        Alert.show({
+          content: `alert.kythanhcong`,
+          type: 2,
+          onClose: () => {
+            navigate('OverviewScreen');
+          },
+          onCancel: () => {
+            navigate('OverviewScreen');
+          },
+          onConfirm: () => {
+            navigate('OverviewScreen');
+          },
+        });
+        return;
+      }
+      handleErr(res);
+      return;
+    } catch (error) {
+      handleErr(error);
+    } finally {
+      setLoadingConfirm(false);
+    }
+  };
+
+  const onConfirmCreateEsignature = async () => {
     try {
       setLoadingConfirm(true);
       const res = await apiAuth.confirmCreateEsignature({
@@ -203,7 +240,6 @@ function OtpRequestModal() {
               },
             });
           });
-
           return;
         }
         goBack().then(() => {

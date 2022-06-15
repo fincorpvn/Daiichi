@@ -191,7 +191,11 @@ const OtpComp = (
               margin={0}
               value={props.otp}
               onChangeText={(e: string) => {
-                const t: string = e[e.length ? e.length - 1 : 0];
+                if (e.length == 0) {
+                  props.setOtp && props.setOtp(e);
+                  return;
+                }
+                const t: string = e[e.length ? e.length - 1 : 0] || '';
                 const reg = /^[0-9]*$/;
                 if (reg.test(t)) {
                   props.setOtp && props.setOtp(e);

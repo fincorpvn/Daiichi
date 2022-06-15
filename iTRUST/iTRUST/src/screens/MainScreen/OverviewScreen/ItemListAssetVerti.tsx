@@ -69,8 +69,11 @@ function ItemListAssetVerti({data}: Props) {
             height={40}
             marginRight={9}
           />
-          <Div>
-            <Div flexDirection={'row'} alignItems={'center'}>
+          <Div alignItems={'flex-start'}>
+            <Div
+              flexDirection={'row'}
+              alignItems={'center'}
+              justifyContent={'flex-start'}>
               <Label marginRight={10} multilanguage={false} fontWeight={'500'}>
                 {code}
               </Label>
@@ -82,10 +85,14 @@ function ItemListAssetVerti({data}: Props) {
                 {convertPercent(ratePercent)}
               </Label>
             </Div>
-            {/* <Label size={14} multilanguage={false} color={ Ecolors.gray2x}>
+            <Label size={14} multilanguage={false}>
+              {convertNumber(Math.round(sumOfValueNavCurrent ?? 0))}
+            </Label>
+          </Div>
+
+          {/* <Label size={14} multilanguage={false} color={ Ecolors.gray2x}>
             {convertProductCode({...data, I18nState: I18nState})}
             </Label> */}
-          </Div>
         </Div>
         <Div flexDirection={'row'} alignItems={'center'}>
           <Div alignItems={'flex-end'}>
@@ -110,9 +117,6 @@ function ItemListAssetVerti({data}: Props) {
                 {convertPercent(Math.abs(interestOrHole))}
               </Label>
             </Div>
-            <Label size={14} multilanguage={false}>
-              {convertNumber(Math.round(sumOfValueNavCurrent ?? 0))}
-            </Label>
           </Div>
           <Button onPress={() => setIsDetails(a => !a)} paddingLeft={15}>
             <ImageView

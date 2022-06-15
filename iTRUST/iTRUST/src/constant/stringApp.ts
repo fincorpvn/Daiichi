@@ -161,7 +161,7 @@ const monthlyIncom = [
 export const stringApp = {
   appName: 'iTRUST',
   appLink: 'iTRUST',
-  companyName: 'Fincorp',
+  companyName: 'Dai-ichi Life Vietnam',
   riskAssessment: riskAssessment,
   monthlyIncom: monthlyIncom,
 };

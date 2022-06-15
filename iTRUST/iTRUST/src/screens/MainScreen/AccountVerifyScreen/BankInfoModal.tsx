@@ -8,7 +8,7 @@ import {
 import {navigate} from 'services';
 import {doGetAxios} from 'services/apis/axios';
 import {useAppSelector} from 'store/hooks';
-import {Log} from 'utils';
+import {Log, removeUtf8} from 'utils';
 import ItemCard from './ItemCard';
 
 function BankInfoModal() {
@@ -42,7 +42,7 @@ function BankInfoModal() {
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack
         type={2}
-        iconRight={isEdit ? Icons.edit : null}
+        iconRight={Icons.edit}
         title={`accountverify.thongtinnganhang`}
         onRightPress={() => {
           navigate('EditBankInfoModal');
@@ -50,7 +50,7 @@ function BankInfoModal() {
       />
       <ItemCard
         title={`accountverify.tenchutaikhoan`}
-        content={bankAccount?.name || ' '}
+        content={removeUtf8(bankAccount?.name?.toLocaleUpperCase() || '') || ''}
         isLine={true}
       />
       <ItemCard

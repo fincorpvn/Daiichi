@@ -70,6 +70,10 @@ function Navi() {
   };
 
   const gotoEKYC = (currentUser: any) => {
+    if (currentUser?.accessOnline) {
+      navigate('OnlineTradingModal');
+      return;
+    }
     if (!currentUser?.investmentProfile?.status) {
       const {userInfoIsFull, bankAccountIsFull, userAddressIsFull, riskInfo} =
         currentUser;

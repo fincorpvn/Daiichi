@@ -12,7 +12,11 @@ import { Ecolors, Icons } from 'constant';
 import React, { useRef, useState } from 'react';
 import { Platform } from 'react-native';
 import ImageResizer from 'react-native-image-resizer';
-import { doUploadFileSignature } from 'screens/MainScreen/DigitalSignature/func';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {
+  doUploadFileEsignatureRisk,
+  doUploadFileSignature,
+} from 'screens/MainScreen/DigitalSignature/func';
 import { navigate } from 'services';
 import { useAppSelector } from 'store/hooks';
 import { getImageCamera, getImageLibrary, Log, widthScreen } from 'utils';
@@ -47,10 +51,11 @@ const Btn = (p: {
   );
 };
 
-function RowButtonAction() {
+function RowButtonAction(p: { flowApp?: string }) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const bottomSheetUpload = useRef<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const insets = useSafeAreaInsets();
   const [stateimage, setStateImage] = useState<any>(null);
   const hide = (cb?: (t?: any) => void) => {
     if (bottomSheetUpload.current) {
@@ -58,6 +63,32 @@ function RowButtonAction() {
         cb && cb(t);
       });
     }
+  };
+
+  const doAction = async image => {
+    ImageResizer.createResizedImage(image.uri, 800, 600, 'JPEG', 80, 0)
+      .then(({ uri }) => {
+        if (p.flowApp == 'CreateEsignatureRisk') {
+          doUploadFileEsignatureRisk({
+            link: uri,
+            I18nState: I18nState,
+            setLoading: setLoading,
+          });
+          return;
+        }
+        doUploadFileSignature({
+          link: uri,
+          I18nState: I18nState,
+          setLoading: setLoading,
+        });
+      })
+      .catch(err => {
+        Alert.showError({
+          content: 'alert.dungluongtoida',
+        });
+        return;
+      });
+    return;
   };
 
   return (
@@ -75,12 +106,6 @@ function RowButtonAction() {
           <LoadingIndicator color={Ecolors.mainColor} />
         </Div>
       )}
-      {/* <ImageView
-        widthHeight={100}
-        source={{
-          uri: stateimage?.uri || '',
-        }}
-      /> */}
       <BottomSheetDialog
         style={{
           flexDirection: 'column',
@@ -96,65 +121,28 @@ function RowButtonAction() {
           onCamera={async () => {
             try {
               if (Platform.OS === 'ios') {
-                getImageCamera().then((image: any) => {
-                  hide()
-                  if (image[0]) {
-                    ImageResizer.createResizedImage(
-                      image[0].uri,
-                      800,
-                      600,
-                      'JPEG',
-                      80,
-                      0,
-                    )
-                      .then(({ uri }) => {
-                        doUploadFileSignature({
-                          link: uri,
-                          I18nState: I18nState,
-                          setLoading: setLoading,
-                        });
-                      })
-                      .catch(err => {
-                        Alert.showError({
-                          content: 'alert.dungluongtoida',
-                        });
-                        return;
-                      });
-                    return;
-                  }
-                }).catch(() => {
-                  hide()
-                })
-                return
+                await getImageCamera()
+                  .then((image: any) => {
+                    hide();
+                    if (image[0]) {
+                      doAction(image[0]);
+                    }
+                  })
+                  .catch(() => {
+                    hide();
+                  });
+                return;
               }
               hide(async (t: any) => {
-                getImageCamera().then((image: any) => {
-                  const size = image[0]?.fileSize / 1000000;
-                  if (image[0]) {
-                    ImageResizer.createResizedImage(
-                      image[0].uri,
-                      800,
-                      600,
-                      'JPEG',
-                      80,
-                      0,
-                    )
-                      .then(({ uri }) => {
-                        doUploadFileSignature({
-                          link: uri,
-                          I18nState: I18nState,
-                          setLoading: setLoading,
-                        });
-                      })
-                      .catch(err => {
-                        Alert.showError({
-                          content: 'alert.dungluongtoida',
-                        });
-                        return;
-                      });
-                    return;
-                  }
-                });
+                getImageCamera()
+                  .then((image: any) => {
+                    if (image[0]) {
+                      doAction(image[0]);
+                    }
+                  })
+                  .catch(() => {
+                    hide();
+                  });
               });
             } catch (error) {
               if (!!error) {
@@ -171,7 +159,7 @@ function RowButtonAction() {
             try {
               if (Platform.OS === 'ios') {
                 await getImageLibrary().then((image: any) => {
-                  hide()
+                  hide();
                   if (image[0]) {
                     if (image[0].uri.endsWith('.gif')) {
                       Alert.showError({
@@ -179,69 +167,21 @@ function RowButtonAction() {
                       });
                       return;
                     }
-                    ImageResizer.createResizedImage(
-                      image[0].uri,
-                      800,
-                      600,
-                      'JPEG',
-                      80,
-                      0,
-                    )
-                      .then(({ uri }) => {
-                        doUploadFileSignature({
-                          link: uri,
-                          I18nState: I18nState,
-                          setLoading: setLoading,
-                        });
-                      })
-                      .catch(err => {
-                        hide()
-                        Alert.showError({
-                          content: 'alert.dungluongtoida',
-                        });
-                        return;
-                      });
+                    doAction(image[0]);
                   }
                 });
-                return
+                return;
               }
               hide(async (t: any) => {
                 await getImageLibrary().then((image: any) => {
-                  const size = image[0]?.fileSize / 1000000;
                   if (image[0]) {
-                    // if (size > 5) {
-                    //   Alert.showError({
-                    //     content: 'alert.dungluongtoida',
-                    //   });
-                    //   return;
-                    // }
                     if (image[0].uri.endsWith('.gif')) {
                       Alert.showError({
                         content: 'alert.dinhdanganhkhongphuhop',
                       });
                       return;
                     }
-                    ImageResizer.createResizedImage(
-                      image[0].uri,
-                      800,
-                      600,
-                      'JPEG',
-                      80,
-                      0,
-                    )
-                      .then(({ uri }) => {
-                        doUploadFileSignature({
-                          link: uri,
-                          I18nState: I18nState,
-                          setLoading: setLoading,
-                        });
-                      })
-                      .catch(err => {
-                        Alert.showError({
-                          content: 'alert.dungluongtoida',
-                        });
-                        return;
-                      });
+                    doAction(image[0]);
                   }
                 });
               });
@@ -266,7 +206,7 @@ function RowButtonAction() {
         alignItems={'center'}
         justifyContent={'space-between'}
         marginTop={18}
-        marginBottom={80}>
+        marginBottom={insets.bottom + 10}>
         <Btn
           onPress={() => {
             //   call action get image from library
@@ -278,7 +218,11 @@ function RowButtonAction() {
         />
         <Btn
           onPress={() => {
-            navigate('SignatureDraw');
+            navigate('SignatureDraw', {
+              data: {
+                flowApp: p.flowApp || '',
+              },
+            });
           }}
           type={2}
           title={`digitalsignature.kydientu`}

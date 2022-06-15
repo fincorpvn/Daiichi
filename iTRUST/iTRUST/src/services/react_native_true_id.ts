@@ -84,7 +84,7 @@ export function startScan(
             (a: any) => a.administrativeCode == front.id_address_ward?.code,
           );
           const userProfile = {
-            gender: person.gender == 'MALE' ? 1 : 2,
+            gender: person.gender == 'MALE' ? 1 : 0,
             dob: convertStringTime(person.dob || ''),
             nationalityId: 234,
             idTypeId: 1,

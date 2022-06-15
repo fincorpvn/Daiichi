@@ -12,7 +12,6 @@ import {Platform} from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {PERMISSIONS} from 'react-native-permissions';
 import RNFS from 'react-native-fs';
-import {CommonActions} from '@react-navigation/native';
 import {
   convertDataDownloadFile,
   getUuid,
@@ -23,8 +22,6 @@ import {
 import {getStoreToken} from 'utils/storage';
 import {useAppSelector} from 'store/hooks';
 import {useDispatch} from 'react-redux';
-import {changeStatusScreen} from 'reducer/authen';
-import {navigate, navigationRef} from 'services';
 
 function CardSignature() {
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);

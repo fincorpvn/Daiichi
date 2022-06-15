@@ -98,39 +98,7 @@ function ConfirmModal() {
           <Label marginTop={10} lineHeight={22} size={15}>
             {`accountverify.contentinhoso`}
           </Label>
-          {/* <Label
-            marginTop={5}
-            lineHeight={22}
-            size={15}>{`accountverify.contentdiachi2`}</Label>
-          <Label
-            fontWeight={'700'}
-            lineHeight={22}
-            marginTop={5}
-            size={15}>{`accountverify.contentdiachi3`}</Label> */}
         </Div>
-
-        {/* <Div padding={16}>
-          <Label
-            color={Ecolors.mainColor}
-            fontWeight={'700'}
-            multilanguage={false}
-            lineHeight={22}
-            size={15}>
-            <Label
-              lineHeight={22}
-              size={15}>{`accountverify.contentdiachi1`}</Label>
-            {`${email}`}
-          </Label>
-          <Label
-            marginTop={5}
-            lineHeight={22}
-            size={15}>{`accountverify.contentdiachi2`}</Label>
-          <Label
-            fontWeight={'700'}
-            lineHeight={22}
-            marginTop={5}
-            size={15}>{`accountverify.contentdiachi3`}</Label>
-        </Div> */}
         <Div padding={10} backgroundColor={Ecolors.spaceColor} marginTop={5}>
           <Label
             marginTop={8}
@@ -162,117 +130,87 @@ function ConfirmModal() {
             lineHeight={22}
             marginTop={8}>{`accountverify.content3`}</Label>
         </Div>
-        <Div height={100} />
+        <Div height={30} />
+        {!investmentProfile && (
+          <>
+            <Div
+              flexDirection={'row'}
+              paddingHorizontal={16}
+              paddingBottom={24}
+              borderTopWidth={1}
+              borderTopColor={Ecolors.spaceColor}
+              paddingTop={17}
+              alignItems={'center'}
+              justifyContent={'flex-start'}>
+              <Button
+                widthHeight={25}
+                onPress={() => {
+                  setIsAccept(a => !a);
+                }}
+                marginRight={13}
+                borderWidth={1}
+                alignItems={'center'}
+                justifyContent={'center'}
+                borderColor={isAccept ? Ecolors.mainColor : Ecolors.spaceColor}
+                borderRadius={25}>
+                <ImageView
+                  source={isAccept ? Icons.check : Icons.uncheck}
+                  widthHeight={20}
+                  tintColor={isAccept ? Ecolors.mainColor : Ecolors.grayColor}
+                />
+              </Button>
+              <Div flex={1}>
+                <Label>{`accountverify.toidongyvoidieukhoantren`}</Label>
+              </Div>
+            </Div>
+            <Div
+              flexDirection={'row'}
+              paddingHorizontal={16}
+              paddingBottom={24}
+              paddingTop={17}
+              alignItems={'center'}
+              justifyContent={'flex-start'}>
+              <Button
+                widthHeight={25}
+                onPress={() => {
+                  setIsAcceptFatca(a => !a);
+                }}
+                marginRight={13}
+                borderWidth={1}
+                alignItems={'center'}
+                justifyContent={'center'}
+                borderColor={
+                  isAcceptFatca ? Ecolors.mainColor : Ecolors.spaceColor
+                }
+                borderRadius={25}>
+                <ImageView
+                  source={isAcceptFatca ? Icons.check : Icons.uncheck}
+                  widthHeight={20}
+                  tintColor={
+                    isAcceptFatca ? Ecolors.mainColor : Ecolors.grayColor
+                  }
+                />
+              </Button>
+              <Div flex={1}>
+                <Label>{`accountverify.tongdongyvoidieukhoanfatca`}</Label>
+              </Div>
+            </Div>
+            <Div
+              marginBottom={40}
+              width={'100%'}
+              alignItems={'center'}
+              justifyContent={'center'}>
+              <ButtonBorder
+                type={isAcceptFatca && isAccept ? 1 : 2}
+                width={343}
+                loading={loading}
+                onPress={() => confirm()}
+                title={`accountverify.hoantat`}
+              />
+            </Div>
+          </>
+        )}
       </ScrollView>
-      {!investmentProfile && (
-        <>
-          <Div
-            flexDirection={'row'}
-            paddingHorizontal={16}
-            paddingBottom={24}
-            borderTopWidth={1}
-            borderTopColor={Ecolors.spaceColor}
-            paddingTop={17}
-            alignItems={'center'}
-            justifyContent={'flex-start'}>
-            <Button
-              widthHeight={25}
-              onPress={() => {
-                setIsAccept(a => !a);
-              }}
-              marginRight={13}
-              borderWidth={1}
-              alignItems={'center'}
-              justifyContent={'center'}
-              borderColor={isAccept ? Ecolors.mainColor : Ecolors.spaceColor}
-              borderRadius={25}>
-              <ImageView
-                source={isAccept ? Icons.check : Icons.uncheck}
-                widthHeight={20}
-                tintColor={isAccept ? Ecolors.mainColor : Ecolors.grayColor}
-              />
-            </Button>
-            <Div flex={1}>
-              <Label>{`accountverify.toidongyvoidieukhoantren`}</Label>
-            </Div>
-          </Div>
-          <Div
-            flexDirection={'row'}
-            paddingHorizontal={16}
-            paddingBottom={24}
-            paddingTop={17}
-            alignItems={'center'}
-            justifyContent={'flex-start'}>
-            <Button
-              widthHeight={25}
-              onPress={() => {
-                setIsAcceptFatca(a => !a);
-              }}
-              marginRight={13}
-              borderWidth={1}
-              alignItems={'center'}
-              justifyContent={'center'}
-              borderColor={
-                isAcceptFatca ? Ecolors.mainColor : Ecolors.spaceColor
-              }
-              borderRadius={25}>
-              <ImageView
-                source={isAcceptFatca ? Icons.check : Icons.uncheck}
-                widthHeight={20}
-                tintColor={
-                  isAcceptFatca ? Ecolors.mainColor : Ecolors.grayColor
-                }
-              />
-            </Button>
-            <Div flex={1}>
-              <Label>{`accountverify.tongdongyvoidieukhoanfatca`}</Label>
-            </Div>
-          </Div>
-          {/* <Div
-            flexDirection={'row'}
-            paddingTop={17}
-            alignItems={'flex-start'}
-            justifyContent={'flex-start'}>
-            <Button
-              widthHeight={25}
-              onPress={() => {
-                setIsAcceptFatca(a => !a);
-              }}
-              marginRight={13}
-              borderWidth={1}
-              alignItems={'center'}
-              justifyContent={'center'}
-              borderColor={
-                isAcceptFatca ? Ecolors.mainColor : Ecolors.spaceColor
-              }
-              borderRadius={25}>
-              <ImageView
-                source={isAcceptFatca ? Icons.check : Icons.uncheck}
-                widthHeight={20}
-                tintColor={
-                  isAcceptFatca ? Ecolors.mainColor : Ecolors.grayColor
-                }
-              />
-            </Button>
-            <Div flex={1}>
-              <Label>{`accountverify.tongdongyvoidieukhoanfatca`}</Label>
-            </Div>
-          </Div> */}
-          <Div
-            marginBottom={40}
-            width={'100%'}
-            alignItems={'center'}
-            justifyContent={'center'}>
-            <ButtonBorder
-              type={isAcceptFatca && isAccept ? 1 : 2}
-              width={343}
-              loading={loading}
-              onPress={() => confirm()}
-              title={`accountverify.hoantat`}
-            />
-          </Div>
-        </>
-      )}
     </Div>
   );
 }

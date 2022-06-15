@@ -8,13 +8,14 @@ import {
   LoadingIndicator,
   Toast,
 } from 'components';
-import {Ecolors, Icons} from 'constant';
-import React, {useRef, useState} from 'react';
+import { Ecolors, Icons } from 'constant';
+import React, { useRef, useState } from 'react';
+import { Platform } from 'react-native';
 import ImageResizer from 'react-native-image-resizer';
-import {doUploadFileSignature} from 'screens/MainScreen/DigitalSignature/func';
-import {navigate} from 'services';
-import {useAppSelector} from 'store/hooks';
-import {getImageCamera, getImageLibrary, Log, widthScreen} from 'utils';
+import { doUploadFileSignature } from 'screens/MainScreen/DigitalSignature/func';
+import { navigate } from 'services';
+import { useAppSelector } from 'store/hooks';
+import { getImageCamera, getImageLibrary, Log, widthScreen } from 'utils';
 import ComActionUpload from './ComActionUpload';
 import SignatureDraw from './SignatureDraw';
 const Btn = (p: {
@@ -94,6 +95,38 @@ function RowButtonAction() {
           }}
           onCamera={async () => {
             try {
+              if (Platform.OS === 'ios') {
+                getImageCamera().then((image: any) => {
+                  hide()
+                  if (image[0]) {
+                    ImageResizer.createResizedImage(
+                      image[0].uri,
+                      800,
+                      600,
+                      'JPEG',
+                      80,
+                      0,
+                    )
+                      .then(({ uri }) => {
+                        doUploadFileSignature({
+                          link: uri,
+                          I18nState: I18nState,
+                          setLoading: setLoading,
+                        });
+                      })
+                      .catch(err => {
+                        Alert.showError({
+                          content: 'alert.dungluongtoida',
+                        });
+                        return;
+                      });
+                    return;
+                  }
+                }).catch(() => {
+                  hide()
+                })
+                return
+              }
               hide(async (t: any) => {
                 getImageCamera().then((image: any) => {
                   const size = image[0]?.fileSize / 1000000;
@@ -106,7 +139,7 @@ function RowButtonAction() {
                       80,
                       0,
                     )
-                      .then(({uri}) => {
+                      .then(({ uri }) => {
                         doUploadFileSignature({
                           link: uri,
                           I18nState: I18nState,
@@ -131,11 +164,47 @@ function RowButtonAction() {
                 });
               }
             } finally {
-              // hide(async () => {});
+              hide(async () => { });
             }
           }}
           onGallery={async () => {
             try {
+              if (Platform.OS === 'ios') {
+                await getImageLibrary().then((image: any) => {
+                  hide()
+                  if (image[0]) {
+                    if (image[0].uri.endsWith('.gif')) {
+                      Alert.showError({
+                        content: 'alert.dinhdanganhkhongphuhop',
+                      });
+                      return;
+                    }
+                    ImageResizer.createResizedImage(
+                      image[0].uri,
+                      800,
+                      600,
+                      'JPEG',
+                      80,
+                      0,
+                    )
+                      .then(({ uri }) => {
+                        doUploadFileSignature({
+                          link: uri,
+                          I18nState: I18nState,
+                          setLoading: setLoading,
+                        });
+                      })
+                      .catch(err => {
+                        hide()
+                        Alert.showError({
+                          content: 'alert.dungluongtoida',
+                        });
+                        return;
+                      });
+                  }
+                });
+                return
+              }
               hide(async (t: any) => {
                 await getImageLibrary().then((image: any) => {
                   const size = image[0]?.fileSize / 1000000;
@@ -160,7 +229,7 @@ function RowButtonAction() {
                       80,
                       0,
                     )
-                      .then(({uri}) => {
+                      .then(({ uri }) => {
                         doUploadFileSignature({
                           link: uri,
                           I18nState: I18nState,
@@ -185,7 +254,7 @@ function RowButtonAction() {
                 return;
               }
             } finally {
-              // hide(async () => {});
+              hide(async () => { });
             }
           }}
         />

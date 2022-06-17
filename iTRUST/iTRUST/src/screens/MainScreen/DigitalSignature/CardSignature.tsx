@@ -267,9 +267,10 @@ function CardSignature() {
                 marginRight={10}
               />
               <Label fontWeight={'700'} size={15}>
-                {hardProfile
+                {/* {hardProfile
                   ? `digitalsignature.taihopdongdaky`
-                  : `digitalsignature.taihopdongmotaikhoan`}
+                  : `digitalsignature.taihopdongmotaikhoan`} */}
+                {`digitalsignature.taihopdongmotaikhoan`}
               </Label>
             </>
           )}

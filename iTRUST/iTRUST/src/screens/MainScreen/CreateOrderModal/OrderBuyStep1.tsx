@@ -89,6 +89,8 @@ function OrderBuyStep1({
     }
   };
 
+  Log('schass', scheme);
+
   return (
     <Div
       style={{
@@ -162,6 +164,28 @@ function OrderBuyStep1({
               <Label marginLeft={5} size={12} multilanguage={false}>
                 {convertNumber(scheme?.buyMinValue)}
               </Label>
+            </Div>
+          )}
+          {!!scheme?.minContinuousCycle && !!scheme && (
+            <Div
+              marginTop={7}
+              flexDirection={'row'}
+              alignItems={'center'}
+              justifyContent={'flex-end'}>
+              <ImageView
+                source={Icons.warningamount}
+                widthHeight={16}
+                resizeMode={'contain'}
+              />
+              <Label
+                marginLeft={5}
+                size={
+                  12
+                }>{`createordermodal.thoigiandautulientuctoithieu`}</Label>
+              <Label marginLeft={5} size={12} multilanguage={false}>
+                {scheme?.minContinuousCycle}
+              </Label>
+              <Label marginLeft={5} size={12}>{`createordermodal.thang`}</Label>
             </Div>
           )}
 

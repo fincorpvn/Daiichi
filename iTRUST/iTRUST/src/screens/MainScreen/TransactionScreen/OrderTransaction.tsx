@@ -108,17 +108,17 @@ function OrderTransaction() {
         <ButtonBorder
           marginTop={20}
           size={14}
-          width={125}
+          width={175}
           height={36}
           onPress={() => onChangeOrderType('TRANSFER')}
           type={orderType == 'TRANSFER' ? 1 : 3}
-          title={`transactionscreen.lenhhoandoi`}
+          title={`transactionscreen.lenhbanhoandoi`}
         />
         <Div width={16} />
         <ButtonBorder
           marginTop={20}
           size={14}
-          width={125}
+          width={175}
           height={36}
           onPress={() => onChangeOrderType('TRANSFER_BUY')}
           type={orderType == 'TRANSFER_BUY' ? 1 : 3}

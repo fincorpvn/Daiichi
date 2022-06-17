@@ -42,9 +42,71 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
               borderRadius={11}
               backgroundColor={color}
             />
-            <Label fontWeight={'700'} multilanguage={false}>
-              {code}
-            </Label>
+            <Div flex={1}>
+              <Label fontWeight={'700'} multilanguage={false}>
+                {code}
+              </Label>
+            </Div>
+            <Div
+              flexDirection={'row'}
+              alignItems={'center'}
+              justifyContent={'flex-end'}>
+              <Button
+                onPress={() => {
+                  checkApproveInvestmentProfile({
+                    currentUser,
+                    I18nState,
+                    initData: {
+                      product: p.data,
+                    },
+                    orderType: 'BUY',
+                  });
+                  return;
+                }}>
+                <ImageView
+                  widthHeight={37}
+                  resizeMode={'contain'}
+                  source={Icons.buy}
+                />
+              </Button>
+              <Button
+                onPress={() => {
+                  checkApproveInvestmentProfile({
+                    currentUser,
+                    I18nState,
+                    initData: {
+                      product: p.data,
+                    },
+                    orderType: 'SELL',
+                  });
+                  return;
+                }}>
+                <ImageView
+                  marginHorizontal={9}
+                  widthHeight={37}
+                  resizeMode={'contain'}
+                  source={Icons.sell}
+                />
+              </Button>
+              <Button
+                onPress={() => {
+                  checkApproveInvestmentProfile({
+                    currentUser,
+                    I18nState,
+                    initData: {
+                      product: p.data,
+                    },
+                    orderType: 'TRANSFER',
+                  });
+                  return;
+                }}>
+                <ImageView
+                  widthHeight={37}
+                  resizeMode={'contain'}
+                  source={Icons.transfer}
+                />
+              </Button>
+            </Div>
           </Div>
           {/* hodl volumn */}
           <Label size={12} marginLeft={19}>{`assetscreen.giatrihientai`}</Label>
@@ -66,66 +128,6 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
               )})`}
             </Label>
           </Div>
-        </Div>
-        <Div
-          flexDirection={'row'}
-          alignItems={'center'}
-          justifyContent={'flex-end'}>
-          <Button
-            onPress={() => {
-              checkApproveInvestmentProfile({
-                currentUser,
-                I18nState,
-                initData: {
-                  product: p.data,
-                },
-                orderType: 'BUY',
-              });
-              return;
-            }}>
-            <ImageView
-              widthHeight={37}
-              resizeMode={'contain'}
-              source={Icons.buy}
-            />
-          </Button>
-          <Button
-            onPress={() => {
-              checkApproveInvestmentProfile({
-                currentUser,
-                I18nState,
-                initData: {
-                  product: p.data,
-                },
-                orderType: 'SELL',
-              });
-              return;
-            }}>
-            <ImageView
-              marginHorizontal={9}
-              widthHeight={37}
-              resizeMode={'contain'}
-              source={Icons.sell}
-            />
-          </Button>
-          <Button
-            onPress={() => {
-              checkApproveInvestmentProfile({
-                currentUser,
-                I18nState,
-                initData: {
-                  product: p.data,
-                },
-                orderType: 'TRANSFER',
-              });
-              return;
-            }}>
-            <ImageView
-              widthHeight={37}
-              resizeMode={'contain'}
-              source={Icons.transfer}
-            />
-          </Button>
         </Div>
       </Div>
       {!!programList.length && (

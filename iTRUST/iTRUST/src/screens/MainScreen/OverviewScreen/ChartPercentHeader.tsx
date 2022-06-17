@@ -73,7 +73,7 @@ function ChartPercentHeader({itemFocus, setItemFocus}: Props) {
         flex={1}
         flexDirection={'column'}
         alignItems={'flex-start'}>
-        <Label>{`overviewscreen.tonggiatridaututb`}</Label>
+        <Label>{`overviewscreen.sotiendautu`}</Label>
         <Label
           size={19}
           color={Ecolors.textColor}

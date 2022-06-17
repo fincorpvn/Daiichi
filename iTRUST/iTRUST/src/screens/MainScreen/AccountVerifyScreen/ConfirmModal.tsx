@@ -131,7 +131,8 @@ function ConfirmModal() {
             marginTop={8}>{`accountverify.content3`}</Label>
         </Div>
         <Div height={30} />
-        {!investmentProfile && (
+        {(!investmentProfile ||
+          investmentProfile?.code == 'INVESTMENT_PROFILE_REJECT') && (
           <>
             <Div
               flexDirection={'row'}

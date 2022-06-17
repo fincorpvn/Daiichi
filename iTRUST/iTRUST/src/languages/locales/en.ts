@@ -468,6 +468,8 @@ export default {
     ketqua: 'Result',
     quaylai: 'Back',
     bieuphimua: 'Purchase fee schedule',
+    thoigiandautulientuctoithieu: 'Minimum continuous investment period of',
+    thang: 'months',
     bieuphichuyendoi: 'Conversion fee schedule',
     bieuphiban: 'Redemption fee schedule',
     // order buy
@@ -579,6 +581,7 @@ export default {
     banchuacotaisan: "You don't have any assets",
     contentnondata: `You need to participate in the investment and make transactions by going to the "Investment" section below`,
     tonggiatridaututb: 'Total AVG investment',
+    sotiendautu: 'Total investment',
     tongloilo: 'Total gain/loss',
     taisan: 'Asset',
     //

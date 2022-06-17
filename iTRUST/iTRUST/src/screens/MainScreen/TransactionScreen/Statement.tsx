@@ -46,7 +46,7 @@ function ButtonCalendar(p: {title?: string; onPress: () => void; value?: any}) {
         size={14}
         // color={p.value ? Ecolors.textColor : Ecolors.grayColor}>
         color={Ecolors.textColor}>
-        {!p.value ? p.title : convertTimestamp(p.value.getTime())}
+        {!p.value ? p.title : convertTimestamp(p.value.getTime(), '', true)}
       </Label>
       <ImageView
         heightWidth={17}

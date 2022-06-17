@@ -35,12 +35,16 @@ function EditBankInfoModal() {
   const dispatch = useDispatch();
   const route = useRoute<any>();
   const currentUser = useAppSelector(state => state.authen.currentUser);
-  const {bankAccount} = currentUser;
+  const {bankAccount, bankAccountIsFull} = currentUser;
   const [name, setName] = useState('');
   const [bank, setBank] = useState<any>(null);
   const [branch, setBranch] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [number, setNumber] = useState('');
+  const [annualIncome, setAnnualIncome] = useState<any>(null);
+  const [incomeSource, setIncomeSource] = useState<any>(null);
+  const [job, setJob] = useState<string>('');
+  const [position, setPosition] = useState<string>('');
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
   useEffect(() => {
@@ -103,6 +107,27 @@ function EditBankInfoModal() {
         });
         return;
       }
+      let objAction = {
+        bankId: `${bank?.id}` || '0',
+        branchId: `${branch?.id || bank?.id}` || '0',
+        name: name,
+        number: number,
+      };
+
+      if (!bankAccountIsFull) {
+        if (!position.length || !job.length || !incomeSource || !annualIncome) {
+          Alert.showError({
+            content: `alert.vuilongnhapdayduthongtintaikhoannganhang`,
+            onPress: () => {},
+          });
+          return;
+        }
+        objAction[`position`] = position || '';
+        objAction[`job`] = job || '';
+        objAction[`incomeSource`] = incomeSource?.id || 'SOURCE_OTHER';
+        objAction[`annualIncome`] =
+          annualIncome?.name || annualIncome?.nameEn || '';
+      }
       if (route.params?.onConfirm) {
         route.params?.onConfirm({
           userBankAccount: {
@@ -115,12 +140,7 @@ function EditBankInfoModal() {
         return;
       }
       setLoading(true);
-      const res = await apiAuth.updateInvestmentBank({
-        bankId: `${bank?.id}` || '0',
-        branchId: `${branch?.id || bank?.id}` || '0',
-        name: name,
-        number: number,
-      });
+      const res = await apiAuth.updateInvestmentBank(objAction);
       // console.log('resss', res);
       if (res.status == 200) {
         dispatch(getInfo({}));
@@ -225,6 +245,53 @@ function EditBankInfoModal() {
             paddingHorizontal={0}
             onChange={a => setBranch(a)}
           />
+          {!bankAccountIsFull && (
+            <>
+              <Lbl marginTop={13} content={`accountverify.nghenghiep`} />
+              <InputItem
+                // keyboardType={'number-pad'}
+                value={job}
+                onChangeText={a => setJob(a)}
+                marginHorizontal={0}
+                marginTop={6}
+              />
+              <Lbl marginTop={13} content={`accountverify.chucvu`} />
+              <InputItem
+                // keyboardType={'number-pad'}
+                value={position}
+                onChangeText={a => setPosition(a)}
+                marginHorizontal={0}
+                marginTop={6}
+              />
+              <Lbl
+                marginTop={13}
+                content={`accountverify.mucthunhaphangthang`}
+              />
+              <Dropdown
+                multilanguage={true}
+                isActive={true}
+                content={`accountverify.mucthunhaphangthang`}
+                // url={`bank/branch/list?bankId=${bank?.id || 0}`}
+                initData={stringApp.monthlyIncom || []}
+                marginTop={6}
+                value={annualIncome}
+                paddingHorizontal={0}
+                onChange={a => setAnnualIncome(a)}
+              />
+              <Lbl marginTop={13} content={`accountverify.nguontiendautu`} />
+              <Dropdown
+                multilanguage={true}
+                isActive={true}
+                content={`accountverify.nguontiendautu`}
+                initData={stringApp.source || []}
+                marginTop={6}
+                value={incomeSource}
+                paddingHorizontal={0}
+                onChange={a => setIncomeSource(a)}
+              />
+            </>
+          )}
+          <Div height={50} />
         </Div>
       </ScrollView>
     </Div>

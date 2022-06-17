@@ -8,18 +8,18 @@ import {
   LoadingIndicator,
   Toast,
 } from 'components';
-import {Ecolors, Icons} from 'constant';
-import React, {useRef, useState} from 'react';
-import {Platform} from 'react-native';
+import { Ecolors, Icons } from 'constant';
+import React, { useRef, useState } from 'react';
+import { Platform } from 'react-native';
 import ImageResizer from 'react-native-image-resizer';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   doUploadFileEsignatureRisk,
   doUploadFileSignature,
 } from 'screens/MainScreen/DigitalSignature/func';
-import {navigate} from 'services';
-import {useAppSelector} from 'store/hooks';
-import {getImageCamera, getImageLibrary, Log, widthScreen} from 'utils';
+import { navigate } from 'services';
+import { useAppSelector } from 'store/hooks';
+import { getImageCamera, getImageLibrary, Log, widthScreen } from 'utils';
 import ComActionUpload from './ComActionUpload';
 import SignatureDraw from './SignatureDraw';
 const Btn = (p: {
@@ -51,7 +51,7 @@ const Btn = (p: {
   );
 };
 
-function RowButtonAction(p: {flowApp?: string}) {
+function RowButtonAction(p: { flowApp?: string }) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const bottomSheetUpload = useRef<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -67,7 +67,7 @@ function RowButtonAction(p: {flowApp?: string}) {
 
   const doAction = async image => {
     ImageResizer.createResizedImage(image.uri, 800, 600, 'JPEG', 80, 0)
-      .then(({uri}) => {
+      .then(({ uri }) => {
         if (p.flowApp == 'CreateEsignatureRisk') {
           doUploadFileEsignatureRisk({
             link: uri,
@@ -152,7 +152,7 @@ function RowButtonAction(p: {flowApp?: string}) {
                 });
               }
             } finally {
-              // hide(async () => {});
+              hide(async () => { });
             }
           }}
           onGallery={async () => {
@@ -194,7 +194,7 @@ function RowButtonAction(p: {flowApp?: string}) {
                 return;
               }
             } finally {
-              // hide(async () => {});
+              hide(async () => { });
             }
           }}
         />

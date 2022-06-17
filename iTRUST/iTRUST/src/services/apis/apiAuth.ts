@@ -297,6 +297,9 @@ export const apiAuth = {
       name: string; //  'NGUYEN THANH PHONG';
       branchId: number; // 1;
       bankId: number; //  1;
+      position: string; // position || '',
+      incomeSource: string; // incomeSource?.id || 'SOURCE_OTHER',
+      annualIncome: string; // annualIncome?.name || annualIncome?.nameEn || '',
     };
     isKYC: boolean; //  false : non kyc , auto approve isKyc true ;
   }) => {

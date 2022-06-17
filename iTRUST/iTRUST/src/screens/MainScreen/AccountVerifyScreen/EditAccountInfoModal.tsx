@@ -238,11 +238,6 @@ function EditAccountInfoModal() {
 
   const onConfirm = async () => {
     try {
-      // const currentDate = joinObjectCalendar({
-      //   date: D,
-      //   month: M,
-      //   year: Y,
-      // });
       const a = parseInt(joinObjectCalendar(dob));
       const b = parseInt(
         joinObjectCalendar({

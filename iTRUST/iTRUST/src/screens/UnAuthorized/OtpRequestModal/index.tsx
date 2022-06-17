@@ -190,19 +190,14 @@ function OtpRequestModal() {
       });
       if (res.status == 200) {
         dispatch(getInfo({}));
-        Alert.show({
-          content: `alert.kythanhcong`,
-          type: 2,
-          onClose: () => {
-            navigate('OverviewScreen');
-          },
-          onCancel: () => {
-            navigate('OverviewScreen');
-          },
-          onConfirm: () => {
-            navigate('OverviewScreen');
-          },
+        navigate('OverviewScreen').then(() => {
+          Alert.show({
+            content: `alert.kythanhcong`,
+            multilanguage: true,
+            type: 2,
+          });
         });
+
         return;
       }
       handleErr(res);

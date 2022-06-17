@@ -49,6 +49,7 @@ export enum Icons {
   fincorplable = require('../assets/fincorplable/fincorplable.png'),
   camera = require('../assets/camera/camera.png'),
   signature = require('../assets/signature/signature.png'),
+  link = require('../assets/link/link.png'),
   uppecent = require('../assets/uppecent/uppecent.png'),
   downpecent = require('../assets/downpecent/downpecent.png'),
   listhori = require('../assets/listhori/listhori.png'),

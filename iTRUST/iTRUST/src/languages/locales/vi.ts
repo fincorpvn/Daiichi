@@ -224,6 +224,7 @@ export default {
     nghenghiep: 'Nghề nghiệp',
     chucvu: 'Chức vụ',
     mucthunhaphangthang: 'Mức thu nhập hàng tháng',
+    nguontiendautu: 'Nguồn tiền đầu tư',
     //
 
     hosogoc: 'Hồ sơ gốc',
@@ -304,6 +305,14 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     content3: `Bằng văn bản này, tôi xác nhận thông tin cung cấp ở trên là đúng, chính xác và đầy đủ.\n\nTrong phạm vi luật áp dụng, Tôi theo đây cho phép Công ty Cổ phần Quản lý Quỹ ${stringApp.companyName} được chia sẻ thông tin của tôi với cơ quan thuế nước sở tại hay nước ngoài khi cần thiết để thực hiện nghĩa vụ thuế của tôi tại nơi đó.\n\nKhi được yêu cầu bởi luật pháp hay cơ quan thuế nước sở tại hay nước ngoài. Tôi đồng ý và cho phép ${stringApp.companyName} được trực tiếp khấu trừ từ tài khoản của tôi theo đúng pháp luật hiện hành.\n\nTôi cam kết sẽ thông báo cho ${stringApp.companyName} trong vòng 30 ngày nếu có bất kỳ thay đổi nào đối với thông tin mà tôi đã cung cấp cho ${stringApp.companyName}.`,
   },
   transactionscreen: {
+    // sao ke
+    saokegiaodich: 'Sao kê giao dịch',
+    chonquy: 'Chọn quỹ',
+    theothoidiemgiaodich: 'Theo thời điểm giao dịch',
+    saoke: 'Sao kê',
+    tungay: 'Từ ngày',
+    denngay: 'Đến ngày',
+    //
     giaodich: 'Giao dịch',
     lenhchoxuly: 'Lệnh chờ xử lý',
     lichsugiaodich: 'Lịch sử giao dịch',
@@ -352,7 +361,6 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     xoa: 'Xoá',
     huy: 'Huỷ',
     apdung: 'Áp dụng',
-    theothoidiemgiaodich: 'Theo thời điểm giao dịch',
     theoloailenh: 'Theo loại lệnh',
     tatca: 'Tất cả',
     lenhmua: 'Lệnh mua',
@@ -360,7 +368,6 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     lenhmuahoandoi: 'Lệnh mua hoán đổi',
     lenhbanhoandoi: 'Lệnh bán hoán đổi',
     lenhhoandoi: 'Lệnh hoán đổi',
-    tungay: 'Từ ngày',
     toingay: 'Tới ngày',
     taolenhmua: 'Tạo lệnh mua',
     taolenhban: 'Tạo lệnh bán',
@@ -611,6 +618,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
   },
   alert: {
     vuilongchondayduthongtin: 'Vui lòng chọn đầy đủ thông tin !',
+    kythanhcong: 'Quý khách đã ký điện tử thành công!',
     capnhatmucdoruirothanhcong: 'Cập nhật mức độ rủi ro thành công !',
     taochukysothanhcong: 'Quý khách đã ký điện tử thành công!',
     logout: 'Đăng xuất',

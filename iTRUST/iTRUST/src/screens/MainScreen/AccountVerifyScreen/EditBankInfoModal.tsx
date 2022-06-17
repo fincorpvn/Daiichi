@@ -8,7 +8,7 @@ import {
   InputItem,
   Label,
 } from 'components';
-import {Ecolors, Icons} from 'constant';
+import {Ecolors, Icons, stringApp} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';

@@ -102,6 +102,7 @@ function ReviewInfoModal() {
   const [bank, setBank] = useState<any>(null);
   const [branch, setBranch] = useState<any>(null);
   const [annualIncome, setAnnualIncome] = useState<any>(null);
+  const [incomeSource, setIncomeSource] = useState<any>(null);
   const [job, setJob] = useState<string>('');
   const [position, setPosition] = useState<string>('');
   const [number, setNumber] = useState('');
@@ -243,6 +244,7 @@ function ReviewInfoModal() {
           number: number,
           job: job || '',
           position: position || '',
+          incomeSource: incomeSource?.id || 'SOURCE_OTHER',
           annualIncome: annualIncome?.name || annualIncome?.nameEn || '',
         },
         userAddress: {
@@ -386,6 +388,17 @@ function ReviewInfoModal() {
             value={annualIncome}
             paddingHorizontal={0}
             onChange={a => setAnnualIncome(a)}
+          />
+          <Lbl marginTop={13} content={`accountverify.nguontiendautu`} />
+          <Dropdown
+            multilanguage={true}
+            isActive={true}
+            content={`accountverify.nguontiendautu`}
+            initData={stringApp.source || []}
+            marginTop={6}
+            value={incomeSource}
+            paddingHorizontal={0}
+            onChange={a => setIncomeSource(a)}
           />
         </ItemII>
         <ItemII

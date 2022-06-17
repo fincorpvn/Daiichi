@@ -235,7 +235,7 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
           <Label
             fontWeight={'700'}
             marginBottom={5}>{`createordermodal.chonsanpham`}</Label>
-          <Div paddingBottom={30}>
+          {/* <Div paddingBottom={30}>
             {listProduct?.map((item: any, index: number) => {
               return (
                 <Div>
@@ -269,7 +269,7 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
                 </Div>
               );
             })}
-          </Div>
+          </Div> */}
         </Div>
         <Div paddingHorizontal={20}>
           <Label

@@ -4,6 +4,7 @@ import React from 'react';
 import HistoryTransaction from './HistoryTransaction';
 import OrderTransaction from './OrderTransaction';
 import AutoInvestTranasction from './AutoInvestTranasction';
+import Statement from 'screens/MainScreen/TransactionScreen/Statement';
 
 function TransactionScreen() {
   return (
@@ -26,6 +27,11 @@ function TransactionScreen() {
             component: (a: any) => <AutoInvestTranasction {...a} />,
             title: `transactionscreen.dinhky`,
             key: 'AutoInvestTranasction',
+          },
+          {
+            component: (a: any) => <Statement {...a} />,
+            title: `transactionscreen.saokegiaodich`,
+            key: 'Statement',
           },
         ]}
       />

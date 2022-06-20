@@ -1,12 +1,12 @@
-import { Alert, Button, Div, ImageView, Label } from 'components';
-import { Ecolors, Efonts, EStyle, Icons } from 'constant';
+import {Alert, Button, Div, ImageView, Label} from 'components';
+import {Ecolors, Efonts, EStyle, Icons} from 'constant';
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { deleteOrder } from 'reducer/transaction';
-import { navigate } from 'services';
-import { apiTransaction } from 'services/apis/apiTransaction';
-import { useAppSelector } from 'store/hooks';
+import {StyleSheet} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {deleteOrder} from 'reducer/transaction';
+import {navigate} from 'services';
+import {apiTransaction} from 'services/apis/apiTransaction';
+import {useAppSelector} from 'store/hooks';
 import {
   convertNav,
   convertNumber,
@@ -15,7 +15,7 @@ import {
   Log,
 } from 'utils';
 
-function RowSpaceItem(p: { paddingTop?: number; children?: any }) {
+function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
   return (
     <Div
       paddingTop={p.paddingTop ?? 0}
@@ -27,7 +27,7 @@ function RowSpaceItem(p: { paddingTop?: number; children?: any }) {
   );
 }
 
-function ISwap(p: { title: string }) {
+function ISwap(p: {title: string}) {
   return (
     <Div
       width={149}
@@ -88,9 +88,11 @@ export function ItemOrderBuy(p: {
         <Label size={14}>{`transactionscreen.sotienmua`}</Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
-        <Label fontWeight={'700'} multilanguage={false} size={14}>
-          {I18nState == 'vi' ? productProgramName : productProgramNameEn}
-        </Label>
+        <Div flex={1}>
+          <Label fontWeight={'700'} multilanguage={false} size={14}>
+            {I18nState == 'vi' ? productProgramName : productProgramNameEn}
+          </Label>
+        </Div>
         <Label fontWeight={'700'} multilanguage={false} size={14}>
           {convertNumber(lockAmount, false)}
         </Label>
@@ -121,10 +123,10 @@ export function ItemOrderBuy(p: {
             {I18nState == 'vi'
               ? statusName
               : statusCode == 'ORDER_REJECT'
-                ? 'Not matched'
-                : statusCode == 'ORDER_RECONCILED'
-                  ? `Matched`
-                  : 'Pending'}
+              ? 'Not matched'
+              : statusCode == 'ORDER_RECONCILED'
+              ? `Matched`
+              : 'Pending'}
           </Label>
         </Div>
       </RowSpaceItem>
@@ -144,7 +146,7 @@ export function ItemOrderBuy(p: {
   );
 }
 
-export function ItemOrderSell(p: { data: any }) {
+export function ItemOrderSell(p: {data: any}) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
   const {
@@ -180,9 +182,11 @@ export function ItemOrderSell(p: { data: any }) {
         <Label size={14}>{`transactionscreen.soluong`}</Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
-        <Label fontWeight={'700'} multilanguage={false} size={14}>
-          {I18nState == 'vi' ? productProgramName : productProgramNameEn}
-        </Label>
+        <Div flex={1}>
+          <Label fontWeight={'700'} multilanguage={false} size={14}>
+            {I18nState == 'vi' ? productProgramName : productProgramNameEn}
+          </Label>
+        </Div>
         <Label fontWeight={'700'} multilanguage={false} size={14}>
           {convertNav(volume, true)}
         </Label>
@@ -213,10 +217,10 @@ export function ItemOrderSell(p: { data: any }) {
             {I18nState == 'vi'
               ? statusName
               : statusCode == 'ORDER_REJECT'
-                ? 'Not matched'
-                : statusCode == 'ORDER_RECONCILED'
-                  ? `Matched`
-                  : 'Pending'}
+              ? 'Not matched'
+              : statusCode == 'ORDER_RECONCILED'
+              ? `Matched`
+              : 'Pending'}
           </Label>
         </Div>
       </RowSpaceItem>
@@ -224,7 +228,7 @@ export function ItemOrderSell(p: { data: any }) {
   );
 }
 
-export function ItemOrderTransfer(p: { data: any }) {
+export function ItemOrderTransfer(p: {data: any}) {
   const {
     productProgramName,
     volume,
@@ -275,13 +279,13 @@ export function ItemOrderTransfer(p: { data: any }) {
       Alert.show({
         content: I18nState == 'vi' ? res.message : res.messageEn,
         multilanguage: false,
-        onConfirm: () => { },
+        onConfirm: () => {},
       });
     } catch (error: any) {
       Alert.showError({
         content: I18nState == 'vi' ? error.message : error.messageEn,
         multilanguage: false,
-        onPress: () => { },
+        onPress: () => {},
       });
     } finally {
       // setLoading(false);
@@ -311,9 +315,11 @@ export function ItemOrderTransfer(p: { data: any }) {
         <Label size={14}>{`transactionscreen.phiengiaodich`}</Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
-        <Label fontWeight={'700'} multilanguage={false} size={14}>
-          {productProgramName}
-        </Label>
+        <Div flex={1}>
+          <Label fontWeight={'700'} multilanguage={false} size={14}>
+            {productProgramName}
+          </Label>
+        </Div>
         <Label fontWeight={'700'} multilanguage={false} size={14}>
           {convertTimestamp(sessionTime)}
         </Label>
@@ -328,7 +334,7 @@ export function ItemOrderTransfer(p: { data: any }) {
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
         <Label multilanguage={false} size={14}>
-         {}
+          {}
         </Label>
         <Div
           flexDirection={'row'}
@@ -344,10 +350,10 @@ export function ItemOrderTransfer(p: { data: any }) {
             {I18nState == 'vi'
               ? statusName
               : statusCode == 'ORDER_REJECT'
-                ? 'Not matched'
-                : statusCode == 'ORDER_RECONCILED'
-                  ? `Matched`
-                  : 'Pending'}
+              ? 'Not matched'
+              : statusCode == 'ORDER_RECONCILED'
+              ? `Matched`
+              : 'Pending'}
           </Label>
         </Div>
       </RowSpaceItem>
@@ -491,7 +497,6 @@ export function ItemOrderTransfer(p: { data: any }) {
       </Div>
     </Button> */}
     </Button>
-
   );
 
   return (
@@ -571,7 +576,7 @@ export function ItemOrderTransfer(p: { data: any }) {
   );
 }
 
-export function ItemOrderTransferBuy(p: { data: any }) {
+export function ItemOrderTransferBuy(p: {data: any}) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const {
     productProgramName,
@@ -607,9 +612,11 @@ export function ItemOrderTransferBuy(p: { data: any }) {
         <Label size={14}>{`transactionscreen.phiengiaodich`}</Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
-        <Label fontWeight={'700'} multilanguage={false} size={14}>
-          {productProgramName}
-        </Label>
+        <Div flex={1}>
+          <Label fontWeight={'700'} multilanguage={false} size={14}>
+            {productProgramName}
+          </Label>
+        </Div>
         <Label fontWeight={'700'} multilanguage={false} size={14}>
           {convertTimestamp(sessionTime)}
         </Label>
@@ -626,9 +633,11 @@ export function ItemOrderTransferBuy(p: { data: any }) {
         <Label multilanguage={false} size={14}>
           {productCode}
         </Label>
-        <Label multilanguage={false} size={14}>
-          {productProgramName}
-        </Label>
+        <Div flex={1}>
+          <Label multilanguage={false} size={14}>
+            {productProgramName}
+          </Label>
+        </Div>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={14}>
         <Label
@@ -656,10 +665,10 @@ export function ItemOrderTransferBuy(p: { data: any }) {
             {I18nState == 'vi'
               ? statusName
               : statusCode == 'ORDER_REJECT'
-                ? 'Not matched'
-                : statusCode == 'ORDER_RECONCILED'
-                  ? `Matched`
-                  : 'Pending'}
+              ? 'Not matched'
+              : statusCode == 'ORDER_RECONCILED'
+              ? `Matched`
+              : 'Pending'}
           </Label>
         </Div>
       </RowSpaceItem>

@@ -119,13 +119,15 @@ function ProgramDetailsModal(p: {data: any}) {
           <Div
             flexDirection={'row'}
             alignItems={'center'}
-            height={47}
+            minHeight={47}
             borderBottomWidth={0.7}
             borderBottomColor={Ecolors.spaceColor}
             justifyContent={'space-between'}>
-            <Label marginLeft={20} multilanguage={false} fontWeight={'700'}>
-              {I18nState == 'vi' ? name : nameEn}
-            </Label>
+            <Div flex={1}>
+              <Label marginLeft={20} multilanguage={false} fontWeight={'700'}>
+                {I18nState == 'vi' ? name : nameEn}
+              </Label>
+            </Div>
             <Button
               onPress={() => {
                 goBack();

@@ -134,9 +134,13 @@ function OrderTransferDetailsModal() {
                   {I18nState == 'vi' ? productName : productNameEn}
                 </Label>
               </Div>
-              <Label size={14} multilanguage={false} fontWeight={'700'}>
-                {I18nState == 'vi' ? productProgramName : productProgramNameEn}
-              </Label>
+              <Div flex={1}>
+                <Label size={14} multilanguage={false} fontWeight={'700'}>
+                  {I18nState == 'vi'
+                    ? productProgramName
+                    : productProgramNameEn}
+                </Label>
+              </Div>
             </RowSpaceItem>
             {/*  */}
             <Div
@@ -245,11 +249,13 @@ function OrderTransferDetailsModal() {
               <Label textAlign={'center'} size={14} multilanguage={false}>
                 {destOrderInfo?.productCode}
               </Label>
-              <Label size={14} textAlign={'center'} multilanguage={false}>
-                {I18nState == 'vi'
-                  ? destOrderInfo?.productProgramName
-                  : destOrderInfo?.productProgramNameEn}
-              </Label>
+              <Div flex={1}>
+                <Label size={14} textAlign={'center'} multilanguage={false}>
+                  {I18nState == 'vi'
+                    ? destOrderInfo?.productProgramName
+                    : destOrderInfo?.productProgramNameEn}
+                </Label>
+              </Div>
             </Div>
           </Div>
         </Div>

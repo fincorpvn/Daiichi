@@ -16,6 +16,7 @@ function DrawLine(p: {setIsVisible: (t: boolean) => void}, ref: any) {
     accept: (callback: (t: string) => void) => {
       if (viewshotRef.current) {
         viewshotRef.current.capture().then((uri: string) => {
+          console.log('rurra', uri);
           callback(uri);
         });
       }

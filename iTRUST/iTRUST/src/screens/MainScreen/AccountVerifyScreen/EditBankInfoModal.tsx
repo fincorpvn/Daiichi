@@ -140,8 +140,36 @@ function EditBankInfoModal() {
         return;
       }
       setLoading(true);
-      const res = await apiAuth.updateInvestmentBank(objAction);
-      // console.log('resss', res);
+      const res = await (bankAccountIsFull
+        ? apiAuth.updateInvestmentBankTypeUpdate(objAction)
+        : apiAuth.updateInvestmentBank(objAction));
+      if (res.data && bankAccountIsFull) {
+        navigate('OtpRequestModal', {
+          data: {
+            requestOnSendOtp: res.data,
+            flowApp: 'UpdateBankInfo',
+          },
+          onConfirm: () => {
+            dispatch(getInfo({}));
+            Alert.show({
+              type: 2,
+              titleClose: 'alert.dong',
+              content: `alert.capnhatthongtintaikhoannganhangthanhcong`,
+              onConfirm: () => {
+                navigate('AccountVerifyScreen');
+              },
+              onClose: () => {
+                navigate('AccountVerifyScreen');
+              },
+              onCancel: () => {
+                navigate('AccountVerifyScreen');
+              },
+            });
+            return;
+          },
+        });
+        return;
+      }
       if (res.status == 200) {
         dispatch(getInfo({}));
         Alert.show({

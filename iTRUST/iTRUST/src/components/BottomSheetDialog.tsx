@@ -12,9 +12,10 @@ function BottomSheetDialog(
     show: () => {
       setStateModal(true);
     },
-    hide: (callback?: (x?: any) => void) => {
-      setStateModal(false, (t: any) => {
-        callback && callback(t);
+    hide: () => {
+      return new Promise(async (rs, rj) => {
+        await setStateModal(false);
+        rs(true);
       });
     },
   }));

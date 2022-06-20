@@ -45,9 +45,11 @@ function ItemListHistoryOrder(p: {data: any}) {
       paddingTop={13}
       paddingBottom={18}>
       <RowSpaceItem>
-        <Label size={14} multilanguage={false}>
-          {I18nState == 'vi' ? productProgramName : productProgramNameEn}
-        </Label>
+        <Div flex={1}>
+          <Label size={14} multilanguage={false}>
+            {I18nState == 'vi' ? productProgramName : productProgramNameEn}
+          </Label>
+        </Div>
         <Label size={14}>{`transactionscreen.tongtien`}</Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={5}>

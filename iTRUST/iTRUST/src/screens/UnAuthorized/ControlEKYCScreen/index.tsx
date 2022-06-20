@@ -87,6 +87,8 @@ function ControlEKYCScreen() {
             }),
         },
       );
+
+      console.log('scanData', scanData);
       if (!!scanData) {
         if (scanData?.cardInfo?.result?.kyc_result?.decision?.code == -1) {
           if (countTime.current > 2) {

@@ -2,7 +2,7 @@ import {Div} from 'components';
 import {Ecolors} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
 import {Animated, FlatList} from 'react-native';
-import {getProductList} from 'reducer/asset';
+import {getProductList, getProductListSort} from 'reducer/asset';
 import {useAppSelector} from 'store/hooks';
 import {widthScale, widthScreen} from 'utils';
 import ItemListAsset from './ItemListAsset';
@@ -15,7 +15,7 @@ interface Props {
 const widthItem = widthScale(259);
 
 function ListAssetHori({itemFocus, setItemFocus}: Props) {
-  const productList = useAppSelector(state => getProductList(state));
+  const productList = useAppSelector(state => getProductListSort(state));
   const scrollX = useRef(new Animated.Value(0)).current;
 
   const onViewableItemsChanged = React.useRef((res: any) => {

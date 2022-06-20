@@ -189,6 +189,10 @@ function ReviewInfoModal() {
       !isAccept ||
       !number.length ||
       !bank ||
+      !position.length ||
+      !job.length ||
+      !incomeSource ||
+      !annualIncome ||
       !branch ||
       //
       (!ward && !userAddress?.ward) ||
@@ -510,9 +514,9 @@ function ReviewInfoModal() {
             value={userProfile?.placeOfIssue || ''}
             marginHorizontal={0}
           />
-          <Label marginTop={20} size={14}>
+          {/* <Label marginTop={20} size={14}>
             {`reviewinfoscreen.taihinhanh`}
-          </Label>
+          </Label> */}
           <Div
             flexDirection={'row'}
             marginTop={6}

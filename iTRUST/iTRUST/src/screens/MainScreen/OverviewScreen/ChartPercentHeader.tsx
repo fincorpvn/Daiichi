@@ -1,7 +1,7 @@
 import {Div, ImageView, Label} from 'components';
 import {Ecolors, Icons} from 'constant';
 import React, {useEffect, useState} from 'react';
-import {getAsset, getProductList} from 'reducer/asset';
+import {getAsset, getProductList, getProductListSort} from 'reducer/asset';
 import {useAppSelector} from 'store/hooks';
 import Pie from 'react-native-pie';
 import {
@@ -17,7 +17,7 @@ interface Props {
 }
 
 function ChartPercentHeader({itemFocus, setItemFocus}: Props) {
-  const productList = useAppSelector(state => getProductList(state));
+  const productList = useAppSelector(state => getProductListSort(state));
   const [section, setSection] = useState<Array<any>>([]);
   const asset = useAppSelector(state => getAsset(state));
   useEffect(() => {
@@ -64,7 +64,7 @@ function ChartPercentHeader({itemFocus, setItemFocus}: Props) {
         <Pie
           backgroundColor={Ecolors.whiteColor}
           radius={widthScale(80)}
-          dividerSize={3}
+          dividerSize={widthScale(0.8)}
           sections={section}
         />
       </Div>

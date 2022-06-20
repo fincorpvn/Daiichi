@@ -66,15 +66,15 @@ function Statement(p: {activeTab: number}) {
   const value = useRef<'from' | 'to'>('from');
   const [isShowCalendar, setIsShowCalendar] = useState(false);
   const onChange = (e: any, a: any) => {
+    if (Platform.OS === 'android') {
+      setIsShowCalendar(false);
+    }
     if (a) {
       if (value.current == 'from') {
         setFromDate(a);
       } else {
         setToDate(a);
       }
-    }
-    if (Platform.OS === 'android') {
-      setIsShowCalendar(false);
     }
   };
 
@@ -95,6 +95,7 @@ function Statement(p: {activeTab: number}) {
         date: toDate.getDate(),
         month: toDate.getMonth(),
         year: toDate.getFullYear(),
+        isPicker: true,
       });
     }
     if (fromDate) {
@@ -102,6 +103,7 @@ function Statement(p: {activeTab: number}) {
         date: fromDate.getDate(),
         month: fromDate.getMonth(),
         year: fromDate.getFullYear(),
+        isPicker: true,
       });
     }
     body['productCode'] = product.code;
@@ -109,9 +111,6 @@ function Statement(p: {activeTab: number}) {
       return;
     }
     setLoading(true);
-    console.log('ressss', {
-      body,
-    });
     try {
       const token = await getStoreToken();
       const url = `report/transactions-history`;

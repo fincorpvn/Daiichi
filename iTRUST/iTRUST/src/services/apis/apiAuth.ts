@@ -96,6 +96,50 @@ export const apiAuth = {
       throw error;
     }
   },
+  confirmUpdateBankInfo: async (params: {
+    expiredDurationInMinutes?: number;
+    expiredTime?: number;
+    otpTransId?: string;
+    time?: number;
+    transId?: string;
+    otp?: string;
+  }) => {
+    try {
+      const url = 'user/investment/bank-update/confirm';
+      return doPostAxios(url, {
+        expiredTime: params.expiredTime || 0,
+        expiredDurationInMinutes: params.expiredDurationInMinutes || 0,
+        time: params.time || 0,
+        otpTransId: params.otpTransId || '',
+        transId: params.transId || '',
+        otp: params.otp || '',
+      });
+    } catch (error: any) {
+      throw error;
+    }
+  },
+  confirmUpdateAddressInfo: async (params: {
+    expiredDurationInMinutes?: number;
+    expiredTime?: number;
+    otpTransId?: string;
+    time?: number;
+    transId?: string;
+    otp?: string;
+  }) => {
+    try {
+      const url = 'user/update-address/confirm';
+      return doPostAxios(url, {
+        expiredTime: params.expiredTime || 0,
+        expiredDurationInMinutes: params.expiredDurationInMinutes || 0,
+        time: params.time || 0,
+        otpTransId: params.otpTransId || '',
+        transId: params.transId || '',
+        otp: params.otp || '',
+      });
+    } catch (error: any) {
+      throw error;
+    }
+  },
   // forgot password
   forgotPassSendOtp: async (params: {username?: string}) => {
     try {
@@ -219,6 +263,16 @@ export const apiAuth = {
     const url = 'user/investment/bank-update';
     return doPostAxios(url, params);
   },
+  // update bank info
+  updateInvestmentBankTypeUpdate: (params: {
+    bankId: string;
+    branchId: string;
+    name: string;
+    number: string;
+  }) => {
+    const url = 'user/investment/bank-update/create';
+    return doPostAxios(url, params);
+  },
   // update address investment address info modal
   updateInvestmentAddress: (params: {
     countryId: string;
@@ -233,6 +287,21 @@ export const apiAuth = {
     wardId: string;
   }) => {
     const url = 'user/investment/address-update';
+    return doPostAxios(url, params);
+  },
+  updateInvestmentAddressTypeUpdate: (params: {
+    countryId: string;
+    districtId: string;
+    mailingAddress: string;
+    mailingCountryId: string;
+    mailingDistrictId: string;
+    mailingProvinceId: string;
+    mailingWardId: string;
+    permanentAddress: string;
+    provinceId: string;
+    wardId: string;
+  }) => {
+    const url = 'user/update-address/create';
     return doPostAxios(url, params);
   },
   // confirm modal
@@ -303,6 +372,7 @@ export const apiAuth = {
     };
     isKYC: boolean; //  false : non kyc , auto approve isKyc true ;
   }) => {
+    console.log('params', params);
     const url = 'user/investment/create-ekyc?fatca=false';
     return doPostAxios(url, params);
   },

@@ -173,6 +173,7 @@ function OrderBuyDetailsModal() {
               </Div>
               <Div
                 height={'100%'}
+                flex={1}
                 flexDirection={'row'}
                 alignItems={'flex-start'}>
                 <Label size={14} multilanguage={false} fontWeight={'700'}>

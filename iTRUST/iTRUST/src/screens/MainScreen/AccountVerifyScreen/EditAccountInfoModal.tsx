@@ -14,8 +14,8 @@ import {
   LoadingIndicator,
   Toast,
 } from 'components';
-import { Ecolors, EStyle, Icons } from 'constant';
-import React, { useEffect, useRef, useState } from 'react';
+import {Ecolors, EStyle, Icons} from 'constant';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   ActivityIndicator,
   Platform,
@@ -23,17 +23,16 @@ import {
   StyleSheet,
 } from 'react-native';
 import ImageResizer from 'react-native-image-resizer';
-import { useDispatch } from 'react-redux';
-import { getInfo } from 'reducer/authen';
+import {useDispatch} from 'react-redux';
+import {getInfo} from 'reducer/authen';
 import ComActionUpload from 'screens/MainScreen/DigitalSignature/ComActionUpload';
-import { apiAuth, goBack, navigate, uploadFile } from 'services';
-import { apiMain } from 'services/apis/apiMain';
-import { useAppSelector } from 'store/hooks';
+import {apiAuth, goBack, navigate, uploadFile} from 'services';
+import {apiMain} from 'services/apis/apiMain';
+import {useAppSelector} from 'store/hooks';
 import {
   convertTimestamp,
   getImageCamera,
   getImageLibrary,
-  getUuid,
   joinObjectCalendar,
   Log,
   reJoinObjectCalendar,
@@ -45,7 +44,7 @@ const D = parseInt(currentDate[0]);
 const M = parseInt(currentDate[1]);
 const Y = parseInt(currentDate[2]);
 
-function Lbl(p: { content: string }) {
+function Lbl(p: {content: string}) {
   return (
     <Label marginTop={10} multilanguage={false}>
       <Label>{p.content}</Label>
@@ -143,13 +142,13 @@ function EditAccountInfoModal() {
       getCountryData();
       bindData(currentUser);
     }, 200);
-    return () => { };
+    return () => {};
   }, [currentUser]);
 
-  const hide = (cb?: (t?: any) => void) => {
+  const hide = (cb?: () => void) => {
     if (bottomSheetUpload.current) {
-      bottomSheetUpload.current.hide((t: any) => {
-        cb && cb(t);
+      bottomSheetUpload.current.hide().then(() => {
+        cb && cb();
       });
     }
   };
@@ -165,7 +164,7 @@ function EditAccountInfoModal() {
           setNationality(dataNationality);
         }
       }
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const bindData = async (a: any) => {
@@ -176,12 +175,12 @@ function EditAccountInfoModal() {
       setGender(a?.gender || null),
       setType(
         a?.idTypeId == 1
-          ? { id: '1', name: 'CMND/CCCD', namevn: 'CMND/CCCD' }
+          ? {id: '1', name: 'CMND/CCCD', namevn: 'CMND/CCCD'}
           : {
-            id: '5',
-            name: 'Mã giao dịch chứng khoán',
-            nameen: 'Mã giao dịch chứng khoán',
-          },
+              id: '5',
+              name: 'Mã giao dịch chứng khoán',
+              nameen: 'Mã giao dịch chứng khoán',
+            },
       ),
       setDob(reJoinObjectCalendar(convertTimestamp(a?.dob))),
       setDateOfIssue(reJoinObjectCalendar(convertTimestamp(a?.dateOfIssue))),
@@ -203,7 +202,7 @@ function EditAccountInfoModal() {
               ? image.base64.replace(/\n/g, '')
               : image.base64,
         });
-        callback && callback({ ...image, dataUPload });
+        callback && callback({...image, dataUPload});
       }
     } catch (error) {
     } finally {
@@ -224,10 +223,15 @@ function EditAccountInfoModal() {
       });
       if (dataUpload) {
         if (imageUpload.current == 'before') {
-          setPhotoBefore({ ...r, ...dataUpload, dataUpload });
+          setPhotoBefore({...r, ...dataUpload, dataUpload});
         } else {
-          setPhotoAfter({ ...r, ...dataUpload, dataUpload });
+          setPhotoAfter({...r, ...dataUpload, dataUpload});
         }
+      } else {
+        Toast.show({
+          content: 'alert.daxayraloi',
+          multilanguage: true,
+        });
       }
     } catch (error) {
     } finally {
@@ -249,7 +253,7 @@ function EditAccountInfoModal() {
       if (Math.floor(b - a) < 180000) {
         Alert.showError({
           content: `alert.chuadutuoi`,
-          onPress: () => { },
+          onPress: () => {},
         });
         return;
       }
@@ -263,7 +267,7 @@ function EditAccountInfoModal() {
       ) {
         Alert.showError({
           content: `alert.vuilongnhapdayduthongtincanhan`,
-          onPress: () => { },
+          onPress: () => {},
         });
         return;
       }
@@ -359,13 +363,17 @@ function EditAccountInfoModal() {
           onCamera={async () => {
             try {
               if (Platform.OS === 'ios') {
-                await getImageCamera().then(async (image: any) => {
-                  hide()
-                  if (image[0]) {
-                    return onUploadImage(image[0]);
-                  }
-                }).catch(() => { hide() })
-                return
+                await getImageCamera()
+                  .then(async (image: any) => {
+                    hide();
+                    if (image[0]) {
+                      return onUploadImage(image[0]);
+                    }
+                  })
+                  .catch(() => {
+                    hide();
+                  });
+                return;
               }
               hide(async () => {
                 await getImageCamera().then(async (image: any) => {
@@ -382,19 +390,21 @@ function EditAccountInfoModal() {
                 });
               }
             } finally {
-              hide()
+              hide();
             }
           }}
           onGallery={async () => {
             try {
               if (Platform.OS === 'ios') {
-                await getImageLibrary().then(async (image: any) => {
-                  hide()
-                  return onUploadImage(image[0]);
-                }).catch(() => {
-                  hide()
-                })
-                return
+                await getImageLibrary()
+                  .then(async (image: any) => {
+                    hide();
+                    return onUploadImage(image[0]);
+                  })
+                  .catch(() => {
+                    hide();
+                  });
+                return;
               }
               hide(async () => {
                 await getImageLibrary().then(async (image: any) => {
@@ -410,7 +420,7 @@ function EditAccountInfoModal() {
                 return;
               }
             } finally {
-              hide()
+              hide();
             }
           }}
         />
@@ -536,7 +546,7 @@ function EditAccountInfoModal() {
                 name: 'Mã giao dịch chứng khoán',
                 nameen: 'Mã giao dịch chứng khoán',
               },
-              { id: '1', name: 'CMND/CCCD', nameen: 'CMND/CCCD' },
+              {id: '1', name: 'CMND/CCCD', nameen: 'CMND/CCCD'},
             ]}
             multilanguage={true}
             value={type}

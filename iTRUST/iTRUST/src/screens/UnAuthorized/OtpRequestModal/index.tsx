@@ -176,6 +176,14 @@ function OtpRequestModal() {
         onConfirmCreateEsignatureRisk();
         return;
       }
+      if (params.data.flowApp == 'UpdateBankInfo') {
+        onConfirmUpdateBankInfo();
+        return;
+      }
+      if (params.data.flowApp == 'UpdateAddressInfo') {
+        onConfirmUpdateAddressInfo();
+        return;
+      }
       onConfirm();
       return;
     }
@@ -275,6 +283,61 @@ function OtpRequestModal() {
     try {
       setLoadingConfirm(true);
       const res = await apiAuth.confirm({
+        ...requestOnSendOtp,
+        otp,
+      });
+      if (res.status == 200) {
+        goBack();
+        setTimeout(() => {
+          if (!!params.onConfirm) {
+            params.onConfirm();
+          }
+        }, 150);
+        return;
+      } else {
+        Alert.showError({
+          multilanguage: false,
+          content: I18nState == 'vi' ? res.message : res.messageEn,
+        });
+      }
+    } catch (error: any) {
+      handleErr(error);
+    } finally {
+      setLoadingConfirm(false);
+    }
+  };
+
+  const onConfirmUpdateBankInfo = async () => {
+    try {
+      setLoadingConfirm(true);
+      const res = await apiAuth.confirmUpdateBankInfo({
+        ...requestOnSendOtp,
+        otp,
+      });
+      if (res.status == 200) {
+        goBack();
+        setTimeout(() => {
+          if (!!params.onConfirm) {
+            params.onConfirm();
+          }
+        }, 150);
+        return;
+      } else {
+        Alert.showError({
+          multilanguage: false,
+          content: I18nState == 'vi' ? res.message : res.messageEn,
+        });
+      }
+    } catch (error: any) {
+      handleErr(error);
+    } finally {
+      setLoadingConfirm(false);
+    }
+  };
+  const onConfirmUpdateAddressInfo = async () => {
+    try {
+      setLoadingConfirm(true);
+      const res = await apiAuth.confirmUpdateAddressInfo({
         ...requestOnSendOtp,
         otp,
       });

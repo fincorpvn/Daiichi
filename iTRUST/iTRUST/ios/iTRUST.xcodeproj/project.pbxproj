@@ -18,7 +18,6 @@
 		451EB77108D14F9CAB969942 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DC86A88B08442158EBEC4CD /* Roboto-MediumItalic.ttf */; };
 		66A163342AC2414EB32ECE93 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7636BA13E4D476FB2748741 /* Roboto-Medium.ttf */; };
 		6CC6672188504506995A9BD8 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3773226012145D3B37A6C35 /* Roboto-Bold.ttf */; };
-		730FA47727D9F1D1001F7375 /* TouchID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA47627D9F1D1001F7375 /* TouchID.framework */; };
 		730FA47927D9F1D7001F7375 /* RNCMaskedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA47827D9F1D7001F7375 /* RNCMaskedView.framework */; };
 		730FA47B27D9F1E4001F7375 /* RNI18n.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA47A27D9F1E4001F7375 /* RNI18n.framework */; };
 		730FA47D27D9F281001F7375 /* ReactNativeART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA47C27D9F281001F7375 /* ReactNativeART.framework */; };
@@ -144,7 +143,6 @@
 				730FA47D27D9F281001F7375 /* ReactNativeART.framework in Frameworks */,
 				730FA47B27D9F1E4001F7375 /* RNI18n.framework in Frameworks */,
 				730FA47927D9F1D7001F7375 /* RNCMaskedView.framework in Frameworks */,
-				730FA47727D9F1D1001F7375 /* TouchID.framework in Frameworks */,
 				8863ABAD5CE0FF5EFDEE6090 /* Pods_iTRUST.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -655,7 +653,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iTRUST/iTRUST.entitlements;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 67J6WUBVUP;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "$(inherited)";
@@ -683,7 +681,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iTRUST/iTRUST.entitlements;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 67J6WUBVUP;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "$(inherited) $(inherited)";

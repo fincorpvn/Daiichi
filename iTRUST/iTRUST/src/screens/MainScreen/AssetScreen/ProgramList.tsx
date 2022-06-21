@@ -19,6 +19,15 @@ import {
   widthScale,
 } from 'utils';
 
+const LblWithVND = (p: {children: any}) => {
+  return (
+    <Label color={Ecolors.grayColor} size={14} multilanguage={false}>
+      {p.children && p.children}
+      {` (VNĐ)`}
+    </Label>
+  );
+};
+
 function RowSpaceItem(p: {
   marginTop?: number;
   children: any;
@@ -108,43 +117,55 @@ function ItemTable(p: {item: any}) {
         <Label
           color={Ecolors.grayColor}
           size={14}>{`assetscreen.soluong`}</Label>
-        <Label
-          color={Ecolors.grayColor}
-          size={14}>{`assetscreen.tongdautu`}</Label>
+        <LblWithVND>
+          <Label
+            color={Ecolors.grayColor}
+            size={14}>{`assetscreen.tongdautu`}</Label>
+        </LblWithVND>
       </RowSpaceItem>
       <RowSpaceItem isBorderBottom={true} marginTop={13}>
         <Label multilanguage={false} size={14}>
           {convertNav(p.item.holdingVolume, true)}
         </Label>
         <Label multilanguage={false} size={14}>
-          {convertNumber(`${Math.round(p.item.lockAmount ?? 0)}`)}
+          {convertNumber(`${Math.round(p.item.lockAmount ?? 0)}`, true)}
         </Label>
       </RowSpaceItem>
       <RowSpaceItem marginTop={13}>
-        <Label
-          color={Ecolors.grayColor}
-          size={14}>{`assetscreen.giamua`}</Label>
-        <Label
-          color={Ecolors.grayColor}
-          size={14}>{`assetscreen.navkitruoc`}</Label>
+        <LblWithVND>
+          <Label
+            color={Ecolors.grayColor}
+            size={14}>{`assetscreen.giamua`}</Label>
+        </LblWithVND>
+        <LblWithVND>
+          <Label
+            color={Ecolors.grayColor}
+            size={14}>{`assetscreen.navkitruoc`}</Label>
+        </LblWithVND>
       </RowSpaceItem>
       <RowSpaceItem isBorderBottom={true} marginTop={13}>
         <Label multilanguage={false} size={14}>
-          {convertNav(p.item.price)}
+          {convertNav(p.item.price, true)}
         </Label>
         <Label multilanguage={false} size={14}>
-          {convertNav(p.item.navCurrently)}
+          {convertNav(p.item.navCurrently, true)}
         </Label>
       </RowSpaceItem>
       <RowSpaceItem marginTop={13}>
-        <Label
-          color={Ecolors.grayColor}
-          size={14}>{`assetscreen.giatrihientai`}</Label>
-        <Label color={Ecolors.grayColor} size={14}>{`assetscreen.loilo`}</Label>
+        <LblWithVND>
+          <Label
+            color={Ecolors.grayColor}
+            size={14}>{`assetscreen.giatrihientai`}</Label>
+        </LblWithVND>
+        <LblWithVND>
+          <Label
+            color={Ecolors.grayColor}
+            size={14}>{`assetscreen.loilo`}</Label>
+        </LblWithVND>
       </RowSpaceItem>
       <RowSpaceItem marginTop={13}>
         <Label multilanguage={false} size={14}>
-          {convertNumber(Math.round(p.item.sumOfValue ?? 0))}
+          {convertNumber(Math.round(p.item.sumOfValue ?? 0), true)}
         </Label>
         <Label
           color={
@@ -155,7 +176,7 @@ function ItemTable(p: {item: any}) {
           multilanguage={false}
           size={14}>
           {p.item.interestOrHoleAmount >= 0 && '+'}
-          {convertNumber(Math.round(p.item.interestOrHoleAmount ?? 0))}
+          {convertNumber(Math.round(p.item.interestOrHoleAmount ?? 0), true)}
           {' ('}
           {p.item.interestOrHolePercent >= 0 && '+'}
           {`${convertPercent(p.item.interestOrHolePercent)}`}

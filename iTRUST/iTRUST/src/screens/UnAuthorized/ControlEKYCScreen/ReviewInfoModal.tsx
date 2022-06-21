@@ -102,6 +102,7 @@ function ReviewInfoModal() {
   const [bank, setBank] = useState<any>(null);
   const [branch, setBranch] = useState<any>(null);
   const [annualIncome, setAnnualIncome] = useState<any>(null);
+  const [incomeSource, setIncomeSource] = useState<any>(null);
   const [job, setJob] = useState<string>('');
   const [position, setPosition] = useState<string>('');
   const [number, setNumber] = useState('');
@@ -188,6 +189,10 @@ function ReviewInfoModal() {
       !isAccept ||
       !number.length ||
       !bank ||
+      !position.length ||
+      !job.length ||
+      !incomeSource ||
+      !annualIncome ||
       !branch ||
       //
       (!ward && !userAddress?.ward) ||
@@ -243,6 +248,7 @@ function ReviewInfoModal() {
           number: number,
           job: job || '',
           position: position || '',
+          incomeSource: incomeSource?.id || 'SOURCE_OTHER',
           annualIncome: annualIncome?.name || annualIncome?.nameEn || '',
         },
         userAddress: {
@@ -387,6 +393,17 @@ function ReviewInfoModal() {
             paddingHorizontal={0}
             onChange={a => setAnnualIncome(a)}
           />
+          <Lbl marginTop={13} content={`accountverify.nguontiendautu`} />
+          <Dropdown
+            multilanguage={true}
+            isActive={true}
+            content={`accountverify.nguontiendautu`}
+            initData={stringApp.source || []}
+            marginTop={6}
+            value={incomeSource}
+            paddingHorizontal={0}
+            onChange={a => setIncomeSource(a)}
+          />
         </ItemII>
         <ItemII
           title={'reviewinfoscreen.thongtincanhan'}
@@ -497,9 +514,9 @@ function ReviewInfoModal() {
             value={userProfile?.placeOfIssue || ''}
             marginHorizontal={0}
           />
-          <Label marginTop={20} size={14}>
+          {/* <Label marginTop={20} size={14}>
             {`reviewinfoscreen.taihinhanh`}
-          </Label>
+          </Label> */}
           <Div
             flexDirection={'row'}
             marginTop={6}

@@ -118,7 +118,7 @@ function HeaderBack({
               multilanguage={multilanguage ?? true}
               size={16}
               color={Ecolors.textColor}>
-              {title}
+              {multilanguage ? title : title?.replace('(', `\n(`)}
             </Label>
           </Div>
           {titleRight && (

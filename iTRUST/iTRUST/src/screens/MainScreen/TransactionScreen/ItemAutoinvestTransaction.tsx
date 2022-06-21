@@ -1,11 +1,11 @@
-import { Button, Div, Label } from 'components';
-import { Ecolors, EStyle } from 'constant';
+import {Button, Div, Label} from 'components';
+import {Ecolors, EStyle} from 'constant';
 import React from 'react';
-import { navigate } from 'services';
-import { useAppSelector } from 'store/hooks';
-import { convertNumber } from 'utils';
+import {navigate} from 'services';
+import {useAppSelector} from 'store/hooks';
+import {convertNumber} from 'utils';
 
-function RowSpaceItem(p: { paddingTop?: number; children?: any }) {
+function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
   return (
     <Div
       paddingTop={p.paddingTop ?? 0}
@@ -17,7 +17,7 @@ function RowSpaceItem(p: { paddingTop?: number; children?: any }) {
   );
 }
 
-function ItemAutoInvestTransaction(p: { data: any }) {
+function ItemAutoInvestTransaction(p: {data: any}) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const {
     productProgramName,
@@ -55,9 +55,17 @@ function ItemAutoInvestTransaction(p: { data: any }) {
           size={14}>{`transactionscreen.tinhtrang`}</Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
-        <Label multilanguage={false} fontWeight={'700'} size={14}>
-          {I18nState == 'vi' ? productProgramName : productProgramNameEn}
-        </Label>
+        <Div flex={1}>
+          <Label
+            size={14}
+            textAlign={'left'}
+            multilanguage={false}
+            fontWeight={'700'}>
+            {`${
+              I18nState == 'vi' ? productProgramName : productProgramNameEn
+            }`?.replace('(', `\n(`)}
+          </Label>
+        </Div>
         <Label
           color={enable ? Ecolors.greenColor : Ecolors.redColor}
           size={14}
@@ -67,8 +75,8 @@ function ItemAutoInvestTransaction(p: { data: any }) {
               ? 'Đang tham gia'
               : 'Đã dừng'
             : enable
-              ? 'Going'
-              : 'Stop'}
+            ? 'Going'
+            : 'Stop'}
         </Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={14}>

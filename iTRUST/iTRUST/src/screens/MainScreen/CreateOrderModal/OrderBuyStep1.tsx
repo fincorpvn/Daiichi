@@ -164,6 +164,28 @@ function OrderBuyStep1({
               </Label>
             </Div>
           )}
+          {!!scheme?.minContinuousCycle && !!scheme && (
+            <Div
+              marginTop={7}
+              flexDirection={'row'}
+              alignItems={'center'}
+              justifyContent={'flex-end'}>
+              <ImageView
+                source={Icons.warningamount}
+                widthHeight={16}
+                resizeMode={'contain'}
+              />
+              <Label
+                marginLeft={5}
+                size={
+                  12
+                }>{`createordermodal.thoigiandautulientuctoithieu`}</Label>
+              <Label marginLeft={5} size={12} multilanguage={false}>
+                {scheme?.minContinuousCycle}
+              </Label>
+              <Label marginLeft={5} size={12}>{`createordermodal.thang`}</Label>
+            </Div>
+          )}
 
           {!!excuseTempVolumn && (
             <Div marginTop={17}>
@@ -448,6 +470,16 @@ function OrderBuyStep1({
                       : `Please transfer money to your investment account on ${
                           beginBuyAutoStartDate || ''
                         } monthly`}
+                  </Label>
+                  <Label marginTop={8} size={12} multilanguage={false}>
+                    {I18nState == 'vi'
+                      ? `Nhà đầu tư đăng ký tham gia Chương trình Đầu tư Định kỳ cho Quỹ mở do DFVN phát hành và quản lý thì cũng được áp dụng cho các Quỹ mở khác do DFVN phát hành và quản lý.`
+                      : `Nhà đầu tư đăng ký tham gia Chương trình Đầu tư Định kỳ cho Quỹ mở do DFVN phát hành và quản lý thì cũng được áp dụng cho các Quỹ mở khác do DFVN phát hành và quản lý.`}
+                  </Label>
+                  <Label marginTop={8} size={12} multilanguage={false}>
+                    {I18nState == 'vi'
+                      ? `Đối với Chương trình Đầu tư Định kỳ: Nhà đầu tư không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua Định kỳ.`
+                      : `Đối với Chương trình Đầu tư Định kỳ: Nhà đầu tư không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua Định kỳ.`}
                   </Label>
                 </Div>
               </Div>

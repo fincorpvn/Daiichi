@@ -103,11 +103,9 @@ function AccountInfoModal() {
                   }),
                 )
                 .then((r: any) => {
-                  console.log('item', item);
-                  // resolve(r);
-                  // if (r) {
+                  setLoading(false);
+
                   resolve(r.base64());
-                  // }
                   return;
                 });
             } catch (error) {
@@ -131,7 +129,7 @@ function AccountInfoModal() {
         dispatch(changeUserPhotos(newList));
       }
     } catch (error) {
-      Log('erorrr', error);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
@@ -169,6 +167,7 @@ function AccountInfoModal() {
       <HeaderBack
         type={2}
         iconRight={isEdit ? Icons.edit : null}
+        // iconRight={Icons.edit}
         title={`accountverify.thongtincanhan`}
         onRightPress={() => {
           navigate('EditAccountInfoModal');

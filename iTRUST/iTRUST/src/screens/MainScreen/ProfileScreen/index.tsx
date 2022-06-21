@@ -62,7 +62,10 @@ function ProfileScreen() {
           userInfoIsFull &&
           bankAccountIsFull &&
           userAddressIsFull &&
-          riskInfo
+          riskInfo &&
+          currentUser?.investmentProfile?.status &&
+          currentUser?.investmentProfile?.status?.code !=
+            'INVESTMENT_PROFILE_REJECT'
         ) {
           navigate('DigitalSignatureScreen');
           return;

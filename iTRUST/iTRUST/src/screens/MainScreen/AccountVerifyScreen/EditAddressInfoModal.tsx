@@ -43,6 +43,14 @@ function EditAddressInfoModal() {
   const dispatch = useDispatch();
 
   const currentUser = useAppSelector(state => state.authen.currentUser);
+  const {
+    email,
+    phone,
+    riskInfo,
+    bankAccountIsFull,
+    userInfoIsFull,
+    userAddressIsFull,
+  } = currentUser;
 
   useEffect(() => {
     bindData();
@@ -117,7 +125,8 @@ function EditAddressInfoModal() {
         });
         return;
       }
-      const res = await apiAuth.updateInvestmentAddress({
+
+      const objData = {
         countryId: permanentCountry?.id || 234,
         provinceId: permanentProvince?.id,
         districtId: permanentDistrict?.id,
@@ -129,7 +138,38 @@ function EditAddressInfoModal() {
         mailingDistrictId: mailingDistrict?.id,
         mailingWardId: mailingWard?.id,
         mailingAddress: mailingAddress,
-      });
+      };
+
+      const res = await (userAddressIsFull
+        ? apiAuth.updateInvestmentAddressTypeUpdate(objData)
+        : apiAuth.updateInvestmentAddress(objData));
+      if (userAddressIsFull && res.data) {
+        navigate('OtpRequestModal', {
+          data: {
+            requestOnSendOtp: res.data,
+            flowApp: 'UpdateAddressInfo',
+          },
+          onConfirm: () => {
+            dispatch(getInfo({}));
+            Alert.show({
+              type: 2,
+              titleClose: 'alert.dong',
+              content: `alert.capnhatdiachithanhcong`,
+              onConfirm: () => {
+                navigate('AccountVerifyScreen');
+              },
+              onClose: () => {
+                navigate('AccountVerifyScreen');
+              },
+              onCancel: () => {
+                navigate('AccountVerifyScreen');
+              },
+            });
+            return;
+          },
+        });
+        return;
+      }
       if (res.status == 200) {
         dispatch(getInfo({}));
         Alert.show({

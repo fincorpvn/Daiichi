@@ -143,15 +143,15 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
     console.log(e);
   };
   const onChange = (e: any, a: any) => {
+    if (Platform.OS === 'android') {
+      setIsShowCalendar(false);
+    }
     if (a) {
       if (value.current == 'from') {
         setFromDate(a);
       } else {
         setToDate(a);
       }
-    }
-    if (Platform.OS === 'android') {
-      setIsShowCalendar(false);
     }
   };
 
@@ -173,6 +173,7 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
         date: toDate.getDate(),
         month: toDate.getMonth(),
         year: toDate.getFullYear(),
+        isPicker: true,
       });
     }
     if (fromDate) {
@@ -180,6 +181,7 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
         date: fromDate.getDate(),
         month: fromDate.getMonth(),
         year: fromDate.getFullYear(),
+        isPicker: true,
       });
     }
     dispatch(
@@ -235,7 +237,7 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
           <Label
             fontWeight={'700'}
             marginBottom={5}>{`createordermodal.chonsanpham`}</Label>
-          <Div paddingBottom={30}>
+          {/* <Div paddingBottom={30}>
             {listProduct?.map((item: any, index: number) => {
               return (
                 <Div>
@@ -269,7 +271,7 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
                 </Div>
               );
             })}
-          </Div>
+          </Div> */}
         </Div>
         <Div paddingHorizontal={20}>
           <Label

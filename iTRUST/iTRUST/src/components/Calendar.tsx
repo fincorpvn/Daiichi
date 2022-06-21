@@ -1,13 +1,7 @@
 import {Div, Dropdown, Input, InputItem} from 'components';
 import {Ecolors} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
-import {
-  getNumdateCalenda,
-  joinObjectCalendar,
-  parseArrayNum,
-  widthScale,
-  widthScreen,
-} from 'utils';
+import {getNumdateCalenda, parseArrayNum} from 'utils';
 const size = 105;
 
 function Calendar(Props: {onChange: (e: any) => void; initValue?: any}) {

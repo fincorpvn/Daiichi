@@ -187,13 +187,21 @@ function OrderSellDetailsModal() {
                 </Label>
               </Div>
               <Div
+                flex={1}
                 height={'100%'}
                 flexDirection={'row'}
+                justifyContent={'flex-end'}
                 alignItems={'flex-start'}>
-                <Label size={14} multilanguage={false} fontWeight={'700'}>
-                  {I18nState == 'vi'
-                    ? productProgramName
-                    : productProgramNameEn}
+                <Label
+                  size={14}
+                  textAlign={'right'}
+                  multilanguage={false}
+                  fontWeight={'700'}>
+                  {`${
+                    I18nState == 'vi'
+                      ? productProgramName
+                      : productProgramNameEn
+                  }`?.replace('(', `\n(`)}
                 </Label>
               </Div>
             </RowSpaceItem>

@@ -31,10 +31,7 @@ function AccountVerifyScreen() {
       <ItemCard
         title={'accountverify.thongtincanhan'}
         isLine={true}
-        isCheck={
-          userInfoIsFull &&
-          investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
-        }
+        isCheck={userInfoIsFull}
         onPress={() => {
           navigate('AccountInfoModal');
         }}
@@ -42,10 +39,7 @@ function AccountVerifyScreen() {
       <ItemCard
         title={'accountverify.thongtinnganhang'}
         isLine={true}
-        isCheck={
-          bankAccountIsFull &&
-          investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
-        }
+        isCheck={bankAccountIsFull}
         onPress={() => {
           navigate('BankInfoModal');
         }}
@@ -54,10 +48,7 @@ function AccountVerifyScreen() {
         onPress={() => {
           navigate('AddressInfoModal');
         }}
-        isCheck={
-          userAddressIsFull &&
-          investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
-        }
+        isCheck={userAddressIsFull}
         title={'accountverify.thongtindiachi'}
         isLine={true}
       />
@@ -65,10 +56,7 @@ function AccountVerifyScreen() {
         onPress={() => {
           navigate('RiskConfirmModal');
         }}
-        isCheck={
-          !!riskInfo &&
-          investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
-        }
+        isCheck={!!riskInfo}
         title={'accountverify.danhgiamucdoruiro'}
         isLine={true}
       />
@@ -78,14 +66,16 @@ function AccountVerifyScreen() {
             userInfoIsFull &&
             bankAccountIsFull &&
             userAddressIsFull &&
-            riskInfo &&
-            investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
+            riskInfo
           ) {
             navigate('ConfirmModal');
             return;
           }
         }}
-        isCheck={!!investmentProfile?.status}
+        isCheck={
+          !!investmentProfile?.status &&
+          investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT'
+        }
         title={'accountverify.xacthuchoantat'}
         isLine={true}
         // isEnd={true}

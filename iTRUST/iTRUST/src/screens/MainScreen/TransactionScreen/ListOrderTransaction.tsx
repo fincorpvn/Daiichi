@@ -39,6 +39,7 @@ function ListOrderTransaction() {
     if (orderType == 'TRANSFER_BUY')
       return (
         <ItemOrderBuy
+          nonDetails={true}
           hideStatusReceiveAmount={true}
           hideDelete={true}
           data={p.item}

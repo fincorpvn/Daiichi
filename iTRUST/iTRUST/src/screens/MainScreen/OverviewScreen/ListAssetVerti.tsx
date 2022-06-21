@@ -2,7 +2,7 @@ import {Div} from 'components';
 import {Ecolors} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
 import {Animated, FlatList} from 'react-native';
-import {getProductList} from 'reducer/asset';
+import {getProductList, getProductListSort} from 'reducer/asset';
 import {useAppSelector} from 'store/hooks';
 import {widthScale, widthScreen} from 'utils';
 import ItemListAssetVerti from './ItemListAssetVerti';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 function ListAssetVerti({setItemFocus}: Props) {
-  const productList = useAppSelector(state => getProductList(state));
+  const productList = useAppSelector(state => getProductListSort(state));
 
   const keyExtractor = (item: any, index: number) => `key${item.id}${index}`;
 

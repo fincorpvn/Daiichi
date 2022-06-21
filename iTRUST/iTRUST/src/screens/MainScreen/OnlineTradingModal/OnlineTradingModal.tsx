@@ -1,5 +1,14 @@
-import {ButtonBorder, Div, Label, LoadingIndicator, Toast} from 'components';
-import {Ecolors, stringApp, urlApp} from 'constant';
+import {
+  Button,
+  ButtonBorder,
+  Div,
+  HeaderBack,
+  ImageView,
+  Label,
+  LoadingIndicator,
+  Toast,
+} from 'components';
+import {Ecolors, Icons, stringApp, urlApp} from 'constant';
 import {convertDataDownloadFile, getUuid, Log, requestPermisson} from 'utils';
 import {getStoreToken} from 'utils/storage';
 
@@ -10,25 +19,64 @@ import {navigate} from 'services';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {PERMISSIONS} from 'react-native-permissions';
 import RNFS from 'react-native-fs';
-import {Platform, StyleSheet} from 'react-native';
+import {ActivityIndicator, Platform, StyleSheet} from 'react-native';
+
+const ButtonDownload = (p: {
+  content: string;
+  onPress: () => void;
+  loading?: boolean;
+}) => {
+  return (
+    <Button
+      onPress={() => p.onPress()}
+      width={343}
+      height={40}
+      flexDirection={'row'}
+      alignItems={'center'}
+      justifyContent={'center'}
+      paddingHorizontal={10}
+      backgroundColor={Ecolors.bordercolor}
+      marginTop={6}
+      borderRadius={5}>
+      {p.loading ? (
+        <ActivityIndicator color={Ecolors.mainColor} size={'small'} />
+      ) : (
+        <>
+          <ImageView
+            marginRight={5}
+            widthHeight={10}
+            source={Icons.link}
+            resizeMode={'contain'}
+            marginTop={2}
+          />
+          <Div flex={1}>
+            <Label multilanguage={false}>{p.content}</Label>
+          </Div>
+        </>
+      )}
+    </Button>
+  );
+};
 
 function OnlineTrading() {
   const content = `Với việc thực hiện "KÝ ĐIỆN TỬ", bạn chấp nhận việc kích hoạt và sử dụng dịch vụ giao dịch trực tuyến theo các Điều khoản và Điều kiện được quy định tại Bản công bố rủi ro giao dịch trực tuyến và Thoả thuận cung cấp dịch vụ trực tuyến của DFVN.`;
-  const contentDownload1 = `Nhấn vào đây để xem`;
-  const contentDownload2 = `Nhấn vào đây để tải mẫu`;
   const bangcongbo = `Bảng công bố rủi ro giao dịch trực tuyến.`;
-  const thoathuan = `Thoả thuận cung cấp dịch vụ trực tuyến`;
-  const insets = useSafeAreaInsets();
-  const [loading, setLoading] = useState<boolean>(false);
+  const thoathuan = `Thoả thuận cung cấp dịch vụ trực tuyến.`;
+  const [loading, setLoading] = useState<Object>({});
+
+  const controlLoading = (url: string, t: boolean) => {
+    setLoading(a => {
+      return {
+        ...a,
+        [url]: t,
+      };
+    });
+  };
 
   const downloadAndView = async (url: string) => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
+    controlLoading(url, true);
     try {
       const token = await getStoreToken();
-      // const url = `esignature/download-contract`;
       const bburl = `${urlApp.APIURL}api/${url}`;
       const link = `${
         Platform.OS === 'android'
@@ -70,28 +118,25 @@ function OnlineTrading() {
               } else {
                 await ReactNativeBlobUtil.ios.previewDocument(res.path());
               }
-
               Toast.show({
                 content: 'alert.taithanhcong',
                 multilanguage: true,
               });
-              setLoading(false);
+              controlLoading(url, false);
             })
             .catch(err => {
               Toast.show({
                 content: 'alert.daxayraloi',
                 multilanguage: true,
               });
-              Log('errror ', err);
             })
             .finally(() => {
-              setLoading(false);
+              controlLoading(url, false);
             });
         },
       );
     } catch (error) {
-      setLoading(false);
-      Log('errorr', error);
+      controlLoading(url, false);
     } finally {
       // setLoading(false);
     }
@@ -99,12 +144,42 @@ function OnlineTrading() {
 
   return (
     <Div
-      paddingTop={insets.top + 10}
-      flex={1}
+      // paddingTop={insets.top + 10}
+      height={'100%'}
       backgroundColor={Ecolors.whiteColor}
       flexDirection={'column'}
       alignItems={'center'}>
-      {loading && (
+      <HeaderBack
+        isHideBack={true}
+        type={2}
+        title={`digitalsignature.kydientu`}
+      />
+      <Div flexDirection={'column'} alignItems={'center'} flex={1}>
+        <Div padding={16}>
+          <Label multilanguage={false}>{content}</Label>
+        </Div>
+        <ButtonDownload
+          content={bangcongbo}
+          loading={loading[`user/file/risk`]}
+          onPress={() => {
+            if (loading[`user/file/risk`]) {
+              return;
+            }
+            downloadAndView(`user/file/risk`);
+          }}
+        />
+        <ButtonDownload
+          content={thoathuan}
+          loading={loading[`user/file/risk-form`]}
+          onPress={() => {
+            if (loading[`user/file/risk-form`]) {
+              return;
+            }
+            downloadAndView(`user/file/risk-form`);
+          }}
+        />
+      </Div>
+      {/* {loading && (
         <Div
           flex={1}
           style={StyleSheet.absoluteFillObject}
@@ -113,34 +188,8 @@ function OnlineTrading() {
           backgroundColor={Ecolors.transparentLoading}>
           <LoadingIndicator color={Ecolors.mainColor} />
         </Div>
-      )}
-      <Div flex={1} padding={10}>
-        <Label multilanguage={false}>{content}</Label>
-        <Label multilanguage={false} marginTop={10}>
-          {contentDownload1}
-          {` `}
-          <Label
-            onPress={() => {
-              downloadAndView(`user/file/risk`);
-            }}
-            color={Ecolors.linkColor}
-            multilanguage={false}>
-            {bangcongbo}
-          </Label>
-        </Label>
-        <Label multilanguage={false} marginTop={10}>
-          {contentDownload2}
-          {` `}
-          <Label
-            onPress={() => {
-              downloadAndView(`user/file/risk-form`);
-            }}
-            color={Ecolors.linkColor}
-            multilanguage={false}>
-            {thoathuan}
-          </Label>
-        </Label>
-      </Div>
+      )} */}
+
       <RowButtonAction flowApp={'CreateEsignatureRisk'} />
     </Div>
   );

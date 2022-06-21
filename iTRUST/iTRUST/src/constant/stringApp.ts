@@ -158,10 +158,29 @@ const monthlyIncom = [
     nameEn: `> 150,000,000 VNĐ`,
   },
 ];
+
+const source = [
+  {
+    id: 'SOURCE_SALARY',
+    name: 'Lương',
+    nameEn: 'Salary',
+  },
+  {
+    id: 'SOURCE_BUSINESS',
+    name: 'Kinh doanh',
+    nameEn: 'Business Income',
+  },
+  {
+    id: 'SOURCE_OTHER',
+    name: 'Khác',
+    nameEn: 'Other',
+  },
+];
 export const stringApp = {
   appName: 'iTRUST',
   appLink: 'iTRUST',
-  companyName: 'Dai-ichi Life Vietnam',
+  companyName: 'DFVN',
   riskAssessment: riskAssessment,
+  source: source,
   monthlyIncom: monthlyIncom,
 };

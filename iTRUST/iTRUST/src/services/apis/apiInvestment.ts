@@ -80,7 +80,7 @@ export const apiInvestment = {
     return doPostAxios(url, params);
   },
   // do order sell
-  investmentLoadScheme: async (params: {productId: number | string}) => {
+  investmentLoadScheme: async (params: {productId: number | string | any}) => {
     const url = 'investment/asset/load-scheme';
     return doPostAxios(url, params);
   },

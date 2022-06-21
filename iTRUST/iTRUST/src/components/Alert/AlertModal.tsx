@@ -12,6 +12,9 @@ function AlertModal() {
       route?.params?.onClose && route?.params?.onClose();
     };
   }, []);
+  if (route?.params?.isShowComponent) {
+    return route?.params?.component();
+  }
   return (
     <Div flex={1} alignItems={'center'} justifyContent={'center'}>
       <Div

@@ -338,6 +338,7 @@ export default {
     tongsolenh: 'Total: ',
     quychuongtrinh: 'Fund - Program',
     soluong: 'Units',
+    sotienmuavnd: 'Amount (VNĐ)',
     sotienmua: 'Amount',
     ngaydatlenh: 'Order date',
     trangthai: 'Status',

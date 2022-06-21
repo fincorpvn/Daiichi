@@ -56,8 +56,14 @@ function ItemAutoInvestTransaction(p: {data: any}) {
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
         <Div flex={1}>
-          <Label multilanguage={false} fontWeight={'700'} size={14}>
-            {I18nState == 'vi' ? productProgramName : productProgramNameEn}
+          <Label
+            size={14}
+            textAlign={'left'}
+            multilanguage={false}
+            fontWeight={'700'}>
+            {`${
+              I18nState == 'vi' ? productProgramName : productProgramNameEn
+            }`?.replace('(', `\n(`)}
           </Label>
         </Div>
         <Label

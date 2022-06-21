@@ -478,7 +478,6 @@ export const requestPermisson = (permissions: any, callback: () => void) => {
   if (Platform.OS === 'android') {
     check(permissions)
       .then(result => {
-        console.log('ressssa', result);
         if (result == RESULTS.BLOCKED || result == RESULTS.UNAVAILABLE) {
           Alert.show({
             content: 'Không có quyền truy cập\nVui lòng vào cài đặt',
@@ -526,36 +525,6 @@ export const requestPermisson = (permissions: any, callback: () => void) => {
             });
           }
         });
-      }
-    });
-    return;
-    check(permissions).then(r => {
-      if (r == 'unavailable') {
-        Alert.show({
-          content: 'Không có quyền truy cập\nVui lòng vào cài đặt',
-          multilanguage: false,
-          onConfirm: () => {
-            Linking.openSettings();
-          },
-        });
-      } else if (r != 'granted') {
-        request(permissions).then(r => {
-          if (r == 'granted') {
-            callback && callback();
-            return;
-          }
-          Alert.show({
-            content: 'Không có quyền truy cập\nVui lòng vào cài đặt',
-            multilanguage: false,
-            onConfirm: () => {
-              Linking.openSettings();
-            },
-          });
-          return;
-        });
-      } else {
-        callback && callback();
-        return;
       }
     });
     return;

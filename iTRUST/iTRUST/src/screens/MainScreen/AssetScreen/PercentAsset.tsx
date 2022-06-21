@@ -146,18 +146,13 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
                   });
                 }}
                 paddingTop={10}
-                // flexDirection={'row'}
-                alignItems={'flex-start'}
-                // justifyContent={'space-between'}
-              >
-                <Div flex={1}>
-                  <Label
-                    size={14}
-                    color={Ecolors.linkColor}
-                    multilanguage={false}>
-                    {I18nState == 'vi' ? i.name : i.nameEn}
-                  </Label>
-                </Div>
+                alignItems={'flex-start'}>
+                <Label
+                  size={14}
+                  color={Ecolors.linkColor}
+                  multilanguage={false}>
+                  {I18nState == 'vi' ? i.name : i.nameEn}
+                </Label>
                 <Label size={14} multilanguage={false}>{`${convertNumber(
                   Math.round(i.sumOfValueNavCurrent),
                 )}`}</Label>

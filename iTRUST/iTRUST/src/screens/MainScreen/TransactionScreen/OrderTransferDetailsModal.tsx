@@ -135,10 +135,16 @@ function OrderTransferDetailsModal() {
                 </Label>
               </Div>
               <Div flex={1}>
-                <Label size={14} multilanguage={false} fontWeight={'700'}>
-                  {I18nState == 'vi'
-                    ? productProgramName
-                    : productProgramNameEn}
+                <Label
+                  size={14}
+                  textAlign={'right'}
+                  multilanguage={false}
+                  fontWeight={'700'}>
+                  {`${
+                    I18nState == 'vi'
+                      ? productProgramName
+                      : productProgramNameEn
+                  }`?.replace('(', `\n(`)}
                 </Label>
               </Div>
             </RowSpaceItem>
@@ -226,12 +232,18 @@ function OrderTransferDetailsModal() {
               alignItems={'center'}
               paddingHorizontal={22}
               width={165}
-              height={68}>
+              minHeight={68}>
               <Label textAlign={'center'} size={14} multilanguage={false}>
                 {productCode}
               </Label>
-              <Label size={14} textAlign={'center'} multilanguage={false}>
-                {I18nState == 'vi' ? productProgramName : productProgramNameEn}
+              <Label
+                size={14}
+                textAlign={'right'}
+                multilanguage={false}
+                fontWeight={'700'}>
+                {`${
+                  I18nState == 'vi' ? productProgramName : productProgramNameEn
+                }`?.replace('(', `\n(`)}
               </Label>
             </Div>
             <Div
@@ -245,15 +257,17 @@ function OrderTransferDetailsModal() {
               alignItems={'center'}
               paddingHorizontal={22}
               width={165}
-              height={68}>
+              minHeight={68}>
               <Label textAlign={'center'} size={14} multilanguage={false}>
                 {destOrderInfo?.productCode}
               </Label>
               <Div flex={1}>
                 <Label size={14} textAlign={'center'} multilanguage={false}>
-                  {I18nState == 'vi'
-                    ? destOrderInfo?.productProgramName
-                    : destOrderInfo?.productProgramNameEn}
+                  {`${
+                    I18nState == 'vi'
+                      ? destOrderInfo?.productProgramName
+                      : destOrderInfo?.productProgramNameEn
+                  }`?.replace('(', `\n(`)}
                 </Label>
               </Div>
             </Div>

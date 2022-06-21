@@ -39,8 +39,8 @@ function ISwap(p: {title: string}) {
       justifyContent={'center'}
       borderRadius={8}
       backgroundColor={Ecolors.whiteColor}>
-      <Label textAlign={'center'} multilanguage={false}>
-        {p.title || ''}
+      <Label size={14} textAlign={'center'} multilanguage={false}>
+        {p.title.replace('(', `\n(`) || ''}
       </Label>
     </Div>
   );
@@ -50,6 +50,7 @@ export function ItemOrderBuy(p: {
   data: any;
   hideDelete?: boolean;
   hideStatusReceiveAmount?: boolean;
+  nonDetails?: boolean;
 }) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
@@ -67,6 +68,9 @@ export function ItemOrderBuy(p: {
     <Button
       isScale={false}
       onPress={() => {
+        if (p.nonDetails) {
+          return;
+        }
         navigate('OrderBuyDetailsModal', {
           data: p.data,
           hideDelete: p.hideDelete,
@@ -85,16 +89,22 @@ export function ItemOrderBuy(p: {
       minHeight={100}>
       <RowSpaceItem>
         <Label size={14}>{`transactionscreen.quychuongtrinh`}</Label>
-        <Label size={14}>{`transactionscreen.sotienmua`}</Label>
+        <Label size={14}>{`transactionscreen.sotienmuavnd`}</Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
         <Div flex={1}>
-          <Label fontWeight={'700'} multilanguage={false} size={14}>
-            {I18nState == 'vi' ? productProgramName : productProgramNameEn}
+          <Label
+            size={14}
+            textAlign={'left'}
+            multilanguage={false}
+            fontWeight={'700'}>
+            {`${
+              I18nState == 'vi' ? productProgramName : productProgramNameEn
+            }`?.replace('(', `\n(`)}
           </Label>
         </Div>
         <Label fontWeight={'700'} multilanguage={false} size={14}>
-          {convertNumber(lockAmount, false)}
+          {convertNumber(lockAmount, true)}
         </Label>
       </RowSpaceItem>
       <RowSpaceItem paddingTop={14}>
@@ -183,8 +193,14 @@ export function ItemOrderSell(p: {data: any}) {
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
         <Div flex={1}>
-          <Label fontWeight={'700'} multilanguage={false} size={14}>
-            {I18nState == 'vi' ? productProgramName : productProgramNameEn}
+          <Label
+            size={14}
+            textAlign={'left'}
+            multilanguage={false}
+            fontWeight={'700'}>
+            {`${
+              I18nState == 'vi' ? productProgramName : productProgramNameEn
+            }`?.replace('(', `\n(`)}
           </Label>
         </Div>
         <Label fontWeight={'700'} multilanguage={false} size={14}>
@@ -293,71 +309,77 @@ export function ItemOrderTransfer(p: {data: any}) {
   };
 
   return (
+    // <Button
+    //   isScale={false}
+    //   onPress={() => {
+    //     navigate('OrderTransferDetailsModal', {
+    //       data: p.data,
+    //     });
+    //   }}
+    //   marginHorizontal={16}
+    //   backgroundColor={Ecolors.whiteColor}
+    //   style={EStyle.shadowItem}
+    //   borderRadius={8}
+    //   borderWidth={0.8}
+    //   borderColor={Ecolors.bordercolor}
+    //   paddingHorizontal={15}
+    //   paddingTop={13}
+    //   paddingBottom={18}
+    //   minHeight={100}>
+    //   <RowSpaceItem>
+    //     <Label size={14}>{`transactionscreen.quychuongtrinh`}</Label>
+    //     <Label size={14}>{`transactionscreen.phiengiaodich`}</Label>
+    //   </RowSpaceItem>
+    //   <RowSpaceItem paddingTop={6}>
+    //     <Div flex={1}>
+    //       <Label
+    //         size={14}
+    //         textAlign={'left'}
+    //         multilanguage={false}
+    //         fontWeight={'700'}>
+    //         {`${
+    //           I18nState == 'vi' ? productProgramName : productProgramNameEn
+    //         }`?.replace('(', `\n(`)}
+    //       </Label>
+    //     </Div>
+    //     <Label fontWeight={'700'} multilanguage={false} size={14}>
+    //       {convertTimestamp(sessionTime)}
+    //     </Label>
+    //   </RowSpaceItem>
+    //   <RowSpaceItem paddingTop={14}>
+    //     <Label
+    //       color={Ecolors.grayColor}
+    //       size={14}>{`transactionscreen.loailenh`}</Label>
+    //     <Label
+    //       color={Ecolors.grayColor}
+    //       size={14}>{`transactionscreen.trangthai`}</Label>
+    //   </RowSpaceItem>
+    //   <RowSpaceItem paddingTop={6}>
+    //     <Label multilanguage={false} size={14}>
+    //       {}
+    //     </Label>
+    //     <Div
+    //       flexDirection={'row'}
+    //       alignItems={'center'}
+    //       justifyContent={'flex-end'}>
+    //       <Div
+    //         widthHeight={10}
+    //         marginRight={8}
+    //         borderRadius={10}
+    //         backgroundColor={Ecolors.yellowColor}
+    //       />
+    //       <Label multilanguage={false} size={14}>
+    //         {I18nState == 'vi'
+    //           ? statusName
+    //           : statusCode == 'ORDER_REJECT'
+    //           ? 'Not matched'
+    //           : statusCode == 'ORDER_RECONCILED'
+    //           ? `Matched`
+    //           : 'Pending'}
+    //       </Label>
+    //     </Div>
+    //   </RowSpaceItem>
     <Button
-      isScale={false}
-      onPress={() => {
-        navigate('OrderTransferDetailsModal', {
-          data: p.data,
-        });
-      }}
-      marginHorizontal={16}
-      backgroundColor={Ecolors.whiteColor}
-      style={EStyle.shadowItem}
-      borderRadius={8}
-      borderWidth={0.8}
-      borderColor={Ecolors.bordercolor}
-      paddingHorizontal={15}
-      paddingTop={13}
-      paddingBottom={18}
-      minHeight={100}>
-      <RowSpaceItem>
-        <Label size={14}>{`transactionscreen.quychuongtrinh`}</Label>
-        <Label size={14}>{`transactionscreen.phiengiaodich`}</Label>
-      </RowSpaceItem>
-      <RowSpaceItem paddingTop={6}>
-        <Div flex={1}>
-          <Label fontWeight={'700'} multilanguage={false} size={14}>
-            {productProgramName}
-          </Label>
-        </Div>
-        <Label fontWeight={'700'} multilanguage={false} size={14}>
-          {convertTimestamp(sessionTime)}
-        </Label>
-      </RowSpaceItem>
-      <RowSpaceItem paddingTop={14}>
-        <Label
-          color={Ecolors.grayColor}
-          size={14}>{`transactionscreen.loailenh`}</Label>
-        <Label
-          color={Ecolors.grayColor}
-          size={14}>{`transactionscreen.trangthai`}</Label>
-      </RowSpaceItem>
-      <RowSpaceItem paddingTop={6}>
-        <Label multilanguage={false} size={14}>
-          {}
-        </Label>
-        <Div
-          flexDirection={'row'}
-          alignItems={'center'}
-          justifyContent={'flex-end'}>
-          <Div
-            widthHeight={10}
-            marginRight={8}
-            borderRadius={10}
-            backgroundColor={Ecolors.yellowColor}
-          />
-          <Label multilanguage={false} size={14}>
-            {I18nState == 'vi'
-              ? statusName
-              : statusCode == 'ORDER_REJECT'
-              ? 'Not matched'
-              : statusCode == 'ORDER_RECONCILED'
-              ? `Matched`
-              : 'Pending'}
-          </Label>
-        </Div>
-      </RowSpaceItem>
-      {/*  <Button
       // onPress={() => {
       //   navigate('OrderTransferDetailsModal', {
       //     data: p.data,
@@ -480,6 +502,7 @@ export function ItemOrderTransfer(p: {data: any}) {
           justifyContent={'center'}>
           <ImageView
             widthHeight={28}
+            tintColor={Ecolors.mainColor}
             resizeMode={'contain'}
             source={Icons.swap}
           />
@@ -495,8 +518,8 @@ export function ItemOrderTransfer(p: {data: any}) {
           }
         />
       </Div>
-    </Button> */}
     </Button>
+    // </Button>
   );
 
   return (
@@ -587,6 +610,7 @@ export function ItemOrderTransferBuy(p: {data: any}) {
     lockAmount,
     statusCode,
     sessionTime,
+    productProgramNameEn,
   } = p.data;
 
   return (
@@ -613,8 +637,14 @@ export function ItemOrderTransferBuy(p: {data: any}) {
       </RowSpaceItem>
       <RowSpaceItem paddingTop={6}>
         <Div flex={1}>
-          <Label fontWeight={'700'} multilanguage={false} size={14}>
-            {productProgramName}
+          <Label
+            size={14}
+            textAlign={'left'}
+            multilanguage={false}
+            fontWeight={'700'}>
+            {`${
+              I18nState == 'vi' ? productProgramName : productProgramNameEn
+            }`?.replace('(', `\n(`)}
           </Label>
         </Div>
         <Label fontWeight={'700'} multilanguage={false} size={14}>

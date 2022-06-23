@@ -68,6 +68,8 @@ function OrderBuy({setStepTimeLine, stepTimeLine, initData}: Props) {
         setProduct(null),
         setScheme(null),
         setExcuseTempVolumn(null),
+        setBankSuperVisory(null),
+        setCurrentSession(null),
         setAmount(''),
         setBeginBuyAutoStartDate(''),
       ]);

@@ -94,7 +94,7 @@ function ItemListAsset({data, scale}: Props) {
             </Label> */}
             <RowSpaceItem paddingTop={20}>
               <Label size={14} color={Ecolors.grayColor}>
-                {`overviewscreen.tongsocqq`}
+                {`overviewscreen.soluongCCQ`}
               </Label>
               <Label size={14} color={Ecolors.grayColor}>
                 {`overviewscreen.giatrihientai`}

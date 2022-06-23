@@ -137,7 +137,7 @@ function ItemListAssetVerti({data}: Props) {
               {`overviewscreen.soluongCCQ`}
             </Label>
             <Label size={14} color={Ecolors.grayColor}>
-              {`overviewscreen.tonggiatridaututrungbinh`}
+              {`overviewscreen.sotiendautu`}
             </Label>
           </RowSpaceItem>
           <RowSpaceItem paddingTop={4}>

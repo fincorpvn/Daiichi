@@ -50,6 +50,7 @@ function AssetScreen() {
                 multilanguage={false}>
                 {convertNumber(
                   `${asset?.sumOfValueCurrently || ''}`?.split('.')?.[0] ?? '',
+                  true,
                 ) || ''}
               </Label>
             </Div>

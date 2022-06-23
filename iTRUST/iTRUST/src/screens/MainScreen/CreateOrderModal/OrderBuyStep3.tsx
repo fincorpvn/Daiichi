@@ -318,8 +318,10 @@ function OrderBuyStep3({
                 alignItems={'center'}
                 paddingLeft={10}
                 justifyContent={'flex-end'}>
-                <Label size={14} multilanguage={false}>
-                  {I18nState == 'vi' ? scheme?.name : scheme?.nameEn}
+                <Label textAlign={'right'} multilanguage={false} size={14}>
+                  {`${
+                    I18nState == 'vi' ? scheme?.name : scheme?.nameEn
+                  }`?.replace('(', `\n(`)}
                 </Label>
               </Div>
             </RowSpaceItem>
@@ -337,7 +339,7 @@ function OrderBuyStep3({
             <RowSpaceItem marginTop={15} isBorderBottom={true}>
               <Label size={14}>{`createordermodal.phiengiaodich`}</Label>
               <Label multilanguage={false} size={14}>
-                {currentSession.tradingTimeString}
+                {currentSession?.tradingTimeString || ''}
                 {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
               </Label>
             </RowSpaceItem>

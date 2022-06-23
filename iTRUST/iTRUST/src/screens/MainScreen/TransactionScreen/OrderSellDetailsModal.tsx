@@ -22,7 +22,7 @@ function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
   );
 }
 const ComL = ({sessionTime, I18nState, completeTransactionDuration}) => {
-  if (completeTransactionDuration == 1) {
+  if (completeTransactionDuration == 1 || !completeTransactionDuration) {
     return (
       <Div
         marginHorizontal={0}
@@ -97,6 +97,7 @@ function OrderSellDetailsModal() {
     sessionTime,
     ordersDetailsInfo,
   } = route?.params?.data;
+  Log('123123', {a: route?.params?.data, completeTransactionDuration});
 
   const onDeleteOrder = () => {
     Alert.show({

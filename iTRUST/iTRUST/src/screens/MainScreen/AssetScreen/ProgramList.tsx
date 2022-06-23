@@ -277,7 +277,8 @@ function ProgramList() {
                 borderBottomColor={
                   isFocus ? Ecolors.mainColor : Ecolors.transparent
                 }
-                width={73}
+                marginHorizontal={14}
+                minWidth={73}
                 flexDirection={'row'}
                 alignItems={'center'}
                 justifyContent={'center'}

@@ -1,4 +1,5 @@
 const currency = `(VNĐ)`;
+const hotline = `1900636553`;
 const riskAssessment = [
   {
     id: 'experienceInvestment',
@@ -185,4 +186,5 @@ export const stringApp = {
   source: source,
   monthlyIncom: monthlyIncom,
   currency: currency,
+  hotline: hotline,
 };

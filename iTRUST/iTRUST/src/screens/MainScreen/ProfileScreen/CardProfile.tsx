@@ -2,6 +2,7 @@ import {Div, ImageView, Label} from 'components';
 import {Ecolors, Icons} from 'constant';
 import React, {useEffect} from 'react';
 import {useAppSelector} from 'store/hooks';
+import {removeUtf8} from 'utils';
 
 function CardProfile(Props: {}) {
   const currentUser = useAppSelector(state => state.authen.currentUser);
@@ -53,7 +54,7 @@ function CardProfile(Props: {}) {
           alignItems={'flex-start'}
           justifyContent={'flex-start'}>
           <Label multilanguage={false} fontWeight={'500'}>
-            {name || ''}
+            {removeUtf8(name?.toLocaleUpperCase() || '') || ''}
           </Label>
           <Div
             flexDirection={'row'}

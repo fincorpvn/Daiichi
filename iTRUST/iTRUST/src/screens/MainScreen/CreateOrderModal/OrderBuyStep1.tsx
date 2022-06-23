@@ -273,13 +273,13 @@ function OrderBuyStep1({
                   flexDirection={'row'}
                   justifyContent={'flex-start'}>
                   <Label size={12} multilanguage={false}>
-                    {currentSession.closedOrderBookTimeString}
+                    {currentSession?.closedOrderBookTimeString}
                     {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
                   </Label>
                 </Div>
                 <Div flex={1} flexDirection={'row'} justifyContent={'flex-end'}>
                   <Label size={12} textAlign={'center'} multilanguage={false}>
-                    {currentSession.closedBankNoteTimeString}
+                    {currentSession?.closedBankNoteTimeString}
                     {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
                   </Label>
                 </Div>
@@ -297,7 +297,7 @@ function OrderBuyStep1({
                       '700'
                     }>{`createordermodal.phiengiaodich`}</Label>
                   <Label marginTop={6} size={12} multilanguage={false}>
-                    {currentSession.tradingTimeString}
+                    {currentSession?.tradingTimeString}
                     {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
                   </Label>
                 </Div>
@@ -306,7 +306,7 @@ function OrderBuyStep1({
                   flex={1}
                   flexDirection={'row'}
                   justifyContent={'flex-end'}>
-                  <TimeFromNow toTime={currentSession.closedOrderBookTime} />
+                  <TimeFromNow toTime={currentSession?.closedOrderBookTime} />
                 </Div>
               </Div>
               <Div

@@ -211,8 +211,10 @@ function OrderBuyStep2({
                 paddingLeft={10}
                 alignItems={'center'}
                 justifyContent={'flex-end'}>
-                <Label multilanguage={false} size={14}>
-                  {I18nState == 'vi' ? scheme?.name : scheme?.nameEn}
+                <Label multilanguage={false} textAlign={'right'} size={14}>
+                  {`${
+                    I18nState == 'vi' ? scheme?.name : scheme?.nameEn
+                  }`?.replace('(', `\n(`)}
                 </Label>
               </Div>
             </RowSpaceItem>
@@ -230,7 +232,7 @@ function OrderBuyStep2({
             <RowSpaceItem marginTop={15} isBorderBottom={true}>
               <Label size={14}>{`createordermodal.phiengiaodich`}</Label>
               <Label multilanguage={false} size={14}>
-                {currentSession.tradingTimeString}
+                {currentSession?.tradingTimeString || ''}
                 {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
               </Label>
             </RowSpaceItem>
@@ -284,7 +286,7 @@ function OrderBuyStep2({
                 color={Ecolors.linkColor}
                 multilanguage={false}
                 marginLeft={3}>
-                {` ${currentSession.closedBankNoteTimeString}`}
+                {` ${currentSession?.closedBankNoteTimeString || ''}`}
                 {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
               </Label>
             </Label>

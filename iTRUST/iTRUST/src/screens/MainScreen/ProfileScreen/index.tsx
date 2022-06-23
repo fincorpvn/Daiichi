@@ -1,5 +1,5 @@
 import {Alert, Button, Div, HeaderBack, ImageView, Label} from 'components';
-import {Ecolors, Icons} from 'constant';
+import {Ecolors, Icons, stringApp} from 'constant';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
@@ -144,14 +144,17 @@ function ProfileScreen() {
     },
     {
       title: `profile.hotline`,
-      content: '1900636553',
+      content: stringApp.hotline,
       icon: Icons.hotline,
       onPress: () => {
         Alert.show({
-          content: I18nState == 'vi' ? `Gọi 1900636553` : `Call 1900636553`,
+          content:
+            I18nState == 'vi'
+              ? `Gọi ${stringApp.hotline}`
+              : `Call ${stringApp.hotline}`,
           multilanguage: false,
           onConfirm: () => {
-            callPhone('1900636553');
+            callPhone(stringApp.hotline);
           },
         });
       },

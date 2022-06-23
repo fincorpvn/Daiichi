@@ -1,3 +1,4 @@
+const currency = `(VNĐ)`;
 const riskAssessment = [
   {
     id: 'experienceInvestment',
@@ -139,23 +140,23 @@ const riskAssessment = [
 const monthlyIncom = [
   {
     id: `1`,
-    name: `< 30,000,000 VNĐ`,
-    nameEn: `< 30,000,000 VNĐ`,
+    name: `< 30,000,000 ${currency}`,
+    nameEn: `< 30,000,000 ${currency}`,
   },
   {
     id: `2`,
-    name: `30,000,000 VNĐ - 80,000,000 VNĐ`,
-    nameEn: `30,000,000 VNĐ - 80,000,000 VNĐ`,
+    name: `30,000,000 VNĐ - 80,000,000 ${currency}`,
+    nameEn: `30,000,000 VNĐ - 80,000,000 ${currency}`,
   },
   {
     id: `3`,
-    name: `81,000,000 VNĐ - 150,000,000 VNĐ`,
-    nameEn: `81,000,000 VNĐ - 150,000,000 VNĐ`,
+    name: `81,000,000 VNĐ - 150,000,000 ${currency}`,
+    nameEn: `81,000,000 VNĐ - 150,000,000 ${currency}`,
   },
   {
     id: `4`,
-    name: `> 150,000,000 VNĐ`,
-    nameEn: `> 150,000,000 VNĐ`,
+    name: `> 150,000,000 ${currency}`,
+    nameEn: `> 150,000,000 ${currency}`,
   },
 ];
 
@@ -183,5 +184,5 @@ export const stringApp = {
   riskAssessment: riskAssessment,
   source: source,
   monthlyIncom: monthlyIncom,
-  currency: `(VNĐ)`,
+  currency: currency,
 };

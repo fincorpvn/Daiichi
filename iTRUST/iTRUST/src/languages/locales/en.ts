@@ -582,7 +582,7 @@ export default {
     banchuacotaisan: "You don't have any assets",
     contentnondata: `You need to participate in the investment and make transactions by going to the "Investment" section below`,
     tonggiatridaututb: 'Total AVG investment',
-    sotiendautu: 'Total investment (VNĐ)',
+    sotiendautu: `Total investment ${stringApp.currency}`,
     tongloilo: 'Total gain/loss',
     taisan: 'Asset',
     //

@@ -120,7 +120,7 @@ export const convertDataDownloadFile = (
 };
 
 export const convertNumber = (num: number | string, hideD?: boolean) => {
-  if (!num) return `${num}${hideD ? '' : ` (VNĐ)`}`;
+  if (!num) return `${num}${hideD ? '' : ` ${stringApp.currency}`}`;
   const strhead = parseInt(`${num}`.replace(/[,]/g, '')) >= 0 ? '' : '-';
   const ar = Math.abs(
     typeof num == 'string' ? parseInt(num.replace(/[,]/g, '')) : num,
@@ -137,13 +137,14 @@ export const convertNumber = (num: number | string, hideD?: boolean) => {
     })
     .reverse()
     .join('');
+
   return `${strhead}${str}${ar[1] ? `.${ar[1]}` : ''}${
-    !!hideD ? '' : ' (VNĐ)'
+    !!hideD ? '' : ` ${stringApp.currency}`
   }`;
 };
 
 export const convertAmount = (num: number | string, hideD?: boolean) => {
-  if (!num) return `${num}${hideD ? '' : ` (VNĐ)`}`;
+  if (!num) return `${num}${hideD ? '' : ` ${stringApp.currency}`}`;
   if (!parseInt(`${num}`)) {
     return '';
   }
@@ -172,12 +173,12 @@ export const convertAmount = (num: number | string, hideD?: boolean) => {
     .reverse()
     .join('');
   return `${strhead}${str}${isDot != -1 ? `.${last ?? ''}` : ''}${
-    !!hideD ? '' : ' (VNĐ)'
+    !!hideD ? '' : ` ${stringApp.currency}`
   }`;
 };
 
 export const convertNav = (num: number | string, hideD?: boolean) => {
-  if (!num) return `${num}${hideD ? '' : ' (VNĐ)'}`;
+  if (!num) return `${num}${hideD ? '' : ` ${stringApp.currency}`}`;
   const strhead = parseInt(`${num}`?.replace(/[,]/g, '')) >= 0 ? '' : '-';
   const ar = Math.abs(
     typeof num == 'string' ? parseInt(num?.replace(/[,]/g, '')) : num,
@@ -200,7 +201,7 @@ export const convertNav = (num: number | string, hideD?: boolean) => {
     })
     .reverse()
     .join('');
-  return `${strhead}${str}${last}${!!hideD ? '' : ' (VNĐ)'}`;
+  return `${strhead}${str}${last}${!!hideD ? '' : ` ${stringApp.currency}`}`;
 };
 
 export const convertPercent = (num: string | number | any) => {

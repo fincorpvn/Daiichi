@@ -79,7 +79,7 @@ function ChartPercentHeader({itemFocus, setItemFocus}: Props) {
           color={Ecolors.textColor}
           fontWeight={'700'}
           multilanguage={false}>
-          {convertNumber(Math.round(asset?.sumOfValueInvested || 0))}
+          {convertNumber(Math.round(asset?.sumOfValueInvested || 0), true)}
         </Label>
 
         <Label marginTop={11}>{`overviewscreen.tongloilo`}</Label>

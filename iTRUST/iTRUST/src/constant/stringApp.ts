@@ -183,4 +183,5 @@ export const stringApp = {
   riskAssessment: riskAssessment,
   source: source,
   monthlyIncom: monthlyIncom,
+  currency: `(VNĐ)`,
 };

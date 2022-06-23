@@ -1,5 +1,5 @@
 import {Button, Div, Label} from 'components';
-import {Ecolors, EStyle} from 'constant';
+import {Ecolors, EStyle, stringApp} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
 import {
   ActivityIndicator,
@@ -23,7 +23,7 @@ const LblWithVND = (p: {children: any}) => {
   return (
     <Label color={Ecolors.grayColor} size={14} multilanguage={false}>
       {p.children && p.children}
-      {` (VNĐ)`}
+      {` ${stringApp.currency}`}
     </Label>
   );
 };

@@ -88,7 +88,10 @@ function OverviewScreen() {
                     color={Ecolors.mainColor}
                     multilanguage={false}
                     fontWeight={'700'}>
-                    {convertNumber(Math.round(asset?.sumOfValueCurrently || 0))}
+                    {convertNumber(
+                      Math.round(asset?.sumOfValueCurrently || 0),
+                      true,
+                    )}
                   </Label>
                 </Div>
                 <ChartPercentHeader

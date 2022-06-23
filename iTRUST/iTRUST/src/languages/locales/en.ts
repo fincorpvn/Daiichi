@@ -625,6 +625,7 @@ export default {
     chonhinhanh: 'Select image',
     taive: 'Download',
     hopdongdientu: 'E-Contract',
+    hopdongdientutype2: 'Giấy đăng ký mở tài khoản\ngiao dịch',
     xemtruoc: 'Preview',
     kydientu: 'Sign now',
     taichuky: 'Upload signature',

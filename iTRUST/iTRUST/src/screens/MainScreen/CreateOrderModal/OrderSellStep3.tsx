@@ -172,8 +172,10 @@ function OrderSellStep3({
                 alignItems={'center'}
                 paddingLeft={10}
                 justifyContent={'flex-end'}>
-                <Label multilanguage={false} size={14}>
-                  {I18nState == 'vi' ? scheme?.name : scheme?.nameEn || ''}
+                <Label multilanguage={false} textAlign={'right'} size={14}>
+                  {`${
+                    I18nState == 'vi' ? scheme?.name : scheme?.nameEn
+                  }`?.replace('(', `\n(`)}
                 </Label>
               </Div>
             </RowSpaceItem>

@@ -126,7 +126,7 @@ function OrderBuyStep2({
           currentSession?.closedOrderBookTimeString || '0',
         createdDate: new Date().getTime(),
         investmentNumber: excuseTempVolumn?.investmentNumber || '0',
-        isBuyAuto: scheme.productSchemeIsAutoBuy ? 1 : 0 || 0,
+        isBuyAuto: scheme?.productSchemeIsAutoBuy ? 1 : 0 || 0,
         productId: product?.id || 0,
         productName: product?.name || '',
         productProgramId: scheme?.id || 0,
@@ -335,14 +335,14 @@ function OrderBuyStep2({
             <ContentCoppy
               marginTop={11}
               isBtn={true}
-              isBorderBottom={!!scheme.productSchemeIsAutoBuy}
+              isBorderBottom={!!scheme?.productSchemeIsAutoBuy}
               title={`createordermodal.noidung`}
               content={
                 `${excuseTempVolumn?.investmentNumber} - ${scheme?.tradeCode}` ||
                 ''
               }
             />
-            {scheme && scheme.productSchemeIsAutoBuy && (
+            {scheme && scheme?.productSchemeIsAutoBuy && (
               <>
                 <RowSpaceItem marginTop={11}>
                   <Label

@@ -360,6 +360,7 @@ function LoginScreen() {
               doLoginWithBiometry();
             }}>
             <ImageView
+              tintColor={Ecolors.mainColor}
               source={biometryType == 'FaceID' ? Icons.faceid : Icons.finger}
               widthHeight={27}
               resizeMode={'contain'}

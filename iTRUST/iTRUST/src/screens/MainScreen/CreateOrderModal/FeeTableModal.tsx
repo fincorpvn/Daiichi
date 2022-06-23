@@ -34,7 +34,6 @@ function FeeTableModal() {
       if (res.status == 200) {
         setData(res.data);
       }
-      Log('ress', res);
     } catch (error) {
     } finally {
       setLoading(false);
@@ -84,6 +83,20 @@ function FeeTableModal() {
           </Div>
         );
       case 'product-program/buy-fee':
+        if (data.length == 1) {
+          return (
+            <Div
+              flexDirection={'row'}
+              alignItems={'center'}
+              paddingTop={19}
+              justifyContent={'center'}>
+              <Label
+                fontWeight={'500'}
+                size={14}>{`createordermodal.phimua`}</Label>
+              <Label size={14} multilanguage={false}>{` 0.00%`}</Label>
+            </Div>
+          );
+        }
         return (
           <Div paddingBottom={25}>
             <Div

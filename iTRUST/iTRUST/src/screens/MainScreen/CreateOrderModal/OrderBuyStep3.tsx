@@ -28,7 +28,7 @@ interface Props {
   excuseTempVolumn: any;
   stepTimeLine?: number;
   beginBuyAutoStartDate?: string;
-  onPre?: () => void;
+  onPre?: (t: number) => void;
 }
 
 function RowSpaceItem(p: {
@@ -214,9 +214,9 @@ function OrderBuyStep3({
                 `${excuseTempVolumn?.investmentNumber} - ${scheme?.tradeCode}` ||
                 ''
               }
-              isBorderBottom={!!scheme.productSchemeIsAutoBuy}
+              isBorderBottom={!!scheme?.productSchemeIsAutoBuy}
             />
-            {scheme && scheme.productSchemeIsAutoBuy && (
+            {scheme && scheme?.productSchemeIsAutoBuy && (
               <>
                 <RowSpaceItem marginTop={15}>
                   <Label
@@ -347,7 +347,7 @@ function OrderBuyStep3({
                 {convertNumber(amount)}
               </Label>
             </RowSpaceItem>
-            {scheme && scheme.productSchemeIsAutoBuy && (
+            {scheme && scheme?.productSchemeIsAutoBuy && (
               <>
                 <RowSpaceItem marginTop={15}>
                   <Label
@@ -376,9 +376,7 @@ function OrderBuyStep3({
           width={148}
           height={48}
           onPress={() => {
-            // goBack();
-            onPre && onPre();
-            // bottomsheet.current.show();
+            onPre && onPre(1);
           }}
           title={`createordermodal.muathem`}
           type={2}

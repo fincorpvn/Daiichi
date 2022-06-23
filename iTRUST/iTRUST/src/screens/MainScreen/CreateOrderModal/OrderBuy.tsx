@@ -52,12 +52,25 @@ function OrderBuy({setStepTimeLine, stepTimeLine, initData}: Props) {
       });
     }
   };
-  const onPre = () => {
+  const onPre = (step?: number) => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({
-        x: stepTimeLine ? (stepTimeLine - 2) * widthScreen : widthScreen,
+        x: step
+          ? (step - 1) * widthScreen
+          : stepTimeLine
+          ? (stepTimeLine - 2) * widthScreen
+          : widthScreen,
         animated: true,
       });
+    }
+    if (step) {
+      Promise.all([
+        setProduct(null),
+        setScheme(null),
+        setExcuseTempVolumn(null),
+        setAmount(''),
+        setBeginBuyAutoStartDate(''),
+      ]);
     }
   };
 

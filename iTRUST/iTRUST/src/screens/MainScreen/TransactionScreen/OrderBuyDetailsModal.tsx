@@ -173,7 +173,6 @@ function OrderBuyDetailsModal() {
               </Div>
               <Div
                 height={'100%'}
-                flex={1}
                 flexDirection={'row'}
                 justifyContent={'flex-end'}
                 alignItems={'flex-start'}>

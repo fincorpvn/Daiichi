@@ -124,6 +124,8 @@ function OrderSellStep2({
     }
   };
 
+  console.log('scheme', scheme);
+
   if (stepTimeLine != 2) {
     return <Div screen={true} />;
   }
@@ -166,10 +168,10 @@ function OrderSellStep2({
                 paddingLeft={10}
                 alignItems={'center'}
                 justifyContent={'flex-end'}>
-                <Label multilanguage={false} size={14}>
-                  {I18nState == 'vi'
-                    ? scheme?.productSchemeName
-                    : scheme?.productSchemeNameEn}
+                <Label textAlign={'right'} multilanguage={false} size={14}>
+                  {`${
+                    I18nState == 'vi' ? scheme?.name : scheme?.nameEn
+                  }`?.replace('(', `\n(`)}
                 </Label>
               </Div>
             </RowSpaceItem>

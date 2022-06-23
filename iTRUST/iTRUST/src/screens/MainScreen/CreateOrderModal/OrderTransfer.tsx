@@ -21,6 +21,7 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
   const [product, setProduct] = useState<any>(null);
   const listProductDest = useAppSelector(state => getListProduct(state));
   const listProduct = useAppSelector(state => state.asset.asset.productList);
+  const [listDestProduct, setListDestProduct] = useState<Array<any>>([]);
   const [scheme, setScheme] = useState<any>(null);
   const [listScheme, setListScheme] = useState<Array<any>>([]);
   const [amount, setAmount] = useState<string>('');
@@ -101,6 +102,7 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
   const onChangeProduct = async (e: any) => {
     setLoading(true);
     setProduct(e);
+    setListDestProduct(listProductDest.filter((a: any) => a.id != e.id));
     setScheme(null);
     setAmount('');
     try {
@@ -137,7 +139,11 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
       id: e.id,
     });
     if (res.status == 200) {
-      setListDestScheme(res.data);
+      setListDestScheme(
+        res.data?.filter(
+          (a: any) => a.productSchemeId == scheme?.productSchemeId,
+        ),
+      );
     }
     try {
     } catch (error) {
@@ -179,6 +185,7 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
           setBankSuperVisory={setBankSuperVisory}
           // dest
           destProduct={destProduct}
+          listDestProduct={listDestProduct}
           onChangeDestProduct={onChangeDestProduct}
           destScheme={destScheme}
           setDestScheme={setDestScheme}

@@ -403,7 +403,7 @@ function OrderBuyStep1({
             </Div>
           )} */}
 
-          {scheme && scheme.productSchemeIsAutoBuy && (
+          {scheme && scheme?.productSchemeIsAutoBuy && (
             <Div marginTop={17}>
               <Label
                 marginTop={10}>{`createordermodal.ngaybatdauthamgia`}</Label>

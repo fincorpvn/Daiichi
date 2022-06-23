@@ -234,6 +234,7 @@ function EditBankInfoModal() {
         <Div paddingHorizontal={29}>
           <Lbl marginTop={16} content={`accountverify.tenchutaikhoan`} />
           <InputItem
+            isInput={false}
             marginTop={6}
             keyboardType={'name-phone-pad'}
             onChangeText={e => setName(removeUtf8(e.toLocaleUpperCase()))}

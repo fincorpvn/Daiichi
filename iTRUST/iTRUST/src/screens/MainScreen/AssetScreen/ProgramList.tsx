@@ -105,9 +105,11 @@ function ItemTable(p: {item: any}) {
       </RowSpaceItem>
       <RowSpaceItem isBorderBottom={true} marginTop={13}>
         <Label fontWeight={'700'} multilanguage={false} size={14}>
-          {I18nState == 'vi'
-            ? p.item.nameProgram
-            : p.item.nameProgramEn || p.item.nameProgram}
+          {`${
+            I18nState == 'vi'
+              ? p.item.nameProgram
+              : p.item.nameProgramEn || p.item.nameProgram
+          }`.replace('(', `\n(`)}
         </Label>
         <Label fontWeight={'700'} multilanguage={false} size={14}>
           {convertTimestamp(p.item.buyDate)}

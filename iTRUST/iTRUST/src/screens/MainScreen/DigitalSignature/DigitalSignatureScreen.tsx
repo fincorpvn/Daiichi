@@ -22,7 +22,7 @@ function DigitalSignatureScreen() {
       <HeaderBack
         isHideBack={!!route.params?.isHideBack}
         type={2}
-        title={`digitalsignature.hopdongdientu`}
+        title={`digitalsignature.hopdongdientutype2`}
       />
       <ScrollView>
         <Div alignItems={'center'} flex={1}>

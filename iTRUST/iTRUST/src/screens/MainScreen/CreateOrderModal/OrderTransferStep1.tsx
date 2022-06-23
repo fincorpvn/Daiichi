@@ -40,6 +40,7 @@ interface Props {
   amount: string;
   listScheme: Array<any>;
   listProduct: Array<any> | any;
+  listDestProduct: Array<any> | any;
   listProductDest: Array<any> | any;
   setAmount: (e: string) => void;
   onNext: () => void;
@@ -92,6 +93,7 @@ function OrderTransferStep1({
   setDestScheme,
   loading,
   loadingDest,
+  listDestProduct,
 }: Props) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
@@ -289,7 +291,7 @@ function OrderTransferStep1({
             multiline={true}
             marginTop={6}
             paddingHorizontal={0}
-            initData={listProductDest}
+            initData={listDestProduct}
             value={destProduct}
             content={`createordermodal.chonccqmuctieu`}
             multilanguage={true}

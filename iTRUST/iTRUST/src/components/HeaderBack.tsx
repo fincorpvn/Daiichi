@@ -114,6 +114,7 @@ function HeaderBack({
             flex={1}
             justifyContent={'center'}>
             <Label
+              fontWeight={'700'}
               textAlign={'center'}
               multilanguage={multilanguage ?? true}
               size={16}

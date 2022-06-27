@@ -123,6 +123,7 @@ function ChangePasswordScreen() {
         <InputItem
           inputRef={oldPasswordRef}
           isShowAndHide={true}
+          keyboardType={'ascii-capable'}
           value={oldPassword}
           titleError={`profile.thongtinkhongduocdetrong`}
           isError={isErrorOldPassword}
@@ -145,6 +146,7 @@ function ChangePasswordScreen() {
         <InputItem
           isShowAndHide={true}
           value={newPassword}
+          keyboardType={'ascii-capable'}
           inputRef={newPasswordRef}
           onChangeText={(t: string) => {
             setNewPassword(t);
@@ -171,6 +173,7 @@ function ChangePasswordScreen() {
         <InputItem
           isShowAndHide={true}
           value={reNewPassword}
+          keyboardType={'ascii-capable'}
           inputRef={reNewPasswordRef}
           onChangeText={(t: string) => {
             setReNewPassword(t);

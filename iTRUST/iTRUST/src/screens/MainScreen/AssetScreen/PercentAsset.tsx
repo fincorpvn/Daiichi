@@ -1,7 +1,7 @@
 import {Button, Div, ImageView, Label} from 'components';
 import {Ecolors, EStyle, Icons} from 'constant';
 import React from 'react';
-import {getProductList} from 'reducer/asset';
+import {getProductList, getProductListSort} from 'reducer/asset';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {
@@ -141,9 +141,9 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
               <Button
                 key={i.id}
                 onPress={() => {
-                  navigate('ProgramDetailsModal', {
-                    data: i,
-                  });
+                  // navigate('ProgramDetailsModal', {
+                  //   data: i,
+                  // });
                 }}
                 paddingTop={10}
                 alignItems={'flex-start'}>
@@ -170,7 +170,7 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
 }
 
 function PercentAsset() {
-  const productList = useAppSelector(state => getProductList(state));
+  const productList = useAppSelector(state => getProductListSort(state));
   if (productList?.length == 0) {
     return <Div />;
   }

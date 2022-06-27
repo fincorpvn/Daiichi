@@ -266,6 +266,15 @@ function Statement(p: {activeTab: number}) {
                   padding={10}
                   onPress={() => {
                     setIsShowCalendar(false);
+                    if (value.current == 'from') {
+                      if (!fromDate) {
+                        setFromDate(new Date());
+                      }
+                    } else {
+                      if (!toDate) {
+                        setToDate(new Date());
+                      }
+                    }
                   }}>
                   <Label
                     fontWeight={'bold'}

@@ -658,7 +658,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     vuilongnhaptendangnhap: 'Vui lòng nhập tên đăng nhập',
     dasaochepvaobonhodem: 'Đã sao chép thông tin nội dung vào bộ nhớ đệm',
     dangnhapvantaythatbai:
-      'Tính năng đăng nhập bằng Vân tay chưa được cài đặt.Vui lòng đăng nhập bằng mật khẩu và kiểm tra lại',
+      'Tính năng đăng nhập bằng Vân tay/Khuôn mặt chưa được cài đặt.Vui lòng đăng nhập bằng mật khẩu và kiểm tra lại',
     thatbai: 'Thất bại',
     daxayraloi: 'Đã xảy ra lỗi. Vui lòng thử lại',
     // order

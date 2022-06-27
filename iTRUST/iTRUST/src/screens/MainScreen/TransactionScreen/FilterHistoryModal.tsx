@@ -10,7 +10,7 @@ import {
 import {Ecolors, EStyle, Icons} from 'constant';
 import {goBack, navigate} from 'services';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import {getListProduct} from 'reducer/investment';
+import {focusProduct, getListProduct} from 'reducer/investment';
 import {useAppSelector} from 'store/hooks';
 import {
   convertTimestamp,
@@ -381,6 +381,15 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
                     padding={10}
                     onPress={() => {
                       setIsShowCalendar(false);
+                      if (value.current == 'from') {
+                        if (!fromDate) {
+                          setFromDate(new Date());
+                        }
+                      } else {
+                        if (!toDate) {
+                          setToDate(new Date());
+                        }
+                      }
                     }}>
                     <Label
                       fontWeight={'bold'}

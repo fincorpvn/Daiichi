@@ -22,3 +22,14 @@ export const getLoading = createSelector([loading], loading => {
 export const getAsset = createSelector([asset], asset => {
   return asset || {};
 });
+
+export const getAssetSort = createSelector([asset], asset => {
+  return (
+    {
+      ...asset,
+      productList: [...(asset?.productList || [])]?.sort(
+        (a: any, b: any) => b.ratePercent - a.ratePercent,
+      ),
+    } || {}
+  );
+});

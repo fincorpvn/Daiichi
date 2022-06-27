@@ -375,13 +375,13 @@ function LoginScreen() {
         justifyContent={'center'}
         paddingTop={60}
         paddingBottom={70}>
-        <Button
+        {/* <Button
           onPress={() => {
             navigate('ActiveAccountModal');
           }}>
           <Label
             color={Ecolors.linkColor}>{`loginscreen.kichhoattaikhoan`}</Label>
-        </Button>
+        </Button> */}
         <Div
           flexDirection={'row'}
           alignItems={'center'}

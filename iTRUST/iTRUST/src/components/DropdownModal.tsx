@@ -75,7 +75,6 @@ function DropdownModal() {
         );
       }
     } catch (error) {
-      console.log('error', {error, url});
     } finally {
       setLoading(false);
     }

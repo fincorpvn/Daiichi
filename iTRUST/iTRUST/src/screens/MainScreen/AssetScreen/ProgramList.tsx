@@ -7,7 +7,7 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
-import {getProductList} from 'reducer/asset';
+import {getProductList, getProductListSort} from 'reducer/asset';
 import {apiAsset} from 'services/apis/apiAsset';
 import {useAppSelector} from 'store/hooks';
 import {
@@ -191,7 +191,7 @@ function ItemTable(p: {item: any}) {
 }
 
 function ProgramList() {
-  const productList = useAppSelector(state => getProductList(state));
+  const productList = useAppSelector(state => getProductListSort(state));
   const [itemActive, setItemActive] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
   const [assetManagement, setAssetManagement] = useState<any>({});
@@ -359,7 +359,7 @@ function ProgramList() {
           }}
         />
         {/*  */}
-        <Div
+        {/* <Div
           flexDirection={'row'}
           marginTop={15}
           paddingHorizontal={16}
@@ -401,10 +401,10 @@ function ProgramList() {
               {convertNumber(Math.round(assetManagement?.sellValue ?? 0)) || 0}
             </Label>
           </Div>
-        </Div>
+        </Div> */}
       </Div>
       {/* buton */}
-      <Div
+      {/* <Div
         flexDirection={'row'}
         alignItems={'center'}
         width={'100%'}
@@ -431,7 +431,7 @@ function ProgramList() {
               0}
           </Label>
         </Div>
-      </Div>
+      </Div> */}
       {/*  */}
     </Div>
   );

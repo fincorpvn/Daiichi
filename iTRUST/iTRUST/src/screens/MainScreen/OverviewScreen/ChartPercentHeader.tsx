@@ -31,7 +31,7 @@ function ChartPercentHeader({itemFocus, setItemFocus}: Props) {
       a.map((item, index) => {
         const percentage = Math.round(item.ratePercent * 100) / 100;
         return {
-          percentage: percentage > 2 ? percentage : 2,
+          percentage: percentage > 1 ? percentage : 1,
           color: item.color || Ecolors.mainColor,
         };
       }),

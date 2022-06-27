@@ -90,7 +90,7 @@ function NavChange() {
         </Div>
       </Div>
       {/* link to web */}
-      <Div
+      {/* <Div
         paddingHorizontal={16}
         paddingTop={19}
         paddingBottom={16}
@@ -108,7 +108,7 @@ function NavChange() {
             color={Ecolors.linkColor}
             size={14}>{`investmentscreen.xemchitiet`}</Label>
         </Button>
-      </Div>
+      </Div> */}
       {/* nav cur */}
       <Label
         marginTop={16}

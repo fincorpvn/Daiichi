@@ -3,7 +3,7 @@ import {Ecolors} from 'constant';
 import React, {useEffect} from 'react';
 import {RefreshControl, ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {getAsset, loadAsset} from 'reducer/asset';
+import {getAsset, getAssetSort, loadAsset} from 'reducer/asset';
 import {useAppSelector} from 'store/hooks';
 import {convertNumber} from 'utils';
 import PercentAsset from './PercentAsset';
@@ -11,7 +11,7 @@ import ProgramList from './ProgramList';
 
 function AssetScreen() {
   const dispatch = useDispatch();
-  const asset = useAppSelector(state => getAsset(state));
+  const asset = useAppSelector(state => getAssetSort(state));
   const loadingAsset = useAppSelector(state => state.asset.loading);
 
   useEffect(() => {

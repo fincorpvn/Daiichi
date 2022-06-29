@@ -249,7 +249,7 @@ function ReviewInfoModal() {
           job: job || '',
           position: position || '',
           incomeSource: incomeSource?.id || 'SOURCE_OTHER',
-          annualIncome: annualIncome?.name || annualIncome?.nameEn || '',
+          annualIncome: annualIncome?.id || '',
         },
         userAddress: {
           permanentAddress: address,
@@ -300,6 +300,18 @@ function ReviewInfoModal() {
     }
   };
 
+  const checkToSetdata = (e: string, func: (r: string) => void) => {
+    if (e.length == 0) {
+      func(e);
+      return;
+    }
+    const t: string = e[e.length ? e.length - 1 : 0] || '';
+    const reg = /^[0-9]*$/;
+    if (reg.test(t)) {
+      func(e);
+    }
+  };
+
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       {loading && (
@@ -336,7 +348,7 @@ function ReviewInfoModal() {
           <InputItem
             keyboardType={'number-pad'}
             value={number}
-            onChangeText={a => setNumber(a)}
+            onChangeText={a => checkToSetdata(a, r => setNumber(r))}
             marginHorizontal={0}
             marginTop={6}
           />

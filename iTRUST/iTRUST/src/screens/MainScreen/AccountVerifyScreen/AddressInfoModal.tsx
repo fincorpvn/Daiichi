@@ -208,7 +208,7 @@ function AddressInfoModal() {
           </Div>
         </RowSpaceItem>
         <RowSpaceItem>
-          <Label>{`accountverify.diachithuongtru`}</Label>
+          <Label>{`accountverify.sonhatenduong`}</Label>
           <Div
             flexDirection={'row'}
             alignItems={'center'}
@@ -290,7 +290,7 @@ function AddressInfoModal() {
           </Div>
         </RowSpaceItem>
         <RowSpaceItem>
-          <Label>{`accountverify.diachilienhe`}</Label>
+          <Label>{`accountverify.sonhatenduong`}</Label>
           <Div
             flexDirection={'row'}
             alignItems={'center'}

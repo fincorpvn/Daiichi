@@ -235,6 +235,7 @@ export default {
     xacthuchoantat: 'Confirmation complete',
     chondiachilienhe: 'Select contact address',
     vuilongchondiachilienhe: 'Select province/city',
+    sonhatenduong: 'Address',
     // trangthaitkdautu: 'Trạng thái tài khoản đầu tư',
     hosogoc: 'Original file',
     quocgia: 'Country',

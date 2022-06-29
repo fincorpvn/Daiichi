@@ -226,6 +226,7 @@ export default {
     mucthunhaphangthang: 'Mức thu nhập hàng tháng',
     nguontiendautu: 'Nguồn tiền đầu tư',
     //
+    sonhatenduong: 'Số nhà/Tên đường',
 
     hosogoc: 'Hồ sơ gốc',
     quocgia: 'Quốc gia',
@@ -366,8 +367,8 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     tatca: 'Tất cả',
     lenhmua: 'Lệnh mua',
     lenhban: 'Lệnh bán',
-    lenhmuahoandoi: 'Lệnh chờ chuyển đổi mua',
-    lenhbanhoandoi: 'Lệnh chờ chuyển đổi bán',
+    lenhmuahoandoi: 'Lệnh chuyển đổi mua',
+    lenhbanhoandoi: 'Lệnh chuyển đổi bán',
     lenhhoandoi: 'Lệnh hoán đổi',
     toingay: 'Tới ngày',
     taolenhmua: 'Tạo lệnh mua',

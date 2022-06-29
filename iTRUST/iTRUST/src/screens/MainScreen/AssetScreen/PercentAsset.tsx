@@ -2,6 +2,7 @@ import {Button, Div, ImageView, Label} from 'components';
 import {Ecolors, EStyle, Icons} from 'constant';
 import React from 'react';
 import {getProductList, getProductListSort} from 'reducer/asset';
+import RowButtonToCreateOrder from 'screens/MainScreen/AssetScreen/RowButtonToCreateOrder';
 import {navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {
@@ -46,66 +47,6 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
               <Label fontWeight={'700'} multilanguage={false}>
                 {code}
               </Label>
-            </Div>
-            <Div
-              flexDirection={'row'}
-              alignItems={'center'}
-              justifyContent={'flex-end'}>
-              <Button
-                onPress={() => {
-                  checkApproveInvestmentProfile({
-                    currentUser,
-                    I18nState,
-                    initData: {
-                      product: p.data,
-                    },
-                    orderType: 'BUY',
-                  });
-                  return;
-                }}>
-                <ImageView
-                  widthHeight={37}
-                  resizeMode={'contain'}
-                  source={Icons.buy}
-                />
-              </Button>
-              <Button
-                onPress={() => {
-                  checkApproveInvestmentProfile({
-                    currentUser,
-                    I18nState,
-                    initData: {
-                      product: p.data,
-                    },
-                    orderType: 'SELL',
-                  });
-                  return;
-                }}>
-                <ImageView
-                  marginHorizontal={9}
-                  widthHeight={37}
-                  resizeMode={'contain'}
-                  source={Icons.sell}
-                />
-              </Button>
-              <Button
-                onPress={() => {
-                  checkApproveInvestmentProfile({
-                    currentUser,
-                    I18nState,
-                    initData: {
-                      product: p.data,
-                    },
-                    orderType: 'TRANSFER',
-                  });
-                  return;
-                }}>
-                <ImageView
-                  widthHeight={37}
-                  resizeMode={'contain'}
-                  source={Icons.transfer}
-                />
-              </Button>
             </Div>
           </Div>
           {/* hodl volumn */}
@@ -161,6 +102,7 @@ function Item(p: {data: any; isBorderBottom?: boolean}) {
           })}
         </Div>
       )}
+      <RowButtonToCreateOrder data={p.data} />
       <Div height={15} />
       {p.isBorderBottom && (
         <Div width={'100%'} height={1} backgroundColor={Ecolors.grayColor} />

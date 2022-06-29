@@ -43,6 +43,20 @@ function FeeTableModal() {
   const switchOrder = () => {
     switch (route.params.data.url) {
       case 'product-program/sell-fee':
+        if (data.length == 1) {
+          return (
+            <Div
+              flexDirection={'row'}
+              alignItems={'center'}
+              paddingTop={19}
+              justifyContent={'center'}>
+              <Label
+                fontWeight={'500'}
+                size={14}>{`createordermodal.phiban`}</Label>
+              <Label size={14} multilanguage={false}>{` 0.00%`}</Label>
+            </Div>
+          );
+        }
         return (
           <Div paddingBottom={25}>
             <Div
@@ -137,6 +151,20 @@ function FeeTableModal() {
           </Div>
         );
       case 'product-program/switch-fee':
+        if (data.length == 1) {
+          return (
+            <Div
+              flexDirection={'row'}
+              alignItems={'center'}
+              paddingTop={19}
+              justifyContent={'center'}>
+              <Label
+                fontWeight={'500'}
+                size={14}>{`createordermodal.phichuyendoi`}</Label>
+              <Label size={14} multilanguage={false}>{` 0.00%`}</Label>
+            </Div>
+          );
+        }
         return (
           <Div paddingBottom={25}>
             <Div

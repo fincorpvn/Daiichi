@@ -300,7 +300,7 @@ function EditAddressInfoModal() {
               setpermanentWard(a);
             }}
           />
-          <Label marginTop={16}>{`accountverify.diachithuongtru`}</Label>
+          <Label marginTop={16}>{`accountverify.sonhatenduong`}</Label>
           <InputItem
             value={permanentAddress}
             isInput={
@@ -426,7 +426,7 @@ function EditAddressInfoModal() {
               setMailingWard(a);
             }}
           />
-          <Label marginTop={16}>{`accountverify.diachithuongtru`}</Label>
+          <Label marginTop={16}>{`accountverify.sonhatenduong`}</Label>
           <InputItem
             value={mailingAddress}
             isInput={

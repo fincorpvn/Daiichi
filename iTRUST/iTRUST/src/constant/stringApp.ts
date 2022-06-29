@@ -1,5 +1,9 @@
 const currency = `(VNĐ)`;
-const hotline = `1900636553`;
+
+const support = {
+  hotline: `+84 983 070481`,
+  emailsupport: `dfvn_cs@dai-ichi-life.com.vn`,
+};
 const riskAssessment = [
   {
     id: 'experienceInvestment',
@@ -186,5 +190,6 @@ export const stringApp = {
   source: source,
   monthlyIncom: monthlyIncom,
   currency: currency,
-  hotline: hotline,
+  hotline: support.hotline,
+  emailsupport: support.emailsupport,
 };

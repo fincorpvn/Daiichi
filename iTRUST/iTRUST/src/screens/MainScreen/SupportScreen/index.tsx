@@ -1,5 +1,5 @@
 import {Alert, Button, Div, HeaderBack, Label} from 'components';
-import {Ecolors} from 'constant';
+import {Ecolors, stringApp} from 'constant';
 import React, {useEffect, useRef} from 'react';
 import {Linking} from 'react-native';
 import {useAppSelector} from 'store/hooks';
@@ -59,22 +59,25 @@ function SupportScreen() {
       <Row
         onPress={() => {
           Alert.show({
-            content: I18nState == 'vi' ? `Gọi 1900636553` : `Call 1900636553`,
+            content:
+              I18nState == 'vi'
+                ? `Gọi ${stringApp.hotline}`
+                : `Call ${stringApp.hotline}`,
             multilanguage: false,
             onConfirm: () => {
-              callPhone('1900636553');
+              callPhone(stringApp.hotline);
             },
           });
         }}
         title={`supportscreen.cskh`}
-        content={'1900636553'}
+        content={stringApp.hotline}
       />
       <Row
         onPress={() => {
-          Linking.openURL('mailto:irwm@vinacapital.com');
+          Linking.openURL(stringApp.emailsupport);
         }}
         title={`supportscreen.email`}
-        content={'irwm@vinacapital.com'}
+        content={stringApp.emailsupport}
       />
       <Row
         onPress={() => {

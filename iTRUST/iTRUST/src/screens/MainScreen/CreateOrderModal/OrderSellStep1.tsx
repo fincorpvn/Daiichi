@@ -300,7 +300,7 @@ function OrderSellStep1({
               flexDirection={'row'}
               alignItems={'center'}
               justifyContent={'space-between'}
-              backgroundColor={Ecolors.spaceColor}>
+              backgroundColor={Ecolors.bgtime}>
               <Div
                 paddingRight={16}
                 height={'100%'}

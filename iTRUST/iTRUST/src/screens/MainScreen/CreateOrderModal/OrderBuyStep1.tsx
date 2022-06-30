@@ -238,7 +238,7 @@ function OrderBuyStep1({
               borderRadius={5}
               paddingHorizontal={16}
               paddingVertical={21}
-              backgroundColor={Ecolors.spaceColor}>
+              backgroundColor={Ecolors.bgtime}>
               <Div
                 flexDirection={'row'}
                 alignItems={'flex-start'}

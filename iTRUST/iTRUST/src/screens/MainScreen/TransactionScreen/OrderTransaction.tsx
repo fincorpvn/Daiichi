@@ -4,6 +4,7 @@ import {Ecolors} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {FlatList, ScrollView, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
+import {getProductList} from 'reducer/asset';
 import {
   changeOrderType,
   getTransaction,
@@ -35,6 +36,7 @@ function OrderTransaction() {
   const orderType = useAppSelector(state => state.transaction.orderType);
   const isFocus = useIsFocused();
   const I18nState = useAppSelector(state => state.languages.I18nState);
+  const productList = useAppSelector(state => getProductList(state));
   const {
     email,
     phone,
@@ -129,26 +131,28 @@ function OrderTransaction() {
       <Div flex={1}>
         <ListOrderTransaction />
       </Div>
-      <Div
-        paddingVertical={16}
-        width={'100%'}
-        flexDirection={'row'}
-        alignItems={'center'}
-        justifyContent={'center'}>
-        <ButtonBorder
-          onPress={() => {
-            checkApproveInvestmentProfile({
-              currentUser,
-              I18nState,
-              orderType,
-              initData: {},
-            });
-            return;
-          }}
-          type={1}
-          title={convertTitleOrderType(orderType)}
-        />
-      </Div>
+      {(!!productList.length || orderType == 'BUY') && (
+        <Div
+          paddingVertical={16}
+          width={'100%'}
+          flexDirection={'row'}
+          alignItems={'center'}
+          justifyContent={'center'}>
+          <ButtonBorder
+            onPress={() => {
+              checkApproveInvestmentProfile({
+                currentUser,
+                I18nState,
+                orderType,
+                initData: {},
+              });
+              return;
+            }}
+            type={1}
+            title={convertTitleOrderType(orderType)}
+          />
+        </Div>
+      )}
     </Div>
   );
 }

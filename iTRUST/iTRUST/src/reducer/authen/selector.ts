@@ -20,12 +20,15 @@ export const getStatusEditProfile = createSelector(
       investmentProfile,
     } = currentUser;
     const r =
-      (userInfoIsFull &&
-        bankAccountIsFull &&
-        userAddressIsFull &&
-        riskInfo &&
-        investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT') ||
-      false;
+      !!investmentProfile?.status &&
+      investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT';
+    // const r =
+    //   (userInfoIsFull &&
+    //     bankAccountIsFull &&
+    //     userAddressIsFull &&
+    //     riskInfo &&
+    //     investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT') ||
+    //   false;
     return !r;
   },
 );

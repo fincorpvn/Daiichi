@@ -256,7 +256,7 @@ function LoginScreen() {
           alignItems={'center'}
           justifyContent={'flex-start'}>
           <Label size={16}>{`loginscreen.tendangnhap`}</Label>
-          <DropdownWarningAlert />
+          {/* <DropdownWarningAlert /> */}
         </Div>
         <InputItem
           marginTop={6}

@@ -149,7 +149,7 @@ function AccountInfoModal() {
 
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
-      {loading && (
+      {/* {loading && (
         <Div
           flex={1}
           width={'100%'}
@@ -163,7 +163,7 @@ function AccountInfoModal() {
           backgroundColor={Ecolors.transparentLoading}>
           <LoadingIndicator color={Ecolors.mainColor} />
         </Div>
-      )}
+      )} */}
       <HeaderBack
         type={2}
         iconRight={isEdit ? Icons.edit : null}
@@ -248,6 +248,11 @@ function AccountInfoModal() {
             <Label multilanguage={false}>{placeOfIssue}</Label>
           </Div>
         </RowSpaceItem>
+        {loading && (
+          <Div alignItems={'center'} paddingTop={10} justifyContent={'center'}>
+            <LoadingIndicator color={Ecolors.mainColor} numdot={3} />
+          </Div>
+        )}
         <Div
           padding={16}
           flexDirection={'row'}

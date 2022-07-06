@@ -1,4 +1,4 @@
-import {stringApp} from 'constant';
+import { stringApp } from 'constant';
 export default {
   footerapp: {
     OverviewScreen: 'Tổng quan',

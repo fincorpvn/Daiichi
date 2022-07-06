@@ -16,7 +16,7 @@ import {getInfo} from 'reducer/authen';
 import {apiAuth, goBack, navigate} from 'services';
 import {doGetAxios} from 'services/apis/axios';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
-import {Log, removeUtf8, widthScale} from 'utils';
+import {checkToSetNumber, Log, removeUtf8, widthScale} from 'utils';
 
 function Lbl(p: {content: string; marginTop?: number}) {
   return (
@@ -207,18 +207,6 @@ function EditBankInfoModal() {
     }
   };
 
-  const checkToSetdata = (e: string, func: (r: string) => void) => {
-    if (e.length == 0) {
-      func(e);
-      return;
-    }
-    const t: string = e[e.length ? e.length - 1 : 0] || '';
-    const reg = /^[0-9]*$/;
-    if (reg.test(t)) {
-      func(e);
-    }
-  };
-
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack
@@ -245,7 +233,7 @@ function EditBankInfoModal() {
           <InputItem
             keyboardType={'number-pad'}
             value={number}
-            onChangeText={a => checkToSetdata(a, r => setNumber(r))}
+            onChangeText={a => checkToSetNumber(a, r => setNumber(r))}
             marginHorizontal={0}
             marginTop={6}
           />

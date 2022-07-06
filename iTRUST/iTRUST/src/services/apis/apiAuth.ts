@@ -409,7 +409,6 @@ export const apiAuth = {
     const url = `esignature/create`;
     return axiosMultipart(url, params);
   },
-
   confirmCreateEsignature: (params: {
     expiredDurationInMinutes?: number;
     expiredTime?: number;

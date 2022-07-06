@@ -11,9 +11,11 @@ import {
 import {Ecolors, Icons} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {ScrollView} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useDispatch} from 'react-redux';
 import {getInfo} from 'reducer/authen';
 import {getInvestmentProfile} from 'reducer/authen/selector';
+import ConfirmContent from 'screens/MainScreen/AccountVerifyScreen/ConfirmContent';
 import {apiAuth, navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {heightScreen, Log, widthScreen} from 'utils';
@@ -21,6 +23,7 @@ import {heightScreen, Log, widthScreen} from 'utils';
 function ConfirmModal() {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const currentUser = useAppSelector(state => state.authen.currentUser);
+  const insets = useSafeAreaInsets();
 
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -79,60 +82,11 @@ function ConfirmModal() {
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack type={2} title={`accountverify.xacnhanhoantat`} />
-
       <ScrollView>
-        <Div padding={16} backgroundColor={Ecolors.spaceColor}>
-          <Label>{`accountverify.titleconfirm`}</Label>
-          <Label
-            marginTop={5}
-            color={Ecolors.mainColor}
-            fontWeight={'700'}
-            multilanguage={false}
-            lineHeight={22}
-            size={15}>
-            <Label
-              lineHeight={22}
-              size={15}>{`accountverify.contentdiachi1`}</Label>
-            {`${email || ''}`}
-          </Label>
-          <Label marginTop={10} lineHeight={22} size={15}>
-            {`accountverify.contentinhoso`}
-          </Label>
-        </Div>
-        <Div padding={10} backgroundColor={Ecolors.spaceColor} marginTop={5}>
-          <Label
-            marginTop={8}
-            size={15}
-            fontWeight={'700'}
-            color={Ecolors.mainColor}>{`accountverify.congboruiro`}</Label>
-          <Label
-            marginTop={8}
-            size={15}
-            fontWeight={'700'}>{`accountverify.title1`}</Label>
-          <Label
-            size={15}
-            lineHeight={22}
-            marginTop={8}>{`accountverify.content1`}</Label>
-          <Label
-            size={15}
-            marginTop={8}
-            fontWeight={'700'}>{`accountverify.title2`}</Label>
-          <Label
-            lineHeight={22}
-            size={15}
-            marginTop={8}>{`accountverify.content2`}</Label>
-          <Label
-            size={15}
-            marginTop={8}
-            fontWeight={'700'}>{`accountverify.title3`}</Label>
-          <Label
-            size={15}
-            lineHeight={22}
-            marginTop={8}>{`accountverify.content3`}</Label>
-        </Div>
-        <Div height={30} />
-        {(!investmentProfile ||
-          investmentProfile?.code == 'INVESTMENT_PROFILE_REJECT') && (
+        <ConfirmContent email={email} />
+
+        {!investmentProfile ||
+        investmentProfile?.code == 'INVESTMENT_PROFILE_REJECT' ? (
           <>
             <Div
               flexDirection={'row'}
@@ -210,6 +164,8 @@ function ConfirmModal() {
               />
             </Div>
           </>
+        ) : (
+          <Div height={insets.bottom + 20} />
         )}
       </ScrollView>
     </Div>

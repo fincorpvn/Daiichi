@@ -168,8 +168,12 @@ function AccountInfoModal() {
         type={2}
         iconRight={isEdit ? Icons.edit : null}
         // iconRight={Icons.edit}
+        loading={loading}
         title={`accountverify.thongtincanhan`}
         onRightPress={() => {
+          if (loading) {
+            return;
+          }
           navigate('EditAccountInfoModal');
         }}
       />

@@ -76,11 +76,10 @@ function OrderBuyDetailsModal() {
     receivedAmount,
     price,
     code,
+    transferContent,
   } = route?.params?.data;
 
-  const bankNote = `${
-    `${investmentProfile?.number} - ${productProgramTradeCode}` || ''
-  }`;
+  const bankNote = `${transferContent}`;
 
   const onDeleteOrder = () => {
     Alert.show({
@@ -133,7 +132,9 @@ function OrderBuyDetailsModal() {
         type={2}
         multilanguage={false}
         title={I18nState == 'vi' ? productProgramName : productProgramNameEn}
-        iconRight={!route?.params?.hideDelete ? Icons.delete : null}
+        iconRight={
+          !(route?.params?.hideDelete || receivedAmount) ? Icons.delete : null
+        }
         onRightPress={() => {
           onDeleteOrder();
         }}

@@ -17,6 +17,7 @@ import {Platform, ScrollView, StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useDispatch} from 'react-redux';
 import {doLogin, getInfo} from 'reducer/authen';
+import ConfirmContent from 'screens/MainScreen/AccountVerifyScreen/ConfirmContent';
 import {apiAuth, goBack, navigate, uploadFile} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {
@@ -272,12 +273,11 @@ function ReviewInfoModal() {
       };
       const res = await apiAuth.createEKYC(data);
       setLoading(false);
-
       if (res.status == 200) {
         dispatch(getInfo({}));
         Alert.show({
-          content: I18nState == 'vi' ? res.message : res.messageEn,
-          multilanguage: false,
+          content: `alert.dangkytaikhoanthanhcong`, // I18nState == 'vi' ? res.message : res.messageEn,
+          // multilanguage: false,
           type: 2,
           titleClose: `alert.dongy`,
           onClose: async () => {
@@ -806,8 +806,12 @@ function ReviewInfoModal() {
           <Label
             marginTop={15}
             size={15}
+            marginBottom={10}
             fontWeight={'700'}>{`reviewinfoscreen.dieukhoansudung`}</Label>
-          <Label
+          <ConfirmContent
+            email={email || currentUser?.email || userRedux?.email || ''}
+          />
+          {/* <Label
             marginTop={10}
             color={Ecolors.mainColor}
             fontWeight={'700'}
@@ -822,16 +826,6 @@ function ReviewInfoModal() {
           <Label marginBottom={10} marginTop={10} lineHeight={22} size={15}>
             {`accountverify.contentinhoso`}
           </Label>
-          {/* <Label
-            marginTop={5}
-            lineHeight={22}
-            size={15}>{`accountverify.contentdiachi2`}</Label>
-          <Label
-            fontWeight={'700'}
-            lineHeight={22}
-            marginBottom={10}
-            marginTop={5}
-            size={15}>{`accountverify.contentdiachi3`}</Label> */}
           <Div padding={10} backgroundColor={Ecolors.spaceColor} marginTop={5}>
             <Label
               marginTop={8}
@@ -862,7 +856,7 @@ function ReviewInfoModal() {
               size={15}
               lineHeight={22}
               marginTop={8}>{`accountverify.content3`}</Label>
-          </Div>
+          </Div> */}
           <Div
             flexDirection={'row'}
             paddingTop={17}

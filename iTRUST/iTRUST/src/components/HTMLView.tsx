@@ -1,24 +1,8 @@
 import {Div} from 'components';
-import {Ecolors} from 'constant';
+import {Ecolors, Efonts} from 'constant';
 import React from 'react';
 import RenderHtml from 'react-native-render-html';
 import {fontScale, heightScale, widthScale, widthScreen} from 'utils';
-
-const tagsStyles = {
-  body: {
-    whiteSpace: 'normal',
-    color: Ecolors.textColor,
-    fontSize: fontScale(15),
-  },
-  h3: {
-    paddingHorizontal: widthScale(10),
-    lineHeight: heightScale(20),
-  },
-  p: {
-    paddingHorizontal: widthScale(10),
-    lineHeight: heightScale(20),
-  },
-};
 function HTMLView(Props: {
   source: {
     html: string;
@@ -26,10 +10,35 @@ function HTMLView(Props: {
 }) {
   return (
     <RenderHtml
-      contentWidth={widthScreen - 50}
+      contentWidth={widthScreen}
       source={Props.source}
-      // tagsStyles={tagsStyles}
-      tagsStyles={tagsStyles}
+      tagsStyles={{
+        body: {
+          color: Ecolors.textColor,
+          fontSize: fontScale(16),
+          fontWeight: '600',
+          fontFamily: Efonts.medium,
+          paddingHorizontal: widthScale(15),
+        },
+        h3: {
+          lineHeight: heightScale(18),
+          fontSize: fontScale(15),
+          fontFamily: Efonts.medium,
+          fontWeight: '600',
+        },
+        p: {
+          lineHeight: heightScale(18),
+          fontSize: fontScale(15),
+          fontFamily: Efonts.medium,
+          fontWeight: '600',
+        },
+        strong: {
+          lineHeight: heightScale(18),
+          fontFamily: Efonts.medium,
+          fontSize: fontScale(15),
+          fontWeight: '700',
+        },
+      }}
     />
   );
 }

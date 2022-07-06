@@ -79,14 +79,14 @@ function SupportScreen() {
         title={`supportscreen.email`}
         content={stringApp.emailsupport}
       />
-      <Row
+      {/* <Row
         onPress={() => {
           Linking.openURL('https://www.facebook.com/vinacapitalwm/');
         }}
         title={`supportscreen.facebook`}
         content={'fb.com/vinacapitalwm/'}
-      />
-      <Div
+      /> */}
+      {/* <Div
         height={54}
         backgroundColor={Ecolors.spaceColor}
         flexDirection={'row'}
@@ -96,9 +96,7 @@ function SupportScreen() {
         <Label fontWeight={'700'}>{`supportscreen.chuyenvientrogiup`}</Label>
       </Div>
       <Row
-        onPress={() => {
-          // Linking.openURL('mailto:maivanthanh@vinacapital.com');
-        }}
+        onPress={() => {}}
         title={`supportscreen.hoten`}
         content={userSourceRef?.bdaName || ''}
         contentColor={Ecolors.textColor}
@@ -109,7 +107,7 @@ function SupportScreen() {
         }}
         title={`supportscreen.email`}
         content={userSourceRef?.bdaEmail || ''}
-      />
+      /> */}
     </Div>
   );
 }

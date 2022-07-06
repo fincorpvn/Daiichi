@@ -1,7 +1,7 @@
 const currency = `(VNĐ)`;
 
 const support = {
-  hotline: `+84 983 070481`,
+  hotline: `+84 28 38100888`,
   emailsupport: `dfvn_cs@dai-ichi-life.com.vn`,
 };
 const riskAssessment = [

@@ -13,10 +13,10 @@ export default {
   },
   loginscreen: {
     login: 'Đăng nhập',
-    saveusername: 'Lưu tài khoản',
+    saveusername: 'Lưu',
     forgotpass: 'Quên mật khẩu ?',
     signuptitle: 'Bạn chưa có tài khoản? ',
-    signup: 'Đăng ký!',
+    signup: 'Đăng ký ngay!',
     accountplacehoder: 'Nhập số điện thoại',
     passwordplacehoder: 'Nhập mật khẩu',
     fincorp: `${stringApp.companyName}`,
@@ -59,7 +59,7 @@ export default {
     tinhthanhpho: 'Tỉnh/Thành phố',
     quanhuyen: 'Quận/huyện',
     phuongxa: 'Phường/Xã',
-    sonhatenduong: 'Số nhà/Tên đường',
+    sonhatenduong: 'Số nhà, tên đường',
     diachilienhe: '2. Địa chỉ liên hệ',
     giongdiachithuongtru: 'Giống địa chỉ thường trú',
     diachikhac: 'Địa chỉ khác',
@@ -226,7 +226,7 @@ export default {
     mucthunhaphangthang: 'Mức thu nhập hàng tháng',
     nguontiendautu: 'Nguồn tiền đầu tư',
     //
-    sonhatenduong: 'Số nhà/Tên đường',
+    sonhatenduong: 'Số nhà, tên đường',
 
     hosogoc: 'Hồ sơ gốc',
     quocgia: 'Quốc gia',
@@ -474,7 +474,8 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     xembieuphi: 'Xem biểu phí',
     thoidiemdongsolenh: 'Thời điểm đóng sổ lệnh ',
     nhadautuvuilongchuyentientruoc: 'Nhà đầu tư vui lòng chuyển tiền trước',
-    thoidiemdongsolenhnhantien: 'Thời điểm đóng sổ lệnh nhận tiền',
+    thoidiemdongsolenhnhantien:
+      'Tiền mua của Nhà đầu tư phải được ghi có vào tài khoản của Quỹ trước',
     phiengiaodich: 'Phiên giao dịch',
     thongtindautu: 'Thông tin đầu tư',
     quydautu: 'Quỹ đầu tư',
@@ -675,6 +676,8 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     ekycfail:
       'Chúng tôi không thể xác minh thông tin bạn đang cung cấp vì chất lượng hình chụp không tốt. Vui lòng làm lại!',
     ekycfail3: `Chúng tôi không thể xác minh thông tin bạn đang cung cấp vì chất lượng hình chụp không tốt. Quý khách vui lòng khai báo thông tin cá nhân thủ công.`,
+    dangkytaikhoanthanhcong:
+      'Quý khách đã đăng ký tài khoản thành công. Trường hợp cần tư vấn thêm, Quý khách vui lòng liên hệ theo số (84-28) 3810 0888 – Ext: 5555 hoặc (84) 983 070481.',
   },
   //
   component: {

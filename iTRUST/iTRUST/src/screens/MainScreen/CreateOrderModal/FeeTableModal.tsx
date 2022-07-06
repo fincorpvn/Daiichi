@@ -50,9 +50,7 @@ function FeeTableModal() {
               alignItems={'center'}
               paddingTop={19}
               justifyContent={'center'}>
-              <Label
-                fontWeight={'500'}
-                size={14}>{`createordermodal.phiban`}</Label>
+              <Label size={14}>{`createordermodal.phiban`}</Label>
               <Label size={14} multilanguage={false}>{` 0.00%`}</Label>
             </Div>
           );
@@ -68,12 +66,8 @@ function FeeTableModal() {
               alignItems={'center'}
               justifyContent={'space-between'}
               marginHorizontal={17}>
-              <Label
-                fontWeight={'500'}
-                size={14}>{`createordermodal.thoigiannamgiu`}</Label>
-              <Label
-                fontWeight={'500'}
-                size={14}>{`createordermodal.phiban`}</Label>
+              <Label size={14}>{`createordermodal.thoigiannamgiu`}</Label>
+              <Label size={14}>{`createordermodal.phiban`}</Label>
             </Div>
             {data?.map((item: any, index: number) => {
               return (
@@ -104,9 +98,7 @@ function FeeTableModal() {
               alignItems={'center'}
               paddingTop={19}
               justifyContent={'center'}>
-              <Label
-                fontWeight={'500'}
-                size={14}>{`createordermodal.phimua`}</Label>
+              <Label size={14}>{`createordermodal.phimua`}</Label>
               <Label size={14} multilanguage={false}>{` 0.00%`}</Label>
             </Div>
           );
@@ -122,12 +114,8 @@ function FeeTableModal() {
               alignItems={'center'}
               justifyContent={'space-between'}
               marginHorizontal={17}>
-              <Label
-                fontWeight={'500'}
-                size={14}>{`createordermodal.giatrimua`}</Label>
-              <Label
-                fontWeight={'500'}
-                size={14}>{`createordermodal.phimua`}</Label>
+              <Label size={14}>{`createordermodal.giatrimua`}</Label>
+              <Label size={14}>{`createordermodal.phimua`}</Label>
             </Div>
             {data?.map((item: any, index: number) => {
               return (
@@ -158,9 +146,7 @@ function FeeTableModal() {
               alignItems={'center'}
               paddingTop={19}
               justifyContent={'center'}>
-              <Label
-                fontWeight={'500'}
-                size={14}>{`createordermodal.phichuyendoi`}</Label>
+              <Label size={14}>{`createordermodal.phichuyendoi`}</Label>
               <Label size={14} multilanguage={false}>{` 0.00%`}</Label>
             </Div>
           );
@@ -176,12 +162,8 @@ function FeeTableModal() {
               alignItems={'center'}
               justifyContent={'space-between'}
               marginHorizontal={17}>
-              <Label
-                fontWeight={'500'}
-                size={14}>{`createordermodal.thoigiannamgiu`}</Label>
-              <Label
-                fontWeight={'500'}
-                size={14}>{`createordermodal.phichuyendoi`}</Label>
+              <Label size={14}>{`createordermodal.thoigiannamgiu`}</Label>
+              <Label size={14}>{`createordermodal.phichuyendoi`}</Label>
             </Div>
             {data?.map((item: any, index: number) => {
               return (

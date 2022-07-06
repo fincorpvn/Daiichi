@@ -40,6 +40,7 @@ function Item(p: {data: any; isSpaceBottom?: boolean}) {
               justifyContent={'flex-start'}>
               <Div
                 marginLeft={7}
+                marginBottom={3}
                 marginRight={8}
                 widthHeight={11}
                 borderRadius={11}
@@ -59,11 +60,11 @@ function Item(p: {data: any; isSpaceBottom?: boolean}) {
               alignItems={'center'}
               justifyContent={'space-between'}>
               <Label
-                size={12}
+                size={14}
                 color={Ecolors.grayColor}>{`assetscreen.giatrihientai`}</Label>
               <Label
                 color={Ecolors.grayColor}
-                size={12}>{`assetscreen.loilo`}</Label>
+                size={14}>{`assetscreen.loilo`}</Label>
             </Div>
             <Div
               marginTop={3}

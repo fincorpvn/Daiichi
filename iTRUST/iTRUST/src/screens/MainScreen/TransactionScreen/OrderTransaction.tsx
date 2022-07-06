@@ -92,7 +92,12 @@ function OrderTransaction() {
           size={14}
           width={125}
           height={36}
-          onPress={() => onChangeOrderType('BUY')}
+          onPress={() => {
+            if (orderType == 'BUY') {
+              return;
+            }
+            onChangeOrderType('BUY');
+          }}
           type={orderType == 'BUY' ? 1 : 3}
           title={`transactionscreen.lenhchomua`}
         />
@@ -102,7 +107,12 @@ function OrderTransaction() {
           size={14}
           width={125}
           height={36}
-          onPress={() => onChangeOrderType('SELL')}
+          onPress={() => {
+            if (orderType == 'SELL') {
+              return;
+            }
+            onChangeOrderType('SELL');
+          }}
           type={orderType == 'SELL' ? 1 : 3}
           title={`transactionscreen.lenhchoban`}
         />
@@ -112,7 +122,12 @@ function OrderTransaction() {
           size={14}
           width={175}
           height={36}
-          onPress={() => onChangeOrderType('TRANSFER')}
+          onPress={() => {
+            if (orderType == 'TRANSFER') {
+              return;
+            }
+            onChangeOrderType('TRANSFER');
+          }}
           type={orderType == 'TRANSFER' ? 1 : 3}
           title={`transactionscreen.lenhbanhoandoi`}
         />
@@ -122,7 +137,12 @@ function OrderTransaction() {
           size={14}
           width={175}
           height={36}
-          onPress={() => onChangeOrderType('TRANSFER_BUY')}
+          onPress={() => {
+            if (orderType == 'TRANSFER_BUY') {
+              return;
+            }
+            onChangeOrderType('TRANSFER_BUY');
+          }}
           type={orderType == 'TRANSFER_BUY' ? 1 : 3}
           title={`transactionscreen.lenhmuahoandoi`}
         />

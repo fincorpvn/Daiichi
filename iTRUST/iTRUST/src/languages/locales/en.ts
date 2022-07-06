@@ -692,6 +692,8 @@ export default {
     ekycfail:
       'Currently, we cannot verify your information because of bad quality pictures. Please try later!',
     ekycfail3: `Chúng tôi không thể xác minh thông tin bạn đang cung cấp vì chất lượng hình chụp không tốt. Quý khách vui lòng khai báo thông tin cá nhân thủ công.`,
+    dangkytaikhoanthanhcong:
+      'You have successfully registered an account. If you need further advice, please contact us at (84-28) 3810 0888 – Ext: 5555 or (84) 983 070481.',
   },
   //
   component: {

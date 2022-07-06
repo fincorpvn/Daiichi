@@ -30,6 +30,7 @@ import {apiAuth, goBack, navigate, uploadFile} from 'services';
 import {apiMain} from 'services/apis/apiMain';
 import {useAppSelector} from 'store/hooks';
 import {
+  checkToSetNumber,
   convertTimestamp,
   getImageCamera,
   getImageLibrary,
@@ -540,14 +541,17 @@ function EditAccountInfoModal() {
             marginTop={6}
             paddingHorizontal={16}
             isActive={true}
-            initData={[
-              {
-                id: '5',
-                name: 'Mã giao dịch chứng khoán',
-                nameen: 'Mã giao dịch chứng khoán',
-              },
-              {id: '1', name: 'CMND/CCCD', nameen: 'CMND/CCCD'},
-            ]}
+            initData={
+              nationality?.id == '234'
+                ? [{id: '1', name: 'CMND/CCCD', nameen: 'CMND/CCCD'}]
+                : [
+                    {
+                      id: '5',
+                      name: 'Mã giao dịch chứng khoán',
+                      nameen: 'Mã giao dịch chứng khoán',
+                    },
+                  ]
+            }
             multilanguage={true}
             value={type}
             onChange={a => setType(a)}
@@ -557,8 +561,8 @@ function EditAccountInfoModal() {
             marginTop={13}
             marginLeft={16}>{`accountverify.sohieugiayto`}</Label>
           <InputItem
-            value={idNo}
             onChangeText={setIdNo}
+            value={idNo}
             isInput={true}
             marginHorizontal={16}
             marginTop={6}
@@ -583,95 +587,187 @@ function EditAccountInfoModal() {
             marginTop={6}
           />
 
-          <Div
-            paddingHorizontal={16}
-            paddingTop={20}
-            flexDirection={'row'}
-            alignItems={'center'}
-            justifyContent={'space-between'}>
-            <Button
-              overflow={'hidden'}
-              borderRadius={5}
-              width={162}
-              onPress={() => {
-                if (!loadingPhotoAfter && !loadingPhotoBefore) {
-                  imageUpload.current = 'before';
-                  bottomSheetUpload.current.show();
-                }
-              }}
-              height={103}>
-              <ImageView
+          {nationality?.id == '234' ? (
+            <Div
+              paddingHorizontal={16}
+              paddingTop={20}
+              flexDirection={'row'}
+              alignItems={'center'}
+              justifyContent={'space-between'}>
+              <Button
+                overflow={'hidden'}
                 borderRadius={5}
                 width={162}
-                height={103}
-                source={{
-                  uri:
-                    photoBefore?.base64Convert ||
-                    photoBefore?.uri ||
-                    photoBefore?.url,
+                onPress={() => {
+                  if (!loadingPhotoAfter && !loadingPhotoBefore) {
+                    imageUpload.current = 'before';
+                    bottomSheetUpload.current.show();
+                  }
                 }}
-              />
-              <Div
-                style={StyleSheet.absoluteFillObject}
-                alignItems={'center'}
-                justifyContent={'center'}
-                flex={1}
-                backgroundColor={Ecolors.transparentLoading}>
-                {loadingPhotoBefore ? (
-                  <LoadingIndicator color={Ecolors.mainColor} />
-                ) : (
-                  <ImageView
-                    width={26}
-                    height={24}
-                    resizeMode={'contain'}
-                    tintColor={Ecolors.whiteColor}
-                    source={Icons.camera}
-                  />
-                )}
-              </Div>
-            </Button>
-            <Button
-              overflow={'hidden'}
-              borderRadius={5}
-              width={162}
-              onPress={() => {
-                if (!loadingPhotoAfter && !loadingPhotoBefore) {
-                  imageUpload.current = 'after';
-                  bottomSheetUpload.current.show();
-                }
-              }}
-              height={103}>
-              <ImageView
+                height={103}>
+                <ImageView
+                  borderRadius={5}
+                  width={162}
+                  height={103}
+                  source={{
+                    uri:
+                      photoBefore?.base64Convert ||
+                      photoBefore?.uri ||
+                      photoBefore?.url,
+                  }}
+                />
+                <Div
+                  style={StyleSheet.absoluteFillObject}
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  flex={1}
+                  backgroundColor={Ecolors.transparentLoading}>
+                  {loadingPhotoBefore ? (
+                    <LoadingIndicator color={Ecolors.mainColor} />
+                  ) : (
+                    <ImageView
+                      width={26}
+                      height={24}
+                      resizeMode={'contain'}
+                      tintColor={Ecolors.whiteColor}
+                      source={Icons.camera}
+                    />
+                  )}
+                </Div>
+              </Button>
+              <Button
+                overflow={'hidden'}
                 borderRadius={5}
                 width={162}
-                height={103}
-                source={{
-                  uri:
-                    photoAfter?.base64Convert ||
-                    photoAfter?.uri ||
-                    photoAfter?.url,
+                onPress={() => {
+                  if (!loadingPhotoAfter && !loadingPhotoBefore) {
+                    imageUpload.current = 'after';
+                    bottomSheetUpload.current.show();
+                  }
                 }}
-              />
-              <Div
-                style={StyleSheet.absoluteFillObject}
-                alignItems={'center'}
-                justifyContent={'center'}
-                flex={1}
-                backgroundColor={Ecolors.transparentLoading}>
-                {loadingPhotoAfter ? (
-                  <LoadingIndicator color={Ecolors.mainColor} />
-                ) : (
-                  <ImageView
-                    width={26}
-                    height={24}
-                    resizeMode={'contain'}
-                    tintColor={Ecolors.whiteColor}
-                    source={Icons.camera}
-                  />
-                )}
-              </Div>
-            </Button>
-          </Div>
+                height={103}>
+                <ImageView
+                  borderRadius={5}
+                  width={162}
+                  height={103}
+                  source={{
+                    uri:
+                      photoAfter?.base64Convert ||
+                      photoAfter?.uri ||
+                      photoAfter?.url,
+                  }}
+                />
+                <Div
+                  style={StyleSheet.absoluteFillObject}
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  flex={1}
+                  backgroundColor={Ecolors.transparentLoading}>
+                  {loadingPhotoAfter ? (
+                    <LoadingIndicator color={Ecolors.mainColor} />
+                  ) : (
+                    <ImageView
+                      width={26}
+                      height={24}
+                      resizeMode={'contain'}
+                      tintColor={Ecolors.whiteColor}
+                      source={Icons.camera}
+                    />
+                  )}
+                </Div>
+              </Button>
+            </Div>
+          ) : (
+            <Div
+              paddingHorizontal={16}
+              paddingTop={20}
+              flexDirection={'row'}
+              alignItems={'center'}
+              justifyContent={'space-between'}>
+              <Button
+                overflow={'hidden'}
+                borderRadius={5}
+                width={162}
+                onPress={() => {
+                  if (!loadingPhotoAfter && !loadingPhotoBefore) {
+                    imageUpload.current = 'before';
+                    bottomSheetUpload.current.show();
+                  }
+                }}
+                height={103}>
+                <ImageView
+                  borderRadius={5}
+                  width={162}
+                  height={103}
+                  source={{
+                    uri:
+                      photoBefore?.base64Convert ||
+                      photoBefore?.uri ||
+                      photoBefore?.url,
+                  }}
+                />
+                <Div
+                  style={StyleSheet.absoluteFillObject}
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  flex={1}
+                  backgroundColor={Ecolors.transparentLoading}>
+                  {loadingPhotoBefore ? (
+                    <LoadingIndicator color={Ecolors.mainColor} />
+                  ) : (
+                    <ImageView
+                      width={26}
+                      height={24}
+                      resizeMode={'contain'}
+                      tintColor={Ecolors.whiteColor}
+                      source={Icons.camera}
+                    />
+                  )}
+                </Div>
+              </Button>
+              {/* <Button
+                overflow={'hidden'}
+                borderRadius={5}
+                width={162}
+                onPress={() => {
+                  if (!loadingPhotoAfter && !loadingPhotoBefore) {
+                    imageUpload.current = 'after';
+                    bottomSheetUpload.current.show();
+                  }
+                }}
+                height={103}>
+                <ImageView
+                  borderRadius={5}
+                  width={162}
+                  height={103}
+                  source={{
+                    uri:
+                      photoAfter?.base64Convert ||
+                      photoAfter?.uri ||
+                      photoAfter?.url,
+                  }}
+                />
+                <Div
+                  style={StyleSheet.absoluteFillObject}
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  flex={1}
+                  backgroundColor={Ecolors.transparentLoading}>
+                  {loadingPhotoAfter ? (
+                    <LoadingIndicator color={Ecolors.mainColor} />
+                  ) : (
+                    <ImageView
+                      width={26}
+                      height={24}
+                      resizeMode={'contain'}
+                      tintColor={Ecolors.whiteColor}
+                      source={Icons.camera}
+                    />
+                  )}
+                </Div>
+              </Button> */}
+            </Div>
+          )}
           <Div height={340} />
         </ScrollView>
       </Div>

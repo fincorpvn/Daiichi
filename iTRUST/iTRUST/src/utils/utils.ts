@@ -13,6 +13,18 @@ const regEmail =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const regPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9|#?!@$%^&*-]).{6,40}$/;
 const regPhone = /([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/;
+const regNumber = /^[0-9]*$/;
+
+export const checkToSetNumber = (e: string, func: (r: string) => void) => {
+  if (e.length == 0) {
+    func(e);
+    return;
+  }
+  const t: string = e[e.length ? e.length - 1 : 0] || '';
+  if (regNumber.test(t)) {
+    func(e);
+  }
+};
 
 export const converRistInfoInDto = (t: any) => {
   const obj = {};
@@ -548,8 +560,8 @@ export const joinObjectCalendar = (a: {
 export const reJoinObjectCalendar = (a: string) => {
   const arr = a?.split('/');
   return {
-    date: arr?.[1],
-    month: arr?.[0],
+    date: arr?.[0],
+    month: arr?.[1],
     year: arr?.[2],
   };
 };

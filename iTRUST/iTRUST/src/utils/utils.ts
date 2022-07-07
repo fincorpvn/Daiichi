@@ -551,7 +551,7 @@ export const joinObjectCalendar = (a: {
   isPicker?: boolean;
 }) => {
   return `${a.year}${
-    `${a.month}`.length < 2
+    `${parseInt(a.month)}`.length < 2
       ? `0${parseInt(a.month) + (a.isPicker ? 1 : 0)}`
       : parseInt(a.month) + (a.isPicker ? 1 : 0)
   }${`${a.date}`?.length >= 2 ? a.date : `0${a.date}`}`;

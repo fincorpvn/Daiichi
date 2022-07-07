@@ -184,6 +184,7 @@ function EditAccountInfoModal() {
         });
         return;
       }
+
       const res = await apiAuth.updateInvestmentInfo({
         dateOfIssue: joinObjectCalendar(dateOfIssue),
         dob: joinObjectCalendar(dob),

@@ -134,6 +134,7 @@ function AutoInvestOrderDetails() {
     nextCycleNumber,
     nextClosedBookTime,
     ordersInfo,
+    transferContent,
   } = route.params.data;
 
   return (
@@ -189,12 +190,12 @@ function AutoInvestOrderDetails() {
             <RowItem
               isRow={false}
               title={'transactionscreen.noidung'}
-              content={investmentNumber}
+              content={transferContent}
             />
           </Div>
           <Div
             marginTop={20}
-            backgroundColor={Ecolors.spaceColor}
+            backgroundColor={Ecolors.bgtime}
             borderRadius={5}
             minHeight={100}
             overflow={'hidden'}

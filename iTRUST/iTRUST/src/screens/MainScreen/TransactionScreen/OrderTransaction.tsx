@@ -82,72 +82,74 @@ function OrderTransaction() {
 
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
-      <ScrollView
-        style={s.scrollviewHeader}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}>
-        <Div width={16} />
-        <ButtonBorder
-          marginTop={20}
-          size={14}
-          width={125}
-          height={36}
-          onPress={() => {
-            if (orderType == 'BUY') {
-              return;
-            }
-            onChangeOrderType('BUY');
-          }}
-          type={orderType == 'BUY' ? 1 : 3}
-          title={`transactionscreen.lenhchomua`}
-        />
-        <Div width={16} />
-        <ButtonBorder
-          marginTop={20}
-          size={14}
-          width={125}
-          height={36}
-          onPress={() => {
-            if (orderType == 'SELL') {
-              return;
-            }
-            onChangeOrderType('SELL');
-          }}
-          type={orderType == 'SELL' ? 1 : 3}
-          title={`transactionscreen.lenhchoban`}
-        />
-        <Div width={16} />
-        <ButtonBorder
-          marginTop={20}
-          size={14}
-          width={175}
-          height={36}
-          onPress={() => {
-            if (orderType == 'TRANSFER') {
-              return;
-            }
-            onChangeOrderType('TRANSFER');
-          }}
-          type={orderType == 'TRANSFER' ? 1 : 3}
-          title={`transactionscreen.lenhbanhoandoi`}
-        />
-        <Div width={16} />
-        <ButtonBorder
-          marginTop={20}
-          size={14}
-          width={175}
-          height={36}
-          onPress={() => {
-            if (orderType == 'TRANSFER_BUY') {
-              return;
-            }
-            onChangeOrderType('TRANSFER_BUY');
-          }}
-          type={orderType == 'TRANSFER_BUY' ? 1 : 3}
-          title={`transactionscreen.lenhmuahoandoi`}
-        />
-        <Div width={16} />
-      </ScrollView>
+      <Div>
+        <ScrollView
+          style={s.scrollviewHeader}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}>
+          <Div width={16} />
+          <ButtonBorder
+            marginTop={20}
+            size={14}
+            width={125}
+            height={36}
+            onPress={() => {
+              if (orderType == 'BUY') {
+                return;
+              }
+              onChangeOrderType('BUY');
+            }}
+            type={orderType == 'BUY' ? 1 : 3}
+            title={`transactionscreen.lenhchomua`}
+          />
+          <Div width={16} />
+          <ButtonBorder
+            marginTop={20}
+            size={14}
+            width={125}
+            height={36}
+            onPress={() => {
+              if (orderType == 'SELL') {
+                return;
+              }
+              onChangeOrderType('SELL');
+            }}
+            type={orderType == 'SELL' ? 1 : 3}
+            title={`transactionscreen.lenhchoban`}
+          />
+          <Div width={16} />
+          <ButtonBorder
+            marginTop={20}
+            size={14}
+            width={175}
+            height={36}
+            onPress={() => {
+              if (orderType == 'TRANSFER') {
+                return;
+              }
+              onChangeOrderType('TRANSFER');
+            }}
+            type={orderType == 'TRANSFER' ? 1 : 3}
+            title={`transactionscreen.lenhbanhoandoi`}
+          />
+          <Div width={16} />
+          <ButtonBorder
+            marginTop={20}
+            size={14}
+            width={175}
+            height={36}
+            onPress={() => {
+              if (orderType == 'TRANSFER_BUY') {
+                return;
+              }
+              onChangeOrderType('TRANSFER_BUY');
+            }}
+            type={orderType == 'TRANSFER_BUY' ? 1 : 3}
+            title={`transactionscreen.lenhmuahoandoi`}
+          />
+          <Div width={16} />
+        </ScrollView>
+      </Div>
       <Div flex={1}>
         <ListOrderTransaction />
       </Div>

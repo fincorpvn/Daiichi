@@ -58,6 +58,7 @@ function Item(p: {data: any; isSpaceBottom?: boolean}) {
               flexDirection={'row'}
               paddingHorizontal={7}
               alignItems={'center'}
+              paddingTop={5}
               justifyContent={'space-between'}>
               <Label
                 size={14}
@@ -92,20 +93,19 @@ function Item(p: {data: any; isSpaceBottom?: boolean}) {
         {!!programList.length && (
           <Div paddingLeft={20} paddingRight={13}>
             <Label
-              marginTop={11}
+              marginTop={5}
               size={14}
-              color={Ecolors.grayColor}
-              fontWeight={'700'}>{`assetscreen.chuongtrinh`}</Label>
+              color={Ecolors.grayColor}>{`assetscreen.chuongtrinh`}</Label>
             {programList.map((i: any, index: number) => {
               return (
                 <Button
                   key={i.id}
+                  marginTop={2}
                   onPress={() => {
                     // navigate('ProgramDetailsModal', {
                     //   data: i,
                     // });
                   }}
-                  paddingTop={10}
                   alignItems={'flex-start'}>
                   <Label
                     size={14}
@@ -113,7 +113,10 @@ function Item(p: {data: any; isSpaceBottom?: boolean}) {
                     multilanguage={false}>
                     {I18nState == 'vi' ? i.name : i.nameEn}
                   </Label>
-                  <Label size={14} multilanguage={false}>{`${convertNumber(
+                  <Label
+                    marginTop={4}
+                    size={14}
+                    multilanguage={false}>{`${convertNumber(
                     Math.round(i.sumOfValueNavCurrent),
                   )}`}</Label>
                 </Button>

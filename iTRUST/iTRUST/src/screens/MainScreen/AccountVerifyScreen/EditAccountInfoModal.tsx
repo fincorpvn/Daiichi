@@ -45,74 +45,6 @@ const D = parseInt(currentDate[0]);
 const M = parseInt(currentDate[1]);
 const Y = parseInt(currentDate[2]);
 
-function Lbl(p: {content: string}) {
-  return (
-    <Label marginTop={10} multilanguage={false}>
-      <Label>{p.content}</Label>
-      {` (`}
-      <Label multilanguage={false} color={Ecolors.red}>
-        *
-      </Label>
-      {`)`}
-    </Label>
-  );
-}
-
-function DivPhoto(P: {
-  onGetImage: () => void;
-  value?: any;
-  loading: boolean;
-  title?: string;
-}) {
-  return (
-    <Div style={s.imgContainer}>
-      <Button
-        marginTop={10}
-        borderRadius={10}
-        borderWidth={0.5}
-        borderColor={Ecolors.gray}
-        overflow={'hidden'}
-        borderStyle={'dashed'}
-        marginHorizontal={5}
-        alignItems={'center'}
-        justifyContent={'center'}
-        flexDirection={'row'}
-        style={s.sbutton}
-        onPress={() => P.onGetImage && P.onGetImage()}>
-        {P.value ? (
-          <>
-            <ImageView
-              source={{
-                uri: P.value?.uri || P.value?.url,
-              }}
-              style={s.sbutton}
-            />
-            {P.loading && (
-              <Div
-                style={StyleSheet.absoluteFillObject}
-                alignItems={'center'}
-                justifyContent={'center'}
-                backgroundColor={Ecolors.transparentLoading}>
-                <ActivityIndicator size={'small'} color={Ecolors.blue} />
-              </Div>
-            )}
-          </>
-        ) : (
-          <Div flexDirection={'row'} alignItems={'center'}>
-            <ImageView
-              source={Icons.uploadfile}
-              widthHeight={22}
-              marginRight={10}
-              tintColor={Ecolors.textColor}
-            />
-            <Label>{P.title || `accountverify.taianhmattruoc`}</Label>
-          </Div>
-        )}
-      </Button>
-    </Div>
-  );
-}
-
 function EditAccountInfoModal() {
   const dispatch = useDispatch();
   const currentUser = useAppSelector(state => state.authen.currentUser);
@@ -192,26 +124,6 @@ function EditAccountInfoModal() {
     ]);
   };
 
-  const onGetImage = async (callback: (e: any) => void) => {
-    try {
-      const img: any = await getImageLibrary();
-      if (img?.length > 0) {
-        const image = img[0];
-        const dataUPload: any = await uploadFile({
-          fileBase64:
-            Platform.OS === 'android'
-              ? image.base64.replace(/\n/g, '')
-              : image.base64,
-        });
-        callback && callback({...image, dataUPload});
-      }
-    } catch (error) {
-    } finally {
-      setLoadingPhotoAfter(false);
-      setLoadingPhotoBefore(false);
-    }
-  };
-
   const onUploadImage = async (r: any) => {
     try {
       if (imageUpload.current == 'before') {
@@ -262,7 +174,7 @@ function EditAccountInfoModal() {
       if (
         !idNo.length ||
         !nationality ||
-        !photoAfter ||
+        (!photoAfter && nationality?.id == 234) ||
         !photoBefore ||
         !placeOfIssue
       ) {

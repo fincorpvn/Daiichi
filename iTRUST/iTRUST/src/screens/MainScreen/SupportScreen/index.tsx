@@ -46,7 +46,7 @@ function SupportScreen() {
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack title={`supportscreen.hotrokhachhang`} type={2} />
-      <Div
+      {/* <Div
         height={54}
         backgroundColor={Ecolors.spaceColor}
         flexDirection={'row'}
@@ -55,22 +55,22 @@ function SupportScreen() {
         justifyContent={'flex-start'}>
         <Label
           fontWeight={'700'}>{`supportscreen.trungtamchamsockhachhang`}</Label>
-      </Div>
+      </Div> */}
       <Row
         onPress={() => {
           Alert.show({
             content:
               I18nState == 'vi'
-                ? `Gọi ${stringApp.hotline}`
-                : `Call ${stringApp.hotline}`,
+                ? `Gọi ${stringApp.phonesupport}`
+                : `Call ${stringApp.phonesupport}`,
             multilanguage: false,
             onConfirm: () => {
-              callPhone(stringApp.hotline);
+              callPhone(stringApp.phonesupport);
             },
           });
         }}
         title={`supportscreen.cskh`}
-        content={stringApp.hotline}
+        content={stringApp.phonesupport}
       />
       <Row
         onPress={() => {

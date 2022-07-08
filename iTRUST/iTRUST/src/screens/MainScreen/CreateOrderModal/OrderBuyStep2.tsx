@@ -339,10 +339,7 @@ function OrderBuyStep2({
               isBtn={true}
               isBorderBottom={!!scheme?.productSchemeIsAutoBuy}
               title={`createordermodal.noidung`}
-              content={
-                `${excuseTempVolumn?.investmentNumber} - ${scheme?.tradeCode}` ||
-                ''
-              }
+              content={`${excuseTempVolumn?.transferContent}` || ''}
             />
             {scheme && scheme?.productSchemeIsAutoBuy && (
               <>

@@ -642,6 +642,7 @@ export default {
     bieuphi: 'Tariffs',
   },
   alert: {
+    ngaycap: 'Ngày cấp nhỏ hơn ngày sinh',
     vuilongchondayduthongtin: 'Please select full information!',
     kythanhcong: 'Quý khách đã ký điện tử thành công!',
     capnhatmucdoruirothanhcong: 'Update the risk level successfully !',

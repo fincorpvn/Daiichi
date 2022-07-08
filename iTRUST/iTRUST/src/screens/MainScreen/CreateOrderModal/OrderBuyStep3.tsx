@@ -210,10 +210,7 @@ function OrderBuyStep3({
               marginTop={11}
               isBtn={true}
               title={`createordermodal.noidung`}
-              content={
-                `${excuseTempVolumn?.investmentNumber} - ${scheme?.tradeCode}` ||
-                ''
-              }
+              content={`${excuseTempVolumn?.transferContent}` || ''}
               isBorderBottom={!!scheme?.productSchemeIsAutoBuy}
             />
             {scheme && scheme?.productSchemeIsAutoBuy && (

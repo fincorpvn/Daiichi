@@ -1,4 +1,4 @@
-import { stringApp } from 'constant';
+import {stringApp} from 'constant';
 export default {
   footerapp: {
     OverviewScreen: 'Tổng quan',
@@ -375,7 +375,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     taolenhban: 'Tạo lệnh bán',
     taolenhchuyendoi: 'Tạo lệnh chuyển đổi',
     // dinh ky
-    dinhky: 'Đầu tư định kỳ',
+    dinhky: 'Quản lý định kỳ',
     tinhtrang: 'Tình trạng',
     sotiendangkydautu: 'Số tiền đăng ký đầu tư',
     sokydaututoithieu: 'Số kỳ đầu tư tối thiểu',
@@ -568,14 +568,14 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     banchuacotaisan: 'Bạn chưa có tài sản',
     contentnondata: `Bạn cần tham gia đầu tư thực hiện các giao dịch bằng cách vào mục "Đầu tư" bên dưới`,
     tonggiatridaututb: 'Tổng giá trị đầu tư TB',
-    sotiendautu: `Số tiền đầu tư`, // 'Số tiền đầu tư (VNĐ)',
-    sotiendautuvnd: `Số tiền đầu tư ${stringApp.currency}`, // 'Số tiền đầu tư (VNĐ)',
+    sotiendautu: `Tổng giá vốn`, // 'Số tiền đầu tư (VNĐ)',
+    sotiendautuvnd: `Tổng giá vốn ${stringApp.currency}`, // 'Số tiền đầu tư (VNĐ)',
     tongloilo: 'Tổng lời/lỗ',
     taisan: 'Tài sản',
     soluongCCQ: 'Số lượng CCQ',
     //
     NAVhientai: 'NAV',
-    tonggiatridaututrungbinh: `Số tiền đầu tư ${stringApp.currency}`, // 'Số tiền đầu tư (VNĐ)',
+    tonggiatridaututrungbinh: `Tổng giá vốn ${stringApp.currency}`, // 'Số tiền đầu tư (VNĐ)',
     giamuatrungbinh: `Giá mua trung bình/CCQ`,
     tonggiatrithitruong: `Tổng giá trị thị trường ${stringApp.currency}`, // 'Tổng giá trị thị trường (VNĐ)',
   },
@@ -625,6 +625,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     bieuphi: 'Biểu phí',
   },
   alert: {
+    ngaycap: 'Ngày cấp nhỏ hơn ngày sinh',
     vuilongchondayduthongtin: 'Vui lòng chọn đầy đủ thông tin !',
     kythanhcong: 'Quý khách đã ký điện tử thành công!',
     capnhatmucdoruirothanhcong: 'Cập nhật mức độ rủi ro thành công !',

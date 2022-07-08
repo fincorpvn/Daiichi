@@ -125,8 +125,7 @@ function EditBankInfoModal() {
         objAction[`position`] = position || '';
         objAction[`job`] = job || '';
         objAction[`incomeSource`] = incomeSource?.id || 'SOURCE_OTHER';
-        objAction[`annualIncome`] =
-          annualIncome?.name || annualIncome?.nameEn || '';
+        objAction[`annualIncome`] = annualIncome?.id || '1';
       }
       if (route.params?.onConfirm) {
         route.params?.onConfirm({

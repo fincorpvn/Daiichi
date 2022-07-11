@@ -50,7 +50,7 @@ const ItemTable = (p: {item: any}) => {
       minHeight={216}
       overflow={'hidden'}
       backgroundColor={Ecolors.whiteColor}>
-      <Div backgroundColor={Ecolors.spaceColor}>
+      <Div backgroundColor={Ecolors.bgtime}>
         <RowSpaceItem marginTop={10}>
           {/* <Label size={14}>{`assetscreen.quychuongtrinh`}</Label> */}
           <Label size={14}>{`assetscreen.phiengiaodich`}</Label>
@@ -200,7 +200,7 @@ function ListAssetDetailsModal() {
       </Div>
       <Div
         borderTopWidth={1}
-        backgroundColor={Ecolors.spaceColor}
+        backgroundColor={Ecolors.bgtime}
         borderTopColor={Ecolors.bordercolor}>
         <RowSpaceItem marginTop={10}>
           <Div flex={1}>

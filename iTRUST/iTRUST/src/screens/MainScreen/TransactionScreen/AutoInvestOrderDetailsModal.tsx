@@ -89,12 +89,7 @@ const ComL = (p: {
               multilanguage={false}
               size={
                 14
-              }>{`- Nếu quý khách chuyển tiền sớm, lệnh sẽ được khớp với các phiên giao dịch sớm hơn trong tháng.\n- Quý khách có thể chọn một ngày bất kỳ trong tháng làm ngày thanh toán Chương trình Đầu tư Định kỳ và cố gắng đảm bảo việc duy trì đóng tiền theo kế hoạch đã đăng ký.\n- Quý khách cũng có thể chuyển tiền mua CCQ nhiều lần trong tháng tùy theo kế hoạch đầu tư của mình.`}</Label>
-            <Label
-              multilanguage={false}
-              size={
-                14
-              }>{`- Quý khách không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua định kỳ.`}</Label>
+              }>{`- Nếu quý khách chuyển tiền sớm, lệnh sẽ được khớp với các phiên giao dịch sớm hơn trong tháng.\n- Quý khách có thể chọn một ngày bất kỳ trong tháng làm ngày thanh toán Chương trình Đầu tư Định kỳ và cố gắng đảm bảo việc duy trì đóng tiền theo kế hoạch đã đăng ký.\n- Quý khách cũng có thể chuyển tiền mua CCQ nhiều lần trong tháng tùy theo kế hoạch đầu tư của mình.\n- Quý khách không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua định kỳ.`}</Label>
           </Label>
         ) : (
           <Label size={14} multilanguage={false}>
@@ -115,12 +110,7 @@ const ComL = (p: {
               multilanguage={false}
               size={
                 14
-              }>{`- If you transfer money early, the order will be matched with trading sessions earlier in the month.\n- You can choose any day of the month as your Recurring Investment Program payment date and try to ensure ensure the maintenance of payment according to the registered plan.\n- You can also transfer money to buy CCQ several times a month depending on your investment plan.`}</Label>
-            <Label
-              multilanguage={false}
-              size={
-                14
-              }>{`- Quý khách không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua định kỳ.`}</Label>
+              }>{`- If you transfer money early, the order will be matched with trading sessions earlier in the month.\n- You can choose any day of the month as your Recurring Investment Program payment date and try to ensure ensure the maintenance of payment according to the registered plan.\n- You can also transfer money to buy CCQ several times a month depending on your investment plan.\n- Quý khách không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua định kỳ.`}</Label>
           </Label>
         )}
       </Label>
@@ -142,6 +132,7 @@ function AutoInvestOrderDetails() {
     minAmount,
     dataBank,
     nextCycleNumber,
+    enable,
     nextClosedBookTime,
     ordersInfo,
     transferContent,
@@ -159,50 +150,56 @@ function AutoInvestOrderDetails() {
       />
       <ScrollView>
         <Div paddingHorizontal={16}>
-          <Label
-            marginVertical={16}
-            fontWeight={'700'}>{`transactionscreen.thongtinchuyenkhoan`}</Label>
-          <Div
-            borderRadius={8}
-            borderWidth={0.8}
-            borderColor={Ecolors.bordercolor}
-            backgroundColor={Ecolors.whiteColor}
-            style={EStyle.shadowItem}
-            paddingHorizontal={15}
-            paddingTop={13}
-            paddingBottom={18}
-            minHeight={100}>
-            <RowItem
-              isRow={true}
-              title={'transactionscreen.sotiendangkydautu'}
-              content={convertNumber(minAmount)}
-            />
-            <RowItem
-              isRow={true}
-              title={'transactionscreen.nganhang'}
-              content={I18nState == 'vi' ? dataBank.name : dataBank.nameEn}
-            />
-            <RowItem
-              isRow={true}
-              title={'transactionscreen.chinhanh'}
-              content={supervisoryBankAccountBranch}
-            />
-            <RowItem
-              isRow={true}
-              title={'transactionscreen.nguoihuongthu'}
-              content={supervisoryBankAccountName}
-            />
-            <RowItem
-              isRow={true}
-              title={'transactionscreen.sotaikhoan'}
-              content={supervisoryBankAccountNumber}
-            />
-            <RowItem
-              isRow={false}
-              title={'transactionscreen.noidung'}
-              content={transferContent}
-            />
-          </Div>
+          {!!enable && (
+            <>
+              <Label
+                marginVertical={16}
+                fontWeight={
+                  '700'
+                }>{`transactionscreen.thongtinchuyenkhoan`}</Label>
+              <Div
+                borderRadius={8}
+                borderWidth={0.8}
+                borderColor={Ecolors.bordercolor}
+                backgroundColor={Ecolors.whiteColor}
+                style={EStyle.shadowItem}
+                paddingHorizontal={15}
+                paddingTop={13}
+                paddingBottom={18}
+                minHeight={100}>
+                <RowItem
+                  isRow={true}
+                  title={'transactionscreen.sotiendangkydautu'}
+                  content={convertNumber(minAmount)}
+                />
+                <RowItem
+                  isRow={true}
+                  title={'transactionscreen.nganhang'}
+                  content={I18nState == 'vi' ? dataBank.name : dataBank.nameEn}
+                />
+                <RowItem
+                  isRow={true}
+                  title={'transactionscreen.chinhanh'}
+                  content={supervisoryBankAccountBranch}
+                />
+                <RowItem
+                  isRow={true}
+                  title={'transactionscreen.nguoihuongthu'}
+                  content={supervisoryBankAccountName}
+                />
+                <RowItem
+                  isRow={true}
+                  title={'transactionscreen.sotaikhoan'}
+                  content={supervisoryBankAccountNumber}
+                />
+                <RowItem
+                  isRow={false}
+                  title={'transactionscreen.noidung'}
+                  content={transferContent}
+                />
+              </Div>
+            </>
+          )}
           <Div
             marginTop={20}
             backgroundColor={Ecolors.bgtime}

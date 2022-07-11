@@ -9,12 +9,12 @@ import {
   TimeFromNow,
   Alert,
 } from 'components';
-import {Ecolors, EStyle, Icons} from 'constant';
-import React, {useState} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
-import {goBack, navigate} from 'services';
-import {apiInvestment} from 'services/apis/apiInvestment';
-import {useAppSelector} from 'store/hooks';
+import { Ecolors, EStyle, Icons } from 'constant';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import { goBack, navigate } from 'services';
+import { apiInvestment } from 'services/apis/apiInvestment';
+import { useAppSelector } from 'store/hooks';
 import {
   convertAmount,
   convertNumber,
@@ -138,7 +138,7 @@ function OrderBuyStep1({
                 setAmount(convertAmount(`${e}`, true));
               }
             }}
-            keyboardType={'number-pad'}
+            keyboardType={'phone-pad'}
             marginTop={6}
             marginHorizontal={0}
             onHandleChange={() => {
@@ -457,19 +457,16 @@ function OrderBuyStep1({
                   <Label size={12} multilanguage={false}>
                     {I18nState == 'vi'
                       ? `Chương trình ${scheme?.productSchemeNameEn} là chương trình đầu tư tự động và liên tục`
-                      : `${
-                          scheme?.productSchemeNameEn ||
-                          scheme?.productSchemeNameEn
-                        } programme is an automatic and continuous investment program`}
+                      : `${scheme?.productSchemeNameEn ||
+                      scheme?.productSchemeNameEn
+                      } programme is an automatic and continuous investment program`}
                   </Label>
                   <Label marginTop={8} size={12} multilanguage={false}>
                     {I18nState == 'vi'
-                      ? `Quý khách vui lòng chuyển tiền vào tài khoản đầu tư vào ngày ${
-                          beginBuyAutoStartDate || ''
-                        } hàng tháng`
-                      : `Please transfer money to your investment account on ${
-                          beginBuyAutoStartDate || ''
-                        } monthly`}
+                      ? `Quý khách vui lòng chuyển tiền vào tài khoản đầu tư vào ngày ${beginBuyAutoStartDate || ''
+                      } hàng tháng`
+                      : `Please transfer money to your investment account on ${beginBuyAutoStartDate || ''
+                      } monthly`}
                   </Label>
                   <Label marginTop={8} size={12} multilanguage={false}>
                     {I18nState == 'vi'

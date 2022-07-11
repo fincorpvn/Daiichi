@@ -8,10 +8,10 @@ import {
   Label,
   TimeFromNow,
 } from 'components';
-import {Ecolors, Icons} from 'constant';
-import React, {useState} from 'react';
-import {ScrollView} from 'react-native';
-import {goBack, navigate} from 'services';
+import { Ecolors, Icons } from 'constant';
+import React, { useState } from 'react';
+import { ScrollView } from 'react-native';
+import { goBack, navigate } from 'services';
 import {
   convertAmount,
   convertNav,
@@ -20,7 +20,7 @@ import {
   convertTimestamp,
   Log,
 } from 'utils';
-import {useAppSelector} from 'store/hooks';
+import { useAppSelector } from 'store/hooks';
 
 interface Props {
   product: any;
@@ -137,7 +137,7 @@ function OrderSellStep1({
             onChangeText={(t: string) => {
               setAmount(convertAmount(t, true));
             }}
-            keyboardType={'number-pad'}
+            keyboardType={'phone-pad'}
             marginTop={6}
             marginHorizontal={0}
             onHandleChange={() => onExcuseTempVolumn()}
@@ -248,7 +248,7 @@ function OrderSellStep1({
                 </Div>
               </Div>
               {excuseTempVolumn?.details?.map((item: any, index: number) => {
-                const {createAt, volumSell, feeRate, holdingDay} = item;
+                const { createAt, volumSell, feeRate, holdingDay } = item;
                 return (
                   <Div
                     marginTop={14}
@@ -268,9 +268,8 @@ function OrderSellStep1({
                     </RowSpaceItem>
                     <RowSpaceItem marginTop={10}>
                       <Label size={14}>{`createordermodal.tgnamgiu`}</Label>
-                      <Label multilanguage={false} size={14}>{`${holdingDay} ${
-                        I18nState == 'vi' ? 'ngày' : 'days'
-                      }`}</Label>
+                      <Label multilanguage={false} size={14}>{`${holdingDay} ${I18nState == 'vi' ? 'ngày' : 'days'
+                        }`}</Label>
                     </RowSpaceItem>
                     <RowSpaceItem marginTop={10}>
                       <Label size={14}>{`createordermodal.slban`}</Label>

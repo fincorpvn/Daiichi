@@ -197,7 +197,6 @@ function AutoInvestOrderDetails() {
                 content={transferContent}
               />
             </Div>
-
             <Div
               marginTop={20}
               backgroundColor={Ecolors.bgtime}

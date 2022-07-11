@@ -50,4 +50,12 @@ export const apiMain = {
       throw error;
     }
   },
+  getConfirmContent: async () => {
+    try {
+      const url = `news/content/load?code=CONFIRM_PROFILE`;
+      return doGetAxios(url);
+    } catch (error: any) {
+      throw error;
+    }
+  },
 };

@@ -149,77 +149,76 @@ function AutoInvestOrderDetails() {
         onRightPress={() => {}}
       />
       <ScrollView>
-        <Div paddingHorizontal={16}>
-          {!!enable && (
-            <>
-              <Label
-                marginVertical={16}
-                fontWeight={
-                  '700'
-                }>{`transactionscreen.thongtinchuyenkhoan`}</Label>
-              <Div
-                borderRadius={8}
-                borderWidth={0.8}
-                borderColor={Ecolors.bordercolor}
-                backgroundColor={Ecolors.whiteColor}
-                style={EStyle.shadowItem}
-                paddingHorizontal={15}
-                paddingTop={13}
-                paddingBottom={18}
-                minHeight={100}>
-                <RowItem
-                  isRow={true}
-                  title={'transactionscreen.sotiendangkydautu'}
-                  content={convertNumber(minAmount)}
-                />
-                <RowItem
-                  isRow={true}
-                  title={'transactionscreen.nganhang'}
-                  content={I18nState == 'vi' ? dataBank.name : dataBank.nameEn}
-                />
-                <RowItem
-                  isRow={true}
-                  title={'transactionscreen.chinhanh'}
-                  content={supervisoryBankAccountBranch}
-                />
-                <RowItem
-                  isRow={true}
-                  title={'transactionscreen.nguoihuongthu'}
-                  content={supervisoryBankAccountName}
-                />
-                <RowItem
-                  isRow={true}
-                  title={'transactionscreen.sotaikhoan'}
-                  content={supervisoryBankAccountNumber}
-                />
-                <RowItem
-                  isRow={false}
-                  title={'transactionscreen.noidung'}
-                  content={transferContent}
-                />
-              </Div>
-            </>
-          )}
-          <Div
-            marginTop={20}
-            backgroundColor={Ecolors.bgtime}
-            borderRadius={5}
-            minHeight={100}
-            overflow={'hidden'}
-            flexDirection={'row'}>
+        {!!enable && (
+          <Div paddingHorizontal={16}>
+            <Label
+              marginVertical={16}
+              fontWeight={
+                '700'
+              }>{`transactionscreen.thongtinchuyenkhoan`}</Label>
             <Div
-              width={4}
-              height={'100%'}
-              backgroundColor={Ecolors.yellowColor}
-            />
-            <ComL
-              I18nState={I18nState}
-              nextClosedBookTime={nextClosedBookTime}
-              nextCycleNumber={nextCycleNumber}
-              key={'121'}
-            />
+              borderRadius={8}
+              borderWidth={0.8}
+              borderColor={Ecolors.bordercolor}
+              backgroundColor={Ecolors.whiteColor}
+              style={EStyle.shadowItem}
+              paddingHorizontal={15}
+              paddingTop={13}
+              paddingBottom={18}
+              minHeight={100}>
+              <RowItem
+                isRow={true}
+                title={'transactionscreen.sotiendangkydautu'}
+                content={convertNumber(minAmount)}
+              />
+              <RowItem
+                isRow={true}
+                title={'transactionscreen.nganhang'}
+                content={I18nState == 'vi' ? dataBank.name : dataBank.nameEn}
+              />
+              <RowItem
+                isRow={true}
+                title={'transactionscreen.chinhanh'}
+                content={supervisoryBankAccountBranch}
+              />
+              <RowItem
+                isRow={true}
+                title={'transactionscreen.nguoihuongthu'}
+                content={supervisoryBankAccountName}
+              />
+              <RowItem
+                isRow={true}
+                title={'transactionscreen.sotaikhoan'}
+                content={supervisoryBankAccountNumber}
+              />
+              <RowItem
+                isRow={false}
+                title={'transactionscreen.noidung'}
+                content={transferContent}
+              />
+            </Div>
+
+            <Div
+              marginTop={20}
+              backgroundColor={Ecolors.bgtime}
+              borderRadius={5}
+              minHeight={100}
+              overflow={'hidden'}
+              flexDirection={'row'}>
+              <Div
+                width={4}
+                height={'100%'}
+                backgroundColor={Ecolors.yellowColor}
+              />
+              <ComL
+                I18nState={I18nState}
+                nextClosedBookTime={nextClosedBookTime}
+                nextCycleNumber={nextCycleNumber}
+                key={'121'}
+              />
+            </Div>
           </Div>
-        </Div>
+        )}
         <Div
           width={'100%'}
           marginTop={20}

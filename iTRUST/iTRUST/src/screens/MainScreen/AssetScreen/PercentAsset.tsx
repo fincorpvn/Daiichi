@@ -20,74 +20,88 @@ function Item(p: {data: any; isSpaceBottom?: boolean}) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   return (
     <>
-      <Div borderRadius={8} borderColor={Ecolors.bordercolor} borderWidth={0.8}>
-        <Div
-          flexDirection={'row'}
-          paddingHorizontal={13}
-          paddingTop={17}
-          alignItems={'center'}
-          justifyContent={'space-between'}>
+      <Div
+        borderColor={Ecolors.bordercolorBox}
+        borderWidth={1}
+        borderRadius={8}
+        marginTop={15}>
+        <Div paddingHorizontal={15} paddingTop={17}>
           <Div
-            flex={1}
-            height={'100%'}
-            flexDirection={'column'}
-            justifyContent={'flex-start'}
-            alignItems={'flex-start'}>
-            {/* header */}
+            flexDirection={'row'}
+            alignItems={'center'}
+            justifyContent={'space-between'}>
             <Div
+              flex={1}
               flexDirection={'row'}
               alignItems={'center'}
               justifyContent={'flex-start'}>
               <Div
-                marginLeft={7}
-                marginBottom={3}
                 marginRight={8}
                 widthHeight={11}
                 borderRadius={11}
                 backgroundColor={color}
               />
-              <Div flex={1}>
-                <Label fontWeight={'700'} multilanguage={false}>
-                  {code}
-                </Label>
-              </Div>
-            </Div>
-            {/* hodl volumn */}
-            <Div
-              width={'100%'}
-              flexDirection={'row'}
-              paddingHorizontal={7}
-              alignItems={'center'}
-              paddingTop={5}
-              justifyContent={'space-between'}>
-              <Label
-                size={14}
-                color={Ecolors.grayColor}>{`assetscreen.giatrihientai`}</Label>
-              <Label
-                color={Ecolors.grayColor}
-                size={14}>{`assetscreen.loilo`}</Label>
-            </Div>
-            <Div
-              marginTop={3}
-              width={'100%'}
-              flexDirection={'row'}
-              alignItems={'center'}
-              justifyContent={'space-between'}
-              paddingHorizontal={7}>
-              <Label size={14} multilanguage={false}>
-                {convertNumber(Math.round(sumOfValueNavCurrent))}
-              </Label>
-              <Label
-                color={
-                  interestOrHole < 0 ? Ecolors.redColor : Ecolors.greenColor
-                }
-                size={14}
-                multilanguage={false}>
-                {` (${interestOrHole < 0 ? '' : '+'}${convertPercent(
-                  interestOrHole,
-                )})`}
+              <Label fontWeight={'700'} multilanguage={false}>
+                {code}
               </Label>
             </Div>
+            <Button
+              backgroundColor={Ecolors.spaceColor}
+              borderRadius={20}
+              paddingVertical={5}
+              paddingHorizontal={10}
+              flexDirection={'row'}
+              onPress={() => {
+                navigate('ListAssetDetailsModal', {
+                  data: p.data,
+                });
+              }}
+              alignItems={'center'}
+              justifyContent={'center'}>
+              <Label
+                size={12}
+                marginRight={4}
+                fontWeight={'700'}>{`assetscreen.chitiet`}</Label>
+              <ImageView
+                widthHeight={10}
+                resizeMode={'contain'}
+                source={Icons.details}
+              />
+            </Button>
+          </Div>
+          {/* hodl volumn */}
+          <Div
+            width={'100%'}
+            flexDirection={'row'}
+            paddingHorizontal={7}
+            alignItems={'center'}
+            paddingTop={5}
+            justifyContent={'space-between'}>
+            <Label
+              size={14}
+              color={Ecolors.grayColor}>{`assetscreen.giatrihientai`}</Label>
+            <Label
+              color={Ecolors.grayColor}
+              size={14}>{`assetscreen.loilo`}</Label>
+          </Div>
+          <Div
+            marginTop={3}
+            width={'100%'}
+            flexDirection={'row'}
+            alignItems={'center'}
+            justifyContent={'space-between'}
+            paddingHorizontal={7}>
+            <Label size={14} multilanguage={false}>
+              {convertNumber(Math.round(sumOfValueNavCurrent))}
+            </Label>
+            <Label
+              color={interestOrHole < 0 ? Ecolors.redColor : Ecolors.greenColor}
+              size={14}
+              multilanguage={false}>
+              {` (${interestOrHole < 0 ? '' : '+'}${convertPercent(
+                interestOrHole,
+              )})`}
+            </Label>
           </Div>
         </Div>
         {!!programList.length && (
@@ -161,12 +175,7 @@ function PercentAsset() {
               key={index}
               width={`${percent}%`}
               height={26}
-              backgroundColor={item.color}>
-              {/* <Label
-                fontWeight={'700'}
-                color={Ecolors.whiteColor}
-                multilanguage={false}>{`${percent}%`}</Label> */}
-            </Div>
+              backgroundColor={item.color}></Div>
           );
         })}
       </Div>
@@ -175,12 +184,7 @@ function PercentAsset() {
         marginHorizontal={16}
         borderRadius={8}
         marginTop={15}
-        minHeight={200}
-        // style={EStyle.shadowItem}
-        // backgroundColor={Ecolors.whiteColor}
-        // borderColor={Ecolors.bordercolor}
-        // borderWidth={0.8}
-      >
+        minHeight={200}>
         {productList?.map((item: any, index: number) => {
           return (
             <Item

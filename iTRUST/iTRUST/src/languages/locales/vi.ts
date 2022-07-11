@@ -531,6 +531,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
   assetscreen: {
     tongquantaisan: 'Tổng quan tài sản',
     sl: 'SL : ',
+    chitiet: 'Chi tiết',
     ccq: 'CCQ',
     giamua: 'Giá mua',
     danhsachlenhmuadangnamgiu: 'Danh sách lệnh mua đang nắm giữ',

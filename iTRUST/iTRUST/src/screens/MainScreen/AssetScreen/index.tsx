@@ -55,8 +55,9 @@ function AssetScreen() {
               </Label>
             </Div>
             <PercentAsset />
-            <ProgramList />
             <Div height={100} />
+            {/* <ProgramList />
+            <Div height={100} /> */}
           </>
         )}
       </ScrollView>

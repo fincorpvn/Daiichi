@@ -35,6 +35,7 @@ export enum Icons {
   buy = require('../assets/buy/buy.png'),
   sell = require('../assets/sell/sell.png'),
   transfer = require('../assets/transfer/transfer.png'),
+  details = require('../assets/details/details.png'),
   priceup = require('../assets/priceup/priceup.png'),
   pricedown = require('../assets/pricedown/pricedown.png'),
   warningamount = require('../assets/warningamount/warningamount.png'),

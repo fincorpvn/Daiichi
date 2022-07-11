@@ -547,6 +547,7 @@ export default {
     tongquantaisan: 'Property Overview',
     sl: 'Quantity: ',
     ccq: 'Units',
+    chitiet: 'Details',
     giamua: 'Buying NAV',
     danhsachlenhmuadangnamgiu: 'List of holding subsciption orders',
     tongsodanhsach: 'Total list:',

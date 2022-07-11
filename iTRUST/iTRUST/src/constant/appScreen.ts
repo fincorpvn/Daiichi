@@ -17,6 +17,7 @@ export type appScreen =
   | 'LoginScreen'
   | 'OtpRequestModal'
   | 'ForgotPasswordScreen'
+  | 'ListAssetDetailsModal'
   | 'SetPasswordScreen'
   | 'RegisterScreen'
   // profile screen

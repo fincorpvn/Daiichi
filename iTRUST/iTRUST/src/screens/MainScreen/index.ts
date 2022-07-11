@@ -23,6 +23,7 @@ import TransactionScreen from './TransactionScreen';
 import InvestmentScreen from './InvestmentScreen';
 import AssetScreen from './AssetScreen';
 import ProgramDetailsModal from './AssetScreen/ProgramDetailsModal';
+import ListAssetDetailsModal from './AssetScreen/ListAssetDetailsModal';
 import ProfileScreen from './ProfileScreen';
 // setting screen
 import SettingScreen from './SettingScreen';
@@ -82,6 +83,7 @@ const screens: any = {
   SettingLanguageModal,
   ActiveBiometricModal,
   NotificationScreen,
+  ListAssetDetailsModal,
   // order transaction
   OrderBuyDetailsModal,
   AutoInvestOrderDetailsModal,

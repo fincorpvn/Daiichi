@@ -16,7 +16,6 @@ function HTMLView(Props: {
         body: {
           color: Ecolors.textColor,
           fontSize: fontScale(16),
-          fontWeight: '400',
           fontFamily: Efonts.medium,
           paddingHorizontal: widthScale(15),
         },
@@ -24,19 +23,16 @@ function HTMLView(Props: {
           lineHeight: heightScale(18),
           fontSize: fontScale(15),
           fontFamily: Efonts.medium,
-          fontWeight: '400',
         },
         p: {
           lineHeight: heightScale(18),
           fontSize: fontScale(15),
           fontFamily: Efonts.medium,
-          fontWeight: '400',
         },
         strong: {
           lineHeight: heightScale(18),
-          fontFamily: Efonts.medium,
+          fontFamily: Efonts.bold,
           fontSize: fontScale(15),
-          fontWeight: '700',
         },
       }}
     />

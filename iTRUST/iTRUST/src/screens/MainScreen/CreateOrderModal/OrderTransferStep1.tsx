@@ -8,12 +8,12 @@ import {
   InputItem,
   Label,
 } from 'components';
-import { Ecolors, Icons } from 'constant';
-import React, { useState } from 'react';
-import { ScrollView } from 'react-native';
-import { goBack, navigate } from 'services';
-import { apiInvestment } from 'services/apis/apiInvestment';
-import { useAppSelector } from 'store/hooks';
+import {Ecolors, Icons} from 'constant';
+import React, {useState} from 'react';
+import {Platform, ScrollView} from 'react-native';
+import {goBack, navigate} from 'services';
+import {apiInvestment} from 'services/apis/apiInvestment';
+import {useAppSelector} from 'store/hooks';
 import {
   convertAmount,
   convertNav,
@@ -204,7 +204,9 @@ function OrderTransferStep1({
             onChangeText={(t: string) => {
               setAmount(convertAmount(`${t}`, true));
             }}
-            keyboardType={'ascii-capable'}
+            keyboardType={
+              Platform.OS === 'ios' ? 'numbers-and-punctuation' : 'number-pad'
+            }
             marginTop={6}
             marginHorizontal={0}
             onHandleChange={() => onExcuseTempVolumn()}

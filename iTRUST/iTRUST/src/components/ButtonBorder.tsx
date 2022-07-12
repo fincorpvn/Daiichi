@@ -17,6 +17,8 @@ interface PropsButtonBorder {
   IconRight?: any;
   onPressIconRight?: () => void;
   type?: number;
+  marginLeft?: number;
+  marginRight?: number;
   size?: number;
 }
 
@@ -33,6 +35,8 @@ function ButtonBorder({
   onPressIconRight,
   type = 1,
   size,
+  marginRight = 0,
+  marginLeft = 0,
 }: PropsButtonBorder) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
   if (type == 1) {
@@ -44,6 +48,8 @@ function ButtonBorder({
           }
           onPress && onPress();
         }}
+        marginLeft={marginLeft || 0}
+        marginRight={marginRight || 0}
         width={width || 317}
         height={height || 48}
         marginTop={marginTop ?? 0}
@@ -59,6 +65,12 @@ function ButtonBorder({
           <LoadingIndicator />
         ) : (
           <Label
+            onPress={() => {
+              if (isDisable) {
+                return;
+              }
+              onPress && onPress();
+            }}
             textAlign="center"
             fontWeight={'500'}
             size={size || 16}
@@ -66,15 +78,6 @@ function ButtonBorder({
             {title}
           </Label>
         )}
-        {/* {loading && (
-          <Div
-            style={StyleSheet.absoluteFill}
-            alignItems={'center'}
-            justifyContent={'center'}
-            backgroundColor={Ecolors.transparentLoading}>
-            <ActivityIndicator size={'small'} color={Ecolors.whiteColor} />
-          </Div>
-        )} */}
       </Button>
     );
   }
@@ -125,18 +128,20 @@ function ButtonBorder({
   if (type == 3) {
     return (
       <Button
-        onPress={() => onPress && onPress()}
-        width={width || 317}
-        marginTop={marginTop ?? 0}
-        overflow={'hidden'}
         height={height || 48}
-        flexDirection={'row'}
-        alignItems={'center'}
-        justifyContent={'center'}
+        overflow={'hidden'}
+        marginLeft={marginLeft || 0}
+        marginRight={marginRight || 0}
+        marginTop={marginTop ?? 0}
+        backgroundColor={Ecolors.whiteColor}
+        width={width || 317}
         borderRadius={5}
         borderColor={Ecolors.textColor}
         borderWidth={1}
-        backgroundColor={Ecolors.whiteColor}>
+        flexDirection={'row'}
+        alignItems={'center'}
+        justifyContent={'center'}
+        onPress={() => onPress && onPress()}>
         {loading ? (
           <LoadingIndicator color={Ecolors.whiteColor} />
         ) : (
@@ -148,15 +153,6 @@ function ButtonBorder({
             {title}
           </Label>
         )}
-        {/* {loading && (
-          <Div
-            style={StyleSheet.absoluteFill}
-            alignItems={'center'}
-            justifyContent={'center'}
-            backgroundColor={Ecolors.transparentLoading}>
-            <ActivityIndicator size={'small'} color={Ecolors.whiteColor} />
-          </Div>
-        )} */}
       </Button>
     );
   }

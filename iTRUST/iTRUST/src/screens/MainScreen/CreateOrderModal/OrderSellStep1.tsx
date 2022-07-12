@@ -8,11 +8,12 @@ import {
   Label,
   TimeFromNow,
 } from 'components';
-import { Ecolors, Icons } from 'constant';
-import React, { useState } from 'react';
-import { ScrollView } from 'react-native';
-import { goBack, navigate } from 'services';
+import {Ecolors, Icons} from 'constant';
+import React, {useState} from 'react';
+import {Platform, ScrollView} from 'react-native';
+import {goBack, navigate} from 'services';
 import {
+  converStringVNTime,
   convertAmount,
   convertNav,
   convertNumber,
@@ -20,7 +21,7 @@ import {
   convertTimestamp,
   Log,
 } from 'utils';
-import { useAppSelector } from 'store/hooks';
+import {useAppSelector} from 'store/hooks';
 
 interface Props {
   product: any;
@@ -137,7 +138,9 @@ function OrderSellStep1({
             onChangeText={(t: string) => {
               setAmount(convertAmount(t, true));
             }}
-            keyboardType={'ascii-capable'}
+            keyboardType={
+              Platform.OS === 'ios' ? 'numbers-and-punctuation' : 'number-pad'
+            }
             marginTop={6}
             marginHorizontal={0}
             onHandleChange={() => onExcuseTempVolumn()}
@@ -248,7 +251,7 @@ function OrderSellStep1({
                 </Div>
               </Div>
               {excuseTempVolumn?.details?.map((item: any, index: number) => {
-                const { createAt, volumSell, feeRate, holdingDay } = item;
+                const {createAt, volumSell, feeRate, holdingDay} = item;
                 return (
                   <Div
                     marginTop={14}
@@ -263,13 +266,14 @@ function OrderSellStep1({
                       <Label size={14}>{`createordermodal.ngaymua`}</Label>
                       <Label size={14} multilanguage={false}>
                         {convertTimestamp(createAt, 'DD/MM/yyyy, HH:mm')}
-                        {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                        {converStringVNTime(I18nState)}
                       </Label>
                     </RowSpaceItem>
                     <RowSpaceItem marginTop={10}>
                       <Label size={14}>{`createordermodal.tgnamgiu`}</Label>
-                      <Label multilanguage={false} size={14}>{`${holdingDay} ${I18nState == 'vi' ? 'ngày' : 'days'
-                        }`}</Label>
+                      <Label multilanguage={false} size={14}>{`${holdingDay} ${
+                        I18nState == 'vi' ? 'ngày' : 'days'
+                      }`}</Label>
                     </RowSpaceItem>
                     <RowSpaceItem marginTop={10}>
                       <Label size={14}>{`createordermodal.slban`}</Label>
@@ -311,7 +315,7 @@ function OrderSellStep1({
                   fontWeight={'700'}>{`createordermodal.phiengiaodich`}</Label>
                 <Label marginTop={6} size={12} multilanguage={false}>
                   {currentSession.tradingTimeString}
-                  {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                  {converStringVNTime(I18nState)}
                 </Label>
                 <TimeFromNow toTime={currentSession.closedOrderBookTime} />
               </Div>
@@ -334,7 +338,7 @@ function OrderSellStep1({
                   }>{`createordermodal.thoidiemdongsolenh`}</Label>
                 <Label marginTop={6} size={12} multilanguage={false}>
                   {currentSession.closedOrderBookTimeString}
-                  {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                  {converStringVNTime(I18nState)}
                 </Label>
                 <Label
                   marginTop={12}

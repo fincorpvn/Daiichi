@@ -1,5 +1,5 @@
 import {Div, HeaderBack, Label} from 'components';
-import {Ecolors, Icons} from 'constant';
+import {Ecolors, Icons, stringApp} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {
   getInvestmentProfile,
@@ -18,8 +18,16 @@ function BankInfoModal() {
   );
   const [branch, setBranch] = useState<any>(null);
   const isEdit = useAppSelector(state => getStatusEditProfile(state));
+  const [incomeSourceString, setIncomeSourceString] = useState<string>('');
+  const [annualIncomeString, setAnnualIncomeString] = useState<string>('');
 
   const {bankAccount} = currentUser;
+
+  useEffect(() => {
+    bindStringApp();
+
+    return () => {};
+  }, []);
 
   useEffect(() => {
     getDataBranch(bankAccount?.branchId);
@@ -36,6 +44,16 @@ function BankInfoModal() {
         setBranch(t);
       }
     }
+  };
+
+  const bindStringApp = () => {
+    setIncomeSourceString(
+      stringApp.source.find(a => a.id == bankAccount.incomeSource)?.name || '',
+    );
+    setAnnualIncomeString(
+      stringApp.monthlyIncom.find(a => a.id == bankAccount.incomeSource)
+        ?.name || '',
+    );
   };
 
   return (
@@ -78,6 +96,30 @@ function BankInfoModal() {
         }
         isLine={true}
       />
+      {currentUser?.bankAccountIsFull && (
+        <>
+          <ItemCard
+            title={`accountverify.nghenghiep`}
+            content={bankAccount?.job || '_'}
+            isLine={true}
+          />
+          <ItemCard
+            title={`accountverify.chucvu`}
+            content={bankAccount?.jobLocation || '_'}
+            isLine={true}
+          />
+          <ItemCard
+            title={`accountverify.mucthunhaphangthang`}
+            content={annualIncomeString || '_'}
+            isLine={true}
+          />
+          <ItemCard
+            title={`accountverify.nguontiendautu`}
+            content={incomeSourceString || '_'}
+            isLine={true}
+          />
+        </>
+      )}
     </Div>
   );
 }

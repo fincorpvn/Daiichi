@@ -78,6 +78,7 @@ function OrderBuyDetailsModal() {
     code,
     transferContent,
   } = route?.params?.data;
+  console.log('route?.params?.data', route?.params?.data);
 
   const bankNote = `${transferContent}`;
 
@@ -372,6 +373,36 @@ function OrderBuyDetailsModal() {
                 onPress={() => {
                   copyToClipboard(
                     I18nState == 'vi' ? dataBank?.name : dataBank?.nameEn || '',
+                  );
+                }}
+              />
+            </RowSpaceItem>
+            <Div
+              width={'100%'}
+              marginTop={10}
+              marginBottom={7}
+              backgroundColor={Ecolors.spaceColor}
+              height={1}
+            />
+            <RowSpaceItem>
+              <Div flex={1}>
+                <Label
+                  size={14}
+                  color={
+                    Ecolors.grayColor
+                  }>{`transactionscreen.chinhanh`}</Label>
+                <Label multilanguage={false} marginTop={5} size={14}>
+                  {I18nState == 'vi'
+                    ? supervisoryBankAccountBranch
+                    : supervisoryBankAccountBranch || ''}
+                </Label>
+              </Div>
+              <ButtonCoppy
+                onPress={() => {
+                  copyToClipboard(
+                    I18nState == 'vi'
+                      ? supervisoryBankAccountBranch
+                      : supervisoryBankAccountBranch || '',
                   );
                 }}
               />

@@ -206,6 +206,8 @@ export default {
   // account verify screen
   accountverify: {
     thongtintaikhoan: 'Thông tin tài khoản',
+    thongtintaikhoannganhang: '1. Thông tin tài khoản ngân hàng',
+    thongtinkhac: '2. Thông tin khác',
     thongtincanhan: 'Thông tin cá nhân',
     thongtinnganhang: 'Thông tin tài khoản ngân hàng',
     thongtindiachi: 'Thông tin địa chỉ',
@@ -647,7 +649,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     vuilongnhapdayduthongtincanhan: 'Vui lòng nhập đầy đủ thông tin cá nhân',
     capnhatthongtincanhanthanhcong: 'Cập nhật thông tin cá nhân thành công',
     capnhatthongtintaikhoannganhangthanhcong:
-      'Cập nhật thông tin tài khoản ngân hàng thành công',
+      'Nhà đầu tư liên hệ với Công ty Quản lý quỹ để cập nhật tài khoản ngân hàng',
     dangxuat: 'Đăng xuất',
     lichxong: 'Xong',
     // thong bao

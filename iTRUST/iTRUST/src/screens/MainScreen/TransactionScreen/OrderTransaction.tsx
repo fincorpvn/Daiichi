@@ -83,16 +83,16 @@ function OrderTransaction() {
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <Div>
+        <Div height={23} />
         <ScrollView
           style={s.scrollviewHeader}
           horizontal={true}
           showsHorizontalScrollIndicator={false}>
-          <Div width={16} />
           <ButtonBorder
-            marginTop={20}
+            marginLeft={16}
             size={14}
             width={125}
-            height={36}
+            height={38}
             onPress={() => {
               if (orderType == 'BUY') {
                 return;
@@ -102,12 +102,11 @@ function OrderTransaction() {
             type={orderType == 'BUY' ? 1 : 3}
             title={`transactionscreen.lenhchomua`}
           />
-          <Div width={16} />
           <ButtonBorder
-            marginTop={20}
             size={14}
+            marginLeft={16}
             width={125}
-            height={36}
+            height={38}
             onPress={() => {
               if (orderType == 'SELL') {
                 return;
@@ -117,12 +116,11 @@ function OrderTransaction() {
             type={orderType == 'SELL' ? 1 : 3}
             title={`transactionscreen.lenhchoban`}
           />
-          <Div width={16} />
           <ButtonBorder
-            marginTop={20}
             size={14}
             width={175}
-            height={36}
+            marginLeft={16}
+            height={38}
             onPress={() => {
               if (orderType == 'TRANSFER') {
                 return;
@@ -132,12 +130,12 @@ function OrderTransaction() {
             type={orderType == 'TRANSFER' ? 1 : 3}
             title={`transactionscreen.lenhbanhoandoi`}
           />
-          <Div width={16} />
           <ButtonBorder
-            marginTop={20}
             size={14}
+            marginLeft={16}
+            marginRight={16}
             width={175}
-            height={36}
+            height={38}
             onPress={() => {
               if (orderType == 'TRANSFER_BUY') {
                 return;
@@ -147,7 +145,6 @@ function OrderTransaction() {
             type={orderType == 'TRANSFER_BUY' ? 1 : 3}
             title={`transactionscreen.lenhmuahoandoi`}
           />
-          <Div width={16} />
         </ScrollView>
       </Div>
       <Div flex={1}>

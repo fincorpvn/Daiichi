@@ -219,7 +219,11 @@ function EditBankInfoModal() {
       />
       <ScrollView>
         <Div paddingHorizontal={29}>
-          <Lbl marginTop={16} content={`accountverify.tenchutaikhoan`} />
+          <Lbl
+            marginTop={23}
+            content={`accountverify.thongtintaikhoannganhang`}
+          />
+          <Lbl marginTop={7} content={`accountverify.tenchutaikhoan`} />
           <InputItem
             isInput={false}
             marginTop={6}
@@ -263,7 +267,8 @@ function EditBankInfoModal() {
           />
           {!bankAccountIsFull && (
             <>
-              <Lbl marginTop={13} content={`accountverify.nghenghiep`} />
+              <Lbl marginTop={23} content={`accountverify.thongtinkhac`} />
+              <Lbl marginTop={7} content={`accountverify.nghenghiep`} />
               <InputItem
                 // keyboardType={'number-pad'}
                 value={job}

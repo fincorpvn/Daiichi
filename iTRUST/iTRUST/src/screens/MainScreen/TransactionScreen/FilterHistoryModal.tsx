@@ -16,6 +16,7 @@ import {
   convertTimestamp,
   joinObjectCalendar,
   Log,
+  reJoinObjectCalendar,
   widthScale,
   widthScreen,
 } from 'utils';
@@ -115,6 +116,8 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
   const [toDate, setToDate] = useState<any>(null);
   const value = useRef<'from' | 'to'>('from');
   const dispatch = useDispatch();
+  const history = useAppSelector<any>(state => state.transaction.history);
+
   const pressBack = () => {
     if (props.onBack) {
       props.onBack();
@@ -122,20 +125,33 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
     }
     goBack();
   };
-  useEffect(() => {
-    investmentLoadScheme();
-    return () => {};
-  }, []);
 
-  const investmentLoadScheme = async () => {
-    const res = await apiInvestment.investmentLoadScheme({
-      productId: null,
-    });
-    if (res.status == 200) {
-      setProductList(res?.data || []);
-      console.log(res.data);
+  useEffect(() => {
+    // investmentLoadScheme();
+    bindData(history?.queries);
+    return () => {};
+    return () => {};
+  }, [history?.queries]);
+
+  const bindData = (t: any) => {
+    setOrderTypeId(t?.orderTypeId || 0);
+    if (t.fromDate) {
+      setFromDate(new Date(convertTimestamp(t.fromDate)));
+    }
+    if (t.toDate) {
+      setToDate(new Date(convertTimestamp(t.toDate)) || null);
     }
   };
+
+  // const investmentLoadScheme = async () => {
+  //   const res = await apiInvestment.investmentLoadScheme({
+  //     productId: null,
+  //   });
+  //   if (res.status == 200) {
+  //     setProductList(res?.data || []);
+  //     console.log(res.data);
+  //   }
+  // };
 
   const setProductFillter = (e: any, a: any) => {
     setCurrentIndex(a);
@@ -234,9 +250,9 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
         </Div>
         {/* content */}
         <Div paddingHorizontal={20} paddingTop={18}>
-          <Label
+          {/* <Label
             fontWeight={'700'}
-            marginBottom={5}>{`createordermodal.chonsanpham`}</Label>
+            marginBottom={5}>{`createordermodal.chonsanpham`}</Label> */}
           {/* <Div paddingBottom={30}>
             {listProduct?.map((item: any, index: number) => {
               return (

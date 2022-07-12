@@ -5,7 +5,13 @@ import {ScrollView} from 'react-native';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {convertNumber, convertTimestamp, copyToClipboard, Log} from 'utils';
+import {
+  converStringVNTime,
+  convertNumber,
+  convertTimestamp,
+  copyToClipboard,
+  Log,
+} from 'utils';
 
 interface Props {
   product: any;
@@ -226,14 +232,14 @@ function OrderBuyStep2({
               <Label size={14}>{`createordermodal.ngaydatlenh`}</Label>
               <Label multilanguage={false} size={14}>
                 {convertTimestamp(new Date().getTime(), 'DD/MM/yyyy, HH:mm')}
-                {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                {converStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15} isBorderBottom={true}>
               <Label size={14}>{`createordermodal.phiengiaodich`}</Label>
               <Label multilanguage={false} size={14}>
                 {currentSession?.tradingTimeString || ''}
-                {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                {converStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15}>
@@ -287,7 +293,7 @@ function OrderBuyStep2({
                 multilanguage={false}
                 marginLeft={3}>
                 {` ${currentSession?.closedBankNoteTimeString || ''}`}
-                {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                {converStringVNTime(I18nState)}
               </Label>
             </Label>
           </Div>
@@ -331,6 +337,17 @@ function OrderBuyStep2({
                 I18nState == 'vi'
                   ? bankSuperVisory?.dataBank?.name
                   : bankSuperVisory?.dataBank?.nameEn || ''
+              }
+              isBorderBottom={true}
+            />
+            <ContentCoppy
+              marginTop={11}
+              title={`transactionscreen.chinhanh`}
+              isBtn={false}
+              content={
+                I18nState == 'vi'
+                  ? bankSuperVisory?.branch
+                  : bankSuperVisory?.branch || ''
               }
               isBorderBottom={true}
             />

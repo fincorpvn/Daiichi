@@ -227,6 +227,8 @@ export default {
   },
   // account verify screen
   accountverify: {
+    thongtintaikhoannganhang: '1. Bank account information',
+    thongtinkhac: '2. Order information',
     thongtintaikhoan: 'Account Information',
     thongtincanhan: 'Personal information',
     hopdongdientu: 'E-Contract',

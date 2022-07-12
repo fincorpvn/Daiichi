@@ -12,6 +12,7 @@ import {ScrollView} from 'react-native';
 import {goBack} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {
+  converStringVNTime,
   convertNumber,
   convertTimestamp,
   copyToClipboard,
@@ -208,6 +209,17 @@ function OrderBuyStep3({
             />
             <ContentCoppy
               marginTop={11}
+              title={`transactionscreen.chinhanh`}
+              isBtn={false}
+              content={
+                I18nState == 'vi'
+                  ? bankSuperVisory?.branch
+                  : bankSuperVisory?.branch || ''
+              }
+              isBorderBottom={true}
+            />
+            <ContentCoppy
+              marginTop={11}
               isBtn={true}
               title={`createordermodal.noidung`}
               content={`${excuseTempVolumn?.transferContent}` || ''}
@@ -330,14 +342,14 @@ function OrderBuyStep3({
               <Label size={14}>{`createordermodal.ngaydatlenh`}</Label>
               <Label size={14} multilanguage={false}>
                 {convertTimestamp(new Date().getTime(), 'DD/MM/yyyy, HH:mm')}
-                {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                {converStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15} isBorderBottom={true}>
               <Label size={14}>{`createordermodal.phiengiaodich`}</Label>
               <Label multilanguage={false} size={14}>
                 {currentSession?.tradingTimeString || ''}
-                {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                {converStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15}>

@@ -5,6 +5,7 @@ import {ComponentButton, IPropsButton} from './ConstantComponent/ButtonComp';
 import Div from './Div';
 // readme
 const opScaleUp = {
+  // toValue: 1.3,
   toValue: 1.01,
   duration: 100,
   useNativeDriver: true,

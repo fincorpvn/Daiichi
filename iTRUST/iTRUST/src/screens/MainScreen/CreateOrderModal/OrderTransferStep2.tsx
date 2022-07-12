@@ -5,7 +5,12 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
-import {convertAmount, convertNav, convertTimestamp} from 'utils';
+import {
+  converStringVNTime,
+  convertAmount,
+  convertNav,
+  convertTimestamp,
+} from 'utils';
 
 interface Props {
   product: any;
@@ -176,7 +181,7 @@ function OrderTransferStep2({
               <Label size={14}>{`createordermodal.ngaydatlenh`}</Label>
               <Label size={14} multilanguage={false}>
                 {convertTimestamp(new Date().getTime(), 'DD/MM/yyyy, HH:mm')}
-                {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                {converStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15}>

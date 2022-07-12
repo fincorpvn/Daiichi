@@ -265,7 +265,7 @@ function ReviewInfoModal() {
           mailingDistrictId: mailingDistrict?.id,
           mailingWardId: mailingWard?.id,
         },
-        isFatca: isAcceptFatca,
+        isFatca: !isAcceptFatca,
         riskInfoInDto: converRistInfoInDto(riskAssessment),
         name: name || currentUser?.name || userRedux?.name, // 'Nguyen Thanh Phong';
         email: email || currentUser?.email || userRedux?.email, //'po.ntp.19946@gmail.com';
@@ -337,6 +337,10 @@ function ReviewInfoModal() {
         <ItemII
           icon={Icons.bank}
           title={`reviewinfoscreen.thongtintaikhoannganhang`}>
+          <Lbl
+            marginTop={23}
+            content={`accountverify.thongtintaikhoannganhang`}
+          />
           <Lbl marginTop={16} content={`accountverify.tenchutaikhoan`} />
           <InputItem
             marginTop={6}
@@ -377,6 +381,7 @@ function ReviewInfoModal() {
             paddingHorizontal={0}
             onChange={a => setBranch(a)}
           />
+          <Lbl marginTop={23} content={`accountverify.thongtinkhac`} />
           <Lbl marginTop={13} content={`accountverify.nghenghiep`} />
           <InputItem
             // keyboardType={'number-pad'}
@@ -932,7 +937,6 @@ function ReviewInfoModal() {
           type={1}
           isDisable={
             !isAccept ||
-            !isAcceptFatca ||
             !number.length ||
             !job.length ||
             !position.length ||

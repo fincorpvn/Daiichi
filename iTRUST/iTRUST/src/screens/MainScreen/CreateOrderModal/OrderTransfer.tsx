@@ -104,6 +104,8 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
     setProduct(e);
     setListDestProduct(listProductDest.filter((a: any) => a.id != e.id));
     setScheme(null);
+    setDestProduct(null);
+    setDestScheme(null);
     setAmount('');
     try {
       const productDetails = await apiInvestment.loadProductDetails({
@@ -139,11 +141,7 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
       id: e.id,
     });
     if (res.status == 200) {
-      setListDestScheme(
-        res.data?.filter(
-          (a: any) => a.productSchemeId == scheme?.productSchemeId,
-        ),
-      );
+      setListDestScheme(res.data);
     }
     try {
     } catch (error) {
@@ -174,7 +172,11 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
           listProduct={listProduct}
           setProduct={setProduct}
           scheme={scheme}
-          setScheme={setScheme}
+          setScheme={(e: any) => {
+            setScheme(e);
+            setDestScheme(null);
+            setDestProduct(null);
+          }}
           amount={amount}
           setAmount={setAmount}
           currentSession={currentSession}

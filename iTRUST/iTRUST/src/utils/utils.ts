@@ -26,6 +26,11 @@ export const checkToSetNumber = (e: string, func: (r: string) => void) => {
   }
 };
 
+export const converStringVNTime = (I18nState: 'vi' | 'en') => {
+  return '';
+  return I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)';
+};
+
 export const converRistInfoInDto = (t: any) => {
   const obj = {};
   Object.keys(t).map((item: any, index: number) => {

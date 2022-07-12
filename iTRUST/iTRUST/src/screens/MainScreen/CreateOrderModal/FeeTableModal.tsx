@@ -13,6 +13,36 @@ import {
   Log,
 } from 'utils';
 
+const RRFee: any = (p: {title: string; data: any}) => {
+  const {title, data} = p;
+  if (data.length == 1) {
+    if (data[0]?.rate == 0) {
+      return (
+        <Div
+          flexDirection={'row'}
+          alignItems={'center'}
+          paddingTop={19}
+          justifyContent={'center'}>
+          <Label size={14}>{title}</Label>
+          <Label size={14} multilanguage={false}>{` 0.00%`}</Label>
+        </Div>
+      );
+    }
+    return (
+      <Div
+        flexDirection={'row'}
+        alignItems={'center'}
+        paddingTop={19}
+        justifyContent={'center'}>
+        <Label size={14}>{title}</Label>
+        <Label size={14} multilanguage={false}>{` ${convertPercent(
+          data[0]?.rate,
+        )}`}</Label>
+      </Div>
+    );
+  }
+};
+
 function FeeTableModal() {
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
@@ -44,16 +74,7 @@ function FeeTableModal() {
     switch (route.params.data.url) {
       case 'product-program/sell-fee':
         if (data.length == 1) {
-          return (
-            <Div
-              flexDirection={'row'}
-              alignItems={'center'}
-              paddingTop={19}
-              justifyContent={'center'}>
-              <Label size={14}>{`createordermodal.phiban`}</Label>
-              <Label size={14} multilanguage={false}>{` 0.00%`}</Label>
-            </Div>
-          );
+          return <RRFee title={'createordermodal.phiban'} data={data} />;
         }
         return (
           <Div paddingBottom={25}>
@@ -92,16 +113,7 @@ function FeeTableModal() {
         );
       case 'product-program/buy-fee':
         if (data.length == 1) {
-          return (
-            <Div
-              flexDirection={'row'}
-              alignItems={'center'}
-              paddingTop={19}
-              justifyContent={'center'}>
-              <Label size={14}>{`createordermodal.phimua`}</Label>
-              <Label size={14} multilanguage={false}>{` 0.00%`}</Label>
-            </Div>
-          );
+          return <RRFee title={'createordermodal.phimua'} data={data} />;
         }
         return (
           <Div paddingBottom={25}>
@@ -140,16 +152,7 @@ function FeeTableModal() {
         );
       case 'product-program/switch-fee':
         if (data.length == 1) {
-          return (
-            <Div
-              flexDirection={'row'}
-              alignItems={'center'}
-              paddingTop={19}
-              justifyContent={'center'}>
-              <Label size={14}>{`createordermodal.phichuyendoi`}</Label>
-              <Label size={14} multilanguage={false}>{` 0.00%`}</Label>
-            </Div>
-          );
+          return <RRFee title={'createordermodal.phichuyendoi'} data={data} />;
         }
         return (
           <Div paddingBottom={25}>

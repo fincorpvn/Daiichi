@@ -4,7 +4,13 @@ import React from 'react';
 import {ScrollView} from 'react-native';
 import {goBack} from 'services';
 import {useAppSelector} from 'store/hooks';
-import {convertAmount, convertNumber, convertTimestamp, Log} from 'utils';
+import {
+  converStringVNTime,
+  convertAmount,
+  convertNumber,
+  convertTimestamp,
+  Log,
+} from 'utils';
 
 interface Props {
   product: any;
@@ -187,14 +193,14 @@ function OrderSellStep3({
               <Label size={14}>{`createordermodal.ngaydatlenh`}</Label>
               <Label multilanguage={false} size={14}>
                 {convertTimestamp(new Date().getTime(), 'DD/MM/yyyy, HH:mm')}
-                {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                {converStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15} isBorderBottom={true}>
               <Label size={14}>{`createordermodal.phiengiaodich`}</Label>
               <Label multilanguage={false} size={14}>
                 {currentSession.tradingTimeString}
-                {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                {converStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15}>

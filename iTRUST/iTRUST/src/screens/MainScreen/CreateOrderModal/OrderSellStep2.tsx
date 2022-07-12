@@ -6,6 +6,7 @@ import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
 import {
+  converStringVNTime,
   convertAmount,
   convertNav,
   convertNumber,
@@ -183,14 +184,14 @@ function OrderSellStep2({
               <Label size={14}>{`createordermodal.ngaydatlenh`}</Label>
               <Label multilanguage={false} size={14}>
                 {convertTimestamp(new Date().getTime(), 'DD/MM/yyyy, HH:mm')}
-                {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                {converStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15} isBorderBottom={true}>
               <Label size={14}>{`createordermodal.phiengiaodich`}</Label>
               <Label multilanguage={false} size={14}>
                 {currentSession.tradingTimeString}
-                {I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)'}
+                {converStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15}>

@@ -204,7 +204,7 @@ function OrderTransferStep1({
             onChangeText={(t: string) => {
               setAmount(convertAmount(`${t}`, true));
             }}
-            keyboardType={'phone-pad'}
+            keyboardType={'ascii-capable'}
             marginTop={6}
             marginHorizontal={0}
             onHandleChange={() => onExcuseTempVolumn()}

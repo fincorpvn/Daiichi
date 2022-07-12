@@ -138,7 +138,7 @@ function OrderBuyStep1({
                 setAmount(convertAmount(`${e}`, true));
               }
             }}
-            keyboardType={'phone-pad'}
+            keyboardType={'decimal-pad'}
             marginTop={6}
             marginHorizontal={0}
             onHandleChange={() => {

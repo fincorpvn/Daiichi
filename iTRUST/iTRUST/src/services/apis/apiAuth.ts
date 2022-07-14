@@ -333,6 +333,7 @@ export const apiAuth = {
     name: string; // 'Nguyen Thanh Phong';
     email: string; //'po.ntp.19946@gmail.com';
     phone: string; //  '0327113114';
+    isFatca?: boolean; //  '0327113114';
     userProfile: {
       gender: number; //gender id : nam: 1 , nũ !=1 1;
       dob: string; //date of birth '20180528';
@@ -372,7 +373,7 @@ export const apiAuth = {
     };
     isKYC: boolean; //  false : non kyc , auto approve isKyc true ;
   }) => {
-    const url = 'user/investment/create-ekyc?fatca=false';
+    const url = `user/investment/create-ekyc?fatca=${!!params?.isFatca}`;
     return doPostAxios(url, params);
   },
   // notification

@@ -35,6 +35,19 @@ var configInfo = {
   headerConfig: stringHeaderConfig,
 };
 
+// live
+// domain: "https://oapi.fmarket.vn/mobile",
+// domainPath: "/ekyc/v1.2",
+// authDomain: "https://api.trueid.ai",
+// authDomainPath: "/v1/oauth",
+// appId: "d55d96e8506b75480a68af3e6aedcfc3",
+// appSecret: "gtK7Z+67cHqAlBRUp/oXzxhDjNCdyLh6lt//A7Ihp4o=",
+// zoomLicenseKey: "",
+// zoomServerBaseURL: "https://liveness-test.trueid.ai",
+// zoomPublicKey: PublicFaceScanEncryptionKey,
+// zoomAuthURL: "https://onboard-liveness.trueid.ai/liveness/key",
+// language: "vi",
+
 export function startScan(
   startLoading?: () => void,
   endLoading?: () => void,

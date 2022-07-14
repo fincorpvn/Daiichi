@@ -84,7 +84,6 @@ function AccountVerifyScreen() {
         bankAccountIsFull &&
         investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT' &&
         userAddressIsFull &&
-        riskInfo &&
         investmentProfile?.status && (
           <>
             <ItemCard

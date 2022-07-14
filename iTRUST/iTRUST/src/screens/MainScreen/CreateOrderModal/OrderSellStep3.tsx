@@ -210,12 +210,12 @@ function OrderSellStep3({
               </Label>
             </RowSpaceItem>
           </Div>
-          <ComL
+          {/* <ComL
             currentSession={currentSession}
             product={product}
             I18nState={I18nState}
             key={'12'}
-          />
+          /> */}
         </Div>
         <Div height={100} />
       </ScrollView>

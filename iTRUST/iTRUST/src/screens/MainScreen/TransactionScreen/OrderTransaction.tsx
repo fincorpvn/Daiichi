@@ -12,7 +12,12 @@ import {
 } from 'reducer/transaction';
 import {navigate} from 'services';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
-import {checkApproveInvestmentProfile, heightScale, Log} from 'utils';
+import {
+  checkApproveInvestmentProfile,
+  heightScale,
+  Log,
+  widthScreen,
+} from 'utils';
 import ListOrderTransaction from './ListOrderTransaction';
 
 const convertTitleOrderType = (a: string) => {
@@ -37,14 +42,6 @@ function OrderTransaction() {
   const isFocus = useIsFocused();
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const productList = useAppSelector(state => getProductList(state));
-  const {
-    email,
-    phone,
-    riskInfo,
-    bankAccountIsFull,
-    userInfoIsFull,
-    userAddressIsFull,
-  } = currentUser;
   const onChangeOrderType = (
     a: 'BUY' | 'SELL' | 'TRANSFER' | 'TRANSFER_BUY',
   ) => {
@@ -82,17 +79,21 @@ function OrderTransaction() {
 
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
-      <Div>
-        <Div height={23} />
+      <Div
+        position={'absolute'}
+        backgroundColor={Ecolors.whiteColor}
+        zIndex={999}
+        elevation={999}
+        top={0}>
         <ScrollView
-          style={s.scrollviewHeader}
           horizontal={true}
-          showsHorizontalScrollIndicator={false}>
+          showsHorizontalScrollIndicator={false}
+          style={s.scrollviewHeader}>
+          <Div width={16} />
           <ButtonBorder
-            marginLeft={16}
             size={14}
             width={125}
-            height={38}
+            height={36}
             onPress={() => {
               if (orderType == 'BUY') {
                 return;
@@ -102,11 +103,12 @@ function OrderTransaction() {
             type={orderType == 'BUY' ? 1 : 3}
             title={`transactionscreen.lenhchomua`}
           />
+          <Div width={16} />
+
           <ButtonBorder
             size={14}
-            marginLeft={16}
             width={125}
-            height={38}
+            height={36}
             onPress={() => {
               if (orderType == 'SELL') {
                 return;
@@ -116,11 +118,12 @@ function OrderTransaction() {
             type={orderType == 'SELL' ? 1 : 3}
             title={`transactionscreen.lenhchoban`}
           />
+          <Div width={16} />
+
           <ButtonBorder
             size={14}
             width={175}
-            marginLeft={16}
-            height={38}
+            height={36}
             onPress={() => {
               if (orderType == 'TRANSFER') {
                 return;
@@ -130,12 +133,12 @@ function OrderTransaction() {
             type={orderType == 'TRANSFER' ? 1 : 3}
             title={`transactionscreen.lenhbanhoandoi`}
           />
+          <Div width={16} />
+
           <ButtonBorder
             size={14}
-            marginLeft={16}
-            marginRight={16}
             width={175}
-            height={38}
+            height={36}
             onPress={() => {
               if (orderType == 'TRANSFER_BUY') {
                 return;
@@ -145,6 +148,7 @@ function OrderTransaction() {
             type={orderType == 'TRANSFER_BUY' ? 1 : 3}
             title={`transactionscreen.lenhmuahoandoi`}
           />
+          <Div width={16} />
         </ScrollView>
       </Div>
       <Div flex={1}>
@@ -178,8 +182,9 @@ function OrderTransaction() {
 
 const s = StyleSheet.create({
   scrollviewHeader: {
-    maxHeight: heightScale(60),
-    marginBottom: heightScale(10),
+    width: widthScreen,
+    height: heightScale(50),
+    flexDirection: 'row',
   },
 });
 

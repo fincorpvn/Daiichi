@@ -12,6 +12,7 @@ import {
   loadTransaction,
 } from 'reducer/transaction';
 import {useAppSelector} from 'store/hooks';
+import {heightScale} from 'utils';
 import {
   ItemOrderBuy,
   ItemOrderSell,
@@ -51,8 +52,9 @@ function ListOrderTransaction() {
   const ListHeaderComponent = useCallback(() => {
     return (
       <Div
-        paddingVertical={18}
         paddingHorizontal={16}
+        paddingBottom={10}
+        marginTop={55}
         flexDirection={'row'}
         alignItems={'center'}
         justifyContent={'flex-start'}>
@@ -122,25 +124,28 @@ function ListOrderTransaction() {
   }, [loading]);
 
   return (
-    <FlatList
-      data={transaction.items}
-      extraData={transaction.items}
-      keyExtractor={keyExtractor}
-      refreshControl={
-        <RefreshControl
-          refreshing={false}
-          onRefresh={onRefresh}
-          tintColor={Ecolors.mainColor}
-        />
-      }
-      renderItem={renderItem}
-      ListHeaderComponent={ListHeaderComponent}
-      ItemSeparatorComponent={ItemSeparatorComponent}
-      ListEmptyComponent={ListEmptyComponent}
-      ListFooterComponent={ListFooterComponent}
-      onEndReachedThreshold={0.4}
-      onEndReached={onLoadMore}
-    />
+    <>
+      <FlatList
+        data={transaction.items}
+        extraData={transaction.items}
+        keyExtractor={keyExtractor}
+        keyboardShouldPersistTaps={'handled'}
+        refreshControl={
+          <RefreshControl
+            refreshing={false}
+            onRefresh={onRefresh}
+            tintColor={Ecolors.mainColor}
+          />
+        }
+        renderItem={renderItem}
+        ListHeaderComponent={ListHeaderComponent}
+        ItemSeparatorComponent={ItemSeparatorComponent}
+        ListEmptyComponent={ListEmptyComponent}
+        ListFooterComponent={ListFooterComponent}
+        onEndReachedThreshold={0.4}
+        onEndReached={onLoadMore}
+      />
+    </>
   );
 }
 

@@ -17,13 +17,13 @@ export const objToQuery = (obj: any): string => {
     obj.limit = 10;
   }
 
-  for (let prop in obj) {
-    if (obj.hasOwnProperty(prop)) {
-      query.push(
-        encodeURIComponent(prop) + '=' + encodeURIComponent(obj[prop]),
-      );
-    }
-  }
+  // for (let prop in obj) {
+  //   if (obj.hasOwnProperty(prop)) {
+  //     query.push(
+  //       encodeURIComponent(prop) + '=' + encodeURIComponent(obj[prop]),
+  //     );
+  //   }
+  // }
 
   return '?' + query.join('&');
 };

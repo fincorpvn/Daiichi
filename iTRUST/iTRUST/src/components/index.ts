@@ -5,6 +5,7 @@ import Input from './Input';
 import Alert from './Alert';
 import ImageView from './ImageView';
 import HeaderBack from './HeaderBack';
+import QRCode from './QRCode';
 import InputItem from './InputItem';
 import ButtonBorder from './ButtonBorder';
 import DropdownMultiLanguage from './DropdownMultiLanguage';
@@ -27,6 +28,7 @@ export {
   Input,
   ImageView,
   HeaderBack,
+  QRCode,
   InputItem,
   HTMLView,
   DropdownMultiLanguage,

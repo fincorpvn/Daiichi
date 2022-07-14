@@ -66,7 +66,12 @@ function Tabbar(p: {
   };
 
   return (
-    <Div backgroundColor={Ecolors.white}>
+    <Div
+      position={'absolute'}
+      elevation={999}
+      top={0}
+      zIndex={999}
+      backgroundColor={Ecolors.white}>
       <FlatList
         ref={flatlistRef}
         horizontal={true}
@@ -89,7 +94,6 @@ function TabViewComp(Props: {
   data: Array<IData>;
   initPage?: number;
   multilanguage?: boolean;
-  onChange?: (e: any) => void;
 }) {
   const TabViewRef = useRef<any>(null);
   const [activeTab, setActiveTab] = useState(Props.initPage || 0);
@@ -97,11 +101,6 @@ function TabViewComp(Props: {
   const onPageSelected = (e: any) => {
     setActiveTab(e.nativeEvent.position);
   };
-  useEffect(() => {
-    if (Props.onChange) {
-      Props.onChange(activeTab);
-    }
-  }, [activeTab]);
 
   const goToPage = (index: number) => {
     if (TabViewRef.current) {
@@ -110,13 +109,14 @@ function TabViewComp(Props: {
   };
 
   return (
-    <>
+    <Div flex={1}>
       <Tabbar
         activeTab={activeTab}
         multilanguage={Props.multilanguage}
         data={Props.data}
         goToPage={goToPage}
       />
+      <Div height={70} />
       <ViewPager
         scrollEnabled={false}
         onPageSelected={e => onPageSelected(e)}
@@ -132,7 +132,7 @@ function TabViewComp(Props: {
           );
         })}
       </ViewPager>
-    </>
+    </Div>
   );
 }
 

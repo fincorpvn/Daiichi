@@ -6,7 +6,6 @@ import {
   PressableStateCallbackType,
   ReturnKeyTypeOptions,
   StyleProp,
-  TextInput,
   TextInputChangeEventData,
   TextInputContentSizeChangeEventData,
   TextInputEndEditingEventData,
@@ -16,6 +15,7 @@ import {
   TextInputSelectionChangeEventData,
   TextInputSubmitEditingEventData,
   TextInputTextInputEventData,
+  TextInput,
   TextStyle,
   ViewStyle,
 } from 'react-native';
@@ -31,7 +31,6 @@ type fontWeight =
   | '800'
   | '900';
 import styled from 'styled-components';
-import {ReactFragment} from 'react';
 import {heightScale, widthScale, fontScale} from 'utils';
 import {Ecolors, Efonts} from 'constant';
 

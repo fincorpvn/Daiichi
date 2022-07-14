@@ -97,7 +97,6 @@ function OrderSellDetailsModal() {
     sessionTime,
     ordersDetailsInfo,
   } = route?.params?.data;
-  Log('123123', {a: route?.params?.data, completeTransactionDuration});
 
   const onDeleteOrder = () => {
     Alert.show({
@@ -281,11 +280,11 @@ function OrderSellDetailsModal() {
               </Label>
             </RowSpaceItem>
           </Div>
-          <ComL
+          {/* <ComL
             I18nState={I18nState}
             sessionTime={sessionTime}
             completeTransactionDuration={completeTransactionDuration}
-          />
+          /> */}
           {/*  */}
           {ordersDetailsInfo?.map((item: any, index: number) => {
             const {createAt, percentFee, sellVolume, hodingTime} = item;

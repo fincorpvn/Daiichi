@@ -122,12 +122,14 @@ export const convertDataDownloadFile = (
     Platform.OS === 'android'
       ? `${RNFS.DownloadDirectoryPath}/${stringApp.appLink}/`
       : `${RNFS.DocumentDirectoryPath}/`;
-  const name = r.respInfo.headers?.[`content-disposition`]
+  const name: string = r.respInfo.headers?.[`content-disposition`]
     .replace('attachment; filename="', '')
     .replace(/"/g, '');
   const i = new Date().getTime();
-  const type = `application/pdf`;
-  // const type = r.respInfo.headers?.[`content-type`];
+  let type = `application/pdf`;
+  if (!name.endsWith('pdf')) {
+    type = `image/png`;
+  }
   const urlFile = `${link}${i}-${name}`;
   return {
     name: `${i}-${name}`,

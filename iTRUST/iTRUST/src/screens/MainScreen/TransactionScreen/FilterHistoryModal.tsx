@@ -135,11 +135,16 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
 
   const bindData = (t: any) => {
     setOrderTypeId(t?.orderTypeId || 0);
+    // Log('toDate', {
+    //   a: convertTimestamp(t.toDate),
+    //   b: convertTimestamp(t.toDate)?.split('/'),
+    // });
+    // return;
     if (t.fromDate) {
-      setFromDate(new Date(convertTimestamp(t.fromDate)));
+      setFromDate(new Date(convertTimestamp(t.fromDate)) || new Date());
     }
     if (t.toDate) {
-      setToDate(new Date(convertTimestamp(t.toDate)) || null);
+      setToDate(new Date(convertTimestamp(t.toDate)) || new Date());
     }
   };
 

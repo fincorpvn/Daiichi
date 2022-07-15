@@ -448,6 +448,7 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     xemthem: 'Xem thêm',
   },
   createordermodal: {
+    huongdanthanhtoanbangqrcode: 'Hướng dẫn thanh toán bằng QR Code',
     giatrimua: 'Giá trị mua',
     tudongtieptucdautu: 'Tự động tiếp tục đầu tư',
     ngaythanhtoanhangthang: 'Ngày thanh toán hàng tháng',
@@ -457,6 +458,14 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     xacnhan: 'Xác nhận',
     datlenh: 'Đặt lệnh',
     ketqua: 'Kết quả',
+    hoac: 'Hoặc',
+    thanhtoannhanhquaqrcode: 'Thanh toán nhanh qua QR Code',
+    huongdanchuyenkhoan: 'Hướng dẫn chuyển khoản',
+    xemqrcode: 'Xem QR code',
+    taive: 'Tải về',
+    motsonganhangchuahotroquetmaqr: 'Một số ngân hàng chưa hỗ trợ quét mã QR',
+    quykhachvuilongdoichieuthongtintruockhichuyenkhoan:
+      'Quý khách vui lòng đối chiếu Thông tin trước khi chuyển khoản',
     quaylai: 'Quay lại',
     bieuphimua: 'Biểu phí mua',
     thoigiandautulientuctoithieu: 'Thời gian đầu tư liên tục tối thiểu',

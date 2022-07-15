@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {deleteOrder} from 'reducer/transaction';
+import ComBankContent from 'screens/MainScreen/CreateOrderModal/ComBankContent';
 import {navigate} from 'services';
 import {apiTransaction} from 'services/apis/apiTransaction';
 import {useAppSelector} from 'store/hooks';
@@ -124,6 +125,19 @@ function OrderBuyDetailsModal() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const p = {
+    bankSuperVisory: {
+      dataBank,
+      name: supervisoryBankAccountName,
+      number: supervisoryBankAccountNumber,
+      branch: supervisoryBankAccountBranch,
+    },
+    excuseTempVolumn: {
+      transferContent: transferContent,
+    },
+    amount: lockAmount,
   };
 
   return (
@@ -296,7 +310,8 @@ function OrderBuyDetailsModal() {
               )}
             </Div>
           </Div>
-          <Label
+          <ComBankContent {...p} />
+          {/* <Label
             size={16}
             fontWeight={'700'}
             marginTop={16}
@@ -431,7 +446,7 @@ function OrderBuyDetailsModal() {
                 }}
               />
             </RowSpaceItem>
-          </Div>
+          </Div> */}
         </Div>
         <Div height={100} />
       </ScrollView>

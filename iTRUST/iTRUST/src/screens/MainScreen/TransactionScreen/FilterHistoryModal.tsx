@@ -24,6 +24,7 @@ import {useDispatch} from 'react-redux';
 import {loadHistory} from 'reducer/transaction';
 import {View, Platform} from 'react-native';
 import {apiInvestment} from 'services/apis/apiInvestment';
+import moment from 'moment';
 
 function BtnAction(p: {
   isSelect?: boolean;
@@ -135,28 +136,13 @@ function FilterHistoryModal(props: {onBack?: () => void}) {
 
   const bindData = (t: any) => {
     setOrderTypeId(t?.orderTypeId || 0);
-    // Log('toDate', {
-    //   a: convertTimestamp(t.toDate),
-    //   b: convertTimestamp(t.toDate)?.split('/'),
-    // });
-    // return;
     if (t.fromDate) {
-      setFromDate(new Date(convertTimestamp(t.fromDate)) || new Date());
+      setFromDate(new Date(moment(t.fromDate).utcOffset('+07:00')));
     }
     if (t.toDate) {
-      setToDate(new Date(convertTimestamp(t.toDate)) || new Date());
+      setToDate(new Date(moment(t.toDate).utcOffset('+07:00')));
     }
   };
-
-  // const investmentLoadScheme = async () => {
-  //   const res = await apiInvestment.investmentLoadScheme({
-  //     productId: null,
-  //   });
-  //   if (res.status == 200) {
-  //     setProductList(res?.data || []);
-  //     console.log(res.data);
-  //   }
-  // };
 
   const setProductFillter = (e: any, a: any) => {
     setCurrentIndex(a);

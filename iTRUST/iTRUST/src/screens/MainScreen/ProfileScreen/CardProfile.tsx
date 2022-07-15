@@ -54,7 +54,7 @@ function CardProfile(Props: {}) {
           alignItems={'flex-start'}
           justifyContent={'flex-start'}>
           <Label multilanguage={false} fontWeight={'500'}>
-            {removeUtf8(name?.toLocaleUpperCase() || '') || ''}
+            {name?.toLocaleUpperCase() || ''}
           </Label>
           <Div
             flexDirection={'row'}

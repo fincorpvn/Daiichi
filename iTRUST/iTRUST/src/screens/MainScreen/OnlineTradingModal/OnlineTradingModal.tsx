@@ -12,14 +12,19 @@ import {Ecolors, Icons, stringApp, urlApp} from 'constant';
 import {convertDataDownloadFile, getUuid, Log, requestPermisson} from 'utils';
 import {getStoreToken} from 'utils/storage';
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import RowButtonAction from 'screens/MainScreen/DigitalSignature/RowButtonAction';
 import {navigate} from 'services';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {PERMISSIONS} from 'react-native-permissions';
 import RNFS from 'react-native-fs';
-import {ActivityIndicator, Platform, StyleSheet} from 'react-native';
+import {
+  ActivityIndicator,
+  BackHandler,
+  Platform,
+  StyleSheet,
+} from 'react-native';
 
 const ButtonDownload = (p: {
   content: string;
@@ -63,6 +68,17 @@ function OnlineTrading() {
   const bangcongbo = `Bảng công bố rủi ro giao dịch trực tuyến.`;
   const thoathuan = `Thoả thuận cung cấp dịch vụ trực tuyến.`;
   const [loading, setLoading] = useState<Object>({});
+
+  useEffect(() => {
+    const backAction = () => {
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+    return () => backHandler.remove();
+  }, []);
 
   const controlLoading = (url: string, t: boolean) => {
     setLoading(a => {

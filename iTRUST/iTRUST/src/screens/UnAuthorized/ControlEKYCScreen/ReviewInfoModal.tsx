@@ -25,6 +25,7 @@ import {
   getAddressRejectWard,
   heightScale,
   Log,
+  removeUtf8,
 } from 'utils';
 import Line from './Line';
 
@@ -245,7 +246,9 @@ function ReviewInfoModal() {
         userBankAccount: {
           bankId: `${bank?.id || ''}`,
           branchId: `${branch?.id || bank?.id || ''}`,
-          name: name || currentUser.name || userRedux.name,
+          name: removeUtf8(
+            name || currentUser.name || userRedux.name || '',
+          ).toLocaleUpperCase(),
           number: number,
           job: job || '',
           position: position || '',
@@ -277,7 +280,6 @@ function ReviewInfoModal() {
         dispatch(getInfo({}));
         Alert.show({
           content: `alert.dangkytaikhoanthanhcong`, // I18nState == 'vi' ? res.message : res.messageEn,
-          // multilanguage: false,
           type: 2,
           titleClose: `alert.dongy`,
           onClose: async () => {
@@ -345,7 +347,7 @@ function ReviewInfoModal() {
           <InputItem
             marginTop={6}
             isInput={false}
-            value={name}
+            value={removeUtf8(name?.toLocaleUpperCase() || '')}
             marginHorizontal={0}
           />
           <Lbl marginTop={13} content={`accountverify.sotaikhoan`} />

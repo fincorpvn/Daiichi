@@ -2,6 +2,7 @@ import {Alert, Button, ButtonBorder, Div, ImageView, Label} from 'components';
 import {Ecolors, EStyle, Icons} from 'constant';
 import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
+import ComBankContent from 'screens/MainScreen/CreateOrderModal/ComBankContent';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
@@ -117,6 +118,10 @@ function OrderBuyStep2({
   const currentUser = useAppSelector(state => state.authen.currentUser);
 
   const [loading, setLoading] = useState(false);
+
+  Log('dasdad', {
+    bankSuperVisory,
+  });
 
   const onConfirm = async () => {
     try {
@@ -301,84 +306,13 @@ function OrderBuyStep2({
             fontWeight={'700'}
             marginTop={18}>{`createordermodal.thongtinchuyenkhoan`}</Label>
           <Label marginTop={3}>{`createordermodal.luuyttck`}</Label>
-          <Div
-            width={'100%'}
-            marginTop={9}
-            borderRadius={8}
-            borderWidth={0.8}
-            borderColor={Ecolors.bordercolor}
-            backgroundColor={Ecolors.whiteColor}
-            style={EStyle.shadowItem}
-            paddingHorizontal={20}
-            paddingTop={20}
-            paddingBottom={24}>
-            <ContentCoppy
-              title={`createordermodal.tenthuhuong`}
-              isBtn={true}
-              content={
-                I18nState == 'vi'
-                  ? bankSuperVisory?.name
-                  : bankSuperVisory?.nameEn || bankSuperVisory?.name
-              }
-              isBorderBottom={true}
-            />
-            <ContentCoppy
-              marginTop={11}
-              isBtn={true}
-              title={`createordermodal.sotaikhoan`}
-              content={bankSuperVisory?.number || ''}
-              isBorderBottom={true}
-            />
-            <ContentCoppy
-              marginTop={11}
-              title={`createordermodal.nganhang`}
-              isBtn={false}
-              content={
-                I18nState == 'vi'
-                  ? bankSuperVisory?.dataBank?.name
-                  : bankSuperVisory?.dataBank?.nameEn || ''
-              }
-              isBorderBottom={true}
-            />
-            <ContentCoppy
-              marginTop={11}
-              title={`transactionscreen.chinhanh`}
-              isBtn={false}
-              content={
-                I18nState == 'vi'
-                  ? bankSuperVisory?.branch
-                  : bankSuperVisory?.branch || ''
-              }
-              isBorderBottom={true}
-            />
-            <ContentCoppy
-              marginTop={11}
-              isBtn={true}
-              isBorderBottom={!!scheme?.productSchemeIsAutoBuy}
-              title={`createordermodal.noidung`}
-              content={`${excuseTempVolumn?.transferContent}` || ''}
-            />
-            {scheme && scheme?.productSchemeIsAutoBuy && (
-              <>
-                <RowSpaceItem marginTop={11}>
-                  <Label
-                    size={14}>{`createordermodal.tudongtieptucdautu`}</Label>
-                  <Label multilanguage={false} size={14}>
-                    {I18nState == 'vi' ? 'Có' : 'Yes'}
-                  </Label>
-                </RowSpaceItem>
-                <RowSpaceItem marginTop={8}>
-                  <Label
-                    size={
-                      14
-                    }>{`createordermodal.ngaythanhtoanhangthang`}</Label>
-                  <Label multilanguage={false} size={14}>
-                    {beginBuyAutoStartDate || ''}
-                  </Label>
-                </RowSpaceItem>
-              </>
-            )}
-          </Div>
+          <ComBankContent
+            bankSuperVisory={bankSuperVisory}
+            amount={amount}
+            excuseTempVolumn={excuseTempVolumn}
+            beginBuyAutoStartDate={beginBuyAutoStartDate}
+            scheme={scheme}
+          />
         </Div>
         <Div height={100} />
       </ScrollView>

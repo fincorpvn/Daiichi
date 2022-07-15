@@ -68,13 +68,10 @@ function BankInfoModal() {
       />
       <ItemCard
         title={`accountverify.tenchutaikhoan`}
-        content={
-          removeUtf8(
-            bankAccount?.name?.toLocaleUpperCase() ||
-              currentUser?.name?.toLocaleUpperCase() ||
-              '',
-          ) || ''
-        }
+        content={removeUtf8(
+          bankAccount?.name?.toLocaleUpperCase() ||
+            currentUser?.name?.toLocaleUpperCase(),
+        )}
         isLine={true}
       />
       <ItemCard

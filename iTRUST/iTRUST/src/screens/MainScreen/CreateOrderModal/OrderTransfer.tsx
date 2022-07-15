@@ -137,12 +137,21 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
     setLoadingDest(true);
     setDestProduct(e);
     setDestScheme(null);
-    const res = await apiInvestment.loadBuy({
-      id: e.id,
-    });
-    if (res.status == 200) {
-      setListDestScheme(res.data);
-    }
+    setListDestScheme(
+      e.productPrograms.filter(
+        (x: any) => x.productSchemeId == scheme.productSchemeId,
+      ),
+    );
+    // const res = await apiInvestment.loadBuy({
+    //   id: e.id,
+    // });
+    // if (res.status == 200) {
+    //   setListDestScheme(
+    //     e.productPrograms.filter(
+    //       (x: any) => x.productSchemeId == scheme.productSchemeId,
+    //     ),
+    //   );
+    // }
     try {
     } catch (error) {
     } finally {

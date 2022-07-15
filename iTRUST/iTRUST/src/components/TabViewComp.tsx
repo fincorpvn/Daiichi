@@ -94,12 +94,14 @@ function TabViewComp(Props: {
   data: Array<IData>;
   initPage?: number;
   multilanguage?: boolean;
+  onChange?: (t: number) => void;
 }) {
   const TabViewRef = useRef<any>(null);
   const [activeTab, setActiveTab] = useState(Props.initPage || 0);
 
   const onPageSelected = (e: any) => {
     setActiveTab(e.nativeEvent.position);
+    Props.onChange && Props.onChange(e.nativeEvent.position);
   };
 
   const goToPage = (index: number) => {

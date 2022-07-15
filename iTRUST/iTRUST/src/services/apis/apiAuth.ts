@@ -374,6 +374,7 @@ export const apiAuth = {
     isKYC: boolean; //  false : non kyc , auto approve isKyc true ;
   }) => {
     const url = `user/investment/create-ekyc?fatca=${!!params?.isFatca}`;
+    Log('12312312', url);
     return doPostAxios(url, params);
   },
   // notification

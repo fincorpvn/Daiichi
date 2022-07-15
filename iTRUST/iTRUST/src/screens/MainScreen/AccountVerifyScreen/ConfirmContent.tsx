@@ -17,6 +17,7 @@ function ConfirmContent(p: {email?: string}) {
       const r = await apiMain.getConfirmContent();
       if (r.status == 200) {
         setContent(r.data.content);
+        console.log('conten', r.data.content);
       }
     } catch (error) {}
   };

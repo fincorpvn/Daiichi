@@ -62,12 +62,7 @@ function AccountVerifyScreen() {
       />
       <ItemCard
         onPress={() => {
-          if (
-            userInfoIsFull &&
-            bankAccountIsFull &&
-            userAddressIsFull &&
-            riskInfo
-          ) {
+          if (userInfoIsFull && bankAccountIsFull && userAddressIsFull) {
             navigate('ConfirmModal');
             return;
           }

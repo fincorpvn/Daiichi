@@ -325,85 +325,6 @@ function OrderBuyStep1({
             </Div>
           )}
 
-          {/* {!!currentSession && !scheme?.productSchemeIsAutoBuy && (
-            <Div
-              width={'100%'}
-              marginTop={17}
-              borderRadius={5}
-              paddingHorizontal={16}
-              paddingVertical={21}
-              flexDirection={'row'}
-              alignItems={'center'}
-              justifyContent={'space-between'}
-              backgroundColor={Ecolors.spaceColor}>
-              <Div
-                paddingRight={16}
-                height={'100%'}
-                flexDirection={'column'}
-                alignItems={'flex-start'}>
-                <Div height={40}>
-                  <Label
-                    textAlign={'center'}
-                    size={12}
-                    fontWeight={
-                      '700'
-                    }>{`createordermodal.thoidiemdongsolenh`}</Label>
-                </Div>
-
-                <Label marginTop={6} size={12} multilanguage={false}>
-                  {currentSession.closedOrderBookTimeString}
-                  {converStringVNTime(I18nState)}
-                </Label>
-                <Div
-                  flexDirection={'row'}
-                  justifyContent={'flex-start'}
-                  height={40}>
-                  <Label
-                    size={12}
-                    marginTop={13}
-                    textAlign={'center'}
-                    fontWeight={
-                      '700'
-                    }>{`createordermodal.phiengiaodich`}</Label>
-                </Div>
-                <Label marginTop={6} size={12} multilanguage={false}>
-                  {currentSession.tradingTimeString}
-                  {converStringVNTime(I18nState)}
-                </Label>
-              </Div>
-              <Div
-                width={3}
-                height={'100%'}
-                backgroundColor={Ecolors.grayColor}
-                borderRadius={10}
-              />
-              <Div
-                height={'100%'}
-                paddingLeft={16}
-                flex={1}
-                flexDirection={'column'}
-                alignItems={'flex-start'}>
-                <Div height={40}>
-                  <Label
-                    size={12}
-                    textAlign={'center'}
-                    fontWeight={
-                      '700'
-                    }>{`createordermodal.thoidiemdongsolenhnhantien`}</Label>
-                </Div>
-                <Label
-                  marginBottom={10}
-                  marginTop={6}
-                  size={12}
-                  multilanguage={false}>
-                  {currentSession.closedBankNoteTimeString}
-                  {converStringVNTime(I18nState)}
-                </Label>
-                <TimeFromNow toTime={currentSession.closedOrderBookTime} />
-              </Div>
-            </Div>
-          )} */}
-
           {scheme && scheme?.productSchemeIsAutoBuy && (
             <Div marginTop={17}>
               <Label
@@ -455,7 +376,7 @@ function OrderBuyStep1({
                   backgroundColor={Ecolors.mainColor}
                 />
                 <Div flex={1}>
-                  <Label size={12} multilanguage={false}>
+                  <Label fontWeight={'700'} size={12} multilanguage={false}>
                     {I18nState == 'vi'
                       ? `Chương trình ${scheme?.productSchemeNameEn} là chương trình đầu tư tự động và liên tục`
                       : `${
@@ -463,7 +384,7 @@ function OrderBuyStep1({
                           scheme?.productSchemeNameEn
                         } programme is an automatic and continuous investment program`}
                   </Label>
-                  <Label marginTop={8} size={12} multilanguage={false}>
+                  {/* <Label marginTop={8} size={12} multilanguage={false}>
                     {I18nState == 'vi'
                       ? `Quý khách vui lòng chuyển tiền vào tài khoản đầu tư vào ngày ${
                           beginBuyAutoStartDate || ''
@@ -481,7 +402,7 @@ function OrderBuyStep1({
                     {I18nState == 'vi'
                       ? `Đối với Chương trình Đầu tư Định kỳ: Nhà đầu tư không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua Định kỳ.`
                       : `Đối với Chương trình Đầu tư Định kỳ: Nhà đầu tư không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua Định kỳ.`}
-                  </Label>
+                  </Label> */}
                 </Div>
               </Div>
             </Div>

@@ -12,6 +12,7 @@ export enum Icons {
   error = require('../assets/error/error.png'),
   phone = require('../assets/phone/phone.png'),
   check = require('../assets/check/check.png'),
+  downloadqr = require('../assets/downloadqr/downloadqr.png'),
   uncheck = require('../assets/check/uncheck.png'),
   checklanguage = require('../assets/checklanguage/checklanguage.png'),
   checkconfirminfo = require('../assets/checkconfirminfo/checkconfirminfo.png'),

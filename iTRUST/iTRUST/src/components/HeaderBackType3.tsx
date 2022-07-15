@@ -50,7 +50,7 @@ function HeaderBackType3() {
             color={Ecolors.textColor}
             multilanguage={false}
             fontWeight={'500'}>
-            {removeUtf8(name?.toLocaleUpperCase() || '') || ''}
+            {name?.toLocaleUpperCase() || '' || ''}
           </Label>
           <Div flexDirection={'row'} alignItems={'center'} flex={1}>
             <Label

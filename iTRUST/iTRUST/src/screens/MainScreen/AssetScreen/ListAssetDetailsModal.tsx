@@ -159,7 +159,6 @@ function ListAssetDetailsModal() {
       if (table.status == 200) {
         setTableManagement(table.data);
       }
-      console.log('tale', table);
     } catch (error) {
     } finally {
       setLoading(false);
@@ -191,14 +190,14 @@ function ListAssetDetailsModal() {
           }
           data={tableManagement?.items?.orderList || []}
           ListHeaderComponent={() => <Div height={16} />}
-          ListFooterComponent={() => <Div height={16} />}
+          ListFooterComponent={() => <Div height={insets.bottom + 20} />}
           keyExtractor={(item: any, index: number) => `key${item.id}${index}`}
           renderItem={(p: {item: any; index: number}) => {
             return <ItemTable item={p.item} />;
           }}
         />
       </Div>
-      <Div
+      {/* <Div
         borderTopWidth={1}
         backgroundColor={Ecolors.bgtime}
         borderTopColor={Ecolors.bordercolor}>
@@ -231,7 +230,7 @@ function ListAssetDetailsModal() {
           </Label>
         </RowSpaceItem>
         <Div height={insets.bottom + 20} />
-      </Div>
+      </Div> */}
     </Div>
   );
 }

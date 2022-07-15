@@ -73,9 +73,11 @@ function LoginScreen() {
   };
 
   useEffect(() => {
-    if (userNameSaveRedux) {
+    if (!!userNameSaveRedux) {
       setUserName(userNameSaveRedux);
       setIsSaveName(true);
+    } else {
+      setIsSaveName(false);
     }
     return () => {};
   }, [isFocus, userNameSaveRedux]);
@@ -192,7 +194,7 @@ function LoginScreen() {
       ) {
         return;
       }
-      if (isSaveName || userNameSaveRedux) {
+      if (isSaveName) {
         dispatch(saveName(p?.name || username));
       } else {
         dispatch(saveName(''));

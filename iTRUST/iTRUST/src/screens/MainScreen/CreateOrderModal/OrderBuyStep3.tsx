@@ -9,15 +9,17 @@ import {
 import {Ecolors, EStyle, Icons} from 'constant';
 import React, {useRef} from 'react';
 import {ScrollView} from 'react-native';
+import ComBankContent from 'screens/MainScreen/CreateOrderModal/ComBankContent';
 import {goBack} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {
-  converStringVNTime,
+  convertStringVNTime,
   convertNumber,
   convertTimestamp,
   copyToClipboard,
   widthScale,
   widthScreen,
+  heightScreen,
 } from 'utils';
 
 interface Props {
@@ -128,7 +130,9 @@ function OrderBuyStep3({
         ref={bottomsheet}>
         <Div
           width={337}
+          height={heightScreen - 350}
           borderRadius={8}
+          paddingHorizontal={5}
           borderWidth={0.8}
           borderColor={Ecolors.bordercolor}
           backgroundColor={Ecolors.whiteColor}
@@ -137,6 +141,7 @@ function OrderBuyStep3({
             width={'100%'}
             paddingHorizontal={17}
             paddingTop={18}
+            paddingBottom={10}
             alignItems={'center'}
             justifyContent={'space-between'}
             flexDirection={'row'}>
@@ -153,7 +158,15 @@ function OrderBuyStep3({
               />
             </Button>
           </Div>
-          <Div
+          <ScrollView>
+            <ComBankContent
+              bankSuperVisory={bankSuperVisory}
+              amount={amount}
+              excuseTempVolumn={excuseTempVolumn}
+              beginBuyAutoStartDate={beginBuyAutoStartDate}
+              scheme={scheme}
+            />
+            {/* <Div
             marginTop={13}
             height={1}
             width={'100%'}
@@ -245,7 +258,9 @@ function OrderBuyStep3({
                 </RowSpaceItem>
               </>
             )}
-          </Div>
+          </Div> */}
+          </ScrollView>
+
           <Div
             width={'100%'}
             paddingVertical={20}
@@ -342,14 +357,14 @@ function OrderBuyStep3({
               <Label size={14}>{`createordermodal.ngaydatlenh`}</Label>
               <Label size={14} multilanguage={false}>
                 {convertTimestamp(new Date().getTime(), 'DD/MM/yyyy, HH:mm')}
-                {converStringVNTime(I18nState)}
+                {convertStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15} isBorderBottom={true}>
               <Label size={14}>{`createordermodal.phiengiaodich`}</Label>
               <Label multilanguage={false} size={14}>
                 {currentSession?.tradingTimeString || ''}
-                {converStringVNTime(I18nState)}
+                {convertStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15}>

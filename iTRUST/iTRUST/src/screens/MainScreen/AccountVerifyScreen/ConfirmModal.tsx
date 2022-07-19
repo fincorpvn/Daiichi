@@ -58,10 +58,10 @@ function ConfirmModal() {
   const confirm = async () => {
     try {
       setLoading(true);
-      if (!isAccept || !isAcceptFatca) {
+      if (!isAccept) {
         return;
       }
-      const res = await apiAuth.approveUser();
+      const res = await apiAuth.approveUser({fatca: isAcceptFatca});
       if (res.status == 200) {
         navigate('AccountVerifyScreen');
         dispatch(getInfo({}));
@@ -84,7 +84,6 @@ function ConfirmModal() {
       <HeaderBack type={2} title={`accountverify.xacnhanhoantat`} />
       <ScrollView>
         <ConfirmContent email={email} />
-
         {!investmentProfile ||
         investmentProfile?.code == 'INVESTMENT_PROFILE_REJECT' ? (
           <>
@@ -156,7 +155,7 @@ function ConfirmModal() {
               alignItems={'center'}
               justifyContent={'center'}>
               <ButtonBorder
-                type={isAcceptFatca && isAccept ? 1 : 2}
+                type={isAccept ? 1 : 2}
                 width={343}
                 loading={loading}
                 onPress={() => confirm()}

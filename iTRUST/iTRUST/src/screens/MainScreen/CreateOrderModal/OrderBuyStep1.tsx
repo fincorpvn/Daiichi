@@ -16,7 +16,7 @@ import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
 import {
-  converStringVNTime,
+  convertStringVNTime,
   convertAmount,
   convertNumber,
   convertPercent,
@@ -275,13 +275,13 @@ function OrderBuyStep1({
                   justifyContent={'flex-start'}>
                   <Label size={12} multilanguage={false}>
                     {currentSession?.closedOrderBookTimeString}
-                    {converStringVNTime(I18nState)}
+                    {convertStringVNTime(I18nState)}
                   </Label>
                 </Div>
                 <Div flex={1} flexDirection={'row'} justifyContent={'flex-end'}>
                   <Label size={12} textAlign={'center'} multilanguage={false}>
                     {currentSession?.closedBankNoteTimeString}
-                    {converStringVNTime(I18nState)}
+                    {convertStringVNTime(I18nState)}
                   </Label>
                 </Div>
               </Div>
@@ -299,7 +299,7 @@ function OrderBuyStep1({
                     }>{`createordermodal.phiengiaodich`}</Label>
                   <Label marginTop={6} size={12} multilanguage={false}>
                     {currentSession?.tradingTimeString}
-                    {converStringVNTime(I18nState)}
+                    {convertStringVNTime(I18nState)}
                   </Label>
                 </Div>
                 <Div

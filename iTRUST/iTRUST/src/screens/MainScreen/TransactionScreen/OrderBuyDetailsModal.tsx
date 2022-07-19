@@ -68,6 +68,8 @@ function OrderBuyDetailsModal() {
     productNameEn,
     productName,
     orderType,
+    statusName,
+    note,
     createAt,
     lockAmount,
     closedBookTime,
@@ -76,6 +78,7 @@ function OrderBuyDetailsModal() {
     id,
     receivedAmount,
     price,
+    statusCode,
     code,
     transferContent,
   } = route?.params?.data;
@@ -148,7 +151,13 @@ function OrderBuyDetailsModal() {
         multilanguage={false}
         title={I18nState == 'vi' ? productProgramName : productProgramNameEn}
         iconRight={
-          !(route?.params?.hideDelete || receivedAmount) ? Icons.delete : null
+          !(
+            route?.params?.hideDelete ||
+            receivedAmount ||
+            statusCode !== 'ORDER_REJECT'
+          )
+            ? Icons.delete
+            : null
         }
         onRightPress={() => {
           onDeleteOrder();
@@ -299,154 +308,43 @@ function OrderBuyDetailsModal() {
                 color={
                   Ecolors.grayColor
                 }>{`transactionscreen.trangthai`}</Label>
-              {!route?.params?.hideStatusReceiveAmount && (
-                <Label
-                  multilanguage={false}
-                  size={12}
-                  fontFamily={Efonts.italic}
-                  color={receivedAmount ? Ecolors.growColor : Ecolors.redColor}>
-                  {convertReceiveAmount(receivedAmount, I18nState)}
-                </Label>
+              {statusCode == 'ORDER_REJECT' ? (
+                <Div>
+                  <Label
+                    color={Ecolors.redColor}
+                    multilanguage={false}
+                    size={12}>
+                    {I18nState == 'vi'
+                      ? statusName
+                      : statusCode == 'ORDER_REJECT'
+                      ? 'Not matched'
+                      : statusCode == 'ORDER_RECONCILED'
+                      ? `Matched`
+                      : 'Pending'}
+                  </Label>
+                </Div>
+              ) : (
+                !route?.params?.hideStatusReceiveAmount && (
+                  <Label
+                    multilanguage={false}
+                    size={12}
+                    fontFamily={Efonts.italic}
+                    color={
+                      receivedAmount ? Ecolors.growColor : Ecolors.redColor
+                    }>
+                    {convertReceiveAmount(receivedAmount, I18nState)}
+                  </Label>
+                )
               )}
             </Div>
+            {statusCode == 'ORDER_REJECT' && (
+              <Label color={Ecolors.redColor} multilanguage={false} size={12}>
+                {note}
+              </Label>
+            )}
           </Div>
+
           <ComBankContent {...p} />
-          {/* <Label
-            size={16}
-            fontWeight={'700'}
-            marginTop={16}
-            marginBottom={13}>{`transactionscreen.taikhoanthuhuong`}</Label>
-          <Div
-            borderRadius={8}
-            borderWidth={0.8}
-            borderColor={Ecolors.bordercolor}
-            backgroundColor={Ecolors.whiteColor}
-            style={EStyle.shadowItem}
-            paddingHorizontal={16}
-            paddingTop={17}
-            paddingBottom={26}>
-            <RowSpaceItem>
-              <Div>
-                <Label
-                  size={14}
-                  color={
-                    Ecolors.grayColor
-                  }>{`transactionscreen.tenthuhuong`}</Label>
-                <Label multilanguage={false} marginTop={5} size={14}>
-                  {supervisoryBankAccountName}
-                </Label>
-              </Div>
-              <ButtonCoppy
-                onPress={() => {
-                  copyToClipboard(supervisoryBankAccountName);
-                }}
-              />
-            </RowSpaceItem>
-            <Div
-              width={'100%'}
-              marginTop={10}
-              marginBottom={7}
-              backgroundColor={Ecolors.spaceColor}
-              height={1}
-            />
-            <RowSpaceItem>
-              <Div flex={1}>
-                <Label
-                  size={14}
-                  color={
-                    Ecolors.grayColor
-                  }>{`transactionscreen.sotaikhoan`}</Label>
-                <Label multilanguage={false} marginTop={5} size={14}>
-                  {supervisoryBankAccountNumber}
-                </Label>
-              </Div>
-              <ButtonCoppy
-                onPress={() => {
-                  copyToClipboard(supervisoryBankAccountNumber);
-                }}
-              />
-            </RowSpaceItem>
-            <Div
-              width={'100%'}
-              marginTop={10}
-              marginBottom={7}
-              backgroundColor={Ecolors.spaceColor}
-              height={1}
-            />
-            <RowSpaceItem>
-              <Div flex={1}>
-                <Label
-                  size={14}
-                  color={
-                    Ecolors.grayColor
-                  }>{`transactionscreen.tennganhang`}</Label>
-                <Label multilanguage={false} marginTop={5} size={14}>
-                  {I18nState == 'vi' ? dataBank?.name : dataBank?.nameEn || ''}
-                </Label>
-              </Div>
-              <ButtonCoppy
-                onPress={() => {
-                  copyToClipboard(
-                    I18nState == 'vi' ? dataBank?.name : dataBank?.nameEn || '',
-                  );
-                }}
-              />
-            </RowSpaceItem>
-            <Div
-              width={'100%'}
-              marginTop={10}
-              marginBottom={7}
-              backgroundColor={Ecolors.spaceColor}
-              height={1}
-            />
-            <RowSpaceItem>
-              <Div flex={1}>
-                <Label
-                  size={14}
-                  color={
-                    Ecolors.grayColor
-                  }>{`transactionscreen.chinhanh`}</Label>
-                <Label multilanguage={false} marginTop={5} size={14}>
-                  {I18nState == 'vi'
-                    ? supervisoryBankAccountBranch
-                    : supervisoryBankAccountBranch || ''}
-                </Label>
-              </Div>
-              <ButtonCoppy
-                onPress={() => {
-                  copyToClipboard(
-                    I18nState == 'vi'
-                      ? supervisoryBankAccountBranch
-                      : supervisoryBankAccountBranch || '',
-                  );
-                }}
-              />
-            </RowSpaceItem>
-            <Div
-              width={'100%'}
-              marginTop={10}
-              marginBottom={7}
-              backgroundColor={Ecolors.spaceColor}
-              height={1}
-            />
-            <RowSpaceItem>
-              <Div width={'100%'} flex={1}>
-                <Label
-                  size={14}
-                  color={
-                    Ecolors.grayColor
-                  }>{`transactionscreen.noidung`}</Label>
-                <Label multilanguage={false} marginTop={5} size={14}>
-                  {bankNote}
-                </Label>
-              </Div>
-              <ButtonCoppy
-                onPress={() => {
-                  copyToClipboard(bankNote || '');
-                }}
-              />
-            </RowSpaceItem>
-          </Div> */}
         </Div>
         <Div height={100} />
       </ScrollView>

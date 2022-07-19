@@ -48,10 +48,10 @@ function BankInfoModal() {
 
   const bindStringApp = () => {
     setIncomeSourceString(
-      stringApp.source.find(a => a.id == bankAccount.incomeSource)?.name || '',
+      stringApp.source.find(a => a.id == bankAccount?.incomeSource)?.name || '',
     );
     setAnnualIncomeString(
-      stringApp.monthlyIncom.find(a => a.id == bankAccount.incomeSource)
+      stringApp.monthlyIncom.find(a => a.id == bankAccount?.incomeSource)
         ?.name || '',
     );
   };

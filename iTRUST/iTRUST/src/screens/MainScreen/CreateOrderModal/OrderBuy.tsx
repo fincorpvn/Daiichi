@@ -52,6 +52,7 @@ function OrderBuy({setStepTimeLine, stepTimeLine, initData}: Props) {
       });
     }
   };
+
   const onPre = (step?: number) => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({

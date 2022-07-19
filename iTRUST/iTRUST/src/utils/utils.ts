@@ -26,7 +26,7 @@ export const checkToSetNumber = (e: string, func: (r: string) => void) => {
   }
 };
 
-export const converStringVNTime = (I18nState: 'vi' | 'en') => {
+export const convertStringVNTime = (I18nState: 'vi' | 'en') => {
   return '';
   return I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)';
 };

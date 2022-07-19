@@ -66,5 +66,5 @@ ComponentLable.defaultProps = {
   textAlign: 'left',
   fontWeight: '400',
   color: Ecolors.textColor,
-  fontFamily: Efonts.medium,
+  opacity: 1,
 };

@@ -45,13 +45,17 @@ function HeaderBackType3() {
           flexDirection={'column'}
           alignItems={'flex-start'}
           justifyContent={'center'}>
-          <Label
-            size={16}
-            color={Ecolors.textColor}
-            multilanguage={false}
-            fontWeight={'500'}>
-            {name?.toLocaleUpperCase() || '' || ''}
-          </Label>
+          <Div flex={1}>
+            <Label
+              size={16}
+              numberOfLines={1}
+              color={Ecolors.textColor}
+              multilanguage={false}
+              fontWeight={'500'}>
+              {name?.toLocaleUpperCase() || '' || ''}
+            </Label>
+          </Div>
+
           <Div flexDirection={'row'} alignItems={'center'} flex={1}>
             <Label
               size={13}

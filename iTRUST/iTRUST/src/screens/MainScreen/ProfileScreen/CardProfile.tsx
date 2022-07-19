@@ -53,9 +53,11 @@ function CardProfile(Props: {}) {
           flexDirection={'column'}
           alignItems={'flex-start'}
           justifyContent={'flex-start'}>
-          <Label multilanguage={false} fontWeight={'500'}>
-            {name?.toLocaleUpperCase() || ''}
-          </Label>
+          <Div flex={1} paddingRight={30}>
+            <Label multilanguage={false} numberOfLines={1} fontWeight={'500'}>
+              {name?.toLocaleUpperCase() || ''}
+            </Label>
+          </Div>
           <Div
             flexDirection={'row'}
             alignItems={'center'}

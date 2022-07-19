@@ -7,7 +7,7 @@ import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
 import {
-  converStringVNTime,
+  convertStringVNTime,
   convertNumber,
   convertTimestamp,
   copyToClipboard,
@@ -237,14 +237,14 @@ function OrderBuyStep2({
               <Label size={14}>{`createordermodal.ngaydatlenh`}</Label>
               <Label multilanguage={false} size={14}>
                 {convertTimestamp(new Date().getTime(), 'DD/MM/yyyy, HH:mm')}
-                {converStringVNTime(I18nState)}
+                {convertStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15} isBorderBottom={true}>
               <Label size={14}>{`createordermodal.phiengiaodich`}</Label>
               <Label multilanguage={false} size={14}>
                 {currentSession?.tradingTimeString || ''}
-                {converStringVNTime(I18nState)}
+                {convertStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15}>
@@ -298,7 +298,7 @@ function OrderBuyStep2({
                 multilanguage={false}
                 marginLeft={3}>
                 {` ${currentSession?.closedBankNoteTimeString || ''}`}
-                {converStringVNTime(I18nState)}
+                {convertStringVNTime(I18nState)}
               </Label>
             </Label>
           </Div>

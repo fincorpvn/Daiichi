@@ -13,7 +13,7 @@ import React, {useState} from 'react';
 import {Platform, ScrollView} from 'react-native';
 import {goBack, navigate} from 'services';
 import {
-  converStringVNTime,
+  convertStringVNTime,
   convertAmount,
   convertNav,
   convertNumber,
@@ -266,7 +266,7 @@ function OrderSellStep1({
                       <Label size={14}>{`createordermodal.ngaymua`}</Label>
                       <Label size={14} multilanguage={false}>
                         {convertTimestamp(createAt, 'DD/MM/yyyy, HH:mm')}
-                        {converStringVNTime(I18nState)}
+                        {convertStringVNTime(I18nState)}
                       </Label>
                     </RowSpaceItem>
                     <RowSpaceItem marginTop={10}>
@@ -314,10 +314,10 @@ function OrderSellStep1({
                   size={12}
                   fontWeight={'700'}>{`createordermodal.phiengiaodich`}</Label>
                 <Label marginTop={6} size={12} multilanguage={false}>
-                  {currentSession.tradingTimeString}
-                  {converStringVNTime(I18nState)}
+                  {currentSession?.tradingTimeString}
+                  {convertStringVNTime(I18nState)}
                 </Label>
-                <TimeFromNow toTime={currentSession.closedOrderBookTime} />
+                <TimeFromNow toTime={currentSession?.closedOrderBookTime} />
               </Div>
               <Div
                 width={3}
@@ -337,8 +337,8 @@ function OrderSellStep1({
                     '700'
                   }>{`createordermodal.thoidiemdongsolenh`}</Label>
                 <Label marginTop={6} size={12} multilanguage={false}>
-                  {currentSession.closedOrderBookTimeString}
-                  {converStringVNTime(I18nState)}
+                  {currentSession?.closedOrderBookTimeString}
+                  {convertStringVNTime(I18nState)}
                 </Label>
                 <Label
                   marginTop={12}

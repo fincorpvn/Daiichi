@@ -13,10 +13,6 @@ export const getStatusEditProfile = createSelector(
   [currentUser],
   currentUser => {
     const {
-      riskInfo,
-      bankAccountIsFull,
-      userInfoIsFull,
-      userAddressIsFull,
       investmentProfile,
     } = currentUser;
     const r =

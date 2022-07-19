@@ -309,8 +309,8 @@ export const apiAuth = {
     const url = 'news/content/load?code=CONFIRM_PROFILE';
     return doGetAxios(url);
   },
-  approveUser: () => {
-    const url = `user/investment/approve-by-user?fatca=false`;
+  approveUser: (params: {fatca?: boolean}) => {
+    const url = `user/investment/approve-by-user?fatca=${!!params?.fatca}`;
     return doGetAxios(url);
   },
   updateInvestmentInfo: (params: {
@@ -374,7 +374,6 @@ export const apiAuth = {
     isKYC: boolean; //  false : non kyc , auto approve isKyc true ;
   }) => {
     const url = `user/investment/create-ekyc?fatca=${!!params?.isFatca}`;
-    Log('12312312', url);
     return doPostAxios(url, params);
   },
   // notification

@@ -5,7 +5,7 @@ import {ScrollView} from 'react-native';
 import {goBack} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {
-  converStringVNTime,
+  convertStringVNTime,
   convertAmount,
   convertNumber,
   convertTimestamp,
@@ -18,7 +18,7 @@ interface Props {
   scheme: any;
   currentSession: any;
   stepTimeLine?: number;
-  onPre?: () => void;
+  onPre: (t?: number) => void;
 }
 
 function RowSpaceItem(p: {
@@ -193,14 +193,14 @@ function OrderSellStep3({
               <Label size={14}>{`createordermodal.ngaydatlenh`}</Label>
               <Label multilanguage={false} size={14}>
                 {convertTimestamp(new Date().getTime(), 'DD/MM/yyyy, HH:mm')}
-                {converStringVNTime(I18nState)}
+                {convertStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15} isBorderBottom={true}>
               <Label size={14}>{`createordermodal.phiengiaodich`}</Label>
               <Label multilanguage={false} size={14}>
-                {currentSession.tradingTimeString}
-                {converStringVNTime(I18nState)}
+                {currentSession?.tradingTimeString}
+                {convertStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15}>
@@ -224,7 +224,7 @@ function OrderSellStep3({
           width={148}
           height={48}
           onPress={() => {
-            onPre && onPre();
+            onPre && onPre(1);
           }}
           title={`createordermodal.quaylai`}
           type={2}

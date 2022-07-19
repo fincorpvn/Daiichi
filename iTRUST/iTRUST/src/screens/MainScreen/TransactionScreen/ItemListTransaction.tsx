@@ -127,7 +127,11 @@ export function ItemOrderBuy(p: {
             widthHeight={10}
             marginRight={8}
             borderRadius={10}
-            backgroundColor={Ecolors.yellowColor}
+            backgroundColor={
+              statusCode == 'ORDER_REJECT'
+                ? Ecolors.redColor
+                : Ecolors.yellowColor
+            }
           />
           <Label multilanguage={false} size={14}>
             {I18nState == 'vi'
@@ -140,7 +144,7 @@ export function ItemOrderBuy(p: {
           </Label>
         </Div>
       </RowSpaceItem>
-      {!p.hideStatusReceiveAmount && (
+      {!p.hideStatusReceiveAmount && statusCode !== 'ORDER_REJECT' && (
         <RowSpaceItem paddingTop={3}>
           <Div />
           <Label

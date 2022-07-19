@@ -221,7 +221,7 @@ function EditAddressInfoModal() {
       />
       <ScrollView>
         {/* dia chi thuong tru */}
-        <Div padding={16} backgroundColor={Ecolors.spaceColor}>
+        <Div padding={16} backgroundColor={Ecolors.bgtime}>
           <Label multilanguage={false}>
             {`1. `}
             <Label>{`accountverify.diachithuongtru`}</Label>
@@ -320,7 +320,7 @@ function EditAddressInfoModal() {
           />
         </Div>
         {/* dia chi lien he */}
-        <Div padding={16} marginTop={21} backgroundColor={Ecolors.spaceColor}>
+        <Div padding={16} marginTop={21} backgroundColor={Ecolors.bgtime}>
           <Label multilanguage={false}>
             {`2. `}
             <Label>{`accountverify.diachilienhe`}</Label>
@@ -330,7 +330,7 @@ function EditAddressInfoModal() {
         <Div paddingHorizontal={16}>
           <Div
             marginTop={19}
-            backgroundColor={Ecolors.spaceColor}
+            backgroundColor={Ecolors.bgtime}
             borderRadius={5}
             padding={5}
             flexDirection={'row'}
@@ -339,7 +339,7 @@ function EditAddressInfoModal() {
               flex={1}
               justifyContent={'center'}
               alignItems={'center'}
-              backgroundColor={isLike ? Ecolors.whiteColor : Ecolors.spaceColor}
+              backgroundColor={isLike ? Ecolors.whiteColor : Ecolors.bgtime}
               borderRadius={5}>
               <Button
                 justifyContent={'center'}
@@ -359,9 +359,7 @@ function EditAddressInfoModal() {
               borderRadius={5}
               alignItems={'center'}
               justifyContent={'center'}
-              backgroundColor={
-                !isLike ? Ecolors.whiteColor : Ecolors.spaceColor
-              }
+              backgroundColor={!isLike ? Ecolors.whiteColor : Ecolors.bgtime}
               marginLeft={5}>
               <Label>{`accountverify.diachikhac`}</Label>
             </Button>

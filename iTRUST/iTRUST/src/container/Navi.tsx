@@ -43,7 +43,7 @@ function Navi() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    SplashScreen.hide();
+    hideSplash();
     // dispatch(changeLanguage(activeLanguage));
     dispatch(
       changeLanguage({
@@ -54,6 +54,11 @@ function Navi() {
     );
     return () => {};
   }, []);
+
+  const hideSplash = async () => {
+    await setTimeout(() => {}, 300);
+    SplashScreen.hide();
+  };
 
   useEffect(() => {
     if (statusScreen == 'main') {

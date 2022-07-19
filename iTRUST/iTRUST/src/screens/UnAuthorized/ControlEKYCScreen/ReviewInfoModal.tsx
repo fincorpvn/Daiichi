@@ -268,7 +268,7 @@ function ReviewInfoModal() {
           mailingDistrictId: mailingDistrict?.id,
           mailingWardId: mailingWard?.id,
         },
-        isFatca: !isAcceptFatca,
+        isFatca: isAcceptFatca,
         riskInfoInDto: converRistInfoInDto(riskAssessment),
         name: name || currentUser?.name || userRedux?.name, // 'Nguyen Thanh Phong';
         email: email || currentUser?.email || userRedux?.email, //'po.ntp.19946@gmail.com';
@@ -334,7 +334,7 @@ function ReviewInfoModal() {
         contentCenter={true}
         title={`reviewinfoscreen.hosocanhan`}
       />
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps={'handled'}>
         <Line />
         <ItemII
           icon={Icons.bank}
@@ -658,7 +658,7 @@ function ReviewInfoModal() {
           <Div>
             <Div
               marginTop={19}
-              backgroundColor={Ecolors.spaceColor}
+              backgroundColor={Ecolors.bgtime}
               borderRadius={5}
               padding={5}
               flexDirection={'row'}
@@ -667,9 +667,7 @@ function ReviewInfoModal() {
                 flex={1}
                 justifyContent={'center'}
                 alignItems={'center'}
-                backgroundColor={
-                  isLike ? Ecolors.whiteColor : Ecolors.spaceColor
-                }
+                backgroundColor={isLike ? Ecolors.whiteColor : Ecolors.bgtime}
                 borderRadius={5}>
                 <Button
                   justifyContent={'center'}
@@ -689,9 +687,7 @@ function ReviewInfoModal() {
                 borderRadius={5}
                 alignItems={'center'}
                 justifyContent={'center'}
-                backgroundColor={
-                  !isLike ? Ecolors.whiteColor : Ecolors.spaceColor
-                }
+                backgroundColor={!isLike ? Ecolors.whiteColor : Ecolors.bgtime}
                 marginLeft={5}>
                 <Label>{`accountverify.diachikhac`}</Label>
               </Button>

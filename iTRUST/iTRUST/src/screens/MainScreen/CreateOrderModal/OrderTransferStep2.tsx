@@ -6,7 +6,7 @@ import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
 import {
-  converStringVNTime,
+  convertStringVNTime,
   convertAmount,
   convertNav,
   convertTimestamp,
@@ -181,7 +181,7 @@ function OrderTransferStep2({
               <Label size={14}>{`createordermodal.ngaydatlenh`}</Label>
               <Label size={14} multilanguage={false}>
                 {convertTimestamp(new Date().getTime(), 'DD/MM/yyyy, HH:mm')}
-                {converStringVNTime(I18nState)}
+                {convertStringVNTime(I18nState)}
               </Label>
             </RowSpaceItem>
             <RowSpaceItem marginTop={15}>

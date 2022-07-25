@@ -8,7 +8,13 @@ import {deleteOrder} from 'reducer/transaction';
 import {navigate} from 'services';
 import {apiTransaction} from 'services/apis/apiTransaction';
 import {useAppSelector} from 'store/hooks';
-import {convertNav, convertNumber, convertTimestamp, Log} from 'utils';
+import {
+  convertNav,
+  convertNumber,
+  convertPercent,
+  convertTimestamp,
+  Log,
+} from 'utils';
 
 function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
   return (
@@ -188,6 +194,7 @@ function OrderSellDetailsModal() {
               </Div>
               <Div
                 height={'100%'}
+                flex={1}
                 flexDirection={'row'}
                 justifyContent={'flex-end'}
                 alignItems={'flex-start'}>
@@ -287,7 +294,8 @@ function OrderSellDetailsModal() {
           /> */}
           {/*  */}
           {ordersDetailsInfo?.map((item: any, index: number) => {
-            const {createAt, percentFee, sellVolume, hodingTime} = item;
+            const {createAt, percentFee, sellVolume, hodingTime, sessionTime} =
+              item;
             return (
               <Div
                 key={index}
@@ -303,7 +311,7 @@ function OrderSellDetailsModal() {
                 <RowSpaceItem>
                   <Label size={14}>{`transactionscreen.ngaymua`}</Label>
                   <Label size={14} multilanguage={false}>
-                    {convertTimestamp(createAt, 'DD/MM/yyyy, HH:mm')}
+                    {convertTimestamp(sessionTime, 'DD/MM/yyyy')}
                   </Label>
                 </RowSpaceItem>
                 <RowSpaceItem paddingTop={10}>
@@ -323,7 +331,7 @@ function OrderSellDetailsModal() {
                 <RowSpaceItem paddingTop={10}>
                   <Label size={14}>{`transactionscreen.phi`}</Label>
                   <Label size={14} multilanguage={false}>
-                    {`${percentFee || ''}%`}
+                    {convertPercent(percentFee)}
                   </Label>
                 </RowSpaceItem>
               </Div>

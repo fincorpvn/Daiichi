@@ -17,7 +17,7 @@ function RowSpaceItem(p: {paddingTop?: number; children?: any}) {
       minHeight={54}
       paddingHorizontal={16}
       borderBottomWidth={1}
-      borderBottomColor={Ecolors.spaceColor}
+      borderBottomColor={Ecolors.bgtime}
       paddingTop={p.paddingTop ?? 0}
       flexDirection={'row'}
       alignItems={'center'}
@@ -137,7 +137,7 @@ function AddressInfoModal() {
         title={`accountverify.thongtindiachi`}
       />
       <ScrollView>
-        <Div padding={16} backgroundColor={Ecolors.spaceColor}>
+        <Div padding={16} backgroundColor={Ecolors.bgtime}>
           <Label multilanguage={false}>
             {`1. `}
             <Label>{`accountverify.diachithuongtru`}</Label>
@@ -219,7 +219,7 @@ function AddressInfoModal() {
             <Label multilanguage={false}>{permanentAddress}</Label>
           </Div>
         </RowSpaceItem>
-        <Div padding={16} backgroundColor={Ecolors.spaceColor}>
+        <Div padding={16} backgroundColor={Ecolors.bgtime}>
           <Label multilanguage={false}>
             {`2. `}
             <Label>{`accountverify.diachilienhe`}</Label>

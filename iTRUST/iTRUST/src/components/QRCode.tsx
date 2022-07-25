@@ -1,19 +1,20 @@
 import Div from 'components/Div';
 import React, {useEffect, useRef, useState} from 'react';
 import crc from 'crc-react-native';
-import {getUuid, Log, widthScale} from 'utils';
+import {getUuid, Log, requestPermisson, widthScale} from 'utils';
 import QQ from 'react-native-qrcode-svg';
 import {Ecolors, Efonts, Icons, stringApp} from 'constant';
 import Label from 'components/Label';
 import Button from 'components/Button';
 import ImageView from 'components/ImageView';
 
-import CameraRoll from '@react-native-community/cameraroll';
+import CameraRoll from '@react-native-community/camer aroll';
 import Toast from 'components/Toast';
 import ViewShot from 'react-native-view-shot';
 import {ActivityIndicator, Platform} from 'react-native';
 import Alert from 'components/Alert';
 import {HTMLView} from 'components';
+import {PERMISSIONS} from 'react-native-permissions';
 
 const html = `<p><strong>1.  </strong>Nhấn vào <strong>"Tải về"</strong> để tải hình QR và lưu trên điện thoại của bạn.</p>
 <p><strong>2.  </strong>Mở ứng dụng ngân hàng <strong>(Mobile Banking)</strong> của bạn và chọn chức năng QR Code.</p>
@@ -112,6 +113,7 @@ const QRCode = (p: {data: any}) => {
     for (let i = 0; i < 4 - crcString.length; i++) {
       crcString = '0' + crcString;
     }
+    Log('`${dataString}${crcString}`', `${dataString}${crcString}`);
     return `${dataString}${crcString}`;
   };
 
@@ -135,21 +137,28 @@ const QRCode = (p: {data: any}) => {
     try {
       if (viewshotRef.current) {
         await viewshotRef.current.capture().then((img: any) => {
-          CameraRoll.save(img, {
-            type: 'photo',
-          }).then((e: any) => {
-            if (!!e) {
-              Toast.show({
-                content: 'alert.taithanhcong',
-                multilanguage: true,
+          requestPermisson(
+            Platform.OS === 'android'
+              ? PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
+              : PERMISSIONS.IOS.PHOTO_LIBRARY_ADD_ONLY,
+            () => {
+              CameraRoll.save(img, {
+                type: 'photo',
+              }).then((e: any) => {
+                if (!!e) {
+                  Toast.show({
+                    content: 'alert.taithanhcong',
+                    multilanguage: true,
+                  });
+                } else {
+                  Toast.show({
+                    content: 'alert.daxayraloi',
+                    multilanguage: true,
+                  });
+                }
               });
-            } else {
-              Toast.show({
-                content: 'alert.daxayraloi',
-                multilanguage: true,
-              });
-            }
-          });
+            },
+          );
         });
       }
     } catch (error) {

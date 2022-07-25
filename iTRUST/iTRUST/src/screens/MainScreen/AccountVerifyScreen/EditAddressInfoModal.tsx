@@ -43,14 +43,7 @@ function EditAddressInfoModal() {
   const dispatch = useDispatch();
 
   const currentUser = useAppSelector(state => state.authen.currentUser);
-  const {
-    email,
-    phone,
-    riskInfo,
-    bankAccountIsFull,
-    userInfoIsFull,
-    userAddressIsFull,
-  } = currentUser;
+  const {userAddressIsFull} = currentUser;
 
   useEffect(() => {
     bindData();

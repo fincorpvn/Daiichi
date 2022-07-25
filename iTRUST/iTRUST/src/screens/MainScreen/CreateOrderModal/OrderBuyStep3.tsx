@@ -130,7 +130,7 @@ function OrderBuyStep3({
         ref={bottomsheet}>
         <Div
           width={337}
-          height={heightScreen - 350}
+          height={450}
           borderRadius={8}
           paddingHorizontal={5}
           borderWidth={0.8}

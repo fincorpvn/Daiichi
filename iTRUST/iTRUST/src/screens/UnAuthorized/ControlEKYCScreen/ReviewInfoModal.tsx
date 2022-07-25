@@ -814,52 +814,6 @@ function ReviewInfoModal() {
           <ConfirmContent
             email={email || currentUser?.email || userRedux?.email || ''}
           />
-          {/* <Label
-            marginTop={10}
-            color={Ecolors.mainColor}
-            fontWeight={'700'}
-            multilanguage={false}
-            lineHeight={22}
-            size={15}>
-            <Label
-              lineHeight={22}
-              size={15}>{`accountverify.contentdiachi1`}</Label>
-            {`${email || currentUser?.email || userRedux?.email || ''}`}
-          </Label>
-          <Label marginBottom={10} marginTop={10} lineHeight={22} size={15}>
-            {`accountverify.contentinhoso`}
-          </Label>
-          <Div padding={10} backgroundColor={Ecolors.spaceColor} marginTop={5}>
-            <Label
-              marginTop={8}
-              size={15}
-              fontWeight={'700'}
-              color={Ecolors.mainColor}>{`accountverify.congboruiro`}</Label>
-            <Label
-              size={15}
-              marginTop={8}
-              fontWeight={'700'}>{`accountverify.title1`}</Label>
-            <Label
-              size={15}
-              lineHeight={22}
-              marginTop={8}>{`accountverify.content1`}</Label>
-            <Label
-              size={15}
-              marginTop={8}
-              fontWeight={'700'}>{`accountverify.title2`}</Label>
-            <Label
-              lineHeight={22}
-              size={15}
-              marginTop={8}>{`accountverify.content2`}</Label>
-            <Label
-              size={15}
-              marginTop={8}
-              fontWeight={'700'}>{`accountverify.title3`}</Label>
-            <Label
-              size={15}
-              lineHeight={22}
-              marginTop={8}>{`accountverify.content3`}</Label>
-          </Div> */}
           <Div
             flexDirection={'row'}
             paddingTop={17}

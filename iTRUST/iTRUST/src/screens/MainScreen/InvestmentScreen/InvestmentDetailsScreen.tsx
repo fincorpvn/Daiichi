@@ -13,32 +13,6 @@ import {convertNumber} from 'utils';
 import ButtonCreateOrder from './ButtonCreateOrder';
 import ListNav from './ListNav';
 
-function IPrice(p: {title: string; content: string}) {
-  return (
-    <Div
-      marginTop={18}
-      width={108}
-      paddingVertical={9}
-      borderRadius={8}
-      style={EStyle.shadowItem}
-      backgroundColor={Ecolors.spaceColor}
-      flexDirection={'column'}
-      alignItems={'center'}
-      justifyContent={'center'}>
-      <Label size={14} color={Ecolors.grayColor}>
-        {p.title}
-      </Label>
-      <Label
-        multilanguage={false}
-        size={18}
-        color={Ecolors.linkColor}
-        fontWeight={'700'}>
-        {convertNumber(p.content)}
-      </Label>
-    </Div>
-  );
-}
-
 function InvestmentDetailsScreen() {
   const dispatch = useDispatch();
   const productDetails = useAppSelector(state => getProductFocus(state));

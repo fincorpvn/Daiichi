@@ -11,14 +11,6 @@ function ButtonCreateOrder() {
   const insets = useSafeAreaInsets();
   const I18nState = useAppSelector(state => state.languages.I18nState);
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
-  const {
-    email,
-    phone,
-    riskInfo,
-    bankAccountIsFull,
-    userInfoIsFull,
-    userAddressIsFull,
-  } = currentUser;
   const productDetails = useAppSelector(state => getProductFocus(state));
   return (
     <Div

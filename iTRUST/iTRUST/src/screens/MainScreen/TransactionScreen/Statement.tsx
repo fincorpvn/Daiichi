@@ -187,6 +187,7 @@ function Statement(p: {activeTab: number}) {
   return (
     <Div
       padding={16}
+      paddingTop={0}
       flexDirection={'column'}
       justifyContent={'flex-start'}
       flex={1}>

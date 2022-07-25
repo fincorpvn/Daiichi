@@ -104,7 +104,6 @@ function HistoryTransaction(p: {activeTab: any}) {
         <Div
           flexDirection={'row'}
           paddingHorizontal={16}
-          paddingTop={20}
           alignItems={'center'}
           justifyContent={'space-between'}>
           <Div

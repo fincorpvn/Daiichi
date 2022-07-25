@@ -119,10 +119,6 @@ function OrderBuyStep2({
 
   const [loading, setLoading] = useState(false);
 
-  Log('dasdad', {
-    bankSuperVisory,
-  });
-
   const onConfirm = async () => {
     try {
       setLoading(true);

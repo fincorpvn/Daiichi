@@ -325,6 +325,7 @@ export default {
   transactionscreen: {
     //sao ke giao dich
     saokegiaodich: 'Statement',
+    sotien: 'Amount',
     chonquy: 'Fund',
     theothoidiemgiaodich: 'Theo thời điểm giao dịch',
     saoke: 'Sao kê',
@@ -463,6 +464,8 @@ export default {
   createordermodal: {
     huongdanthanhtoanbangqrcode: 'Hướng dẫn thanh toán bằng QR Code',
     xemqrcode: 'Xem QR code',
+    nhapmatuvanvien: 'Nhập mã tư vấn viên',
+    matuvanvien: 'Mã tư vấn viên',
     giatrimua: 'Purchase value',
     tudongtieptucdautu: 'Automatically continue to invest',
     ngaythanhtoanhangthang: 'Monthly payment date',

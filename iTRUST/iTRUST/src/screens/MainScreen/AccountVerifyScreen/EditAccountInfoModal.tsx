@@ -156,7 +156,6 @@ function EditAccountInfoModal() {
   const onConfirm = async () => {
     try {
       const a = parseInt(joinObjectCalendar(dob));
-      const c = parseInt(joinObjectCalendar(dateOfIssue));
       const b = parseInt(
         joinObjectCalendar({
           date: D,
@@ -164,6 +163,8 @@ function EditAccountInfoModal() {
           year: Y,
         }),
       );
+      const c = parseInt(joinObjectCalendar(dateOfIssue));
+
       if (Math.floor(b - a) < 180000) {
         Alert.showError({
           content: `alert.chuadutuoi`,

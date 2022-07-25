@@ -65,12 +65,6 @@ function ButtonBorder({
           <LoadingIndicator />
         ) : (
           <Label
-            onPress={() => {
-              if (isDisable) {
-                return;
-              }
-              onPress && onPress();
-            }}
             textAlign="center"
             fontWeight={'500'}
             size={size || 16}

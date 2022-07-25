@@ -2,7 +2,7 @@ import {Button, Div, Label, QRCode} from 'components';
 import {Ecolors} from 'constant';
 import React from 'react';
 import {useAppSelector} from 'store/hooks';
-import {copyToClipboard, Log} from 'utils';
+import {convertNumber, copyToClipboard, Log} from 'utils';
 function RowSpaceItem(p: {
   marginTop?: number;
   paddingHorizontal?: number;
@@ -34,6 +34,7 @@ function RowSpaceItem(p: {
 function ContentCoppy(p: {
   title: string;
   content: string;
+  contentCopy?: any;
   isBorderBottom?: boolean;
   marginTop?: number;
   isBtn?: boolean;
@@ -51,7 +52,7 @@ function ContentCoppy(p: {
       {p.isBtn ? (
         <Button
           onPress={() => {
-            copyToClipboard(p.content);
+            copyToClipboard(p.contentCopy || p.content);
           }}
           width={61}
           height={26}
@@ -86,13 +87,14 @@ function ComBankContent(p: {
     amount,
   } = p;
   const data = {
-    amount: amount,
+    amount: amount?.replace(/,/g, ''),
     accountName: bankSuperVisory?.dataBank?.name,
     accountNo: bankSuperVisory?.number,
-    transferContent: excuseTempVolumn?.transferContent,
+    transferContent: ` ${excuseTempVolumn?.transferContent}`,
     bankId: bankSuperVisory?.dataBank?.binCode,
     bankName: bankSuperVisory?.dataBank?.name,
   };
+
   return (
     <Div>
       <Div
@@ -142,6 +144,14 @@ function ComBankContent(p: {
               ? bankSuperVisory?.branch
               : bankSuperVisory?.branch || ''
           }
+          isBorderBottom={true}
+        />
+        <ContentCoppy
+          marginTop={11}
+          title={`transactionscreen.sotien`}
+          isBtn={true}
+          content={convertNumber(amount)}
+          contentCopy={amount}
           isBorderBottom={true}
         />
         <ContentCoppy

@@ -51,7 +51,7 @@ function BankInfoModal() {
       stringApp.source.find(a => a.id == bankAccount?.incomeSource)?.name || '',
     );
     setAnnualIncomeString(
-      stringApp.monthlyIncom.find(a => a.id == bankAccount?.incomeSource)
+      stringApp.monthlyIncom.find(a => a.id == bankAccount?.annualIncome)
         ?.name || '',
     );
   };
@@ -102,7 +102,7 @@ function BankInfoModal() {
           />
           <ItemCard
             title={`accountverify.chucvu`}
-            content={bankAccount?.jobLocation || '_'}
+            content={bankAccount?.position || '_'}
             isLine={true}
           />
           <ItemCard

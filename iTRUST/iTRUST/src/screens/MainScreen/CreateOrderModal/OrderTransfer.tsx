@@ -28,7 +28,6 @@ function OrderTransfer({setStepTimeLine, stepTimeLine, initData}: Props) {
   const [currentSession, setCurrentSession] = useState<any>(null);
   const [excuseTempVolumn, setExcuseTempVolumn] = useState<any>(null);
   const [bankSuperVisory, setBankSuperVisory] = useState<any>(null);
-
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
   // dest

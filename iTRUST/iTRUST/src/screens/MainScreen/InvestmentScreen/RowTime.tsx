@@ -62,12 +62,12 @@ const ArrayTime = [
 function RowTime() {
   const dispatch = useDispatch();
   const productDetails = useAppSelector(state => getProductFocus(state));
-  const [curForcus, setCurForcus] = useState(ArrayTime[1]);
+  const [curForcus, setCurForcus] = useState(ArrayTime[3]);
   const I18nState = useAppSelector(state => state.languages.I18nState);
 
   useEffect(() => {
     if (productDetails.id) {
-      changeFocusTime(ArrayTime[1]);
+      changeFocusTime(ArrayTime[3]);
     }
     return () => {};
   }, [productDetails.id]);

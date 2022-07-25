@@ -22,7 +22,6 @@ import {
 import {getStoreToken} from 'utils/storage';
 import {useAppSelector} from 'store/hooks';
 import {useDispatch} from 'react-redux';
-import CameraRoll from '@react-native-community/cameraroll';
 
 function CardSignature() {
   const currentUser = useAppSelector<any>(state => state.authen.currentUser);
@@ -84,8 +83,8 @@ function CardSignature() {
               Origin: urlApp.DomainName,
             })
             .then(async (res: any) => {
-              const T = convertDataDownloadFile(res);
               if (Platform.OS === 'android') {
+                const T = convertDataDownloadFile(res);
                 await ReactNativeBlobUtil.fs
                   .writeFile(T.urlFile, res.base64(), 'base64')
                   .then(async (e: any) => {
@@ -95,14 +94,9 @@ function CardSignature() {
                     );
                   });
               } else {
-                if (T.type != `application/pdf`) {
-                  CameraRoll.save(T.urlFile, {
-                    type: 'photo',
-                  });
-                } else {
-                  await ReactNativeBlobUtil.ios.previewDocument(res.path());
-                }
+                await ReactNativeBlobUtil.ios.previewDocument(res.path());
               }
+
               Toast.show({
                 content: 'alert.taithanhcong',
                 multilanguage: true,

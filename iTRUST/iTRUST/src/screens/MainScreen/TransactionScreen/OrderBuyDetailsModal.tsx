@@ -82,7 +82,6 @@ function OrderBuyDetailsModal() {
     code,
     transferContent,
   } = route?.params?.data;
-  console.log('route?.params?.data', route?.params?.data);
 
   const bankNote = `${transferContent}`;
 
@@ -140,7 +139,7 @@ function OrderBuyDetailsModal() {
     excuseTempVolumn: {
       transferContent: transferContent,
     },
-    amount: lockAmount,
+    amount: `${lockAmount}`,
   };
 
   return (
@@ -154,7 +153,7 @@ function OrderBuyDetailsModal() {
           !(
             route?.params?.hideDelete ||
             receivedAmount ||
-            statusCode !== 'ORDER_REJECT'
+            statusCode == 'ORDER_REJECT'
           )
             ? Icons.delete
             : null
@@ -339,7 +338,7 @@ function OrderBuyDetailsModal() {
             </Div>
             {statusCode == 'ORDER_REJECT' && (
               <Label color={Ecolors.redColor} multilanguage={false} size={12}>
-                {note}
+                {`${I18nState == 'vi' ? 'Lí do: ' : 'Reason: '}${note}`}
               </Label>
             )}
           </Div>

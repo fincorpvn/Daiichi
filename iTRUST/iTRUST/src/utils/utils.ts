@@ -30,7 +30,6 @@ export const convertStringVNTime = (I18nState: 'vi' | 'en') => {
   return '';
   return I18nState == 'vi' ? ' (Giờ VN)' : ' (VNT)';
 };
-
 export const converRistInfoInDto = (t: any) => {
   const obj = {};
   Object.keys(t).map((item: any, index: number) => {
@@ -436,6 +435,7 @@ export const getImageCamera = async () => {
             cameraType: 'back',
             includeBase64: true,
             saveToPhotos: true,
+            presentationStyle: 'formSheet',
           },
           async (res: any) => {
             if (res.assets) {
@@ -471,6 +471,7 @@ export const getImageLibrary = async () => {
             mediaType: 'photo',
             quality: 1,
             includeBase64: true,
+            presentationStyle: 'fullScreen',
           },
           (res: any) => {
             if (res.assets) {
@@ -553,15 +554,20 @@ export const requestPermisson = (permissions: any, callback: () => void) => {
 
 export const joinObjectCalendar = (a: {
   date: number | string;
-  month: number | string;
+  month: string;
   year?: number;
   isPicker?: boolean;
 }) => {
-  return `${a.year}${
-    `${parseInt(a.month)}`.length < 2
-      ? `0${parseInt(a.month) + (a.isPicker ? 1 : 0)}`
-      : parseInt(a.month) + (a.isPicker ? 1 : 0)
-  }${`${a.date}`?.length >= 2 ? a.date : `0${a.date}`}`;
+  if (a.isPicker) {
+    const MM = `${parseInt(a.month) + 1}`;
+    return `${a.year}${MM?.length >= 2 ? MM : `0${parseInt(MM)}`}${
+      `${a.date}`?.length >= 2 ? a.date : `0${a.date}`
+    }`;
+  }
+  const MM = `${parseInt(a.month)}`;
+  return `${a.year}${MM?.length >= 2 ? MM : `0${parseInt(MM)}`}${
+    `${a.date}`?.length >= 2 ? a.date : `0${a.date}`
+  }`;
 };
 
 export const reJoinObjectCalendar = (a: string) => {

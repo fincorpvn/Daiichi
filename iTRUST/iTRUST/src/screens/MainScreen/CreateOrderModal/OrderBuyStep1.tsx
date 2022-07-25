@@ -12,6 +12,7 @@ import {
 import {Ecolors, EStyle, Icons} from 'constant';
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
+import Session from 'screens/MainScreen/CreateOrderModal/Session';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
 import {useAppSelector} from 'store/hooks';
@@ -22,6 +23,7 @@ import {
   convertPercent,
   Log,
   widthScreen,
+  parseMultilanguage,
 } from 'utils';
 
 interface Props {
@@ -134,7 +136,7 @@ function OrderBuyStep1({
                 return;
               }
               const t: string = e[e.length ? e.length - 1 : 0];
-              const reg = /^[0-9|.]*$/;
+              const reg = /^[0-9]*$/;
               if (reg.test(t)) {
                 setAmount(convertAmount(`${e}`, true));
               }
@@ -165,6 +167,7 @@ function OrderBuyStep1({
               </Label>
             </Div>
           )}
+
           {!!scheme?.minContinuousCycle && !!scheme && (
             <Div
               marginTop={7}
@@ -233,98 +236,12 @@ function OrderBuyStep1({
           )}
 
           {!!currentSession && !scheme?.productSchemeIsAutoBuy && (
-            <Div
-              width={'100%'}
-              marginTop={17}
-              borderRadius={5}
-              paddingHorizontal={16}
-              paddingVertical={21}
-              backgroundColor={Ecolors.bgtime}>
-              <Div
-                flexDirection={'row'}
-                alignItems={'flex-start'}
-                justifyContent={'space-between'}>
-                <Div
-                  flex={1}
-                  flexDirection={'row'}
-                  justifyContent={'flex-start'}>
-                  <Label
-                    textAlign={'center'}
-                    size={12}
-                    fontWeight={
-                      '700'
-                    }>{`createordermodal.thoidiemdongsolenh`}</Label>
-                </Div>
-                <Div flex={1} flexDirection={'row'} justifyContent={'flex-end'}>
-                  <Label
-                    size={12}
-                    textAlign={'center'}
-                    fontWeight={
-                      '700'
-                    }>{`createordermodal.thoidiemdongsolenhnhantien`}</Label>
-                </Div>
-              </Div>
-              <Div
-                marginTop={5}
-                flexDirection={'row'}
-                alignItems={'flex-start'}
-                justifyContent={'space-between'}>
-                <Div
-                  flex={1}
-                  flexDirection={'row'}
-                  justifyContent={'flex-start'}>
-                  <Label size={12} multilanguage={false}>
-                    {currentSession?.closedOrderBookTimeString}
-                    {convertStringVNTime(I18nState)}
-                  </Label>
-                </Div>
-                <Div flex={1} flexDirection={'row'} justifyContent={'flex-end'}>
-                  <Label size={12} textAlign={'center'} multilanguage={false}>
-                    {currentSession?.closedBankNoteTimeString}
-                    {convertStringVNTime(I18nState)}
-                  </Label>
-                </Div>
-              </Div>
-              <Div
-                marginTop={5}
-                flexDirection={'row'}
-                alignItems={'flex-start'}
-                justifyContent={'space-between'}>
-                <Div flex={1} alignItems={'flex-start'}>
-                  <Label
-                    size={12}
-                    textAlign={'center'}
-                    fontWeight={
-                      '700'
-                    }>{`createordermodal.phiengiaodich`}</Label>
-                  <Label marginTop={6} size={12} multilanguage={false}>
-                    {currentSession?.tradingTimeString}
-                    {convertStringVNTime(I18nState)}
-                  </Label>
-                </Div>
-                <Div
-                  paddingLeft={17}
-                  flex={1}
-                  flexDirection={'row'}
-                  justifyContent={'flex-end'}>
-                  <TimeFromNow toTime={currentSession?.closedOrderBookTime} />
-                </Div>
-              </Div>
-              <Div
-                style={StyleSheet.absoluteFillObject}
-                alignItems={'center'}
-                paddingVertical={20}
-                justifyContent={'center'}>
-                <Div
-                  width={3}
-                  height={'100%'}
-                  backgroundColor={Ecolors.grayColor}
-                  borderRadius={10}
-                />
-              </Div>
-            </Div>
+            <Session
+              type={'buy'}
+              currentSession={currentSession}
+              scheme={scheme}
+            />
           )}
-
           {scheme && scheme?.productSchemeIsAutoBuy && (
             <Div marginTop={17}>
               <Label

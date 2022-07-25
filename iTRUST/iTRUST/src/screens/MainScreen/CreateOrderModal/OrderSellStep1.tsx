@@ -20,8 +20,10 @@ import {
   convertPercent,
   convertTimestamp,
   Log,
+  parseMultilanguage,
 } from 'utils';
 import {useAppSelector} from 'store/hooks';
+import Session from 'screens/MainScreen/CreateOrderModal/Session';
 
 interface Props {
   product: any;
@@ -294,61 +296,11 @@ function OrderSellStep1({
           )}
 
           {!!currentSession && (
-            <Div
-              width={'100%'}
-              marginTop={17}
-              borderRadius={5}
-              paddingHorizontal={16}
-              paddingVertical={21}
-              flexDirection={'row'}
-              alignItems={'center'}
-              justifyContent={'space-between'}
-              backgroundColor={Ecolors.bgtime}>
-              <Div
-                paddingRight={16}
-                height={'100%'}
-                width={140}
-                flexDirection={'column'}
-                alignItems={'flex-start'}>
-                <Label
-                  size={12}
-                  fontWeight={'700'}>{`createordermodal.phiengiaodich`}</Label>
-                <Label marginTop={6} size={12} multilanguage={false}>
-                  {currentSession?.tradingTimeString}
-                  {convertStringVNTime(I18nState)}
-                </Label>
-                <TimeFromNow toTime={currentSession?.closedOrderBookTime} />
-              </Div>
-              <Div
-                width={3}
-                height={'100%'}
-                backgroundColor={Ecolors.grayColor}
-                borderRadius={10}
-              />
-              <Div
-                height={'100%'}
-                paddingLeft={16}
-                flex={1}
-                flexDirection={'column'}
-                alignItems={'flex-start'}>
-                <Label
-                  size={12}
-                  fontWeight={
-                    '700'
-                  }>{`createordermodal.thoidiemdongsolenh`}</Label>
-                <Label marginTop={6} size={12} multilanguage={false}>
-                  {currentSession?.closedOrderBookTimeString}
-                  {convertStringVNTime(I18nState)}
-                </Label>
-                <Label
-                  marginTop={12}
-                  size={12}
-                  fontWeight={'700'}>{`createordermodal.navccqkitruoc`}</Label>
-                <Label marginTop={6} size={12} multilanguage={false}>
-                  {convertNav(product?.navCurrently)}
-                </Label>
-              </Div>
-            </Div>
+            <Session
+              product={product}
+              type={'sell'}
+              currentSession={currentSession}
+            />
           )}
         </Div>
         <Div height={100} />

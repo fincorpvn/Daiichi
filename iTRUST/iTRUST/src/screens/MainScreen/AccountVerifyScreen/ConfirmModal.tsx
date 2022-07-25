@@ -28,7 +28,6 @@ function ConfirmModal() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [isAccept, setIsAccept] = useState<boolean>(false);
-  const [isAcceptFatca, setIsAcceptFatca] = useState<boolean>(true);
   const dispatch = useDispatch();
   const investmentProfile = useAppSelector(state =>
     getInvestmentProfile(state),
@@ -61,7 +60,7 @@ function ConfirmModal() {
       if (!isAccept) {
         return;
       }
-      const res = await apiAuth.approveUser({fatca: isAcceptFatca});
+      const res = await apiAuth.approveUser();
       if (res.status == 200) {
         navigate('AccountVerifyScreen');
         dispatch(getInfo({}));
@@ -84,6 +83,7 @@ function ConfirmModal() {
       <HeaderBack type={2} title={`accountverify.xacnhanhoantat`} />
       <ScrollView>
         <ConfirmContent email={email} />
+
         {!investmentProfile ||
         investmentProfile?.code == 'INVESTMENT_PROFILE_REJECT' ? (
           <>
@@ -117,7 +117,7 @@ function ConfirmModal() {
                 <Label>{`accountverify.toidongyvoidieukhoantren`}</Label>
               </Div>
             </Div>
-            <Div
+            {/* <Div
               flexDirection={'row'}
               paddingHorizontal={16}
               paddingBottom={24}
@@ -148,7 +148,7 @@ function ConfirmModal() {
               <Div flex={1}>
                 <Label>{`accountverify.tongdongyvoidieukhoanfatca`}</Label>
               </Div>
-            </Div>
+            </Div> */}
             <Div
               marginBottom={40}
               width={'100%'}

@@ -3,6 +3,7 @@ import {Button, Div, HeaderBack, Label} from 'components';
 import {Ecolors, EStyle, Icons} from 'constant';
 import React from 'react';
 import {ScrollView} from 'react-native';
+import ComBankContent from 'screens/MainScreen/CreateOrderModal/ComBankContent';
 import {useAppSelector} from 'store/hooks';
 import {convertNumber, convertTimestamp, copyToClipboard, Log} from 'utils';
 
@@ -138,6 +139,19 @@ function AutoInvestOrderDetails() {
     transferContent,
   } = route.params.data;
 
+  const p = {
+    bankSuperVisory: {
+      dataBank,
+      name: supervisoryBankAccountName,
+      number: supervisoryBankAccountNumber,
+      branch: supervisoryBankAccountBranch,
+    },
+    excuseTempVolumn: {
+      transferContent: transferContent,
+    },
+    amount: `${minAmount}`,
+  };
+
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
       <HeaderBack
@@ -156,7 +170,8 @@ function AutoInvestOrderDetails() {
               fontWeight={
                 '700'
               }>{`transactionscreen.thongtinchuyenkhoan`}</Label>
-            <Div
+            <ComBankContent {...p} />
+            {/* <Div
               borderRadius={8}
               borderWidth={0.8}
               borderColor={Ecolors.bordercolor}
@@ -196,7 +211,7 @@ function AutoInvestOrderDetails() {
                 title={'transactionscreen.noidung'}
                 content={transferContent}
               />
-            </Div>
+            </Div> */}
             <Div
               marginTop={20}
               backgroundColor={Ecolors.bgtime}

@@ -10,7 +10,7 @@ import {
   Dropdown,
 } from 'components';
 import HeaderBack from 'components/HeaderBack';
-import {Ecolors, Icons} from 'constant';
+import {Ecolors, Icons, stringApp} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
 import {ScrollView, View} from 'react-native';
 import {goBack, navigate} from 'services/navigation';
@@ -169,7 +169,7 @@ function RegisterScreen() {
           <Lbl marginTop={13} content={`registerscreen.email`} />
           <InputItem
             inputRef={emailRef}
-            placeholder={`${exp}: dfvn@gmail.com`}
+            placeholder={`${exp}: ${stringApp.emailsupport}`}
             marginTop={6}
             titleError={
               email.length

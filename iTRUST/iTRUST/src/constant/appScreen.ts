@@ -33,6 +33,7 @@ export type appScreen =
   | 'EditAddressInfoModal'
   | 'BankInfoModal'
   | 'AddressInfoModal'
+  | 'TransferContentStepModal'
   | 'ProgramDetailsModal'
   | 'ConfirmModal'
   // tab

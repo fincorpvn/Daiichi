@@ -8,7 +8,7 @@ import Label from 'components/Label';
 import Button from 'components/Button';
 import ImageView from 'components/ImageView';
 
-import CameraRoll from '@react-native-community/camer aroll';
+import CameraRoll from '@react-native-community/cameraroll';
 import Toast from 'components/Toast';
 import ViewShot from 'react-native-view-shot';
 import {ActivityIndicator, Platform} from 'react-native';

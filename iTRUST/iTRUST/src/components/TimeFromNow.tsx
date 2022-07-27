@@ -1,11 +1,12 @@
-import {Div, Label} from 'components';
+import {Div, Label, Alert} from 'components';
 import {Ecolors} from 'constant';
 import React, {useEffect, useRef, useState} from 'react';
 import {AppState} from 'react-native';
+import {goBack} from 'services';
 import {useAppSelector} from 'store/hooks';
-import {timeoutFromNow} from 'utils';
+import {convertTimestamp, Log, timeoutFromNow} from 'utils';
 
-function TimeFromNow(p: {toTime?: any}) {
+function TimeFromNow(p: {toTime?: any; isHidden?: boolean}) {
   const [timeToOut, setTimeToOut] = useState<any>(null);
   const curInteval = useRef<any>(null);
   const I18nState = useAppSelector(state => state.languages.I18nState);
@@ -48,9 +49,23 @@ function TimeFromNow(p: {toTime?: any}) {
   useEffect(() => {
     if (timeToOut && timeToOut <= 0) {
       stopInteval();
+      handleBack();
     }
     return () => {};
   }, [timeToOut]);
+
+  const handleBack = () => {
+    const content = `Lệnh đặt của nhà đầu tư cho phiên ${convertTimestamp(
+      p.toTime,
+    )} đã kết thúc. Quý khách vui lòng đặt lại lệnh cho phiên tiếp theo.`;
+    Alert.showError({
+      content: content,
+      multilanguage: false,
+      onPress: () => {
+        goBack();
+      },
+    });
+  };
 
   const controlInteval = () => {
     if (curInteval.current) {
@@ -68,6 +83,9 @@ function TimeFromNow(p: {toTime?: any}) {
     }
   };
 
+  if (p.isHidden) {
+    return <Div />;
+  }
   return (
     <Div
       width={'100%'}

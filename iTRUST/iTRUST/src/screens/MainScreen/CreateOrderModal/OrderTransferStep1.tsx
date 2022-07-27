@@ -13,6 +13,7 @@ import React, {useState} from 'react';
 import {Platform, ScrollView} from 'react-native';
 import {goBack, navigate} from 'services';
 import {apiInvestment} from 'services/apis/apiInvestment';
+import Session from 'screens/MainScreen/CreateOrderModal/Session';
 import {useAppSelector} from 'store/hooks';
 import {
   convertAmount,
@@ -192,7 +193,7 @@ function OrderTransferStep1({
               <Label marginTop={13}>{`createordermodal.navkitruoc`}</Label>
               <InputItem
                 isInput={false}
-                value={convertNav(product?.navCurrently)}
+                value={convertNav(product?.navCurrently || 0)}
                 marginTop={6}
                 marginHorizontal={0}
               />
@@ -315,6 +316,12 @@ function OrderTransferStep1({
             }}
           />
         </Div>
+        <Session
+          scheme={scheme}
+          product={product}
+          type={'transfer'}
+          currentSession={currentSession}
+        />
         <Div height={100} />
       </ScrollView>
       <Div

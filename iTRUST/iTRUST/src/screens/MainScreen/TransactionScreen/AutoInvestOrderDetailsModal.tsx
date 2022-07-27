@@ -90,7 +90,7 @@ const ComL = (p: {
               multilanguage={false}
               size={
                 14
-              }>{`- Nếu quý khách chuyển tiền sớm, lệnh sẽ được khớp với các phiên giao dịch sớm hơn trong tháng.\n- Quý khách có thể chọn một ngày bất kỳ trong tháng làm ngày thanh toán Chương trình Đầu tư Định kỳ và cố gắng đảm bảo việc duy trì đóng tiền theo kế hoạch đã đăng ký.\n- Quý khách cũng có thể chuyển tiền mua CCQ nhiều lần trong tháng tùy theo kế hoạch đầu tư của mình.\n- Quý khách không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua định kỳ.`}</Label>
+              }>{`- Nếu quý khách chuyển tiền sớm, lệnh sẽ được khớp với các phiên giao dịch sớm hơn trong tháng.\n- Quý khách có thể chọn một ngày bất kỳ trong tháng làm ngày thanh toán Chương trình Đầu tư Định kỳ và cố gắng đảm bảo việc duy trì đóng tiền theo kế hoạch đã đăng ký.\n- Quý khách không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua định kỳ.`}</Label>
           </Label>
         ) : (
           <Label size={14} multilanguage={false}>

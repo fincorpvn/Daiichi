@@ -46,6 +46,7 @@ import InvestmentDetailsScreen from './InvestmentScreen/InvestmentDetailsScreen'
 import MiniEkycModal from './InvestmentScreen/MiniEkycModal';
 // create order
 import CreateOrderModal from './CreateOrderModal';
+import TransferContentStepModal from './CreateOrderModal/TransferContentStepModal';
 import FeeTableModal from './CreateOrderModal/FeeTableModal';
 import OnlineTradingModal from './OnlineTradingModal/OnlineTradingModal';
 // digital signaturescreen
@@ -96,6 +97,7 @@ const screens: any = {
   InvestmentDetailsScreen,
   // create order
   CreateOrderModal,
+  TransferContentStepModal,
   FeeTableModal,
   // add more function ádasdada in unauthen
   MiniEkycModal,

@@ -60,6 +60,20 @@ const ItemTable = (p: {item: any}) => {
         </RowSpaceItem>
         <Div height={10} />
       </Div>
+      <RowSpaceItem marginTop={10} isBorderBottom={true}>
+        <Label
+          color={Ecolors.grayColor}
+          size={14}>{`assetscreen.chuongtrinh`}</Label>
+        <Div
+          flex={1}
+          flexDirection={'row'}
+          alignItems={'center'}
+          justifyContent={'flex-end'}>
+          <Label textAlign={'right'} multilanguage={false} size={14}>
+            {p.item.nameProgram || ''}
+          </Label>
+        </Div>
+      </RowSpaceItem>
 
       <RowSpaceItem marginTop={10} isBorderBottom={true}>
         <Label

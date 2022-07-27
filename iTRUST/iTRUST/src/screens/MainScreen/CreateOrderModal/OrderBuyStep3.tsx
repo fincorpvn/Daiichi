@@ -1,4 +1,5 @@
 import {
+  Alert,
   BottomSheetDialog,
   Button,
   ButtonBorder,
@@ -10,7 +11,7 @@ import {Ecolors, EStyle, Icons} from 'constant';
 import React, {useRef} from 'react';
 import {ScrollView} from 'react-native';
 import ComBankContent from 'screens/MainScreen/CreateOrderModal/ComBankContent';
-import {goBack} from 'services';
+import {goBack, navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {
   convertStringVNTime,
@@ -114,169 +115,11 @@ function OrderBuyStep3({
   onPre,
 }: Props) {
   const I18nState = useAppSelector(state => state.languages.I18nState);
-  const bottomsheet = useRef<any>(null);
   if (stepTimeLine != 3) {
     return <Div screen={true} />;
   }
   return (
     <Div screen={true}>
-      <BottomSheetDialog
-        style={{
-          flexDirection: 'column',
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        ref={bottomsheet}>
-        <Div
-          width={337}
-          height={450}
-          borderRadius={8}
-          paddingHorizontal={5}
-          borderWidth={0.8}
-          borderColor={Ecolors.bordercolor}
-          backgroundColor={Ecolors.whiteColor}
-          style={EStyle.shadowItem}>
-          <Div
-            width={'100%'}
-            paddingHorizontal={17}
-            paddingTop={18}
-            paddingBottom={10}
-            alignItems={'center'}
-            justifyContent={'space-between'}
-            flexDirection={'row'}>
-            <Label
-              fontWeight={'700'}>{`createordermodal.xacnhanthanhtoan`}</Label>
-            <Button
-              onPress={() => {
-                bottomsheet.current.hide();
-              }}>
-              <ImageView
-                widthHeight={18}
-                tintColor={Ecolors.textColor}
-                source={Icons.close}
-              />
-            </Button>
-          </Div>
-          <ScrollView>
-            <ComBankContent
-              bankSuperVisory={bankSuperVisory}
-              amount={amount}
-              excuseTempVolumn={excuseTempVolumn}
-              beginBuyAutoStartDate={beginBuyAutoStartDate}
-              scheme={scheme}
-            />
-            {/* <Div
-            marginTop={13}
-            height={1}
-            width={'100%'}
-            backgroundColor={Ecolors.grayColor}
-          />
-          <Label
-            fontWeight={'700'}
-            marginHorizontal={17}
-            size={14}
-            marginTop={18}>{`createordermodal.contentxacnhanthanhtoan`}</Label>
-          <Label
-            marginHorizontal={17}
-            marginTop={3}
-            size={14}>{`createordermodal.luuyttck`}</Label>
-          <Div
-            borderRadius={8}
-            marginHorizontal={18}
-            borderWidth={0.8}
-            style={EStyle.shadowItem}
-            backgroundColor={Ecolors.whiteColor}
-            marginTop={20}
-            borderColor={Ecolors.bordercolor}
-            paddingHorizontal={20}
-            paddingTop={20}
-            paddingBottom={24}>
-            <ContentCoppy
-              title={`createordermodal.tenthuhuong`}
-              isBtn={true}
-              content={
-                I18nState == 'vi'
-                  ? bankSuperVisory?.name
-                  : bankSuperVisory?.nameEn || bankSuperVisory?.name
-              }
-              isBorderBottom={true}
-            />
-            <ContentCoppy
-              marginTop={11}
-              isBtn={true}
-              title={`createordermodal.sotaikhoan`}
-              content={bankSuperVisory?.number || ''}
-              isBorderBottom={true}
-            />
-            <ContentCoppy
-              marginTop={11}
-              isBtn={false}
-              title={`createordermodal.nganhang`}
-              content={
-                I18nState == 'vi'
-                  ? bankSuperVisory?.dataBank?.name
-                  : bankSuperVisory?.dataBank?.nameEn || ''
-              }
-              isBorderBottom={true}
-            />
-            <ContentCoppy
-              marginTop={11}
-              title={`transactionscreen.chinhanh`}
-              isBtn={false}
-              content={
-                I18nState == 'vi'
-                  ? bankSuperVisory?.branch
-                  : bankSuperVisory?.branch || ''
-              }
-              isBorderBottom={true}
-            />
-            <ContentCoppy
-              marginTop={11}
-              isBtn={true}
-              title={`createordermodal.noidung`}
-              content={`${excuseTempVolumn?.transferContent}` || ''}
-              isBorderBottom={!!scheme?.productSchemeIsAutoBuy}
-            />
-            {scheme && scheme?.productSchemeIsAutoBuy && (
-              <>
-                <RowSpaceItem marginTop={15}>
-                  <Label
-                    size={14}>{`createordermodal.tudongtieptucdautu`}</Label>
-                  <Label multilanguage={false} size={14}>
-                    {I18nState == 'vi' ? 'Có' : 'Yes'}
-                  </Label>
-                </RowSpaceItem>
-                <RowSpaceItem marginTop={8}>
-                  <Label
-                    size={
-                      14
-                    }>{`createordermodal.ngaythanhtoanhangthang`}</Label>
-                  <Label multilanguage={false} size={14}>
-                    {beginBuyAutoStartDate || ''}
-                  </Label>
-                </RowSpaceItem>
-              </>
-            )}
-          </Div> */}
-          </ScrollView>
-
-          <Div
-            width={'100%'}
-            paddingVertical={20}
-            alignItems={'center'}
-            justifyContent={'center'}>
-            <ButtonBorder
-              onPress={() => {
-                bottomsheet.current.hide();
-                goBack();
-              }}
-              width={303}
-              title={`createordermodal.xacnhan`}
-            />
-          </Div>
-        </Div>
-      </BottomSheetDialog>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Div
           width={'100%'}
@@ -411,7 +254,16 @@ function OrderBuyStep3({
           width={148}
           onPress={() => {
             // goBack();
-            bottomsheet.current.show();
+            navigate('TransferContentStepModal', {
+              bankSuperVisory,
+              amount,
+              excuseTempVolumn,
+              beginBuyAutoStartDate,
+              scheme,
+              onConfirm: () => {
+                goBack();
+              },
+            });
           }}
           height={48}
           title={`createordermodal.hoantat`}

@@ -7,7 +7,11 @@ import {goBack} from 'services';
 function AlertError() {
   const route = useRoute<any>();
   useEffect(() => {
-    return () => {};
+    return () => {
+      if (route?.params?.onPress) {
+        route?.params?.onPress();
+      }
+    };
   }, []);
   return (
     <Div screen={true} alignItems={'center'} justifyContent={'center'}>
@@ -42,11 +46,7 @@ function AlertError() {
           alignItems={'center'}
           justifyContent={'center'}
           onPress={() => {
-            goBack().then(() => {
-              if (route?.params?.onPress) {
-                route?.params?.onPress();
-              }
-            });
+            goBack();
           }}>
           <Label
             size={16}

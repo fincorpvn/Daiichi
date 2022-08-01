@@ -105,7 +105,7 @@ export const apiAuth = {
     otp?: string;
   }) => {
     try {
-      const url = 'user/investment/bank-update/confirm';
+      const url = 'esignature/change-bank/confirm';
       return doPostAxios(url, {
         expiredTime: params.expiredTime || 0,
         expiredDurationInMinutes: params.expiredDurationInMinutes || 0,
@@ -264,14 +264,9 @@ export const apiAuth = {
     return doPostAxios(url, params);
   },
   // update bank info
-  updateInvestmentBankTypeUpdate: (params: {
-    bankId: string;
-    branchId: string;
-    name: string;
-    number: string;
-  }) => {
-    const url = 'user/investment/bank-update/create';
-    return doPostAxios(url, params);
+  updateInvestmentBankTypeUpdate: (params: any) => {
+    const url = 'esignature/change-bank/create';
+    return axiosMultipart(url, params);
   },
   // update address investment address info modal
   updateInvestmentAddress: (params: {

@@ -7,20 +7,44 @@ function ComActionUpload(p: {
   onCamera: () => void;
   onGallery: () => void;
   onCancel: () => void;
+  isDrawline?: boolean;
+  onDrawline?: () => void;
 }) {
   const insest = useSafeAreaInsets();
   return (
     <Div>
+      {p.isDrawline && (
+        <Div
+          borderRadius={8}
+          flexDirection={'column'}
+          marginBottom={14}
+          alignItems={'center'}
+          backgroundColor={Ecolors.whiteColor}>
+          <Button
+            onPress={() => {
+              p.onDrawline && p.onDrawline();
+            }}
+            width={345}
+            height={48}
+            alignItems={'center'}
+            justifyContent={'center'}>
+            <Label
+              color={Ecolors.linkColor}>{`digitalsignature.kydientu`}</Label>
+          </Button>
+        </Div>
+      )}
       <Div
         borderRadius={8}
         flexDirection={'column'}
         marginBottom={14}
         alignItems={'center'}
         backgroundColor={Ecolors.whiteColor}>
-        <Label
-          marginVertical={8}
-          size={14}
-          color={Ecolors.gray}>{`digitalsignature.chonhinhanh`}</Label>
+        {!p.isDrawline && (
+          <Label
+            marginVertical={8}
+            size={14}
+            color={Ecolors.gray}>{`digitalsignature.chonhinhanh`}</Label>
+        )}
         <Button
           onPress={() => {
             p.onCamera && p.onCamera();
@@ -42,6 +66,7 @@ function ComActionUpload(p: {
           <Label color={Ecolors.linkColor}>{`digitalsignature.thuvien`}</Label>
         </Button>
       </Div>
+
       <Button
         onPress={() => {
           p.onCancel && p.onCancel();

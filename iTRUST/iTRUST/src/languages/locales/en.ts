@@ -677,6 +677,8 @@ export default {
     capnhatdiachithanhcong: 'Address update successful',
     capnhatthongtincanhanthanhcong: 'Personal information updated successful',
     dungluongtoida: 'Maximum size is 5MB',
+    capnhattaikhoannganhang:
+      'Cập nhật thông tin tài khoản ngân hàng thành công',
     capnhatthongtintaikhoannganhangthanhcong:
       'Bank account information updated successful',
     // thong bao

@@ -180,7 +180,7 @@ function ComBankContent(p: {
           </>
         )}
       </Div>
-      <Div
+      {/* <Div
         flexDirection={'row'}
         marginVertical={15}
         alignItems={'center'}
@@ -189,7 +189,7 @@ function ComBankContent(p: {
         <Label>{`createordermodal.hoac`}</Label>
         <Div height={0.8} width={133} backgroundColor={Ecolors.bordercolor} />
       </Div>
-      <QRCode data={data} />
+      <QRCode data={data} /> */}
     </Div>
   );
 }

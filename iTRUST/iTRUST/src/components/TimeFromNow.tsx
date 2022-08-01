@@ -1,8 +1,9 @@
 import {Div, Label, Alert} from 'components';
 import {Ecolors} from 'constant';
+import moment from 'moment';
 import React, {useEffect, useRef, useState} from 'react';
 import {AppState} from 'react-native';
-import {goBack} from 'services';
+import {goBack, navigate} from 'services';
 import {useAppSelector} from 'store/hooks';
 import {convertTimestamp, Log, timeoutFromNow} from 'utils';
 
@@ -10,6 +11,7 @@ function TimeFromNow(p: {toTime?: any; isHidden?: boolean}) {
   const [timeToOut, setTimeToOut] = useState<any>(null);
   const curInteval = useRef<any>(null);
   const I18nState = useAppSelector(state => state.languages.I18nState);
+  const idFocus = useAppSelector(state => state.investment.idFocus);
 
   const timeLast = useRef<any>(null);
 
@@ -62,7 +64,11 @@ function TimeFromNow(p: {toTime?: any; isHidden?: boolean}) {
       content: content,
       multilanguage: false,
       onPress: () => {
-        goBack();
+        if (!!idFocus) {
+          navigate('InvestmentDetailsScreen');
+          return;
+        }
+        navigate('TransactionScreen');
       },
     });
   };

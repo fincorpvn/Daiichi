@@ -3,6 +3,7 @@ import {Ecolors, Icons, stringApp} from 'constant';
 import React, {useEffect, useState} from 'react';
 import {
   getInvestmentProfile,
+  getStatusEditBankInfo,
   getStatusEditProfile,
 } from 'reducer/authen/selector';
 import {navigate} from 'services';
@@ -17,7 +18,7 @@ function BankInfoModal() {
     getInvestmentProfile(state),
   );
   const [branch, setBranch] = useState<any>(null);
-  const isEdit = useAppSelector(state => getStatusEditProfile(state));
+  const isEdit = useAppSelector(state => getStatusEditBankInfo(state));
   const [incomeSourceString, setIncomeSourceString] = useState<string>('');
   const [annualIncomeString, setAnnualIncomeString] = useState<string>('');
 

@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:909202786093:android:4a667db5f07a61e1a2f5a4",
+        "mobilesdk_app_id": "1:909202786093:android:50d89123bf55c16ba2f5a4",
         "android_client_info": {
-          "package_name": "com.fplatform.iTRUST"
+          "package_name": "vn.com.daiichilife.itrust"
         }
       },
       "oauth_client": [

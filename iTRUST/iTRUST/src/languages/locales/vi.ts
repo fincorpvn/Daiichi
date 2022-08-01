@@ -660,6 +660,8 @@ Tôi sẽ chịu trách nhiệm cho quyết định đầu tư và chấp nhận
     vuilongnhapdayduthongtindiachi: 'Vui lòng nhập đầy đủ thông tin địa chỉ',
     vuilongnhapdayduthongtincanhan: 'Vui lòng nhập đầy đủ thông tin cá nhân',
     capnhatthongtincanhanthanhcong: 'Cập nhật thông tin cá nhân thành công',
+    capnhattaikhoannganhang:
+      'Cập nhật thông tin tài khoản ngân hàng thành công',
     capnhatthongtintaikhoannganhangthanhcong:
       'Nhà đầu tư liên hệ với Công ty Quản lý quỹ để cập nhật tài khoản ngân hàng',
     dangxuat: 'Đăng xuất',

@@ -43,6 +43,10 @@ function SignatureDraw() {
             });
             return;
           }
+          if (route.params?.data?.flowApp == 'EditBankInfo') {
+            route.params.callback(res);
+            return;
+          }
           doUploadFileSignature({
             link: res,
             setLoading: setLoading,

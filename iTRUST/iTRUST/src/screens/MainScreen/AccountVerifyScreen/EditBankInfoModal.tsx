@@ -1,22 +1,40 @@
 import {useRoute} from '@react-navigation/core';
 import {
   Alert,
+  BottomSheetDialog,
   ButtonBorder,
   Div,
   Dropdown,
   HeaderBack,
   InputItem,
   Label,
+  Toast,
 } from 'components';
 import {Ecolors, Icons, stringApp} from 'constant';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
+import {Platform} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import ImageResizer from 'react-native-image-resizer';
 import {useDispatch} from 'react-redux';
 import {getInfo} from 'reducer/authen';
+import {
+  getStatusEditBankInfo,
+  getStatusEditProfile,
+} from 'reducer/authen/selector';
+import ComActionUpload from 'screens/MainScreen/DigitalSignature/ComActionUpload';
+import RowButtonAction from 'screens/MainScreen/DigitalSignature/RowButtonAction';
 import {apiAuth, goBack, navigate} from 'services';
 import {doGetAxios} from 'services/apis/axios';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
-import {checkToSetNumber, Log, removeUtf8, widthScale} from 'utils';
+import {
+  checkToSetNumber,
+  getImageCamera,
+  getImageLibrary,
+  getUuid,
+  Log,
+  removeUtf8,
+  widthScale,
+} from 'utils';
 
 function Lbl(p: {content: string; marginTop?: number}) {
   return (
@@ -35,6 +53,8 @@ function EditBankInfoModal() {
   const dispatch = useDispatch();
   const route = useRoute<any>();
   const currentUser = useAppSelector(state => state.authen.currentUser);
+  const isEdit = useAppSelector(state => getStatusEditBankInfo(state));
+
   const {bankAccount, bankAccountIsFull} = currentUser;
   const [name, setName] = useState('');
   const [bank, setBank] = useState<any>(null);
@@ -46,6 +66,7 @@ function EditBankInfoModal() {
   const [job, setJob] = useState<string>('');
   const [position, setPosition] = useState<string>('');
   const I18nState = useAppSelector(state => state.languages.I18nState);
+  const bottomSheetUpload = useRef<any>(null);
 
   useEffect(() => {
     bindData(bankAccount, currentUser);
@@ -61,6 +82,16 @@ function EditBankInfoModal() {
       if (t) {
         setBranch(t);
       }
+    }
+  };
+
+  const hide = (cb?: () => void) => {
+    if (bottomSheetUpload.current) {
+      bottomSheetUpload.current.hide().then(() => {
+        if (cb) {
+          cb();
+        }
+      });
     }
   };
 
@@ -98,7 +129,7 @@ function EditBankInfoModal() {
     ]);
   };
 
-  const onConfirm = async () => {
+  const onConfirm = async (file?: any) => {
     try {
       if (!name.length || !number.length || !bank || !branch) {
         Alert.showError({
@@ -113,8 +144,7 @@ function EditBankInfoModal() {
         name: name,
         number: number,
       };
-
-      if (!bankAccountIsFull) {
+      if (isEdit) {
         if (!position.length || !job.length || !incomeSource || !annualIncome) {
           Alert.showError({
             content: `alert.vuilongnhapdayduthongtintaikhoannganhang`,
@@ -127,6 +157,7 @@ function EditBankInfoModal() {
         objAction[`incomeSource`] = incomeSource?.id || 'SOURCE_OTHER';
         objAction[`annualIncome`] = annualIncome?.id || '1';
       }
+
       if (route.params?.onConfirm) {
         route.params?.onConfirm({
           userBankAccount: {
@@ -139,10 +170,10 @@ function EditBankInfoModal() {
         return;
       }
       setLoading(true);
-      const res = await (bankAccountIsFull
-        ? apiAuth.updateInvestmentBankTypeUpdate(objAction)
+      const res = await (!isEdit
+        ? apiAuth.updateInvestmentBankTypeUpdate(file)
         : apiAuth.updateInvestmentBank(objAction));
-      if (res.data && bankAccountIsFull) {
+      if (res.data && !isEdit) {
         navigate('OtpRequestModal', {
           data: {
             requestOnSendOtp: res.data,
@@ -174,7 +205,7 @@ function EditBankInfoModal() {
         Alert.show({
           type: 2,
           titleClose: 'alert.dong',
-          content: `alert.capnhatthongtintaikhoannganhangthanhcong`,
+          content: `alert.capnhattaikhoannganhang`,
           onConfirm: () => {
             navigate('AccountVerifyScreen');
           },
@@ -206,14 +237,155 @@ function EditBankInfoModal() {
     }
   };
 
+  const doAction = async (image: any) => {
+    ImageResizer.createResizedImage(image.uri, 800, 600, 'JPEG', 80, 0)
+      .then(({uri}) => {
+        const formdata = new FormData();
+        const id = getUuid();
+        const file = {
+          uri: Platform.OS !== 'android' ? uri.replace('file://', '') : uri,
+          name: `${id}.png`,
+          filename: `${id}.png`,
+          type: 'image/png',
+        };
+        formdata.append('file', file);
+        formdata.append('bankId', `${bank?.id}` || '0');
+        formdata.append('branchId', `${branch?.id || bank?.id}` || '0');
+        formdata.append('name', name || '');
+        formdata.append('number', number || '');
+        onConfirm(formdata);
+      })
+      .catch(err => {
+        Alert.showError({
+          content: 'alert.dungluongtoida',
+        });
+        return;
+      });
+    return;
+  };
+
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
+      <BottomSheetDialog
+        style={{
+          flexDirection: 'column',
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+        }}
+        ref={bottomSheetUpload}>
+        <ComActionUpload
+          isDrawline={true}
+          onDrawline={() => {
+            hide(() => {
+              navigate('SignatureDraw', {
+                data: {
+                  flowApp: 'EditBankInfo' || '',
+                },
+                callback: (t: string) => {
+                  doAction({
+                    uri: t,
+                  });
+                },
+              });
+            });
+          }}
+          onCancel={() => {
+            hide();
+          }}
+          onCamera={async () => {
+            try {
+              if (Platform.OS === 'ios') {
+                await getImageCamera()
+                  .then((image: any) => {
+                    hide();
+                    if (image[0]) {
+                      doAction(image[0]);
+                    }
+                  })
+                  .catch(() => {
+                    hide();
+                  });
+                return;
+              }
+              hide(async () => {
+                getImageCamera()
+                  .then((image: any) => {
+                    if (image[0]) {
+                      doAction(image[0]);
+                    }
+                  })
+                  .catch(() => {
+                    hide();
+                  });
+              });
+            } catch (error) {
+              if (!!error) {
+                Toast.show({
+                  content: 'alert.daxayraloi',
+                  multilanguage: true,
+                });
+              }
+            } finally {
+              hide(async () => {});
+            }
+          }}
+          onGallery={async () => {
+            try {
+              if (Platform.OS === 'ios') {
+                await getImageLibrary().then((image: any) => {
+                  hide();
+                  if (image[0]) {
+                    if (image[0].uri.endsWith('.gif')) {
+                      Alert.showError({
+                        content: 'alert.dinhdanganhkhongphuhop',
+                      });
+                      return;
+                    }
+                    doAction(image[0]);
+                  }
+                });
+                return;
+              }
+              hide(() => {
+                console.log('hideee');
+                getImageLibrary().then((image: any) => {
+                  if (image[0]) {
+                    if (image[0].uri.endsWith('.gif')) {
+                      Alert.showError({
+                        content: 'alert.dinhdanganhkhongphuhop',
+                      });
+                      return;
+                    }
+                    doAction(image[0]);
+                  }
+                });
+              });
+            } catch (error) {
+              if (!!error) {
+                Toast.show({
+                  content: 'alert.daxayraloi',
+                  multilanguage: true,
+                });
+                return;
+              }
+            } finally {
+              hide(async () => {});
+            }
+          }}
+        />
+      </BottomSheetDialog>
       <HeaderBack
         type={2}
         loading={loading}
         titleRight={`accountverify.save`}
         onRightPress={() => {
-          onConfirm();
+          if (isEdit) {
+            onConfirm();
+            return;
+          }
+          bottomSheetUpload.current.show();
+          return;
         }}
         title={`accountverify.thongtinnganhang`}
       />
@@ -265,7 +437,7 @@ function EditBankInfoModal() {
             paddingHorizontal={0}
             onChange={a => setBranch(a)}
           />
-          {!bankAccountIsFull && (
+          {isEdit && (
             <>
               <Lbl marginTop={23} content={`accountverify.thongtinkhac`} />
               <Lbl marginTop={7} content={`accountverify.nghenghiep`} />
@@ -312,8 +484,8 @@ function EditBankInfoModal() {
               />
             </>
           )}
-          <Div height={50} />
         </Div>
+        <Div height={300} />
       </ScrollView>
     </Div>
   );

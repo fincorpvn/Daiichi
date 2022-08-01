@@ -67,8 +67,18 @@ function DrawLine(p: {setIsVisible: (t: boolean) => void}, ref: any) {
       }}
       onGestureEvent={onGestureEvent}>
       <Animated.View style={s.container}>
-        <ViewShot ref={viewshotRef} options={{format: 'png', quality: 1}}>
-          <Svg width={'100%'} height={'100%'}>
+        <ViewShot
+          ref={viewshotRef}
+          options={{format: 'png', quality: 1}}
+          style={{
+            backgroundColor: Ecolors.whiteColor,
+          }}>
+          <Svg
+            style={{
+              backgroundColor: Ecolors.whiteColor,
+            }}
+            width={'100%'}
+            height={'100%'}>
             {Object.keys(stateLine).map((item: any, index: number) => {
               const consvar = stateLine[item];
               const d = `${consvar.map((item: any, index: number) => {
@@ -98,6 +108,7 @@ const s = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    backgroundColor: Ecolors.whiteColor,
   },
 });
 export default React.forwardRef(DrawLine);

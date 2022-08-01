@@ -103,6 +103,8 @@ function EditBankInfoModal() {
       branchName_en?: string;
       bankName?: string;
       bankName_en?: string;
+      job?: string;
+      position?: string;
       branchId?: string | number;
       bankId?: string | number;
     },
@@ -126,6 +128,16 @@ function EditBankInfoModal() {
             }
           : null,
       ),
+
+      setAnnualIncome(
+        stringApp.source.find(a => a.id == bankAccount?.incomeSource) || null,
+      ),
+      setIncomeSource(
+        stringApp.monthlyIncom.find(a => a.id == bankAccount?.annualIncome) ||
+          null,
+      ),
+      setJob(e?.job || ''),
+      setPosition(e?.position || ''),
     ]);
   };
 
@@ -173,10 +185,10 @@ function EditBankInfoModal() {
       const res = await (!isEdit
         ? apiAuth.updateInvestmentBankTypeUpdate(file)
         : apiAuth.updateInvestmentBank(objAction));
-      if (res.data && !isEdit) {
+      if (res.data?.otpInfo && !isEdit) {
         navigate('OtpRequestModal', {
           data: {
-            requestOnSendOtp: res.data,
+            requestOnSendOtp: res.data?.otpInfo,
             flowApp: 'UpdateBankInfo',
           },
           onConfirm: () => {

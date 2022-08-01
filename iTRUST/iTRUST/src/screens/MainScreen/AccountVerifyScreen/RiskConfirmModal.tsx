@@ -157,7 +157,7 @@ function RiskConfirmModal() {
     return <Div widthHeight={10} />;
   }, []);
   const ListFooterComponent = useCallback(() => {
-    return <Div widthHeight={30} />;
+    return <Div height={insets.bottom + 30} />;
   }, []);
 
   const keyExtractor = (item: any, index: number) => `key${item.id}`;

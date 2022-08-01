@@ -293,7 +293,7 @@ function OrderBuyStep1({
                   backgroundColor={Ecolors.mainColor}
                 />
                 <Div flex={1}>
-                  <Label fontWeight={'700'} size={12} multilanguage={false}>
+                  <Label size={12} multilanguage={false}>
                     {I18nState == 'vi'
                       ? `Chương trình ${scheme?.productSchemeNameEn} là chương trình đầu tư tự động và liên tục`
                       : `${
@@ -301,7 +301,7 @@ function OrderBuyStep1({
                           scheme?.productSchemeNameEn
                         } programme is an automatic and continuous investment program`}
                   </Label>
-                  {/* <Label marginTop={8} size={12} multilanguage={false}>
+                  <Label marginTop={8} size={12} multilanguage={false}>
                     {I18nState == 'vi'
                       ? `Quý khách vui lòng chuyển tiền vào tài khoản đầu tư vào ngày ${
                           beginBuyAutoStartDate || ''
@@ -319,7 +319,7 @@ function OrderBuyStep1({
                     {I18nState == 'vi'
                       ? `Đối với Chương trình Đầu tư Định kỳ: Nhà đầu tư không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua Định kỳ.`
                       : `Đối với Chương trình Đầu tư Định kỳ: Nhà đầu tư không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua Định kỳ.`}
-                  </Label> */}
+                  </Label>
                 </Div>
               </Div>
             </Div>

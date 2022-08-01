@@ -101,11 +101,12 @@ function EditAccountInfoModal() {
   };
 
   const bindData = async (a: any) => {
+    Log('ádas', a);
     await Promise.all([
       setName(a?.name || ''),
       setPhone(a?.phone || ''),
       setEmail(a?.email || ''),
-      setGender(a?.gender || null),
+      setGender(a?.gender ?? null),
       setType(
         a?.idTypeId == 1
           ? {id: '1', name: 'CMND/CCCD', namevn: 'CMND/CCCD'}

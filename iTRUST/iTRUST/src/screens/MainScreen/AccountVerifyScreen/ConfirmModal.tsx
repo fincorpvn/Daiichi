@@ -153,7 +153,7 @@ function ConfirmModal() {
               </Div>
             </Div>
             <Div
-              marginBottom={40}
+              marginBottom={insets.bottom + 30}
               width={'100%'}
               alignItems={'center'}
               justifyContent={'center'}>
@@ -167,7 +167,7 @@ function ConfirmModal() {
             </Div>
           </>
         ) : (
-          <Div height={insets.bottom + 20} />
+          <Div height={insets.bottom + 30} />
         )}
       </ScrollView>
     </Div>

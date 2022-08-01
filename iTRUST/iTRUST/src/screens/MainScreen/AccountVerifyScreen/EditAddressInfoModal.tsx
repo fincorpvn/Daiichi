@@ -88,6 +88,8 @@ function EditAddressInfoModal() {
         setPermanentProvince(data.permanentProvince || null),
         setPermanentDistrict(data.permanentDistrict || null),
         setpermanentWard(data.permanentWard || null),
+        //
+        setIsLike(currentUser?.mailingAddress == currentUser?.permanentAddress),
       ]);
     } catch (error) {
     } finally {

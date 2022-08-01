@@ -149,25 +149,9 @@ function AccountInfoModal() {
 
   return (
     <Div height={'100%'} backgroundColor={Ecolors.whiteColor}>
-      {/* {loading && (
-        <Div
-          flex={1}
-          width={'100%'}
-          height={'100%'}
-          zIndex={99999}
-          elevation={99999}
-          position={'absolute'}
-          style={StyleSheet.absoluteFillObject}
-          alignItems={'center'}
-          justifyContent={'center'}
-          backgroundColor={Ecolors.transparentLoading}>
-          <LoadingIndicator color={Ecolors.mainColor} />
-        </Div>
-      )} */}
       <HeaderBack
         type={2}
         iconRight={isEdit ? Icons.edit : null}
-        // iconRight={Icons.edit}
         loading={loading}
         title={`accountverify.thongtincanhan`}
         onRightPress={() => {

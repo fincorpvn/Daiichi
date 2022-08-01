@@ -36,14 +36,12 @@ export const getStatusEditBankInfo = createSelector(
       userInfoIsFull,
       bankAccountIsFull,
       userAddressIsFull,
-      riskInfo,
     } = currentUser;
 
     const r =
       (userInfoIsFull &&
         bankAccountIsFull &&
         userAddressIsFull &&
-        riskInfo &&
         investmentProfile?.status &&
         investmentProfile?.status?.code != 'INVESTMENT_PROFILE_REJECT') ||
       false;

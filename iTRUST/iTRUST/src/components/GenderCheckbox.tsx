@@ -1,6 +1,7 @@
 import {Button, Div, Label} from 'components';
 import {Ecolors} from 'constant';
 import React from 'react';
+import {Log} from 'utils';
 
 function Btn(p: {
   value: number;

@@ -23,9 +23,15 @@ function ItemCard(p: {
         height={50}>
         <Label>{p.title}</Label>
         {p.content ? (
-          <Label multilanguage={false} numberOfLines={1} marginLeft={10}>
-            {p.content || ''}
-          </Label>
+          <Div
+            flex={1}
+            flexDirection={'row'}
+            alignItems={'center'}
+            justifyContent={'flex-end'}>
+            <Label multilanguage={false} marginLeft={10}>
+              {p.content || ''}
+            </Label>
+          </Div>
         ) : (
           <Div
             flexDirection={'row'}

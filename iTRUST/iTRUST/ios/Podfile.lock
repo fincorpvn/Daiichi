@@ -297,7 +297,7 @@ PODS:
     - React-Core
   - react-native-netinfo (6.2.1):
     - React-Core
-  - react-native-pdf (6.5.0):
+  - react-native-pdf (6.6.2):
     - React-Core
   - react-native-safe-area-context (3.4.1):
     - React-Core
@@ -675,7 +675,7 @@ SPEC CHECKSUMS:
   react-native-image-picker: 9f9eb160a4f4fc0702f9d0a60fa453b413258ef8
   react-native-image-resizer: 506412a2bdd70dde64a61e13505ce10f61a04369
   react-native-netinfo: 877946c7b4eb85a639cf1ea31333dadc2be999a1
-  react-native-pdf: de35db0d8f1e5d37e65e887554f7d4bd062af56b
+  react-native-pdf: 33c622cbdf776a649929e8b9d1ce2d313347c4fa
   react-native-safe-area-context: 5b8a418400eb3d8364aa87300e865c0262cc17b9
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   react-native-true-id: 48b2f37220409938059a669cd34a78b088cde523

@@ -315,11 +315,11 @@ function OrderBuyStep1({
                       ? `Nhà đầu tư đăng ký tham gia Chương trình Đầu tư Định kỳ cho Quỹ mở do DFVN phát hành và quản lý thì cũng được áp dụng cho các Quỹ mở khác do DFVN phát hành và quản lý.`
                       : `Nhà đầu tư đăng ký tham gia Chương trình Đầu tư Định kỳ cho Quỹ mở do DFVN phát hành và quản lý thì cũng được áp dụng cho các Quỹ mở khác do DFVN phát hành và quản lý.`}
                   </Label>
-                  <Label marginTop={8} size={12} multilanguage={false}>
+                  {/* <Label marginTop={8} size={12} multilanguage={false}>
                     {I18nState == 'vi'
                       ? `Đối với Chương trình Đầu tư Định kỳ: Nhà đầu tư không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua Định kỳ.`
                       : `Đối với Chương trình Đầu tư Định kỳ: Nhà đầu tư không cần tạo lệnh mua mà chỉ thực hiện chuyển tiền vào tài khoản nhận tiền của Quỹ để thực hiện lệnh mua Định kỳ.`}
-                  </Label>
+                  </Label> */}
                 </Div>
               </Div>
             </Div>

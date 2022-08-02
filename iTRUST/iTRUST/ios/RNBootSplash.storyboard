@@ -22,6 +22,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Plashscreen.png" width="375" height="812"/>
+        <image name="Plashscreen.png" width="512" height="1109"/>
     </resources>
 </document>

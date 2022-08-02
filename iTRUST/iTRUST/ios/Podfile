@@ -27,6 +27,9 @@
 
 
 
+
+
+
 #   target 'iTRUSTTests' do
 #     inherit! :complete
 #     # Pods for testing
@@ -91,13 +94,10 @@ target 'iTRUST' do
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
   pod 'Permission-FaceID', :path => "#{permissions_path}/FaceID"
-  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications"
   pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
-  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
-  # pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
   pod 'Permission-MediaLibrary', :path => "#{permissions_path}/MediaLibrary"
-  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
-  # pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
+  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications"
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
   pod 'RNI18n', :path => '../node_modules/react-native-i18n'
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
   pod 'react-native-view-shot', :path => '../node_modules/react-native-view-shot'
@@ -106,6 +106,7 @@ target 'iTRUST' do
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
   pod 'react-native-blob-util', :path => '../node_modules/react-native-blob-util'
+  pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
 
   target 'iTRUSTTests' do
     inherit! :complete

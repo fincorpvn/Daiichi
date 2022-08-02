@@ -36,15 +36,15 @@
 		</dict>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>YOUR TEXT</string>
+	<string>Play using while you are hiking</string>
 	<key>NSCameraUsageDescription</key>
-	<string>This app requires access to the camera to capture a photo add and update profile picture</string>
+	<string>iTRUST yêu cầu quyền truy cập camera để chụp ảnh và cập nhật ảnh hồ sơ</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Enabling Face ID allows you quick and secure access to your account.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Bật Face ID để truy cập vào tài khoản của bạn nhanh chóng và an toàn</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>iTRUST yêu cầu quyền truy cập ảnh để chọn ảnh và cập nhật ảnh hồ sơ</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires access to the photo library to select a photo add and update profile picture</string>
+	<string>iTRUST yêu cầu quyền truy cập ảnh để chọn ảnh và cập nhật ảnh hồ sơ</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Black.ttf</string>

@@ -23,12 +23,14 @@
 		730FA47D27D9F281001F7375 /* ReactNativeART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA47C27D9F281001F7375 /* ReactNativeART.framework */; };
 		730FA48327D9F5E4001F7375 /* FBReactNativeSpec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48227D9F5E4001F7375 /* FBReactNativeSpec.framework */; };
 		730FA48527D9F5E4001F7375 /* RNFBApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA48427D9F5E4001F7375 /* RNFBApp.framework */; };
-		733369B1280E524900C58804 /* Plashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 733369B0280E524900C58804 /* Plashscreen.png */; };
 		733D4DEF27DF379900E27359 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 733D4DEE27DF379900E27359 /* GoogleService-Info.plist */; };
 		735F811227CDFC2B00CCD538 /* RNBootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 735F811127CDFC2B00CCD538 /* RNBootSplash.storyboard */; };
+		73974EE328573FDC00979FFC /* BVLinearGradient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73974EE228573FDC00979FFC /* BVLinearGradient.framework */; };
 		73974EE52857404B00979FFC /* TouchID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73974EE42857404B00979FFC /* TouchID.framework */; };
+		73ABDCF92898C3AC004D48BE /* folly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ABDCF82898C3AC004D48BE /* folly.framework */; };
 		73E0967027D60C8900D002AB /* OpenSSL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737FED5427D5B5EB008C8F9C /* OpenSSL.xcframework */; };
 		73E0967127D60C8F00D002AB /* double-conversion.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73898B7B27D601B900B1427A /* double-conversion.xcframework */; };
+		73F190D52897D8FC00889064 /* Plashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 73F190D42897D8FC00889064 /* Plashscreen.png */; };
 		80CEB7A2678F40B3B3633030 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12DBF8BF3CD047159634E981 /* Roboto-BlackItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		84E7AA618B05499795AD3330 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F449F995A70241AAB5409AA7 /* Roboto-Light.ttf */; };
@@ -78,11 +80,8 @@
 		730FA47A27D9F1E4001F7375 /* RNI18n.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNI18n.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		730FA47C27D9F281001F7375 /* ReactNativeART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactNativeART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		730FA47E27D9F4FC001F7375 /* RNFBApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		730FA48027D9F4FD001F7375 /* RNFBMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		730FA48227D9F5E4001F7375 /* FBReactNativeSpec.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBReactNativeSpec.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		730FA48427D9F5E4001F7375 /* RNFBApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		730FA48627D9F5E4001F7375 /* RNFBMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		733369B0280E524900C58804 /* Plashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plashscreen.png; path = ../../../../../AS/Plashscreen.png; sourceTree = "<group>"; };
 		733D4DEE27DF379900E27359 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		735478EC27D9E6C7008A1930 /* Permission_PhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Permission_PhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		735478EE27D9E6D1008A1930 /* Permission_Camera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Permission_Camera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,13 +90,14 @@
 		735478F427D9E6D1008A1930 /* Permission_PhotoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Permission_PhotoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		735478F627D9E6D1008A1930 /* RNPermissions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNPermissions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		735478F827D9E7D2008A1930 /* RNFBApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		735478FA27D9E7D3008A1930 /* RNFBMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNFBMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		735478FC27D9E91F008A1930 /* RNPermissions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNPermissions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		735F811127CDFC2B00CCD538 /* RNBootSplash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RNBootSplash.storyboard; sourceTree = "<group>"; };
 		737FED5427D5B5EB008C8F9C /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework"; sourceTree = "<group>"; };
 		73898B7B27D601B900B1427A /* double-conversion.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "double-conversion.xcframework"; path = "Pods/Flipper-DoubleConversion/Frameworks/double-conversion.xcframework"; sourceTree = "<group>"; };
 		73974EE228573FDC00979FFC /* BVLinearGradient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BVLinearGradient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73974EE42857404B00979FFC /* TouchID.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TouchID.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73ABDCF82898C3AC004D48BE /* folly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = folly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73F190D42897D8FC00889064 /* Plashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plashscreen.png; path = ../../../../../AS/Plashscreen.png; sourceTree = "<group>"; };
 		79A45F37A85148D88F85FCEE /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../src/assets/fonts/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = iTRUST/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		820CB8CC796E72F4BA4FC1B1 /* Pods_iTRUST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTRUST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +135,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73ABDCF92898C3AC004D48BE /* folly.framework in Frameworks */,
 				73974EE52857404B00979FFC /* TouchID.framework in Frameworks */,
+				73974EE328573FDC00979FFC /* BVLinearGradient.framework in Frameworks */,
 				730FA48327D9F5E4001F7375 /* FBReactNativeSpec.framework in Frameworks */,
 				730FA48527D9F5E4001F7375 /* RNFBApp.framework in Frameworks */,
 				730FA47D27D9F281001F7375 /* ReactNativeART.framework in Frameworks */,
@@ -169,8 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				733D4DEE27DF379900E27359 /* GoogleService-Info.plist */,
+				73F190D42897D8FC00889064 /* Plashscreen.png */,
 				7309843327D71423000A047D /* iTRUST.entitlements */,
-				733369B0280E524900C58804 /* Plashscreen.png */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -185,20 +187,18 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73ABDCF82898C3AC004D48BE /* folly.framework */,
 				73974EE42857404B00979FFC /* TouchID.framework */,
 				73974EE228573FDC00979FFC /* BVLinearGradient.framework */,
 				730FA48227D9F5E4001F7375 /* FBReactNativeSpec.framework */,
 				730FA48427D9F5E4001F7375 /* RNFBApp.framework */,
-				730FA48627D9F5E4001F7375 /* RNFBMessaging.framework */,
 				730FA47E27D9F4FC001F7375 /* RNFBApp.framework */,
-				730FA48027D9F4FD001F7375 /* RNFBMessaging.framework */,
 				730FA47C27D9F281001F7375 /* ReactNativeART.framework */,
 				730FA47A27D9F1E4001F7375 /* RNI18n.framework */,
 				730FA47827D9F1D7001F7375 /* RNCMaskedView.framework */,
 				730FA47627D9F1D1001F7375 /* TouchID.framework */,
 				735478FC27D9E91F008A1930 /* RNPermissions.framework */,
 				735478F827D9E7D2008A1930 /* RNFBApp.framework */,
-				735478FA27D9E7D3008A1930 /* RNFBMessaging.framework */,
 				735478EE27D9E6D1008A1930 /* Permission_Camera.framework */,
 				735478F027D9E6D1008A1930 /* Permission_FaceID.framework */,
 				735478F227D9E6D1008A1930 /* Permission_MediaLibrary.framework */,
@@ -225,13 +225,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* iTRUST */,
-				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* iTRUSTTests */,
-				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				B82DCB4B026A4A36B712E1CA /* Resources */,
+				13B07FAE1A68108700A75B9A /* iTRUST */,
+				00E356EF1AD99517003FC87E /* iTRUSTTests */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				99FD39A7DE1F53860D0B71FE /* Pods */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				B82DCB4B026A4A36B712E1CA /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -389,7 +389,6 @@
 				C8F5A1E5AA4A4F5197C85FF5 /* Roboto-Black.ttf in Resources */,
 				80CEB7A2678F40B3B3633030 /* Roboto-BlackItalic.ttf in Resources */,
 				6CC6672188504506995A9BD8 /* Roboto-Bold.ttf in Resources */,
-				733369B1280E524900C58804 /* Plashscreen.png in Resources */,
 				41EFCCE155B1426DB507CD39 /* Roboto-BoldItalic.ttf in Resources */,
 				A2A698646B0B4B4B91409D6B /* Roboto-Italic.ttf in Resources */,
 				84E7AA618B05499795AD3330 /* Roboto-Light.ttf in Resources */,
@@ -398,6 +397,7 @@
 				451EB77108D14F9CAB969942 /* Roboto-MediumItalic.ttf in Resources */,
 				733D4DEF27DF379900E27359 /* GoogleService-Info.plist in Resources */,
 				41A8BD36F3644819A65E8AA9 /* Roboto-Regular.ttf in Resources */,
+				73F190D52897D8FC00889064 /* Plashscreen.png in Resources */,
 				735F811227CDFC2B00CCD538 /* RNBootSplash.storyboard in Resources */,
 				8840C6B81C10470996098923 /* Roboto-Thin.ttf in Resources */,
 				86AF7F833CCC4DD79BC5CC74 /* Roboto-ThinItalic.ttf in Resources */,
@@ -450,7 +450,7 @@
 		};
 		472CE01FBDBF52A02C7C206F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -460,10 +460,9 @@
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iTRUST/Pods-iTRUST-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTRUST/Pods-iTRUST-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		8B1D47D4301AE8B854A22807 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -650,12 +649,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = iTRUST/iTRUST.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J93423L4L5;
+				CURRENT_PROJECT_VERSION = 39;
+				DEVELOPMENT_TEAM = 67J6WUBVUP;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "$(inherited)";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -664,12 +660,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "vn.com.dai-ichi-life.itrust";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fplatform.fincorp.vn;
 				PRODUCT_NAME = iTRUST;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -682,26 +677,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = iTRUST/iTRUST.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J93423L4L5;
+				CURRENT_PROJECT_VERSION = 39;
+				DEVELOPMENT_TEAM = 67J6WUBVUP;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "$(inherited) $(inherited)";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = iTRUST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "vn.com.dai-ichi-life.itrust";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fplatform.fincorp.vn;
 				PRODUCT_NAME = iTRUST;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
